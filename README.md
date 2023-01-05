@@ -2,7 +2,7 @@
 
 This repository contains the reference configuration to deploy the Catena-X (CX) specific Keycloak instances.
 
-The instances depend on the [helm chart from Bitnami](https://artifacthub.io/packages/helm/bitnami/keycloak/7.1.18) (chart version 7.1.18, app version 16.1.1).
+The instances depend on the [helm chart from Bitnami](https://artifacthub.io/packages/helm/bitnami/keycloak) (chart version 7.1.18, app version 16.1.1).
 
 The repository is split up in:
 
