@@ -1,0 +1,640 @@
+{
+  "realm" : "CX-Central",
+  "users" : [ {
+    "id" : "623770c5-cf38-4b9f-9a35-f8b9ae972e2d",
+    "createdTimestamp" : 1652269150847,
+    "username" : "cx-test-access.0f3abd37-9b87-421c-81e7-14a612bab68c",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User",
+    "lastName" : "CX User",
+    "email" : "cxuser@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL000000000001", "BPNL00000003CRHK" ],
+      "organisation" : [ "CX-Test-Access" ],
+      "tenant" : [ "CX-Test-Access" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Test-Access",
+      "userId" : "0f3abd37-9b87-421c-81e7-14a612bab68c",
+      "userName" : "cx user"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "CX Admin", "Company Admin" ],
+      "Cl2-CX-Portal" : [ "CX User" ],
+      "Cl15-CX-DFT" : [ "User" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "3d8142f1-860b-48aa-8c2b-1ccb18699f65",
+    "createdTimestamp" : 1652788477397,
+    "username" : "cx-test-access.6f25fc27-a5ec-4ad8-bd89-e05ca462c741",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User",
+    "lastName" : "CX Admin",
+    "email" : "cxadmin@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL00000003CRHK" ],
+      "organisation" : [ "CX-Test-Access" ],
+      "tenant" : [ "CX-Test-Access" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Test-Access",
+      "userId" : "6f25fc27-a5ec-4ad8-bd89-e05ca462c741",
+      "userName" : "cx admin"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "CX Admin" ],
+      "Cl2-CX-Portal" : [ "CX Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "47ea7f1f-f10d-4cb2-acaf-b77323ef25b3",
+    "createdTimestamp" : 1652269178374,
+    "username" : "cx-test-access.a0661e13-c74c-4b86-8151-ed1c348d0e69",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User",
+    "lastName" : "Company Admin",
+    "email" : "companyadmin@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL000000000001" ],
+      "organisation" : [ "CX-Test-Access" ],
+      "tenant" : [ "CX-Test-Access" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Test-Access",
+      "userId" : "a0661e13-c74c-4b86-8151-ed1c348d0e69",
+      "userName" : "company admin"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "Company Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "070e2c20-4b09-4670-84c8-af882589e7ea",
+    "createdTimestamp" : 1651814956235,
+    "username" : "cx-test-access.f58e4a43-c560-443d-9b1e-fcb182682bcb",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User",
+    "lastName" : "IT Admin",
+    "email" : "itadmin@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL000000000001" ],
+      "organisation" : [ "keycloak-oidc" ],
+      "tenant" : [ "keycloak-oidc" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Test-Access",
+      "userId" : "f58e4a43-c560-443d-9b1e-fcb182682bcb",
+      "userName" : "it admin"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl2-CX-Portal" : [ "IT Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "4a23930a-30b6-461c-9ad4-58d3e761a0b5",
+    "createdTimestamp" : 1652788390200,
+    "username" : "company-1.03b7feab-cc55-48cd-882a-0d8db03a8c8c",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User",
+    "lastName" : "Company Admin",
+    "email" : "company.admin@cx.com",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Company-1",
+      "userId" : "03b7feab-cc55-48cd-882a-0d8db03a8c8c",
+      "userName" : "company admin"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "Company Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "ee93d4e6-2088-4352-b6e4-21f3fa7f390e",
+    "createdTimestamp" : 1652788086549,
+    "username" : "company-2.a81a425e-bdb4-482b-8535-a02c313c25af",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User",
+    "lastName" : "Company Admin",
+    "email" : "companyadmin@cx.com",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Company-2",
+      "userId" : "a81a425e-bdb4-482b-8535-a02c313c25af",
+      "userName" : "company admin"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "Company Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "18f1a488-06e9-4dc4-ad43-cfb9c9a0c7da",
+    "createdTimestamp" : 1652269150847,
+    "username" : "security-company.18f1a488-06e9-4dc4-ad43-cfb9c9a0c7db",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User 1",
+    "lastName" : "CX User 1",
+    "email" : "cxuser-1@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL000000000001", "BPNL00000003CRHK" ],
+      "organisation" : [ "Security-Company" ],
+      "tenant" : [ "Security-Company" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Security-Company",
+      "userId" : "18f1a488-06e9-4dc4-ad43-cfb9c9a0c7db",
+      "userName" : "cx-user-1"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "Company Admin" ],
+      "Cl2-CX-Portal" : [ "CX User" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "8b747479-5e22-4e9c-a0a4-a940e8ec0535",
+    "createdTimestamp" : 1652269150847,
+    "username" : "security-company.8b747479-5e22-4e9c-a0a4-a940e8ec0536",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User 2",
+    "lastName" : "CX User 2",
+    "email" : "cxuser-2@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL000000000001", "BPNL00000003CRHK" ],
+      "organisation" : [ "Security-Company" ],
+      "tenant" : [ "Security-Company" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Security-Company",
+      "userId" : "8b747479-5e22-4e9c-a0a4-a940e8ec0536",
+      "userName" : "cx-user-2"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "Company Admin" ],
+      "Cl2-CX-Portal" : [ "CX User" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "555b0b81-6ead-4d3d-8d5d-41c07bb8cfbb",
+    "createdTimestamp" : 1652788477397,
+    "username" : "security-company.555b0b81-6ead-4d3d-8d5d-41c07bb8cfbc",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User 1",
+    "lastName" : "CX Admin 1",
+    "email" : "cxadmin-1@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL00000003CRHK" ],
+      "organisation" : [ "Security-Company" ],
+      "tenant" : [ "Security-Company" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Security-Company",
+      "userId" : "555b0b81-6ead-4d3d-8d5d-41c07bb8cfbc",
+      "userName" : "cx-admin-1"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "CX Admin" ],
+      "Cl2-CX-Portal" : [ "CX Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "cc860ece-ede3-4c03-86f9-28e23978b104",
+    "createdTimestamp" : 1652788477397,
+    "username" : "security-company.cc860ece-ede3-4c03-86f9-28e23978b105",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User 2",
+    "lastName" : "CX Admin 2",
+    "email" : "cxadmin-2@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL00000003CRHK" ],
+      "organisation" : [ "Security-Company" ],
+      "tenant" : [ "Security-Company" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Security-Company",
+      "userId" : "cc860ece-ede3-4c03-86f9-28e23978b105",
+      "userName" : "cx-admin-2"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "CX Admin" ],
+      "Cl2-CX-Portal" : [ "CX Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "22b92584-895a-442f-afe9-ed10fe997d94",
+    "createdTimestamp" : 1652269178374,
+    "username" : "security-company.22b92584-895a-442f-afe9-ed10fe997d95",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User 1",
+    "lastName" : "Company Admin 1",
+    "email" : "companyadmin-1@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL000000000001" ],
+      "organisation" : [ "Security-Company" ],
+      "tenant" : [ "Security-Company" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Security-Company",
+      "userId" : "22b92584-895a-442f-afe9-ed10fe997d95",
+      "userName" : "company-admin-1"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "Company Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "e5e403d5-3bd9-48f6-8931-7c0c717c3f40",
+    "createdTimestamp" : 1652269178374,
+    "username" : "security-company.e5e403d5-3bd9-48f6-8931-7c0c717c3f41",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User 2",
+    "lastName" : "Company Admin 2",
+    "email" : "companyadmin-2@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL000000000001" ],
+      "organisation" : [ "Security-Company" ],
+      "tenant" : [ "Security-Company" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Security-Company",
+      "userId" : "e5e403d5-3bd9-48f6-8931-7c0c717c3f41",
+      "userName" : "company-admin-2"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl1-CX-Registration" : [ "Company Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "3d064630-3736-477e-80e2-148faf1cd210",
+    "createdTimestamp" : 1651814956235,
+    "username" : "security-company.3d064630-3736-477e-80e2-148faf1cd211",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User 1",
+    "lastName" : "IT Admin 1",
+    "email" : "itadmin-1@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL000000000001" ],
+      "organisation" : [ "keycloak-oidc" ],
+      "tenant" : [ "keycloak-oidc" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Security-Company",
+      "userId" : "3d064630-3736-477e-80e2-148faf1cd211",
+      "userName" : "it-admin-1"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl2-CX-Portal" : [ "IT Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "4746cff4-7a64-4be8-a70e-cf762a7011b7",
+    "createdTimestamp" : 1651814956235,
+    "username" : "security-company.4746cff4-7a64-4be8-a70e-cf762a7011b8",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User 2",
+    "lastName" : "IT Admin 2",
+    "email" : "itadmin-2@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL000000000001" ],
+      "organisation" : [ "keycloak-oidc" ],
+      "tenant" : [ "keycloak-oidc" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Security-Company",
+      "userId" : "4746cff4-7a64-4be8-a70e-cf762a7011b8",
+      "userName" : "it-admin-2"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl2-CX-Portal" : [ "IT Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "e193b73c-f4ec-46c2-b686-5c77fe49135e",
+    "createdTimestamp" : 1651814956235,
+    "username" : "cx-test-access.3d0f5663-2de1-4a08-a394-22d1d4248efc",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Tester",
+    "lastName" : "PartChain One",
+    "email" : "partchain.one@cx.de",
+    "attributes" : {
+      "bpn" : [ "BPNL00000003CML1" ],
+      "organisation" : [ "CX-Test-Access" ],
+      "tenant" : [ "CX-Test-Access" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Test-Access",
+      "userId" : "3d0f5663-2de1-4a08-a394-22d1d4248efc",
+      "userName" : "partchain.one@cx.de"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl17-CX-Part" : [ "User" ],
+      "Cl2-CX-Portal" : [ "CX User" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "def0d51e-0a78-4774-ab51-b19a0cbe9d94",
+    "createdTimestamp" : 1651814956235,
+    "username" : "cx-test-access.f3d5e0c6-bb7b-4bb2-963f-3daffc90328d",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Tester",
+    "lastName" : "PartChain Two",
+    "email" : "partchain.two@cx.de",
+    "attributes" : {
+      "bpn" : [ "BPNL00000003CML1" ],
+      "organisation" : [ "CX-Test-Access" ],
+      "tenant" : [ "CX-Test-Access" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Test-Access",
+      "userId" : "f3d5e0c6-bb7b-4bb2-963f-3daffc90328d",
+      "userName" : "partchain.two@cx.de"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl17-CX-Part" : [ "Supervisor" ],
+      "Cl2-CX-Portal" : [ "CX User" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "2772f485-b0e8-4fab-b5a8-3ed517c5c766",
+    "createdTimestamp" : 1651814956235,
+    "username" : "cx-test-access.311963ed-9c58-44a6-8103-0b689cebaeaa",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Tester",
+    "lastName" : "PartChain Three",
+    "email" : "partchain.three@cx.de",
+    "attributes" : {
+      "bpn" : [ "BPNL00000003CML1" ],
+      "organisation" : [ "CX-Test-Access" ],
+      "tenant" : [ "CX-Test-Access" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Test-Access",
+      "userId" : "311963ed-9c58-44a6-8103-0b689cebaeaa",
+      "userName" : "partchain.three@cx.de"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl17-CX-Part" : [ "Admin" ],
+      "Cl2-CX-Portal" : [ "CX User" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "cd863f9a-5a04-44d6-bf8e-9d76e37139b2",
+    "createdTimestamp" : 1651814956235,
+    "username" : "cx-test-access.98715874-e65c-4780-95ad-fb4e8eb917a8",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "user",
+    "lastName" : "company 1",
+    "email" : "company1@user.de",
+    "attributes" : {
+      "organisation" : [ "CX-Test-Access" ],
+      "tenant" : [ "CX-Test-Access" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Test-Access",
+      "userId" : "98715874-e65c-4780-95ad-fb4e8eb917a8",
+      "userName" : "company 1 user"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl13-CX-Battery" : [ "Dismantler", "OEM" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "93a03e4c-8ba5-4d81-93f9-4b065b005b33",
+    "createdTimestamp" : 1651814956235,
+    "username" : "cx-test-access.08132c4c-146d-41ee-938a-09759783eea1",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "user",
+    "lastName" : "company 2",
+    "email" : "company2@user.de",
+    "attributes" : {
+      "organisation" : [ "CX-Test-Access" ],
+      "tenant" : [ "CX-Test-Access" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Test-Access",
+      "userId" : "08132c4c-146d-41ee-938a-09759783eea1",
+      "userName" : "company 2 user"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl13-CX-Battery" : [ "Recycler" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "502dabcf-01c7-47d9-a88e-0be4279097b5",
+    "createdTimestamp" : 1651814956235,
+    "username" : "cx-operator.656e8a94-188b-4a3e-9eec-b45d8efd8347",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Tester",
+    "lastName" : "CX Operator",
+    "email" : "cx-operator@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL00000003CRHL" ],
+      "organisation" : [ "CX-Operator" ],
+      "tenant" : [ "CX-Operator" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "CX-Operator",
+      "userId" : "656e8a94-188b-4a3e-9eec-b45d8efd8347",
+      "userName" : "cx-operator@cx.com"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl2-CX-Portal" : [ "CX Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "8be5ee49-4b9c-4008-b641-138305430cc4",
+    "createdTimestamp" : 1651814956235,
+    "username" : "service-provider.dc438ad3-8bcf-49cc-beb0-437be2745720",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Test User",
+    "lastName" : "Service Provider",
+    "email" : "service-provider@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL07800HZ01643" ],
+      "organisation" : [ "Service-Provider" ],
+      "tenant" : [ "Service-Provider" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "Service-Provider",
+      "userId" : "dc438ad3-8bcf-49cc-beb0-437be2745720",
+      "userName" : "service-provider@cx.com"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl2-CX-Portal" : [ "Company Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "6529834b-a4c1-4b11-a200-d77e5fe7443f",
+    "createdTimestamp" : 1651814956235,
+    "username" : "app-provider.aa4b2a5d-2dc7-419c-a8ce-72886e0e32e9",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Tester",
+    "lastName" : "App Provider",
+    "email" : "app-provider@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL00000003CSLL" ],
+      "organisation" : [ "App-Provider" ],
+      "tenant" : [ "App-Provider" ]
+    },
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "federatedIdentities" : [ {
+      "identityProvider" : "App-Provider",
+      "userId" : "aa4b2a5d-2dc7-419c-a8ce-72886e0e32e9",
+      "userName" : "app-provider@cx.com"
+    } ],
+    "realmRoles" : [ "default-roles-catena-x realm" ],
+    "clientRoles" : {
+      "Cl2-CX-Portal" : [ "Company Admin" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }]
+}
