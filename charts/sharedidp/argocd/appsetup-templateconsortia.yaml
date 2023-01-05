@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sharedidp-templateconsortia
+spec:
+  destination:
+    namespace: product-portal
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: charts/sharedidp
+    repoURL: 'https://github.com/catenax-ng/tx-portal-iam.git'
+    targetRevision: v1.0.0-RC1
+    plugin:
+      name: argocd-vault-plugin-helm-args
+      env:
+        - name: AVP_SECRET
+          value: vault-secret
+        - name: helm_args
+          value: '-f values.yaml -f values-templateconsortia.yaml'
+  project: project-portal
