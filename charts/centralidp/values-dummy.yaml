@@ -18,43 +18,15 @@
 ###############################################################
 
 keycloak:
-  extraVolumes:
-    - name: themes
-      emptyDir: {}
-    - name: realms
-      emptyDir: {}
-  extraVolumeMounts:
-    - name: themes
-      mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
-    - name: realms
-      mountPath: "/realms"
-  initContainers:
-    - name: import
-      image: ghcr.io/catenax-ng/tx-portal-iam_iam-import-beta:v1.0.0-RC1
-      imagePullPolicy: Always
-      command:
-        - sh
-      args:
-        - -c
-        - |
-          echo "Copying themes..."
-          cp -R /import/themes/catenax-central/* /themes
-          echo "Copying realms..."
-          cp -R /import/catenax-central/realms/* /realms
-      volumeMounts:
-      - name: themes
-        mountPath: "/themes"
-      - name: realms
-        mountPath: "/realms"
   ingress:
     enabled: true
     ingressClassName: nginx
-    hostname: centralidp.beta.demo.catena-x.net
+    hostname: centralidp.dummy
     annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
+      cert-manager.io/cluster-issuer: letsencrypt-dummy
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-      nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp.beta.demo.catena-x.net
+      nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp.dummy
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
       nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -65,11 +37,11 @@ keycloak:
 secrets:
   auth:
     existingSecret:
-      adminpassword: "<path:portal/data/beta/iam/centralidp-keycloak#admin-password>"
-      managementpassword: "<path:portal/data/beta/iam/centralidp-keycloak#management-password>"
+      adminpassword: "<path:portal/data/dummy/iam/centralidp-keycloak#admin-password>"
+      managementpassword: "<path:portal/data/dummy/iam/centralidp-keycloak#management-password>"
   postgresql:
     auth:
       existingSecret:
-        postgrespassword: "<path:portal/data/beta/iam/centralidp-postgres#postgres-password>"
-        password: "<path:portal/data/beta/iam/centralidp-postgres#password>"
-        replicationPassword: "<path:portal/data/beta/iam/centralidp-postgres#replication-password>"
+        postgrespassword: "<path:portal/data/dummy/iam/centralidp-postgres#postgres-password>"
+        password: "<path:portal/data/dummy/iam/centralidp-postgres#password>"
+        replicationPassword: "<path:portal/data/dummy/iam/centralidp-postgres#replication-password>"

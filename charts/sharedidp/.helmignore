@@ -23,7 +23,4 @@
 .vscode/
 
 # Custom dirs and files
-argocd/
-values-dev.yaml
-values-templategeneric.yaml
-values-templateconsortia.yaml
+values-dummy.yaml
