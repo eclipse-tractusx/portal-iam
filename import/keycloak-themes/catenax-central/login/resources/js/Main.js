@@ -267,8 +267,8 @@ window.onload = () => {
     while (document.body.childNodes.length > 0) {
       document.body.removeChild(document.body.firstChild)
     } 
-    const Search = new SearchInput(CX_PROVIDERS)
-    const Selector = new SelectProvider(CX_PROVIDERS)
+    Search = new SearchInput(CX_PROVIDERS)
+    Selector = new SelectProvider(CX_PROVIDERS)
     new Page()
       .append(new Header())
       .append(new Main())
