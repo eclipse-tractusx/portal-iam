@@ -130,7 +130,8 @@
     } ],
     "realmRoles" : [ "default-roles-catena-x realm" ],
     "clientRoles" : {
-      "Cl13-CX-Battery" : [ "Recycler" ]
+      "Cl13-CX-Battery" : [ "Recycler" ],
+      "Cl3-CX-Semantic" : [ "view_semantic_model" ]
     },
     "notBefore" : 0,
     "groups" : [ ]
@@ -251,6 +252,7 @@
     "realmRoles" : [ "default-roles-catena-x realm" ],
     "clientRoles" : {
       "Cl16-CX-CRisk" : [ "Company Admin", "User" ],
+      "Cl9-CDQ-Fraud" : [ "fraud_app_manager", "fraud_app_user" ],
       "Cl1-CX-Registration" : [ "CX Admin" ],
       "Cl2-CX-Portal" : [ "CX Admin" ]
     },
@@ -280,7 +282,8 @@
     } ],
     "realmRoles" : [ "default-roles-catena-x realm" ],
     "clientRoles" : {
-      "Cl13-CX-Battery" : [ "Dismantler", "OEM" ]
+      "Cl13-CX-Battery" : [ "Dismantler" ],
+      "Cl3-CX-Semantic" : [ "view_semantic_model" ]
     },
     "notBefore" : 0,
     "groups" : [ ]
