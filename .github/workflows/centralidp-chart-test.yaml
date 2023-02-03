@@ -23,10 +23,10 @@ on:
   push:
     paths:
       - 'charts/centralidp/**'
-    branches: [main]
-  pull_request:
-    paths:
-      - 'charts/centralidp/**'
+    branches: [main, helm-environments]
+  # pull_request:
+  #   paths:
+  #     - 'charts/centralidp/**'
   workflow_dispatch:
 
 jobs:
