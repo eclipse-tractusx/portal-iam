@@ -1,5 +1,5 @@
 ###############################################################
-# Copyright (c) 2021-2023 Contributors to the Eclipse Foundation
+# Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
 #
 # See the NOTICE file(s) distributed with this work for additional
 # information regarding copyright ownership.
@@ -21,8 +21,8 @@ apiVersion: v2
 name: sharedidp
 description: Helm chart for Catena-X Shared Keycloak Instance
 type: application
-version: 1.0.0-RC1
-appVersion: 1.0.0-RC1
+version: 1.0.0-RC2
+appVersion: 1.0.0-RC2
 dependencies:
   - name: keycloak
     repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
