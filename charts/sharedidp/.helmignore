@@ -21,6 +21,3 @@
 .idea/
 *.tmproj
 .vscode/
-
-# Custom dirs and files
-values-dummy.yaml
