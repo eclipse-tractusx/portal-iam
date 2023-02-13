@@ -89,16 +89,6 @@ class Viewable {
 
 }
 
-class InputField extends Viewable {
-
-    constructor() {
-        super()
-    }
-
-
-
-}
-
 class Card extends Viewable {
 
     constructor(name) {
