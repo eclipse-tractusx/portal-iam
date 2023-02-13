@@ -1,34 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-- Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
--
-- See the NOTICE file(s) distributed with this work for additional
-- information regarding copyright ownership.
--
-- This program and the accompanying materials are made available under the
-- terms of the Apache License, Version 2.0 which is available at
-- https://www.apache.org/licenses/LICENSE-2.0.
--
-- Unless required by applicable law or agreed to in writing, software
-- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-- License for the specific language governing permissions and limitations
-- under the License.
--
-- SPDX-License-Identifier: Apache-2.0
--->
-
-<!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
-<style type="text/css">
-	.eyeShow0{fill:#010101;}
-</style>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100">
 <g>
-	<g id="visibility">
-		<path class="eyeShow0" d="M50,15.9C27.3,15.9,7.7,30,0,50c7.7,20,27.3,34.1,50,34.1S92.3,70,100,50C92.3,30,72.7,15.9,50,15.9z
-			 M50,72.7c-12.7,0-22.7-10-22.7-22.7s10-22.7,22.7-22.7s22.7,10,22.7,22.7S62.7,72.7,50,72.7z M50,36.4c-7.7,0-13.6,5.9-13.6,13.6
-			S42.3,63.6,50,63.6S63.6,57.7,63.6,50S57.7,36.4,50,36.4z"/>
-	</g>
+<path fill="#808080" d="M50,15.9C27.3,15.9,7.7,30,0,50c7.7,20,27.3,34.1,50,34.1S92.3,70,100,50C92.3,30,72.7,15.9,50,15.9z
+M50,72.7c-12.7,0-22.7-10-22.7-22.7s10-22.7,22.7-22.7s22.7,10,22.7,22.7S62.7,72.7,50,72.7z M50,36.4c-7.7,0-13.6,5.9-13.6,13.6
+S42.3,63.6,50,63.6S63.6,57.7,63.6,50S57.7,36.4,50,36.4z"/>
 </g>
 </svg>
