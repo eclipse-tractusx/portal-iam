@@ -19,6 +19,9 @@
 
 FROM alpine:3.17
 
+# temp fix for CVE-2023-0286
+RUN apk upgrade --no-cache libssl3 libcrypto3
+
 RUN mkdir import
 
 RUN chown -R 1000:3000 /import
