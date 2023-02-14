@@ -129,10 +129,11 @@ class Form extends Viewable {
 
     static fromPage() {
         try {
-            const form = document.getElementsByTagName('form')[0]
+            const form = document.getElementsByTagName('form').item(0)
             switch (form.id) {
                 case 'kc-form-login': return new FormLogin(form).detach()
                 case 'kc-passwd-update-form': return new FormOtp(form).detach()
+                case 'kc-reset-passwd-form': return new FormReset(form).detach()
             }
         } catch (e) {
             return null
@@ -211,6 +212,14 @@ class FormOtp extends Form {
 
 }
 
+class FormReset extends Form {
+
+    constructor(form) {
+        super(form)
+    }
+
+}
+
 class Section extends Viewable {
 
     constructor(form) {
@@ -245,10 +254,10 @@ class App extends Viewable {
 
 class Header extends Viewable {
 
-    constructor(name) {
+    constructor(title) {
         super()
         this.view = N('header', [
-            N('h3', 'Sign in to your account')
+            N('h3', title)
         ])
     }
 
@@ -279,15 +288,16 @@ addEvents(
     window,
     {
         load: () => {
-            const name = document.getElementById('kc-header-wrapper').firstChild.data
+            const title = document.getElementsByTagName('h1').item(0).firstChild.data
+            const realm = document.getElementById('kc-header-wrapper').firstChild.data
             const content = document.getElementById('kc-content')
             const form = Form.fromPage()
             new App(true)
-                .append(new Header(name))
+                .append(new Header(title).append(content))
                 .append(
                     new Main().append(
                         new Section()
-                            .append(new Card(name))
+                            .append(new Card(realm))
                             .append(form || content)
                     )
                 )
