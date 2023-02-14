@@ -131,9 +131,9 @@ class Form extends Viewable {
         try {
             const form = document.getElementsByTagName('form').item(0)
             switch (form.id) {
-                case 'kc-form-login': return new FormLogin(form).detach()
-                case 'kc-passwd-update-form': return new FormOtp(form).detach()
-                case 'kc-reset-passwd-form': return new FormReset(form).detach()
+                case 'kc-form-login': return new FormLogin(form)
+                case 'kc-passwd-update-form': return new FormOtp(form)
+                case 'kc-reset-passwd-form': return new FormReset(form)
             }
         } catch (e) {
             return null
@@ -183,6 +183,8 @@ class FormLogin extends Form {
         this.view.removeChild(forgot)
         this.view.appendChild(forgot)
         const links = [...forgot.getElementsByTagName('a')]
+        if (links.length === 0)
+            return
         const parent = links[links.length - 1].parentElement
         parent.appendChild(
             addEvents(
@@ -222,7 +224,7 @@ class FormReset extends Form {
 
 class Section extends Viewable {
 
-    constructor(form) {
+    constructor() {
         super()
         this.view = N('section')
     }
