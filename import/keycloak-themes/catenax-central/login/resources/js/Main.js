@@ -17,29 +17,36 @@
  * SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-const N = (tag, c, att) => {
-  const n = document.createElement(tag)
-  if (att) for (let a of Object.keys(att)) n.setAttribute(a, att[a])
-  if (typeof c === 'undefined' || c === null || c === false) return n
-  if (!(c instanceof Array)) c = [c]
-  for (let i in c) {
-      const tc = typeof c[i]
-      if (tc !== 'undefined')
-          try {
-              n.appendChild(
-                  tc === 'object'
-                      ? c[i]
-                      : document.createTextNode(tc === 'string' ? c[i] : '' + c[i])
-              )
-          } catch (e) {
-              const pre = document.createElement('pre')
-              pre.appendChild(document.createTextNode(JSON.stringify(c[i], null, 4)))
-              n.appendChild(pre)
-          }
-  }
-  return n
+const getNodeOrViewable = (c) => c.hasOwnProperty('view') ? c.view : c
+
+const getTextNode = (c, tc) => document.createTextNode(tc === 'string' ? c : '' + c)
+
+const append = (n, c) => {
+    if (!(c instanceof Array)) c = [c]
+    for (let i in c) {
+        const tc = typeof c[i]
+        if (tc !== 'undefined')
+            try {
+                n.appendChild(
+                    tc === 'object'
+                        ? getNodeOrViewable(c[i])
+                        : getTextNode(c[i], tc)
+                )
+            } catch (e) {
+                const pre = document.createElement('pre')
+                pre.appendChild(document.createTextNode(JSON.stringify(c[i], null, 4)))
+                n.appendChild(pre)
+            }
+    }
+    return n
 }
 
+const N = (tag, c, att) => {
+    const n = document.createElement(tag)
+    if (att) for (let a of Object.keys(att)) n.setAttribute(a, att[a])
+    if (typeof c === 'undefined' || c === null || c === false) return n
+    return append(n, c)
+}
 const SEARCH_VALIDATION_REGEX =
   /^[a-zA-Z][a-zA-Z0-9 !#'$@&%()*+,\-_./:;=<>?[\]\\^]{0,255}$/
 
@@ -238,9 +245,6 @@ class Header extends Viewable {
 class Footer extends Viewable {
   constructor() {
       super()
-      const redirectUri = new URLSearchParams(window.location.search).get(
-          'redirect_uri'
-      )
       this.view = N('footer', [
           N('div', '', { class: 'links' }),
           N('div', 'Copyright © Catena-X Automotive Network.', { class: 'copy' })
@@ -254,6 +258,9 @@ class Main extends Viewable {
       this.view = N('main', Selector.getView())
   }
 }
+
+let Search
+let Selector
 
 window.onload = () => {
     let icon = document.querySelectorAll('link[rel=icon]')[0]
