@@ -25,14 +25,17 @@ The project maintains the following source code repositories in the GitHub organ
 * https://github.com/eclipse-tractusx/portal-frontend-registration
 * https://github.com/eclipse-tractusx/portal-frontend
 * https://github.com/eclipse-tractusx/portal-backend
+* https://github.com/eclipse-tractusx/portal-assets
+* https://github.com/eclipse-tractusx/portal-cd
+* https://github.com/eclipse-tractusx/portal-iam
 
 ## Third-party Content
 
 This project depends on the following Helm chart from Bitnami:
 
 * License: Apache License, Version 2.0
-* Licence Path: https://artifacthub.io/packages/helm/bitnami/keycloak/7.1.18#license
-* Source URL: https://artifacthub.io/packages/helm/bitnami/keycloak/7.1.18
+* Licence Path: https://artifacthub.io/packages/helm/bitnami/keycloak#license
+* Source URL: https://artifacthub.io/packages/helm/bitnami/keycloak
 
 ## Cryptography
 
