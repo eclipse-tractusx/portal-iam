@@ -21,3 +21,7 @@
 .idea/
 *.tmproj
 .vscode/
+
+# Custom dirs and files
+argocd/
+*.gotmpl

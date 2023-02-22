@@ -21,8 +21,8 @@ apiVersion: v2
 name: sharedidp
 description: Helm chart for Catena-X Shared Keycloak Instance
 type: application
-version: 1.0.0-RC2
-appVersion: 1.0.0-RC2
+version: 1.0.0
+appVersion: 1.0.0
 dependencies:
   - name: keycloak
     repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami

@@ -22,7 +22,8 @@ keycloak:
     tag: 16.1.1-debian-10-r103
   auth:
     adminUser: admin
-    existingSecret: sharedidp-keycloak
+    # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
+    existingSecret: "sharedidp-keycloak"
   proxyAddressForwarding: true
   serviceDiscovery:
     enabled: true
@@ -57,7 +58,7 @@ keycloak:
       mountPath: "/realms"
   initContainers:
     - name: import
-      image: ghcr.io/catenax-ng/tx-portal-iam_iam-import:v1.0.0-RC2
+      image: ghcr.io/catenax-ng/tx-portal-iam_iam-import:v1.0.0
       imagePullPolicy: Always
       command:
         - sh
@@ -83,12 +84,16 @@ keycloak:
   ingress:
     enabled: false
     ingressClassName: "nginx"
-    hostname: "sharedidp.dummy"
+    # -- Provide default path for the ingress record.
+    hostname: "sharedidp.example.org"
     annotations:
+      # -- Enable TLS configuration for the host defined at `ingress.hostname` parameter;
+      # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
+      # Provide the name of ClusterIssuer to acquire the certificate required for this Ingress
       cert-manager.io/cluster-issuer: ""
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
-      nginx.ingress.kubernetes.io/cors-allow-origin: ""
+      nginx.ingress.kubernetes.io/cors-allow-origin: "https://sharedidp.example.org"
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
       nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -106,23 +111,54 @@ keycloak:
           - get
           - list
   postgresql:
+  # -- PostgreSQL chart configuration;
+  # default configurations:
+  # host: "sharedidp-postgresql-primary",
+  # port: 5432;
+    # Switch to enable or disable the PostgreSQL helm chart.
     enabled: true
     auth:
+      # -- Non-root username.
       username: kcshared
+      # -- Database name.
       database: iamsharedidp
-      existingSecret: sharedidp-postgres
+      # -- Secret containing the passwords for root usernames postgres and non-root username kcshared.
+      existingSecret: "sharedidp-postgres"
     architecture: replication
+  externalDatabase:
+  # -- External PostgreSQL configuration
+  # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
+    # Database host ('-primary' is added as postfix).
+    host: "sharedidp-postgresql-external-db"
+    # -- Database port number.
+    port: 5432
+    # -- Non-root username for sharedidp.
+    user: "kcshared"
+    # -- Database name.
+    database: "iamsharedidp"
+    # -- Password for the non-root username (default 'kcshared'). Secret-key 'password'.
+    password: ""
+    # -- Secret containing the password non-root username, (default 'kcshared').
+    existingSecret: "sharedidp-keycloak-external-db"
+    # -- Name of an existing secret key containing the database credentials.
+    existingSecretPasswordKey: "password"
 
 secrets:
   auth:
     existingSecret:
+      # -- Password for the admin username 'admin'. Secret-key 'admin-password'.
       adminpassword: ""
+      # -- Password Wildfly management username 'manager'. Secret-key 'management-password'.
       managementpassword: ""
   postgresql:
     auth:
       existingSecret:
+        # -- Password for the root username 'postgres'. Secret-key 'postgres-password'.
         postgrespassword: ""
+        # -- Password for the non-root username 'kcshared'. Secret-key 'password'.
         password: ""
+        # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
         replicationPassword: ""
   realmuser:
+    # Enables the import of test users via secret.
     enabled: false
