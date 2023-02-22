@@ -985,6 +985,7 @@
     {
       "id": "378c7cad-c6dc-49db-b3dd-fea6d9365edb",
       "clientId": "sa-cl1-reg-1",
+      "description": "Technical User for Portal-Backend to call Keycloak (portal helm chart: backend.keycloak.shared.clientId)",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,

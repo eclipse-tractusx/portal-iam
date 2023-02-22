@@ -10,6 +10,10 @@
     "firstName" : "Operator",
     "lastName" : "CX Admin",
     "email" : "tobeadded@cx.com",
+    "attributes" : {
+      "bpn" : [ "BPNL00000003CRHK" ],
+      "organisation" : [ "CX-Operator" ]
+    },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],

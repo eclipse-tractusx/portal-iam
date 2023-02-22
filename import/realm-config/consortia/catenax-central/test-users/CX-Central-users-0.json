@@ -12,8 +12,7 @@
     "email" : "app-provider@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL00000003CSLL" ],
-      "organisation" : [ "App-Provider" ],
-      "tenant" : [ "App-Provider" ]
+      "organisation" : [ "App-Provider" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -89,8 +88,7 @@
     "email" : "cx-operator@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL00000003CRHL" ],
-      "organisation" : [ "CX-Operator" ],
-      "tenant" : [ "CX-Operator" ]
+      "organisation" : [ "CX-Operator" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -117,8 +115,7 @@
     "lastName" : "company 2",
     "email" : "company2@user.de",
     "attributes" : {
-      "organisation" : [ "CX-Test-Access" ],
-      "tenant" : [ "CX-Test-Access" ]
+      "organisation" : [ "CX-Test-Access" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -147,8 +144,7 @@
     "email" : "cxuser@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL000000000001", "BPNL00000003CRHK" ],
-      "organisation" : [ "CX-Test-Access" ],
-      "tenant" : [ "CX-Test-Access" ]
+      "organisation" : [ "CX-Test-Access" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -179,8 +175,7 @@
     "email" : "partchain.three@cx.de",
     "attributes" : {
       "bpn" : [ "BPNL00000003CML1" ],
-      "organisation" : [ "CX-Test-Access" ],
-      "tenant" : [ "CX-Test-Access" ]
+      "organisation" : [ "CX-Test-Access" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -209,8 +204,7 @@
     "email" : "partchain.one@cx.de",
     "attributes" : {
       "bpn" : [ "BPNL00000003CML1" ],
-      "organisation" : [ "CX-Test-Access" ],
-      "tenant" : [ "CX-Test-Access" ]
+      "organisation" : [ "CX-Test-Access" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -239,8 +233,7 @@
     "email" : "cxadmin@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL00000003CRHK" ],
-      "organisation" : [ "CX-Test-Access" ],
-      "tenant" : [ "CX-Test-Access" ]
+      "organisation" : [ "CX-Test-Access" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -270,8 +263,7 @@
     "lastName" : "company 1",
     "email" : "company1@user.de",
     "attributes" : {
-      "organisation" : [ "CX-Test-Access" ],
-      "tenant" : [ "CX-Test-Access" ]
+      "organisation" : [ "CX-Test-Access" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -300,8 +292,7 @@
     "email" : "companyadmin@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL000000000001" ],
-      "organisation" : [ "CX-Test-Access" ],
-      "tenant" : [ "CX-Test-Access" ]
+      "organisation" : [ "CX-Test-Access" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -329,8 +320,7 @@
     "email" : "partchain.two@cx.de",
     "attributes" : {
       "bpn" : [ "BPNL00000003CML1" ],
-      "organisation" : [ "CX-Test-Access" ],
-      "tenant" : [ "CX-Test-Access" ]
+      "organisation" : [ "CX-Test-Access" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -359,8 +349,7 @@
     "email" : "itadmin@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL000000000001" ],
-      "organisation" : [ "keycloak-oidc" ],
-      "tenant" : [ "keycloak-oidc" ]
+      "organisation" : [ "keycloak-oidc" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -388,8 +377,7 @@
     "email" : "cxuser-1@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL000000000001", "BPNL00000003CRHK" ],
-      "organisation" : [ "Security-Company" ],
-      "tenant" : [ "Security-Company" ]
+      "organisation" : [ "Security-Company" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -418,8 +406,7 @@
     "email" : "companyadmin-1@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL000000000001" ],
-      "organisation" : [ "Security-Company" ],
-      "tenant" : [ "Security-Company" ]
+      "organisation" : [ "Security-Company" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -447,8 +434,7 @@
     "email" : "itadmin-1@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL000000000001" ],
-      "organisation" : [ "keycloak-oidc" ],
-      "tenant" : [ "keycloak-oidc" ]
+      "organisation" : [ "keycloak-oidc" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -476,8 +462,7 @@
     "email" : "itadmin-2@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL000000000001" ],
-      "organisation" : [ "keycloak-oidc" ],
-      "tenant" : [ "keycloak-oidc" ]
+      "organisation" : [ "keycloak-oidc" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -505,8 +490,7 @@
     "email" : "cxadmin-1@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL00000003CRHK" ],
-      "organisation" : [ "Security-Company" ],
-      "tenant" : [ "Security-Company" ]
+      "organisation" : [ "Security-Company" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -535,8 +519,7 @@
     "email" : "cxuser-2@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL000000000001", "BPNL00000003CRHK" ],
-      "organisation" : [ "Security-Company" ],
-      "tenant" : [ "Security-Company" ]
+      "organisation" : [ "Security-Company" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -565,8 +548,7 @@
     "email" : "cxadmin-2@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL00000003CRHK" ],
-      "organisation" : [ "Security-Company" ],
-      "tenant" : [ "Security-Company" ]
+      "organisation" : [ "Security-Company" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -595,8 +577,7 @@
     "email" : "companyadmin-2@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL000000000001" ],
-      "organisation" : [ "Security-Company" ],
-      "tenant" : [ "Security-Company" ]
+      "organisation" : [ "Security-Company" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
@@ -624,8 +605,7 @@
     "email" : "service-provider@cx.com",
     "attributes" : {
       "bpn" : [ "BPNL07800HZ01643" ],
-      "organisation" : [ "Service-Provider" ],
-      "tenant" : [ "Service-Provider" ]
+      "organisation" : [ "Service-Provider" ]
     },
     "credentials" : [ ],
     "disableableCredentialTypes" : [ ],
