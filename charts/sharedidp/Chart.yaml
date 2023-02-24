@@ -19,10 +19,13 @@
 
 apiVersion: v2
 name: sharedidp
-description: Helm chart for Catena-X Shared Keycloak Instance
 type: application
-version: 1.0.0
+version: 1.0.1
 appVersion: 1.0.0
+description: Helm chart for Catena-X Shared Keycloak Instance
+home: https://github.com/eclipse-tractusx/portal-iam
+sources:
+  - https://github.com/eclipse-tractusx/portal-iam
 dependencies:
   - name: keycloak
     repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
