@@ -48,7 +48,7 @@ const N = (tag, c, att) => {
     return append(n, c)
 }
 const SEARCH_VALIDATION_REGEX =
-  /^[a-zA-Z][a-zA-Z0-9 !#'$@&%()*+,\-_./:;=<>?[\]\\^]{0,255}$/
+  /^[a-zA-Z0-9][a-zA-Z0-9 !#'$@&%()*+,\-_./:;=<>?[\]\\^]{0,255}$/
 
 const remove = (n) => n.parentElement.removeChild(n)
 
