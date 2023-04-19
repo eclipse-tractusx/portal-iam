@@ -6,11 +6,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Change
 
-* realm init (centralidp - cx-central):
-  * client "Cl2-CX-Portal": deleted "view_irs" role from "CX User" role
-  * client "Cl2-CX-Portal": "update_service_offering" role assigned to "CX Admin" role
-  * "view_company_data" role assignment updated
-  * "view_membership" role added to technical user role "App Tech User" role
+* realm init (centralidp - cx-central): see [Post-Upgrade Configuration](./charts/centralidp/README.md#post-upgrade-configuration)
 
 ### Bugfix
 
