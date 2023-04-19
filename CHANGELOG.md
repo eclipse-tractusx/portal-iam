@@ -7,13 +7,17 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Change
 
 * realm init (centralidp - cx-central): see [Post-Upgrade Configuration](./charts/centralidp/README.md#post-upgrade-configuration)
+* changed to secret name to be retrieved from values file
 
 ### Bugfix
 
 * login theme (centralidp - cx-central): allowed to search for numbers only at idp-selection
+* enabled usage of existing secret values if secret exists: stops regeneration of random secret values at 'helm upgrade'
+* stopped creation of the corresponding secret if database dependency is disabled
 
 ### Technical Support
 
+* added documentation for post-upgrade configuration
 * trg: added repo metafile
 * upgraded workflow actions
 
