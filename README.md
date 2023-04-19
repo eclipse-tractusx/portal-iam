@@ -12,9 +12,14 @@ The repository is split up in:
 * The CX specific configuration (e.g. keycloak-themes and initial realm-config)
 * The dockerfile (Dockerfile.import) to build an image containing the CX specific configuration which is used as init container at Keycloak startup
 
-For further information especially regarding the **installation** of the helm charts please refer to the chart specific README files, available under the following directories:
+For further information please refer to the chart specific README files, available under the following directories:
 
 * charts/centralidp
+  * [Installation](./charts/centralidp/README.md#installation)
+  * [Post-Install Configuration](./charts/centralidp/README.md#post-install-configuration)
+  * [Post-Upgrade Configuration](./charts/centralidp/README.md#post-upgrade-configuration)
 * charts/sharedidp
+  * [Installation](./charts/sharedidp/README.md#installation)
+  * [Post-Install Configuration](./charts/sharedidp/README.md#post-install-configuration)
 
 The referenced container images are for demonstration purposes only.
