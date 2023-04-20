@@ -14,6 +14,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * login theme (centralidp - cx-central): allowed to search for numbers only at idp-selection
 * enabled usage of existing secret values if secret exists: stops regeneration of random secret values at 'helm upgrade'
 * stopped creation of the corresponding secret if database dependency is disabled
+* realm init (centralidp): switched to singleFile import
 
 ### Technical Support
 

@@ -29,5 +29,4 @@ USER 1000:3000
 
 COPY import/keycloak-themes/ import/themes
 COPY import/realm-config/consortia/catenax-central/pre-prod/ import/catenax-central/realms
-COPY import/realm-config/consortia/catenax-central/test-users/ import/catenax-central/realms
 COPY import/realm-config/consortia/catenax-shared/pre-prod/ import/catenax-shared/realms
