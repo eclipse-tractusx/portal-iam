@@ -1,10 +1,10 @@
 # Helm chart for Catena-X Central Keycloak Instance
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Catena-X Central Keycloak Instance.
 
-For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/1.0.0/developer/Technical%20Documentation).
+For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/1.1.0/developer/Technical%20Documentation).
 
 The referenced container images are for demonstration purposes only.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.0.1
+    version: 1.1.0
 ```
 
 ## Requirements
@@ -68,7 +68,7 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"ghcr.io/catenax-ng/tx-portal-iam_iam-import:v1.0.0"` |  |
+| keycloak.initContainers[0].image | string | `"ghcr.io/catenax-ng/tx-portal-iam_iam-import:v1.1.0"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -129,3 +129,48 @@ In order to enable the login of the initial user (see CX-Operator realm in share
 This is done by setting the 'example.org' placeholder in the CX-Operator' Identity Provider to the address of the sharedidp instance.
 
 3. Setup SMTP configuration (Realm Settings --> Email)
+
+## Post-Upgrade Configuration
+
+This section describes the necessary changes to the CX-Central realm when upgrading from version 1.0.0 or 1.0.1 to 1.1.0:
+
+Create the following new client:
+
+* Client ID: Cl20-CX-IRS
+* Description: Decentral IRS Component for Traceability and CE Apps
+* Access Type: bearer-only
+
+  Add the following role to the new client:
+
+  * Role Name: view_irs
+  * Description: view_irs
+
+Changes to composite roles of the Cl2-CX-Portal client:
+
+* CX Admin:
+  * assign the update_service_offering role of the Cl2-CX-Portal client
+  * assign the view_company_data and delete_company_data roles of the Cl7-CX-BPDM client
+
+* assign the view_company_data role of the Cl7-CX-BPDM client to the following composite roles:
+  * Service Manager
+  * App Developer
+  * Business Admin
+  * IT Admin
+  * Sales Manager
+  * Company Admin
+  * CX User
+  * App Manager
+  * Purchaser
+
+* IT Admin: assign the add_connectors role of the Cl2-CX-Portal client
+
+* Company Admin: remove the add_service_offering, activate_subscription and app management roles of the Cl2-CX-Portal client
+
+Changes to composite roles of the technical_roles_management client:
+
+* App Tech User:
+  * assign the view_membership role of the Cl2-CX-Portal client
+  * assign the view_irs of the 'Cl20-CX-IRS' client
+
+* Service Management:
+  * assign the add_connectors role of the Cl2-CX-Portal client

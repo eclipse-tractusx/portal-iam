@@ -58,7 +58,7 @@ keycloak:
       mountPath: "/realms"
   initContainers:
     - name: import
-      image: ghcr.io/catenax-ng/tx-portal-iam_iam-import:v1.0.0
+      image: ghcr.io/catenax-ng/tx-portal-iam_iam-import:v1.1.0
       imagePullPolicy: Always
       command:
         - sh

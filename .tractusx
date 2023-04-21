@@ -1,0 +1,6 @@
+product: "cx-iam"
+leadingRepository: "https://github.com/eclipse-tractusx/portal-iam"
+repositories:
+  - name: "cx-iam"
+    usage: "cx-iam: Keycloak instances"
+    url: "https://github.com/eclipse-tractusx/portal-iam"

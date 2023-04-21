@@ -100,6 +100,1241 @@
       }
     ],
     "client": {
+      "sa-cl2-02": [],
+      "sa-cl2-01": [],
+      "sa-cl3-cx-1": [],
+      "security-admin-console": [],
+      "account-console": [],
+      "Cl2-CX-Portal": [
+        {
+          "id": "39ff444c-888a-4bf6-b8e1-343b66f8a067",
+          "name": "decline_new_partner",
+          "description": "User can decline a partner application",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "46905bb9-8d3b-4666-891f-a67e8f963b3b",
+          "name": "view_documents",
+          "description": "User can view/download documents",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "0769d6ca-3056-42da-84cd-35f2d535d79e",
+          "name": "delete_connectors",
+          "description": "Delete company connectors",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "54bd7ad1-0773-4c9e-b1be-5cf41faa1c05",
+          "name": "update_service_offering",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "d566bb6c-e621-4517-9322-26093231b77c",
+          "name": "Service Manager",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl2-CX-Portal": [
+                "view_submitted_applications",
+                "delete_connectors",
+                "update_service_offering",
+                "view_technical_setup",
+                "view_tech_user_management",
+                "view_service_marketplace",
+                "CX User",
+                "view_service_offering",
+                "add_connectors",
+                "upload_documents",
+                "view_own_user_account",
+                "view_use_cases",
+                "view_idp",
+                "view_services",
+                "add_tech_user_management",
+                "view_membership",
+                "update_own_user_account",
+                "add_service_offering",
+                "view_service_subscriptions",
+                "activate_subscription",
+                "view_tech_roles",
+                "view_notifications",
+                "technical_roles_management",
+                "delete_tech_user_management",
+                "delete_own_user_account",
+                "my_user_account",
+                "view_subscription",
+                "delete_notifications",
+                "view_connectors",
+                "view_partner_network"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "4d1ca50b-8a6e-47ee-9a9b-ed5a919bc0d5",
+          "name": "invite_new_partner",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "a029dec3-8c6a-4a2f-a60a-82249f0590fd",
+          "name": "setup_client",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "34742e28-1497-4222-ad1f-93ab9feac92e",
+          "name": "view_app_subscription",
+          "description": "view app subscriptions in pending, active and inactive",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "d41dd839-6562-4be4-8364-de787c367458",
+          "name": "delete_documents",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "8cceb06a-fa9d-4251-a336-9173d268c6d3",
+          "name": "app_management",
+          "description": "can manage apps",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "1290996a-0229-49b8-8aa4-732f4d27f5fa",
+          "name": "view_company_data",
+          "description": "view_company_data",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "ff9d65f5-dbdf-4971-8042-f36bb23cc52c",
+          "name": "approve_app_release",
+          "description": "User can approve apps to get released on the marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "27521792-5070-4dd9-93ed-d4fea69877e2",
+          "name": "view_app_language",
+          "description": "View available app language",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "c41486f4-86d3-4b9b-9fb0-ceeaaf718268",
+          "name": "modify_user_account",
+          "description": "Users with this right can modify users related to their company",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "03490917-fd0d-4893-b901-3a426d3958db",
+          "name": "App Developer",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl2-CX-Portal": [
+                "view_app_language",
+                "technical_roles_management",
+                "CX User",
+                "view_technical_setup",
+                "view_tech_user_management",
+                "edit_apps",
+                "app_management",
+                "view_use_cases",
+                "view_apps",
+                "view_tech_roles"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "5c0d11f9-a90d-4960-9917-450b70b419f2",
+          "name": "Business Admin",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl2-CX-Portal": [
+                "modify_user_account",
+                "view_dataspaces",
+                "add_user_account",
+                "filter_apps",
+                "view_apps",
+                "view_notifications",
+                "subscribe_apps",
+                "view_services",
+                "view_partner_network"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "37dc74e9-9f50-49d2-9b95-402b04aa84ff",
+          "name": "add_connectors",
+          "description": "Add new connector (registration and self-description)",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "9f7a5a51-6a38-4d53-816a-6db01ef52111",
+          "name": "view_own_user_account",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "1d12d087-bcaf-4ad5-b21f-77fdce13b423",
+          "name": "view_user_management",
+          "description": "Users with this right can access the user management in CX",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "bcfd6c59-c999-440a-91ac-396a2b0322d4",
+          "name": "view_idp",
+          "description": "User can view IdP details",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "0cf91728-4ab6-413c-af72-4d8aee959c51",
+          "name": "add_apps",
+          "description": "Users with this role can publish new apps in the Marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "146c2388-2e26-4505-b85d-6824a4f80a2e",
+          "name": "add_tech_user_management",
+          "description": "Create / request technical users for my org",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "15bd8123-3469-4505-93ff-a5bd3b929495",
+          "name": "subscribe_service_offering",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "0d41349d-30a8-42c1-9e1c-2b67d69fba30",
+          "name": "update_own_user_account",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "b584419b-1973-4c80-b5f9-0d5989263bd4",
+          "name": "add_self_descriptions",
+          "description": "add self descriptions",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "f42c35ab-9a75-4be8-9c7d-3ca39a156eba",
+          "name": "view_user_account",
+          "description": "Users with this role can view the user account of others",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "e5267609-478c-40b6-bf96-6495bba42cd5",
+          "name": "view_service_subscriptions",
+          "description": "User is able to view service subscription under own service",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "065e25ce-29db-41f2-87aa-f4003d62df62",
+          "name": "activate_subscription",
+          "description": "Activation of subscriptions",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "0de2c803-1130-4ebf-9dfb-5016aadb9ca2",
+          "name": "setup_idp",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "9db8ca83-6cfd-4c44-8ab7-ccbcb11da38f",
+          "name": "view_tech_roles",
+          "description": "View technical user roles",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "6560b255-cbc6-4fb7-8afe-d61732e34ab1",
+          "name": "view_client_roles",
+          "description": "Users with this right can view the client roles of an app",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "9c81a6b2-737b-477c-9836-479605350a5f",
+          "name": "subscribe_service",
+          "description": "subscribe_service",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "3c3c8452-fd50-40bd-b223-9660233dd6af",
+          "name": "delete_user_account",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "c78c4b1f-5578-4b31-8be4-c386fd58c55c",
+          "name": "view_subscription",
+          "description": "View my company subscriptions",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "f4eca60a-55c3-4b53-b3ee-f93a73d497f1",
+          "name": "delete_notifications",
+          "description": "User can delete notifications",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "cbf9e4ee-77f1-4310-b461-67995552324e",
+          "name": "view_submitted_applications",
+          "description": "Users with this right can view submitted applications and the respective application status",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "c6e35f9f-f7c0-4899-9ce6-7cce7ea79304",
+          "name": "approve_new_partner",
+          "description": "User with this right can let new partners access the portal by approving the company registration request inside the admin board",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "67ac93fa-6616-466a-b1db-5293b13c15bb",
+          "name": "view_technical_setup",
+          "description": "Users with this right can setup EDC /IDP/etc.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "a34170d5-779d-489b-b2bb-e1b99b88b638",
+          "name": "view_tech_user_management",
+          "description": "View technical users",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "5998f67b-b190-443d-ab9b-3e76bbd73cab",
+          "name": "add_user_account",
+          "description": "Users with this right can add user accounts under their CX company",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "5654ef02-0b23-422e-8eb3-7bd95778db8f",
+          "name": "IT Admin",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl4-CX-DigitalTwin": [
+                "view_digital_twin",
+                "update_digital_twin",
+                "delete_digital_twin",
+                "add_digital_twin"
+              ],
+              "Cl2-CX-Portal": [
+                "view_technical_setup",
+                "view_tech_user_management",
+                "add_user_account",
+                "view_company_data",
+                "modify_user_account",
+                "disable_idp",
+                "add_connectors",
+                "view_own_user_account",
+                "view_user_management",
+                "view_idp",
+                "add_tech_user_management",
+                "add_idp",
+                "delete_idp",
+                "view_membership",
+                "update_own_user_account",
+                "add_self_descriptions",
+                "view_user_account",
+                "setup_idp",
+                "view_notifications",
+                "view_client_roles",
+                "delete_tech_user_management",
+                "my_user_account",
+                "view_apps",
+                "view_subscription",
+                "delete_notifications",
+                "view_connectors",
+                "view_partner_network"
+              ],
+              "Cl3-CX-Semantic": [
+                "add_semantic_model",
+                "update_semantic_model",
+                "view_semantic_model",
+                "delete_semantic_model"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "f70ac54f-c8fa-4d87-b7a6-e5a8c028cafe",
+          "name": "Sales Manager",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl2-CX-Portal": [
+                "subscribe_service",
+                "CX User",
+                "view_service_offering",
+                "view_service_subscriptions",
+                "activate_subscription",
+                "subscribe_apps",
+                "view_services"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "4f2b58a5-0ebd-4b91-b354-4fefd40cc811",
+          "name": "delete_apps",
+          "description": "User with this role can delete apps published in the Marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "5bcbf360-c331-4fbf-b1d2-b16b1a1ec25a",
+          "name": "approve_service_release",
+          "description": "approve_service_release",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "43a0826f-ba1a-44d4-952f-e4b879be353c",
+          "name": "view_service_marketplace",
+          "description": "view_service_marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "4581b083-0c1e-42a2-bb4c-85dfd14cfa23",
+          "name": "Company Admin",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl4-CX-DigitalTwin": [
+                "view_digital_twin"
+              ],
+              "Cl2-CX-Portal": [
+                "view_documents",
+                "delete_connectors",
+                "setup_client",
+                "view_app_subscription",
+                "delete_documents",
+                "view_company_data",
+                "view_app_language",
+                "modify_user_account",
+                "add_connectors",
+                "view_own_user_account",
+                "view_user_management",
+                "view_idp",
+                "add_tech_user_management",
+                "subscribe_service_offering",
+                "update_own_user_account",
+                "add_self_descriptions",
+                "view_user_account",
+                "setup_idp",
+                "view_tech_roles",
+                "view_client_roles",
+                "subscribe_service",
+                "delete_user_account",
+                "view_subscription",
+                "delete_notifications",
+                "view_technical_setup",
+                "view_tech_user_management",
+                "add_user_account",
+                "view_service_marketplace",
+                "view_service_offering",
+                "disable_idp",
+                "upload_documents",
+                "view_use_cases",
+                "subscribe_apps",
+                "view_services",
+                "add_idp",
+                "delete_idp",
+                "view_membership",
+                "view_dataspaces",
+                "filter_apps",
+                "view_notifications",
+                "technical_roles_management",
+                "delete_tech_user_management",
+                "delete_own_user_account",
+                "my_user_account",
+                "view_apps",
+                "view_connectors",
+                "view_partner_network"
+              ],
+              "Cl3-CX-Semantic": [
+                "view_semantic_model"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "496ae7df-fabd-4977-bb81-d6eb96ad81ed",
+          "name": "CX User",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl4-CX-DigitalTwin": [
+                "view_digital_twin"
+              ],
+              "Cl2-CX-Portal": [
+                "view_documents",
+                "view_membership",
+                "view_dataspaces",
+                "update_own_user_account",
+                "filter_apps",
+                "view_company_data",
+                "view_notifications",
+                "view_service_marketplace",
+                "view_service_offering",
+                "delete_own_user_account",
+                "my_user_account",
+                "view_own_user_account",
+                "view_apps",
+                "view_user_management",
+                "view_subscription",
+                "delete_notifications",
+                "view_services",
+                "view_partner_network"
+              ],
+              "Cl3-CX-Semantic": [
+                "view_semantic_model"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "a1bc8bb5-03bb-465e-8795-c68e3920c51d",
+          "name": "view_service_offering",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "d9609443-abd1-462f-8881-3e7d8213d785",
+          "name": "disable_idp",
+          "description": "disable an assigned idp",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "a5492307-2072-4c5d-9de3-f507f3d3302e",
+          "name": "App Manager",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl2-CX-Portal": [
+                "add_apps",
+                "CX User",
+                "App Developer",
+                "add_user_account",
+                "edit_apps",
+                "activate_subscription",
+                "delete_apps",
+                "view_user_management"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "39c00d2f-491f-4658-96ef-9f47920afea6",
+          "name": "upload_documents",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "b4bead06-e3c4-4fce-9e06-43d9d9537766",
+          "name": "view_use_cases",
+          "description": "Users can view available use cases in the network",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "51e6dede-686f-43d5-925a-693784f8a661",
+          "name": "subscribe_apps",
+          "description": "User is able to start the app subscription process",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "6e3d7bcf-7340-4def-bb76-8002acc73f95",
+          "name": "view_services",
+          "description": "view service marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "8d3a5c8d-d4dc-4aaa-8941-9cd38cd3906e",
+          "name": "update_application_checklist_value",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "9b440b50-0ddd-4a6f-9a22-24073aea801e",
+          "name": "add_idp",
+          "description": "User can create a new idp under his organisation",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "c190da2a-aad4-4a02-9904-88207ba322a6",
+          "name": "delete_idp",
+          "description": "User can delete company idps",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "8cebb227-d72c-428e-92fd-6b4c01cbb899",
+          "name": "view_membership",
+          "description": "view_membership",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "ee373634-1eb3-4702-a269-774f36f54453",
+          "name": "decline_service_release",
+          "description": "decline_service_release",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "8fe708e4-7870-4044-89eb-a74b8dc11a8e",
+          "name": "view_dataspaces",
+          "description": "View dataspace marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "b06c2999-6008-4fb6-a22f-93fdac150656",
+          "name": "decline_app_release",
+          "description": "User can decline apps to not get released on the marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "3a3af42c-c564-44ca-b83c-6d5c3bbd6087",
+          "name": "add_service_offering",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "9f5b48bf-4fc2-4feb-8c4e-00b57f5f2bed",
+          "name": "filter_apps",
+          "description": "Users with this role can filter apps in the App Marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "765bced5-b422-4f91-b35f-19d648595e6a",
+          "name": "Purchaser",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl2-CX-Portal": [
+                "subscribe_service_offering",
+                "CX User",
+                "view_app_subscription",
+                "subscribe_apps"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "f9ec0166-c20b-4f1f-9f0d-11349fec657c",
+          "name": "view_notifications",
+          "description": "User can view notification details",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "7b816094-20e7-44fb-a45f-3ecb9d9d7157",
+          "name": "CX Admin",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "delete_company_data",
+                "add_company_data",
+                "view_company_data"
+              ],
+              "Cl5-CX-Custodian": [
+                "delete_wallet",
+                "add_wallet",
+                "view_wallet",
+                "update_wallet"
+              ],
+              "Cl1-CX-Registration": [
+                "view_registration"
+              ],
+              "Cl4-CX-DigitalTwin": [
+                "view_digital_twin",
+                "update_digital_twin",
+                "delete_digital_twin",
+                "add_digital_twin"
+              ],
+              "Cl2-CX-Portal": [
+                "decline_new_partner",
+                "view_documents",
+                "delete_connectors",
+                "update_service_offering",
+                "invite_new_partner",
+                "setup_client",
+                "view_app_subscription",
+                "delete_documents",
+                "app_management",
+                "view_company_data",
+                "approve_app_release",
+                "view_app_language",
+                "modify_user_account",
+                "add_connectors",
+                "view_own_user_account",
+                "view_user_management",
+                "view_idp",
+                "add_apps",
+                "add_tech_user_management",
+                "subscribe_service_offering",
+                "update_own_user_account",
+                "add_self_descriptions",
+                "view_user_account",
+                "view_service_subscriptions",
+                "activate_subscription",
+                "setup_idp",
+                "view_tech_roles",
+                "view_client_roles",
+                "subscribe_service",
+                "delete_user_account",
+                "view_subscription",
+                "delete_notifications",
+                "view_submitted_applications",
+                "approve_new_partner",
+                "view_technical_setup",
+                "view_tech_user_management",
+                "add_user_account",
+                "delete_apps",
+                "approve_service_release",
+                "view_service_marketplace",
+                "view_service_offering",
+                "disable_idp",
+                "upload_documents",
+                "view_use_cases",
+                "subscribe_apps",
+                "view_services",
+                "add_idp",
+                "delete_idp",
+                "view_membership",
+                "decline_service_release",
+                "view_dataspaces",
+                "decline_app_release",
+                "add_service_offering",
+                "filter_apps",
+                "view_notifications",
+                "technical_roles_management",
+                "delete_tech_user_management",
+                "delete_own_user_account",
+                "my_user_account",
+                "create_notifications",
+                "edit_apps",
+                "view_apps",
+                "view_connectors",
+                "view_partner_network"
+              ],
+              "Cl3-CX-Semantic": [
+                "view_semantic_model",
+                "delete_semantic_model",
+                "add_semantic_model",
+                "update_semantic_model"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "92b5a061-8e54-4562-a86c-94c0bacef12d",
+          "name": "technical_roles_management",
+          "description": "technical roles management",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "4ac0c3dc-1401-4ed6-a5f8-d8e08e2f5c78",
+          "name": "delete_tech_user_management",
+          "description": "Delete a technical user",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "f02debf4-92ff-4b7f-a56c-db7c6321ceda",
+          "name": "delete_own_user_account",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "99a8940c-0fbc-4f65-8134-4b598c3aabbc",
+          "name": "my_user_account",
+          "description": "view my own user account details",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "22b05ced-cd8e-4769-a368-b8266bf967ef",
+          "name": "create_notifications",
+          "description": "User can create notifications (ONLY FOR TEST REASONS)",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "13fe64aa-6de6-4b94-9e3d-af9b2c7f2917",
+          "name": "edit_apps",
+          "description": "Users with this role can edit apps which are published in the marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "817fa189-808e-465c-b75d-838336ab7a84",
+          "name": "view_apps",
+          "description": "Users with this role can view apps in the App Marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "e5ec6a66-8fad-4066-bcdd-92041f894831",
+          "name": "view_connectors",
+          "description": "Look up company connectors and their details",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "104c094b-eaf5-4b0e-9758-f14dedf925da",
+          "name": "view_partner_network",
+          "description": "Partner Network view",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        }
+      ],
+      "sa-cl8-cx-1": [],
+      "Cl7-CX-BPDM": [
+        {
+          "id": "b59a076b-07c5-42fa-b8d8-04a65f077226",
+          "name": "delete_company_data",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "04cd6d38-674f-4588-980a-8f120bddcc44",
+          "attributes": {}
+        },
+        {
+          "id": "a4829839-9df9-47c8-8eb0-57f4020000c3",
+          "name": "add_company_data",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "04cd6d38-674f-4588-980a-8f120bddcc44",
+          "attributes": {}
+        },
+        {
+          "id": "d16779a5-03bd-4fbd-bf40-382c4348b205",
+          "name": "view_company_data",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "04cd6d38-674f-4588-980a-8f120bddcc44",
+          "attributes": {}
+        }
+      ],
+      "technical_roles_management": [
+        {
+          "id": "4ab4e352-bb16-47d3-a9cf-44730df6737b",
+          "name": "Connector User",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl4-CX-DigitalTwin": [
+                "add_digital_twin",
+                "view_digital_twin",
+                "delete_digital_twin",
+                "update_digital_twin"
+              ],
+              "Cl3-CX-Semantic": [
+                "view_semantic_model"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "b5c9ff05-b0cf-414d-bd70-e38f8e4923cf",
+          "name": "BPDM Management",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "delete_company_data",
+                "add_company_data",
+                "view_company_data"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "20f2c41a-dacd-4505-877a-bb899066a767",
+          "name": "BPDM Pool",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl7-CX-BPDM": [
+                "view_company_data"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "6f153999-e1a9-4cc7-b9c0-f53e7c5f7a42",
+          "name": "Identity Wallet Management",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl5-CX-Custodian": [
+                "view_wallet",
+                "update_wallet"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "dee6cf7a-fb6b-451c-9ef7-87459893e48f",
+          "name": "Registration External",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "67ef1542-73d5-4179-8c4e-d4a297b8aad3",
+          "name": "BPDM Partner Gate",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "08604187-8eef-435a-8116-ccc187b8e897",
+          "name": "App Tech User",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl6-CX-DAPS": [
+                "create_daps_client"
+              ],
+              "Cl4-CX-DigitalTwin": [
+                "add_digital_twin",
+                "view_digital_twin",
+                "delete_digital_twin",
+                "update_digital_twin"
+              ],
+              "Cl3-CX-Semantic": [
+                "view_semantic_model"
+              ],
+              "Cl2-CX-Portal": [
+                "view_membership",
+                "view_connectors"
+              ],
+              "Cl20-CX-IRS": [
+                "view_irs"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "01cbe8bf-7957-4b9f-ae79-66a068c2c7d9",
+          "name": "Service Management",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl2-CX-Portal": [
+                "add_service_offering",
+                "add_connectors",
+                "activate_subscription"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "d5781775-3fbd-4f46-84ea-b19164393205",
+          "name": "Dataspace Discovery",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl2-CX-Portal": [
+                "view_connectors"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        }
+      ],
+      "admin-cli": [],
+      "Cl20-CX-IRS": [
+        {
+          "id": "45b58bf0-175c-4f4f-8b1d-5858db55b275",
+          "name": "view_irs",
+          "description": "view_irs",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "f6e70637-8084-4956-8b2a-b45f484f9ba0",
+          "attributes": {}
+        }
+      ],
       "Cl16-CX-BPDMGate-Portal": [
         {
           "id": "94d85051-81d3-4c48-99de-7a808376ff32",
@@ -339,8 +1574,6 @@
         }
       ],
       "sa-cl6-cx-01": [],
-      "sa-cl2-02": [],
-      "sa-cl2-01": [],
       "Cl5-CX-Custodian": [
         {
           "id": "11c06d7d-8cab-42e8-b8bb-599940c61f2b",
@@ -411,8 +1644,6 @@
           "attributes": {}
         }
       ],
-      "sa-cl3-cx-1": [],
-      "security-admin-console": [],
       "Cl1-CX-Registration": [
         {
           "id": "3c7b8dec-3ef8-4665-82a3-2d8aeed059d8",
@@ -587,7 +1818,6 @@
           "attributes": {}
         }
       ],
-      "account-console": [],
       "sa-cl7-cx-5": [],
       "broker": [
         {
@@ -597,1019 +1827,6 @@
           "composite": false,
           "clientRole": true,
           "containerId": "03885031-084a-4317-aa51-de9b4acf8fa9",
-          "attributes": {}
-        }
-      ],
-      "Cl2-CX-Portal": [
-        {
-          "id": "39ff444c-888a-4bf6-b8e1-343b66f8a067",
-          "name": "decline_new_partner",
-          "description": "User can decline a partner application",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "46905bb9-8d3b-4666-891f-a67e8f963b3b",
-          "name": "view_documents",
-          "description": "User can view/download documents",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "0769d6ca-3056-42da-84cd-35f2d535d79e",
-          "name": "delete_connectors",
-          "description": "Delete company connectors",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "54bd7ad1-0773-4c9e-b1be-5cf41faa1c05",
-          "name": "update_service_offering",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "d566bb6c-e621-4517-9322-26093231b77c",
-          "name": "Service Manager",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl2-CX-Portal": [
-                "view_submitted_applications",
-                "delete_connectors",
-                "update_service_offering",
-                "view_technical_setup",
-                "view_tech_user_management",
-                "view_service_marketplace",
-                "CX User",
-                "view_service_offering",
-                "add_connectors",
-                "upload_documents",
-                "view_own_user_account",
-                "view_use_cases",
-                "view_idp",
-                "view_services",
-                "add_tech_user_management",
-                "view_membership",
-                "update_own_user_account",
-                "add_service_offering",
-                "view_service_subscriptions",
-                "activate_subscription",
-                "view_tech_roles",
-                "view_notifications",
-                "technical_roles_management",
-                "delete_tech_user_management",
-                "delete_own_user_account",
-                "my_user_account",
-                "view_subscription",
-                "delete_notifications",
-                "view_connectors",
-                "view_partner_network"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "4d1ca50b-8a6e-47ee-9a9b-ed5a919bc0d5",
-          "name": "invite_new_partner",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "a029dec3-8c6a-4a2f-a60a-82249f0590fd",
-          "name": "setup_client",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "34742e28-1497-4222-ad1f-93ab9feac92e",
-          "name": "view_app_subscription",
-          "description": "view app subscriptions in pending, active and inactive",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "d41dd839-6562-4be4-8364-de787c367458",
-          "name": "delete_documents",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "8cceb06a-fa9d-4251-a336-9173d268c6d3",
-          "name": "app_management",
-          "description": "can manage apps",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "1290996a-0229-49b8-8aa4-732f4d27f5fa",
-          "name": "view_company_data",
-          "description": "view_company_data",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "ff9d65f5-dbdf-4971-8042-f36bb23cc52c",
-          "name": "approve_app_release",
-          "description": "User can approve apps to get released on the marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "27521792-5070-4dd9-93ed-d4fea69877e2",
-          "name": "view_app_language",
-          "description": "View available app language",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "c41486f4-86d3-4b9b-9fb0-ceeaaf718268",
-          "name": "modify_user_account",
-          "description": "Users with this right can modify users related to their company",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "03490917-fd0d-4893-b901-3a426d3958db",
-          "name": "App Developer",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl2-CX-Portal": [
-                "view_app_language",
-                "technical_roles_management",
-                "CX User",
-                "view_technical_setup",
-                "view_tech_user_management",
-                "edit_apps",
-                "app_management",
-                "view_use_cases",
-                "view_apps",
-                "view_tech_roles"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "5c0d11f9-a90d-4960-9917-450b70b419f2",
-          "name": "Business Admin",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl2-CX-Portal": [
-                "modify_user_account",
-                "view_dataspaces",
-                "add_user_account",
-                "filter_apps",
-                "view_apps",
-                "view_notifications",
-                "subscribe_apps",
-                "view_services",
-                "view_partner_network"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "37dc74e9-9f50-49d2-9b95-402b04aa84ff",
-          "name": "add_connectors",
-          "description": "Add new connector (registration and self-description)",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "9f7a5a51-6a38-4d53-816a-6db01ef52111",
-          "name": "view_own_user_account",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "1d12d087-bcaf-4ad5-b21f-77fdce13b423",
-          "name": "view_user_management",
-          "description": "Users with this right can access the user management in CX",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "bcfd6c59-c999-440a-91ac-396a2b0322d4",
-          "name": "view_idp",
-          "description": "User can view IdP details",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "0cf91728-4ab6-413c-af72-4d8aee959c51",
-          "name": "add_apps",
-          "description": "Users with this role can publish new apps in the Marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "146c2388-2e26-4505-b85d-6824a4f80a2e",
-          "name": "add_tech_user_management",
-          "description": "Create / request technical users for my org",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "15bd8123-3469-4505-93ff-a5bd3b929495",
-          "name": "subscribe_service_offering",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "0d41349d-30a8-42c1-9e1c-2b67d69fba30",
-          "name": "update_own_user_account",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "b584419b-1973-4c80-b5f9-0d5989263bd4",
-          "name": "add_self_descriptions",
-          "description": "add self descriptions",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "f42c35ab-9a75-4be8-9c7d-3ca39a156eba",
-          "name": "view_user_account",
-          "description": "Users with this role can view the user account of others",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "e5267609-478c-40b6-bf96-6495bba42cd5",
-          "name": "view_service_subscriptions",
-          "description": "User is able to view service subscription under own service",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "065e25ce-29db-41f2-87aa-f4003d62df62",
-          "name": "activate_subscription",
-          "description": "Activation of subscriptions",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "0de2c803-1130-4ebf-9dfb-5016aadb9ca2",
-          "name": "setup_idp",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "9db8ca83-6cfd-4c44-8ab7-ccbcb11da38f",
-          "name": "view_tech_roles",
-          "description": "View technical user roles",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "6560b255-cbc6-4fb7-8afe-d61732e34ab1",
-          "name": "view_client_roles",
-          "description": "Users with this right can view the client roles of an app",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "9c81a6b2-737b-477c-9836-479605350a5f",
-          "name": "subscribe_service",
-          "description": "subscribe_service",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "3c3c8452-fd50-40bd-b223-9660233dd6af",
-          "name": "delete_user_account",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "c78c4b1f-5578-4b31-8be4-c386fd58c55c",
-          "name": "view_subscription",
-          "description": "View my company subscriptions",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "f4eca60a-55c3-4b53-b3ee-f93a73d497f1",
-          "name": "delete_notifications",
-          "description": "User can delete notifications",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "cbf9e4ee-77f1-4310-b461-67995552324e",
-          "name": "view_submitted_applications",
-          "description": "Users with this right can view submitted applications and the respective application status",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "c6e35f9f-f7c0-4899-9ce6-7cce7ea79304",
-          "name": "approve_new_partner",
-          "description": "User with this right can let new partners access the portal by approving the company registration request inside the admin board",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "67ac93fa-6616-466a-b1db-5293b13c15bb",
-          "name": "view_technical_setup",
-          "description": "Users with this right can setup EDC /IDP/etc.",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "a34170d5-779d-489b-b2bb-e1b99b88b638",
-          "name": "view_tech_user_management",
-          "description": "View technical users",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "5998f67b-b190-443d-ab9b-3e76bbd73cab",
-          "name": "add_user_account",
-          "description": "Users with this right can add user accounts under their CX company",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "5654ef02-0b23-422e-8eb3-7bd95778db8f",
-          "name": "IT Admin",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl4-CX-DigitalTwin": [
-                "view_digital_twin",
-                "update_digital_twin",
-                "delete_digital_twin",
-                "add_digital_twin"
-              ],
-              "Cl2-CX-Portal": [
-                "view_technical_setup",
-                "view_tech_user_management",
-                "add_user_account",
-                "view_company_data",
-                "modify_user_account",
-                "disable_idp",
-                "view_own_user_account",
-                "view_user_management",
-                "view_idp",
-                "add_tech_user_management",
-                "add_idp",
-                "delete_idp",
-                "view_membership",
-                "update_own_user_account",
-                "add_self_descriptions",
-                "view_user_account",
-                "setup_idp",
-                "view_notifications",
-                "view_client_roles",
-                "delete_tech_user_management",
-                "my_user_account",
-                "view_apps",
-                "view_subscription",
-                "delete_notifications",
-                "view_connectors",
-                "view_partner_network"
-              ],
-              "Cl3-CX-Semantic": [
-                "add_semantic_model",
-                "update_semantic_model",
-                "view_semantic_model",
-                "delete_semantic_model"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "f70ac54f-c8fa-4d87-b7a6-e5a8c028cafe",
-          "name": "Sales Manager",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl2-CX-Portal": [
-                "subscribe_service",
-                "CX User",
-                "view_service_offering",
-                "view_service_subscriptions",
-                "activate_subscription",
-                "subscribe_apps",
-                "view_services"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "4f2b58a5-0ebd-4b91-b354-4fefd40cc811",
-          "name": "delete_apps",
-          "description": "User with this role can delete apps published in the Marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "5bcbf360-c331-4fbf-b1d2-b16b1a1ec25a",
-          "name": "approve_service_release",
-          "description": "approve_service_release",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "43a0826f-ba1a-44d4-952f-e4b879be353c",
-          "name": "view_service_marketplace",
-          "description": "view_service_marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "4581b083-0c1e-42a2-bb4c-85dfd14cfa23",
-          "name": "Company Admin",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl4-CX-DigitalTwin": [
-                "view_digital_twin"
-              ],
-              "Cl2-CX-Portal": [
-                "view_documents",
-                "delete_connectors",
-                "setup_client",
-                "view_app_subscription",
-                "delete_documents",
-                "app_management",
-                "view_company_data",
-                "view_app_language",
-                "modify_user_account",
-                "add_connectors",
-                "view_own_user_account",
-                "view_user_management",
-                "view_idp",
-                "add_tech_user_management",
-                "subscribe_service_offering",
-                "update_own_user_account",
-                "add_self_descriptions",
-                "view_user_account",
-                "activate_subscription",
-                "setup_idp",
-                "view_tech_roles",
-                "view_client_roles",
-                "subscribe_service",
-                "delete_user_account",
-                "view_subscription",
-                "delete_notifications",
-                "view_technical_setup",
-                "view_tech_user_management",
-                "add_user_account",
-                "view_service_marketplace",
-                "view_service_offering",
-                "disable_idp",
-                "upload_documents",
-                "view_use_cases",
-                "subscribe_apps",
-                "view_services",
-                "add_idp",
-                "delete_idp",
-                "view_membership",
-                "view_dataspaces",
-                "add_service_offering",
-                "filter_apps",
-                "view_notifications",
-                "technical_roles_management",
-                "delete_tech_user_management",
-                "delete_own_user_account",
-                "my_user_account",
-                "view_apps",
-                "view_connectors",
-                "view_partner_network"
-              ],
-              "Cl3-CX-Semantic": [
-                "view_semantic_model"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "496ae7df-fabd-4977-bb81-d6eb96ad81ed",
-          "name": "CX User",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl4-CX-DigitalTwin": [
-                "view_digital_twin"
-              ],
-              "Cl2-CX-Portal": [
-                "view_documents",
-                "view_membership",
-                "view_dataspaces",
-                "update_own_user_account",
-                "filter_apps",
-                "view_company_data",
-                "view_notifications",
-                "view_service_marketplace",
-                "view_service_offering",
-                "delete_own_user_account",
-                "my_user_account",
-                "view_own_user_account",
-                "view_apps",
-                "view_user_management",
-                "view_subscription",
-                "delete_notifications",
-                "view_services",
-                "view_partner_network"
-              ],
-              "Cl3-CX-Semantic": [
-                "view_semantic_model"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "a1bc8bb5-03bb-465e-8795-c68e3920c51d",
-          "name": "view_service_offering",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "d9609443-abd1-462f-8881-3e7d8213d785",
-          "name": "disable_idp",
-          "description": "disable an assigned idp",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "a5492307-2072-4c5d-9de3-f507f3d3302e",
-          "name": "App Manager",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl2-CX-Portal": [
-                "add_apps",
-                "CX User",
-                "App Developer",
-                "add_user_account",
-                "edit_apps",
-                "activate_subscription",
-                "delete_apps",
-                "view_user_management"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "39c00d2f-491f-4658-96ef-9f47920afea6",
-          "name": "upload_documents",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "b4bead06-e3c4-4fce-9e06-43d9d9537766",
-          "name": "view_use_cases",
-          "description": "Users can view available use cases in the network",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "51e6dede-686f-43d5-925a-693784f8a661",
-          "name": "subscribe_apps",
-          "description": "User is able to start the app subscription process",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "6e3d7bcf-7340-4def-bb76-8002acc73f95",
-          "name": "view_services",
-          "description": "view service marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "8d3a5c8d-d4dc-4aaa-8941-9cd38cd3906e",
-          "name": "update_application_checklist_value",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "9b440b50-0ddd-4a6f-9a22-24073aea801e",
-          "name": "add_idp",
-          "description": "User can create a new idp under his organisation",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "c190da2a-aad4-4a02-9904-88207ba322a6",
-          "name": "delete_idp",
-          "description": "User can delete company idps",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "8cebb227-d72c-428e-92fd-6b4c01cbb899",
-          "name": "view_membership",
-          "description": "view_membership",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "ee373634-1eb3-4702-a269-774f36f54453",
-          "name": "decline_service_release",
-          "description": "decline_service_release",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "8fe708e4-7870-4044-89eb-a74b8dc11a8e",
-          "name": "view_dataspaces",
-          "description": "View dataspace marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "b06c2999-6008-4fb6-a22f-93fdac150656",
-          "name": "decline_app_release",
-          "description": "User can decline apps to not get released on the marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "3a3af42c-c564-44ca-b83c-6d5c3bbd6087",
-          "name": "add_service_offering",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "9f5b48bf-4fc2-4feb-8c4e-00b57f5f2bed",
-          "name": "filter_apps",
-          "description": "Users with this role can filter apps in the App Marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "765bced5-b422-4f91-b35f-19d648595e6a",
-          "name": "Purchaser",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl2-CX-Portal": [
-                "subscribe_service_offering",
-                "CX User",
-                "view_app_subscription",
-                "subscribe_apps"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "f9ec0166-c20b-4f1f-9f0d-11349fec657c",
-          "name": "view_notifications",
-          "description": "User can view notification details",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "7b816094-20e7-44fb-a45f-3ecb9d9d7157",
-          "name": "CX Admin",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl7-CX-BPDM": [
-                "add_company_data"
-              ],
-              "Cl5-CX-Custodian": [
-                "delete_wallet",
-                "add_wallet",
-                "view_wallet",
-                "update_wallet"
-              ],
-              "Cl1-CX-Registration": [
-                "view_registration"
-              ],
-              "Cl4-CX-DigitalTwin": [
-                "view_digital_twin",
-                "update_digital_twin",
-                "delete_digital_twin",
-                "add_digital_twin"
-              ],
-              "Cl2-CX-Portal": [
-                "decline_new_partner",
-                "view_documents",
-                "delete_connectors",
-                "invite_new_partner",
-                "setup_client",
-                "view_app_subscription",
-                "delete_documents",
-                "app_management",
-                "view_company_data",
-                "approve_app_release",
-                "view_app_language",
-                "modify_user_account",
-                "add_connectors",
-                "view_own_user_account",
-                "view_user_management",
-                "view_idp",
-                "add_apps",
-                "add_tech_user_management",
-                "subscribe_service_offering",
-                "update_own_user_account",
-                "add_self_descriptions",
-                "view_user_account",
-                "view_service_subscriptions",
-                "activate_subscription",
-                "setup_idp",
-                "view_tech_roles",
-                "view_client_roles",
-                "subscribe_service",
-                "delete_user_account",
-                "view_subscription",
-                "delete_notifications",
-                "view_submitted_applications",
-                "approve_new_partner",
-                "view_technical_setup",
-                "view_tech_user_management",
-                "add_user_account",
-                "delete_apps",
-                "approve_service_release",
-                "view_service_marketplace",
-                "view_service_offering",
-                "disable_idp",
-                "upload_documents",
-                "view_use_cases",
-                "subscribe_apps",
-                "view_services",
-                "add_idp",
-                "delete_idp",
-                "view_membership",
-                "decline_service_release",
-                "view_dataspaces",
-                "decline_app_release",
-                "add_service_offering",
-                "filter_apps",
-                "view_notifications",
-                "technical_roles_management",
-                "delete_tech_user_management",
-                "delete_own_user_account",
-                "my_user_account",
-                "create_notifications",
-                "edit_apps",
-                "view_apps",
-                "view_connectors",
-                "view_partner_network"
-              ],
-              "Cl3-CX-Semantic": [
-                "view_semantic_model",
-                "delete_semantic_model",
-                "add_semantic_model",
-                "update_semantic_model"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "92b5a061-8e54-4562-a86c-94c0bacef12d",
-          "name": "technical_roles_management",
-          "description": "technical roles management",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "4ac0c3dc-1401-4ed6-a5f8-d8e08e2f5c78",
-          "name": "delete_tech_user_management",
-          "description": "Delete a technical user",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "f02debf4-92ff-4b7f-a56c-db7c6321ceda",
-          "name": "delete_own_user_account",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "99a8940c-0fbc-4f65-8134-4b598c3aabbc",
-          "name": "my_user_account",
-          "description": "view my own user account details",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "22b05ced-cd8e-4769-a368-b8266bf967ef",
-          "name": "create_notifications",
-          "description": "User can create notifications (ONLY FOR TEST REASONS)",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "13fe64aa-6de6-4b94-9e3d-af9b2c7f2917",
-          "name": "edit_apps",
-          "description": "Users with this role can edit apps which are published in the marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "817fa189-808e-465c-b75d-838336ab7a84",
-          "name": "view_apps",
-          "description": "Users with this role can view apps in the App Marketplace",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "e5ec6a66-8fad-4066-bcdd-92041f894831",
-          "name": "view_connectors",
-          "description": "Look up company connectors and their details",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
-          "id": "104c094b-eaf5-4b0e-9758-f14dedf925da",
-          "name": "view_partner_network",
-          "description": "Partner Network view",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
           "attributes": {}
         }
       ],
@@ -1652,179 +1869,7 @@
         }
       ],
       "sa-cl1-reg-2": [],
-      "sa-cl8-cx-1": [],
-      "Cl7-CX-BPDM": [
-        {
-          "id": "b59a076b-07c5-42fa-b8d8-04a65f077226",
-          "name": "delete_company_data",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "04cd6d38-674f-4588-980a-8f120bddcc44",
-          "attributes": {}
-        },
-        {
-          "id": "a4829839-9df9-47c8-8eb0-57f4020000c3",
-          "name": "add_company_data",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "04cd6d38-674f-4588-980a-8f120bddcc44",
-          "attributes": {}
-        },
-        {
-          "id": "d16779a5-03bd-4fbd-bf40-382c4348b205",
-          "name": "view_company_data",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "04cd6d38-674f-4588-980a-8f120bddcc44",
-          "attributes": {}
-        }
-      ],
       "sa-cl5-custodian-1": [],
-      "technical_roles_management": [
-        {
-          "id": "4ab4e352-bb16-47d3-a9cf-44730df6737b",
-          "name": "Connector User",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl4-CX-DigitalTwin": [
-                "add_digital_twin",
-                "view_digital_twin",
-                "delete_digital_twin",
-                "update_digital_twin"
-              ],
-              "Cl3-CX-Semantic": [
-                "view_semantic_model"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
-          "attributes": {}
-        },
-        {
-          "id": "b5c9ff05-b0cf-414d-bd70-e38f8e4923cf",
-          "name": "BPDM Management",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl7-CX-BPDM": [
-                "delete_company_data",
-                "add_company_data",
-                "view_company_data"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
-          "attributes": {}
-        },
-        {
-          "id": "20f2c41a-dacd-4505-877a-bb899066a767",
-          "name": "BPDM Pool",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl7-CX-BPDM": [
-                "view_company_data"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
-          "attributes": {}
-        },
-        {
-          "id": "6f153999-e1a9-4cc7-b9c0-f53e7c5f7a42",
-          "name": "Identity Wallet Management",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl5-CX-Custodian": [
-                "view_wallet",
-                "update_wallet"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
-          "attributes": {}
-        },
-        {
-          "id": "dee6cf7a-fb6b-451c-9ef7-87459893e48f",
-          "name": "Registration External",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
-          "attributes": {}
-        },
-        {
-          "id": "67ef1542-73d5-4179-8c4e-d4a297b8aad3",
-          "name": "BPDM Partner Gate",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
-          "attributes": {}
-        },
-        {
-          "id": "08604187-8eef-435a-8116-ccc187b8e897",
-          "name": "App Tech User",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl6-CX-DAPS": [
-                "create_daps_client"
-              ],
-              "Cl4-CX-DigitalTwin": [
-                "add_digital_twin",
-                "view_digital_twin",
-                "delete_digital_twin",
-                "update_digital_twin"
-              ],
-              "Cl3-CX-Semantic": [
-                "view_semantic_model"
-              ],
-              "Cl2-CX-Portal": [
-                "view_connectors"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
-          "attributes": {}
-        },
-        {
-          "id": "01cbe8bf-7957-4b9f-ae79-66a068c2c7d9",
-          "name": "Service Management",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl2-CX-Portal": [
-                "add_service_offering",
-                "activate_subscription"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
-          "attributes": {}
-        },
-        {
-          "id": "d5781775-3fbd-4f46-84ea-b19164393205",
-          "name": "Dataspace Discovery",
-          "composite": true,
-          "composites": {
-            "client": {
-              "Cl2-CX-Portal": [
-                "view_connectors"
-              ]
-            }
-          },
-          "clientRole": true,
-          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
-          "attributes": {}
-        }
-      ],
       "sa-cl5-custodian-2": [],
       "Cl6-CX-DAPS": [
         {
@@ -1836,7 +1881,6 @@
           "attributes": {}
         }
       ],
-      "admin-cli": [],
       "Cl4-CX-DigitalTwin": [
         {
           "id": "6188b8f4-5d2c-41c7-a841-83fb8328f1ba",
@@ -2003,6 +2047,35 @@
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister": false,
   "webAuthnPolicyPasswordlessAcceptableAaguids": [],
   "users": [
+    {
+      "id" : "502dabcf-01c7-47d9-a88e-0be4279097b5",
+      "createdTimestamp" : 1652788086549,
+      "username" : "cx-operator.656e8a94-188b-4a3e-9eec-b45d8efd8347",
+      "enabled" : true,
+      "totp" : false,
+      "emailVerified" : false,
+      "firstName" : "Operator",
+      "lastName" : "CX Admin",
+      "email" : "tobeadded@cx.com",
+      "attributes" : {
+        "bpn" : [ "BPNL00000003CRHK" ],
+        "organisation" : [ "CX-Operator" ]
+      },
+      "credentials" : [ ],
+      "disableableCredentialTypes" : [ ],
+      "requiredActions" : [ ],
+      "federatedIdentities" : [ {
+        "identityProvider" : "CX-Operator",
+        "userId" : "656e8a94-188b-4a3e-9eec-b45d8efd8347",
+        "userName" : "cx-operator@cx.com"
+      } ],
+      "realmRoles" : [ "default-roles-catena-x realm" ],
+      "clientRoles" : {
+        "Cl2-CX-Portal" : [ "CX Admin" ]
+      },
+      "notBefore" : 0,
+      "groups" : [ ]
+    },
     {
       "id": "e69c1397-eee8-434a-b83b-dc7944bb9bdd",
       "createdTimestamp": 1651730911692,
@@ -2496,7 +2569,6 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://portal-gate.example.org/",
         "https://portal-gate.example.org/"
       ],
       "webOrigins": [
@@ -2663,6 +2735,66 @@
       ]
     },
     {
+      "id": "f6e70637-8084-4956-8b2a-b45f484f9ba0",
+      "clientId": "Cl20-CX-IRS",
+      "description": "Decentral IRS Component for Traceability and CE Apps",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": [],
+      "webOrigins": [],
+      "notBefore": 0,
+      "bearerOnly": true,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": false,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {
+        "saml.assertion.signature": "false",
+        "id.token.as.detached.signature": "false",
+        "saml.multivalued.roles": "false",
+        "saml.force.post.binding": "false",
+        "saml.encrypt": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "saml.server.signature": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "use.refresh.tokens": "true",
+        "exclude.session.state.from.auth.response": "false",
+        "oidc.ciba.grant.enabled": "false",
+        "saml.artifact.binding": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "saml_force_name_id_format": "false",
+        "saml.client.signature": "false",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "require.pushed.authorization.requests": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "saml.onetimeuse.condition": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "web-origins",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
       "id": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
       "clientId": "Cl2-CX-Portal",
       "name": "",
@@ -2674,9 +2806,9 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
+        "https://portal.example.org/*",
         "https://partners-pool.example.org/*",
-        "https://partners-gate.example.org/*",
-        "https://portal.example.org/*"
+        "https://partners-gate.example.org/*"
       ],
       "webOrigins": [
         "+"
@@ -4913,6 +5045,7 @@
     "xXSSProtection": "1; mode=block",
     "strictTransportSecurity": "max-age=31536000; includeSubDomains"
   },
+  "smtpServer": {},
   "loginTheme": "catenax-central",
   "eventsEnabled": true,
   "eventsListeners": [
@@ -5021,8 +5154,8 @@
         "clientId": "central-idp",
         "tokenUrl": "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/token",
         "authorizationUrl": "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/auth",
-        "jwksUrl": "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/certs",
         "clientAuthMethod": "private_key_jwt",
+        "jwksUrl": "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/certs",
         "logoutUrl": "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/logout",
         "clientAssertionSigningAlg": "RS256",
         "syncMode": "FORCE",
@@ -5032,7 +5165,7 @@
   ],
   "identityProviderMappers": [
     {
-      "id": "1ba65212-5ad3-43f0-8a3c-db829c9dd2ab",
+      "id": "af30a8cb-48fc-4818-8457-31b350437a23",
       "name": "organisation-mapper",
       "identityProviderAlias": "CX-Operator",
       "identityProviderMapper": "hardcoded-attribute-idp-mapper",
@@ -5043,7 +5176,7 @@
       }
     },
     {
-      "id": "26deeeae-ea3d-4c49-8ab4-64c4467f0619",
+      "id": "8ed927d4-430e-4eca-ba47-1950fd468618",
       "name": "username-mapper",
       "identityProviderAlias": "CX-Operator",
       "identityProviderMapper": "oidc-username-idp-mapper",
@@ -5099,14 +5232,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "saml-user-attribute-mapper",
-            "oidc-usermodel-property-mapper",
-            "saml-role-list-mapper",
-            "oidc-address-mapper",
-            "oidc-sha256-pairwise-sub-mapper",
             "oidc-full-name-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
+            "saml-role-list-mapper",
             "oidc-usermodel-attribute-mapper",
-            "saml-user-property-mapper"
+            "saml-user-attribute-mapper",
+            "oidc-address-mapper",
+            "saml-user-property-mapper",
+            "oidc-usermodel-property-mapper"
           ]
         }
       },
@@ -5126,14 +5259,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "oidc-full-name-mapper",
-            "saml-role-list-mapper",
-            "saml-user-property-mapper",
+            "oidc-usermodel-attribute-mapper",
+            "oidc-address-mapper",
             "oidc-usermodel-property-mapper",
             "saml-user-attribute-mapper",
+            "saml-role-list-mapper",
+            "saml-user-property-mapper",
             "oidc-sha256-pairwise-sub-mapper",
-            "oidc-address-mapper",
-            "oidc-usermodel-attribute-mapper"
+            "oidc-full-name-mapper"
           ]
         }
       },
@@ -5231,7 +5364,7 @@
   "defaultLocale": "en",
   "authenticationFlows": [
     {
-      "id": "8511246f-9f8c-4d21-a052-f76bed60a5d5",
+      "id": "d0fea91d-26fa-4295-821b-d6a288776774",
       "alias": "Account verification options",
       "description": "Method with which to verity the existing account",
       "providerId": "basic-flow",
@@ -5257,7 +5390,7 @@
       ]
     },
     {
-      "id": "bd971709-fa16-4257-9dd8-ea5b1f62bbaa",
+      "id": "3ad100f7-5378-4568-973c-72033bf8a01b",
       "alias": "Authentication Options",
       "description": "Authentication options.",
       "providerId": "basic-flow",
@@ -5291,7 +5424,7 @@
       ]
     },
     {
-      "id": "d9649d20-c95c-4660-a64d-45c1eb751a12",
+      "id": "5e3b84cc-2562-4529-b83b-9d3b3ebb98aa",
       "alias": "Browser - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -5317,7 +5450,7 @@
       ]
     },
     {
-      "id": "75781a80-895d-4b41-83ae-23522580eb84",
+      "id": "eebb9437-7176-43c3-82a5-3b9e5aea6672",
       "alias": "Direct Grant - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -5343,7 +5476,7 @@
       ]
     },
     {
-      "id": "ad168ac6-b653-47f0-97f8-ce352e268eb1",
+      "id": "5c658b55-aefc-4913-bff9-463ba3174ef6",
       "alias": "First broker login - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -5369,7 +5502,7 @@
       ]
     },
     {
-      "id": "634d6cd5-eebe-4b14-8ae6-e2e73a16dd85",
+      "id": "2db2fda6-6f9f-4055-97c8-d1aabdfd91d2",
       "alias": "Handle Existing Account",
       "description": "Handle what to do if there is existing account with same email/username like authenticated identity provider",
       "providerId": "basic-flow",
@@ -5395,7 +5528,7 @@
       ]
     },
     {
-      "id": "9ff16edd-1972-4755-a3df-38197eed615f",
+      "id": "8ee06fb0-f4b4-42db-972b-1672422e6949",
       "alias": "Login without auto user creation",
       "description": "Actions taken after first broker login with identity provider account, which is not yet linked to any Keycloak account",
       "providerId": "basic-flow",
@@ -5422,7 +5555,7 @@
       ]
     },
     {
-      "id": "55b30e8b-fbb6-402d-9d2f-d2a1491d876f",
+      "id": "60b4e91f-7192-4c6a-ad0a-99aa7326441d",
       "alias": "Login without auto user creation Account verification options",
       "description": "Method with which to verity the existing account",
       "providerId": "basic-flow",
@@ -5448,7 +5581,7 @@
       ]
     },
     {
-      "id": "da3b9496-c6e1-415f-9980-0a27d9527ed7",
+      "id": "61f6cdf6-c41b-47df-9e5c-5f9fff5551ef",
       "alias": "Login without auto user creation First broker login - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -5474,7 +5607,7 @@
       ]
     },
     {
-      "id": "87adea4a-22e7-4df3-ae6f-5e59fe064189",
+      "id": "ece4bf49-53ec-4e74-b4d3-c43794873d1b",
       "alias": "Login without auto user creation Handle Existing Account",
       "description": "Handle what to do if there is existing account with same email/username like authenticated identity provider",
       "providerId": "basic-flow",
@@ -5500,7 +5633,7 @@
       ]
     },
     {
-      "id": "90f029ae-126b-4582-b2f3-3b7a418108be",
+      "id": "9d2293cc-ce24-42a4-9f06-d4bd0d6a4ce6",
       "alias": "Login without auto user creation User creation or linking",
       "description": "Flow for the existing/non-existing user alternatives",
       "providerId": "basic-flow",
@@ -5527,7 +5660,7 @@
       ]
     },
     {
-      "id": "ad6df61c-9bcc-43df-aa0e-011c7622b591",
+      "id": "483b59fa-7199-4e3c-9646-9b97ec577047",
       "alias": "Login without auto user creation Verify Existing Account by Re-authentication",
       "description": "Reauthentication of existing account",
       "providerId": "basic-flow",
@@ -5553,7 +5686,7 @@
       ]
     },
     {
-      "id": "cfb2be7a-9c3b-45ca-b6da-da959ee51dc6",
+      "id": "f7a5dd6c-4b26-4d26-97ea-4ee8bac76c99",
       "alias": "Reset - Conditional OTP",
       "description": "Flow to determine if the OTP should be reset or not. Set to REQUIRED to force.",
       "providerId": "basic-flow",
@@ -5579,7 +5712,7 @@
       ]
     },
     {
-      "id": "8cee3be3-8b9a-4736-8ba1-215ce9bd1930",
+      "id": "58af9b79-5253-49a8-9e87-118f45b996ef",
       "alias": "User creation or linking",
       "description": "Flow for the existing/non-existing user alternatives",
       "providerId": "basic-flow",
@@ -5606,7 +5739,7 @@
       ]
     },
     {
-      "id": "ba790376-a591-485f-b559-689194514505",
+      "id": "a39e4214-9272-4a6c-91a2-5ba0d3265276",
       "alias": "Verify Existing Account by Re-authentication",
       "description": "Reauthentication of existing account",
       "providerId": "basic-flow",
@@ -5632,7 +5765,7 @@
       ]
     },
     {
-      "id": "498c5d7a-86ba-43e7-a217-4a2ea8284fb0",
+      "id": "e22e2751-eed7-43ee-b66f-6bb722912bfc",
       "alias": "WebAuth Browser",
       "description": "browser based authentication",
       "providerId": "basic-flow",
@@ -5674,7 +5807,7 @@
       ]
     },
     {
-      "id": "e0a6603d-02c3-40ac-9249-1c7c871d3a8e",
+      "id": "0b3dbfd0-0f9e-4145-a040-20a7531b8912",
       "alias": "WebAuth Browser Browser - Conditional OTP",
       "description": "Flow to determine if the OTP is required for the authentication",
       "providerId": "basic-flow",
@@ -5708,7 +5841,7 @@
       ]
     },
     {
-      "id": "de4a3cba-319b-49e2-b6c9-9c51d379782a",
+      "id": "f8507829-e7aa-4f25-bc72-574def997bd7",
       "alias": "WebAuth Browser forms",
       "description": "Username, password, otp and other auth forms.",
       "providerId": "basic-flow",
@@ -5734,7 +5867,7 @@
       ]
     },
     {
-      "id": "b4088b00-60d0-4ce4-bcb5-fcf01abf4acc",
+      "id": "1585a714-fc6f-4814-a70e-0d4d705d5f71",
       "alias": "browser",
       "description": "browser based authentication",
       "providerId": "basic-flow",
@@ -5776,7 +5909,7 @@
       ]
     },
     {
-      "id": "48fca5f8-230d-430e-9ae6-1d439e742316",
+      "id": "27ad544e-6a57-4b9e-b46b-f18d301f6e8d",
       "alias": "clients",
       "description": "Base authentication for clients",
       "providerId": "client-flow",
@@ -5818,7 +5951,7 @@
       ]
     },
     {
-      "id": "270ba783-7b45-4819-8083-429702920955",
+      "id": "7c904dc8-ef33-4de1-98dc-278df482aac2",
       "alias": "direct grant",
       "description": "OpenID Connect Resource Owner Grant",
       "providerId": "basic-flow",
@@ -5852,7 +5985,7 @@
       ]
     },
     {
-      "id": "f8abaa6c-869a-4e6d-b399-bbf794ea2994",
+      "id": "b9f5aae0-4f01-4815-8469-13219ed58ffa",
       "alias": "docker auth",
       "description": "Used by Docker clients to authenticate against the IDP",
       "providerId": "basic-flow",
@@ -5870,7 +6003,7 @@
       ]
     },
     {
-      "id": "091d20ec-b104-4647-926b-345be33240f8",
+      "id": "1b0fe8e3-4e81-4604-b053-4ebecc7cc250",
       "alias": "first broker login",
       "description": "Actions taken after first broker login with identity provider account, which is not yet linked to any Keycloak account",
       "providerId": "basic-flow",
@@ -5897,7 +6030,7 @@
       ]
     },
     {
-      "id": "16c069ff-304a-40c9-a471-01898d5cdf99",
+      "id": "7168b29c-dfcb-4b8e-bbba-2baa181439dd",
       "alias": "forms",
       "description": "Username, password, otp and other auth forms.",
       "providerId": "basic-flow",
@@ -5923,7 +6056,7 @@
       ]
     },
     {
-      "id": "c6b4ae08-8043-486c-997d-6a1e6795d875",
+      "id": "08b5185a-437c-4bb5-ac91-211b59ebc910",
       "alias": "http challenge",
       "description": "An authentication flow based on challenge-response HTTP Authentication Schemes",
       "providerId": "basic-flow",
@@ -5949,7 +6082,7 @@
       ]
     },
     {
-      "id": "3df86749-3571-4b5b-8481-4d12160e18f5",
+      "id": "62304adb-c839-4ee2-aa1f-aca73dfd92af",
       "alias": "registration",
       "description": "registration flow",
       "providerId": "basic-flow",
@@ -5968,7 +6101,7 @@
       ]
     },
     {
-      "id": "b7898080-47a5-4869-ba5c-cbceb2e28ae8",
+      "id": "f0faeee4-f2c7-4296-a23b-a1c84e2041ec",
       "alias": "registration form",
       "description": "registration form",
       "providerId": "form-flow",
@@ -6010,7 +6143,7 @@
       ]
     },
     {
-      "id": "a2cbce4e-a557-4a13-b479-a970e1d739c4",
+      "id": "edce12aa-a3f7-429b-8876-dfa93815fb2b",
       "alias": "reset credentials",
       "description": "Reset credentials for a user if they forgot their password or something",
       "providerId": "basic-flow",
@@ -6052,7 +6185,7 @@
       ]
     },
     {
-      "id": "20101fec-b74c-4b85-8cbd-7451a3fe602e",
+      "id": "30bfab48-776a-4702-9690-00dd0e43bb3b",
       "alias": "saml ecp",
       "description": "SAML ECP Profile Authentication Flow",
       "providerId": "basic-flow",
@@ -6072,14 +6205,14 @@
   ],
   "authenticatorConfig": [
     {
-      "id": "e325eed7-96d1-452e-a49e-621fa371c75e",
+      "id": "816afa44-c0a1-4221-932f-d02b36f4e78f",
       "alias": "create unique user config",
       "config": {
         "require.password.update.after.registration": "false"
       }
     },
     {
-      "id": "c8ac04c9-4e39-4cc8-83c5-655279bf71df",
+      "id": "c0c6eb0a-67d5-4e49-9b04-6b2413277b50",
       "alias": "review profile config",
       "config": {
         "update.profile.on.first.login": "missing"
