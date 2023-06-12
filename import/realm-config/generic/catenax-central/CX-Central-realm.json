@@ -4091,7 +4091,7 @@
     {
       "id": "50fa6455-a775-4683-b407-57a33a9b9f3b",
       "clientId": "sa-cl5-custodian-2",
-      "description": "Technical User for Portal to call Custodian Wallet (portal helm chart: backend.checklistworker.custodian.clientId)",
+      "description": "Technical User for Portal to call Custodian Wallet (portal helm chart: backend.processesworker.custodian.clientId)",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -4305,7 +4305,7 @@
     {
       "id": "183aae87-c9cf-4d70-934b-629aa6974c54",
       "clientId": "sa-cl7-cx-5",
-      "description": "User for Portal to access BPDM for Company Address publishing into the BPDM (portal helm chart: backend.checklistworker.bpdm.clientId)",
+      "description": "User for Portal to access BPDM for Company Address publishing into the BPDM (portal helm chart: backend.processesworker.bpdm.clientId)",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -4413,7 +4413,7 @@
     {
       "id": "c2bdc736-ca35-43c4-8e18-27e7425df9f0",
       "clientId": "sa-cl8-cx-1",
-      "description": "Technical User for Portal to SD (portal helm chart: backend.checklistworker.sdfactory.clientId)",
+      "description": "Technical User for Portal to SD (portal helm chart: backend.processesworker.sdfactory.clientId)",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
