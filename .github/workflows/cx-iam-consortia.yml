@@ -17,18 +17,17 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-name: IAM
+name: IAM CONSORTIA
 
 on: 
   push:
     tags:
-      - 'v*.*.*'
-      - '!v*.*.*-consortia'
+      - 'v*.*.*-consortia'
   workflow_dispatch:
 
 env:
   IMAGE_NAMESPACE: "tractusx"
-  IMAGE_NAME: "portal-iam"
+  IMAGE_NAME: "portal-iam-consortia"
   REF_NAME: "${{ github.ref_name }}"
 
 jobs:
@@ -62,7 +61,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: docker/Dockerfile.import
+          file: docker/Dockerfile.consortia.import
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -75,4 +74,4 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
-          readme-filepath: "./docker/notice-iam.md"
+          readme-filepath: "./docker/notice-iam-consortia.md"
