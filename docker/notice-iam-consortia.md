@@ -1,14 +1,14 @@
 ## Notice for Docker image
 
-DockerHub: [https://hub.docker.com/r/tractusx/portal-iam](https://hub.docker.com/r/tractusx/portal-iam)
+DockerHub: [https://hub.docker.com/r/tractusx/portal-iam-consortia](https://hub.docker.com/r/tractusx/portal-iam-consortia)
 
 Eclipse Tractus-X product(s) installed within the image:
 
-__Portal IAM__
+__Portal IAM Consortia__
 
 - GitHub: https://github.com/eclipse-tractusx/portal-iam
 - Project home: https://projects.eclipse.org/projects/automotive.tractusx
-- Dockerfile: https://github.com/eclipse-tractusx/portal-iam/blob/main/docker/Dockerfile.import
+- Dockerfile: https://github.com/eclipse-tractusx/portal-iam/blob/main/docker/Dockerfile.consortia.import
 - Project license: [Apache License, Version 2.0](https://github.com/eclipse-tractusx/portal-iam/blob/main/LICENSE)
 
 __Used base images__
