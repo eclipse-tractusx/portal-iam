@@ -83,7 +83,6 @@ jobs:
       - name: Run chart-testing (lint)
         run: ct lint --charts charts/centralidp --config charts/chart-testing-config.yaml
 
-      # install the chart to the kind cluster and run helm test
       # define charts to test with the --charts parameter
       - name: Run chart-testing (install)
         run: ct install --charts charts/centralidp --config charts/chart-testing-config.yaml
@@ -92,7 +91,7 @@ jobs:
         # Upgrade the released centralidp chart version with the locally available chart
       - name: Run helm upgrade
         run: |
-          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add bitnami-full-index https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
           helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
           helm install centralidp tractusx-dev/centralidp --version ${{ github.event.inputs.upgrade_from || '1.1.0' }}
           helm dependency update charts/centralidp
