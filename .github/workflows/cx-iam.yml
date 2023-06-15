@@ -22,46 +22,57 @@ name: IAM
 on: 
   push:
     tags:
-      - 'v*'
+      - 'v*.*.*'
+      - '!v*.*.*-consortia'
   workflow_dispatch:
+
+env:
+  IMAGE_NAMESPACE: "tractusx"
+  IMAGE_NAME: "portal-iam"
+  REF_NAME: "${{ github.ref_name }}"
 
 jobs:
   build:
-    name: Iam-import image build
+    name: Build-and push image for init container
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
-    env:
-      REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository }}_iam-import
 
     steps:
-      - name: Get tag name
-        id: git-tag
-        run: echo ::set-output name=git-version::${GITHUB_REF/refs\/tags\//}
-
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Login to GitHub Container Registry
+      - name: Login to DockerHub
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Extract Metadata (tags, labels) for Docker
+      - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=raw,value=${{ env.REF_NAME }}
 
-      - name: Build and push Keycloak custom image
+      - name: Build and push Keycloak init container
         uses: docker/build-push-action@v4
         with:
           context: .
           file: docker/Dockerfile.import
-          push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.git-tag.outputs.git-version }}, ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      # https://github.com/peter-evans/dockerhub-description
+      - name: Update Docker Hub description
+        if: github.event_name != 'pull_request'
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USER }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          repository: ${{ env.IMAGE_NAMESPACE }}/${{ env.IMAGE_NAME }}
+          readme-filepath: "./docker/notice-iam.md"

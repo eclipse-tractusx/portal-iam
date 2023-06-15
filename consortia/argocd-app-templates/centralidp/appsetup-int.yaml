@@ -17,16 +17,22 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-FROM alpine:3.17
-
-# temp fix for CVE-2023-0286
-RUN apk upgrade --no-cache libssl3 libcrypto3
-
-RUN mkdir import
-
-RUN chown -R 1000:3000 /import
-USER 1000:3000
-
-COPY import/keycloak-themes/ import/themes
-COPY import/realm-config/consortia/catenax-central/pen/ import/catenax-central/realms
-COPY import/realm-config/consortia/catenax-shared/pen/ import/catenax-shared/realms
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: centralidp
+spec:
+  destination:
+    namespace: product-portal
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: charts/centralidp
+    repoURL: 'https://github.com/eclipse-tractusx/portal-iam.git'
+    targetRevision: v1.1.0-consortia
+    plugin:
+      env:
+        - name: AVP_SECRET
+          value: vault-secret
+        - name: helm_args
+          value: '-f values.yaml -f ../../consortia/environments/centralidp/values-int.yaml'
+  project: project-portal
