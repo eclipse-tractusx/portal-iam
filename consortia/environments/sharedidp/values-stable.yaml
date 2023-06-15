@@ -82,14 +82,14 @@ keycloak:
 secrets:
   auth:
     existingSecret:
-      adminpassword: "<path:portal/data/dev/iam/sharedidp-keycloak#admin-password>"
-      managementpassword: "<path:portal/data/dev/iam/sharedidp-keycloak#management-password>"
+      adminpassword: "<path:portal/data/stable/iam/sharedidp-keycloak#admin-password>"
+      managementpassword: "<path:portal/data/stable/iam/sharedidp-keycloak#management-password>"
   postgresql:
     auth:
       existingSecret:
-        postgrespassword: "<path:portal/data/dev/iam/sharedidp-postgres#postgres-password>"
-        password: "<path:portal/data/dev/iam/sharedidp-postgres#password>"
-        replicationPassword: "<path:portal/data/dev/iam/sharedidp-postgres#replication-password>"
+        postgrespassword: "<path:portal/data/stable/iam/sharedidp-postgres#postgres-password>"
+        password: "<path:portal/data/stable/iam/sharedidp-postgres#password>"
+        replicationPassword: "<path:portal/data/stable/iam/sharedidp-postgres#replication-password>"
   realmuser:
     enabled: true
     cxtestaccessuser: "<path:portal/data/iam/sharedidp-user#CX-Test-Access-users-0.json>"
