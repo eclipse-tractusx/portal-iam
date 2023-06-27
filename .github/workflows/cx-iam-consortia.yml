@@ -22,7 +22,7 @@ name: IAM CONSORTIA
 on: 
   push:
     tags:
-      - 'v*.*.*'
+      - '*-consortia'
   workflow_dispatch:
 
 env:
