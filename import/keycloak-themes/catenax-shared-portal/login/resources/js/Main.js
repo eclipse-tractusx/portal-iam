@@ -97,7 +97,7 @@ class State {
     }
 
     addListener(att, listener) {
-        if (typeof (listener) === 'Array')
+        if (Array.isArray(listener))
             this.listener[att].push(...listener)
         else
             this.listener[att].push(listener)
