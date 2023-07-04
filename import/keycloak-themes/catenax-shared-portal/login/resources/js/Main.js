@@ -48,7 +48,14 @@ const N = (tag, c, att) => {
     return append(n, c)
 }
 
-const remove = (n) => n.parentElement.removeChild(n)
+const remove = (n) => {
+    try {
+        n.parentElement.removeChild(n)
+    } catch (e) {
+        // ignore
+    }
+    return n
+}
 
 const clear = (n) => {
     if (!n) return
@@ -69,7 +76,126 @@ const addEvents = (node, evts) => {
     return node
 }
 
+class State {
+
+    atts = {
+        username: undefined,
+        password: undefined,
+        confirm: undefined,
+        valid: [false],
+    }
+
+    listener = {
+        username: [],
+        password: [],
+        confirm: [],
+        valid: []
+    }
+
+    static getInstance() {
+        return State.instance ?? (State.instance = new State())
+    }
+
+    addListener(att, listener) {
+        if (Array.isArray(listener))
+            this.listener[att].push(...listener)
+        else
+            this.listener[att].push(listener)
+        return this
+    }
+
+    setValue(att, value) {
+        if (this.atts[att] === value) {
+            return
+        }
+        this.atts[att] = value
+        this.listener[att].forEach((listener) => listener[`${att}Changed`](value))
+        return this
+    }
+
+    addPasswordListener(listener) { this.addListener('password', listener) }
+
+    addConfirmListener(listener) { this.addListener('confirm', listener) }
+
+    addValidListener(listener) { this.addListener('valid', listener) }
+
+    setUsername(value) { this.setValue('username', value) }
+
+    setPassword(value) { this.setValue('password', value) }
+
+    setConfirm(value) { this.setValue('confirm', value) }
+
+    setValid(value) { this.setValue('valid', value) }
+
+}
+
+const Messages = {
+    en: {
+        OK_LENGTH: 'has a minimum length of 15 characters',
+        HAS_LOWER: 'contains lower case characters [a-z]',
+        HAS_UPPER: 'contains upper case characters [A-Z]',
+        HAS_NUMBER: 'contains numbers [0-9]',
+        HAS_SPECIAL: 'contains characters other than [a-z] [A-Z] [0-9]',
+        NOT_USERNAME: 'is not equal to your username',
+        OK_CONFIRM: 'confirmation and password are equal',
+    }
+}
+
+
+class Validator {
+
+    rules = [
+        ['OK_LENGTH', /^.{15,200}$/],
+        ['HAS_LOWER', /[a-z]/],
+        ['HAS_UPPER', /[A-Z]/],
+        ['HAS_NUMBER', /\d/],
+        ['HAS_SPECIAL', /[^a-zA-Z0-9]/],
+        ['NOT_USERNAME', (expr) => expr !== '' && expr !== State.getInstance().atts.username],
+        ['OK_CONFIRM', (expr) => expr !== '' && expr === State.getInstance().atts.confirm],
+    ]
+
+    static getInstance() {
+        return Validator.instance ?? (Validator.instance = new Validator())
+    }
+
+    constructor() {
+        this.state = State.getInstance()
+        this.state.addPasswordListener(this)
+        this.state.addConfirmListener(this)
+    }
+
+    passwordChanged(value) {
+        this.password = value
+        this.checkValid()
+    }
+
+    confirmChanged(value) {
+        this.confirm = value
+        this.checkValid()
+    }
+
+    checkRule(rule) {
+        const check = rule[1]
+        if (check instanceof RegExp)
+            return !!this.password.match(check)
+        else if (check instanceof Function)
+            return check(this.password)
+        return false
+    }
+
+    checkValid() {
+        this.state.setValid(
+            this.rules.map(this.checkRule.bind(this))
+        )
+    }
+
+}
+
 class Viewable {
+
+    constructor(view) {
+        this.view = view
+    }
 
     getView() {
         return this.view
@@ -86,10 +212,7 @@ class Viewable {
     }
 
     detach() {
-        try {
-            this.view.parentElement.removeChild(this.view)
-        } catch (e) {
-        }
+        remove(this.view)
         return this
     }
 
@@ -103,23 +226,25 @@ class Viewable {
 class Card extends Viewable {
 
     constructor(name) {
-        super()
-        this.view = addEvents(
-            N('div', [
+        super(
+            addEvents(
                 N('div',
-                    N('div', 'switch company', { class: 'switch' }),
-                    { class: 'overlay' }
+                    [
+                        N('div',
+                            N('div', 'switch company', { class: 'switch' }),
+                            { class: 'overlay' }
+                        ),
+                        N('div', null, { class: 'card-image' }),
+                        N('div', name, { class: 'card-name' }),
+                    ], { class: 'card' }
                 ),
-                N('div', null, { class: 'card-image' }),
-                N('div', name, { class: 'card-name' }),
-            ], { class: 'card' }
-            ),
-            {
-                click: (e) => {
-                    e.preventDefault()
-                    history.back()
+                {
+                    click: (e) => {
+                        e.preventDefault()
+                        history.back()
+                    }
                 }
-            }
+            )
         )
     }
 
@@ -132,7 +257,7 @@ class Form extends Viewable {
             const form = document.getElementsByTagName('form').item(0)
             switch (form.id) {
                 case 'kc-form-login': return new FormLogin(form)
-                case 'kc-passwd-update-form': return new FormOtp(form)
+                case 'kc-passwd-update-form': return new FormUpdate(form)
                 case 'kc-reset-passwd-form': return new FormReset(form)
             }
         } catch (e) {
@@ -141,8 +266,7 @@ class Form extends Viewable {
     }
 
     constructor(form) {
-        super()
-        this.view = form
+        super(form)
     }
 
     appendPasswordButton(password) {
@@ -202,14 +326,80 @@ class FormLogin extends Form {
 
 }
 
-class FormOtp extends Form {
+class PasswordPolicyHint extends Viewable {
+
+    constructor() {
+        super(
+            N('ul', null, { class: 'password-policy-hint' })
+        )
+        this.hints = Validator.getInstance().rules.map(rule => N('li', Messages.en[rule[0]]))
+        this.append(this.hints)
+        State.getInstance().addValidListener(this)
+    }
+
+    validChanged(valid) {
+        valid.forEach((v, i) => this.hints[i].className = v ? 'valid' : 'invalid')
+    }
+
+}
+
+class FormUpdate extends Form {
 
     constructor(form) {
         super(form)
+
+        State.getInstance().addValidListener(this)
+
         setTimeout((() => {
-            this.appendPasswordButton(document.getElementById('password-new'))
-            this.appendPasswordButton(document.getElementById('password-confirm'))
+            const password = document.getElementById('password-new')
+            this.setItems()
+                .appendPasswordButton(
+                    addEvents(
+                        password,
+                        {
+                            'keyup': (e) => this.checkPolicy('password', e.currentTarget.value),
+                            'focus': (e) => this.checkPolicy('password', e.currentTarget.value),
+                        }
+                    )
+                )
+                .appendPasswordButton(
+                    addEvents(
+                        document.getElementById('password-confirm'),
+                        {
+                            'keyup': (e) => this.checkPolicy('confirm', e.currentTarget.value),
+                            'focus': (e) => this.checkPolicy('confirm', e.currentTarget.value),
+                        }
+                    )
+                )
+            password.focus()
         }).bind(this), 300)
+    }
+
+    setItems() {
+        const items = [...document.querySelectorAll('#kc-passwd-update-form>div')]
+        this.section = {
+            password: items[0],
+            confirm: items[1],
+            submit: items[2],
+            policy: new PasswordPolicyHint().getView(),
+        }
+        this.button = document.querySelectorAll('input[type=submit]')[0]
+        this.button.setAttribute('disabled', '')
+        State.getInstance().setUsername(document.getElementById('username').value)
+        Validator.getInstance()
+        return this
+    }
+
+    checkPolicy(att, value) {
+        this.getView().insertBefore(remove(this.section.policy), this.section.submit)
+        State.getInstance().setValue(att, value)
+    }
+
+    validChanged(valid) {
+        if (valid.reduce((a, o) => a && o))
+            this.button.removeAttribute('disabled')
+        else
+            this.button.setAttribute('disabled', '')
     }
 
 }
@@ -225,8 +415,7 @@ class FormReset extends Form {
 class Section extends Viewable {
 
     constructor() {
-        super()
-        this.view = N('section')
+        super(N('section'))
     }
 
 }
@@ -234,8 +423,7 @@ class Section extends Viewable {
 class App extends Viewable {
 
     constructor(clear) {
-        super()
-        this.view = document.body
+        super(document.body)
         this.setIcon()
         if (clear)
             this.clear()
@@ -257,10 +445,11 @@ class App extends Viewable {
 class Header extends Viewable {
 
     constructor(title) {
-        super()
-        this.view = N('header', [
-            N('h3', title)
-        ])
+        super(
+            N('header', [
+                N('h3', title)
+            ])
+        )
     }
 
 }
@@ -268,8 +457,7 @@ class Header extends Viewable {
 class Main extends Viewable {
 
     constructor() {
-        super()
-        this.view = N('main')
+        super(N('main'))
     }
 
 }
@@ -277,11 +465,12 @@ class Main extends Viewable {
 class Footer extends Viewable {
 
     constructor() {
-        super()
-        this.view = N('footer', [
-            N('div', '', { class: 'links' }),
-            N('div', 'Copyright © Catena-X Automotive Network.', { class: 'copy' })
-        ])
+        super(
+            N('footer', [
+                N('div', '', { class: 'links' }),
+                N('div', 'Copyright © Catena-X Automotive Network.', { class: 'copy' })
+            ])
+        )
     }
 
 }
