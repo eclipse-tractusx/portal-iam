@@ -131,7 +131,7 @@ class State {
 
 class Validator {
 
-    classes = [/^.{15,200}$/, /[a-z]/, /[A-Z]/, /[0-9]/, /[^a-zA-Z0-9]/]
+    classes = [/^.{15,200}$/, /[a-z]/, /[A-Z]/, /\d/, /[^a-zA-Z0-9]/]
 
     static getInstance() {
         return Validator.instance ?? (Validator.instance = new Validator())
@@ -338,8 +338,8 @@ class FormUpdate extends Form {
                     addEvents(
                         password,
                         {
-                            'keyup': ((e) => this.checkPolicy('password', e.currentTarget.value)).bind(this),
-                            'focus': ((e) => this.checkPolicy('password', e.currentTarget.value)).bind(this),
+                            'keyup': (e) => this.checkPolicy('password', e.currentTarget.value),
+                            'focus': (e) => this.checkPolicy('password', e.currentTarget.value),
                         }
                     )
                 )
@@ -347,8 +347,8 @@ class FormUpdate extends Form {
                     addEvents(
                         document.getElementById('password-confirm'),
                         {
-                            'keyup': ((e) => this.checkPolicy('confirm', e.currentTarget.value)).bind(this),
-                            'focus': ((e) => this.checkPolicy('confirm', e.currentTarget.value)).bind(this),
+                            'keyup': (e) => this.checkPolicy('confirm', e.currentTarget.value),
+                            'focus': (e) => this.checkPolicy('confirm', e.currentTarget.value),
                         }
                     )
                 )
@@ -372,11 +372,8 @@ class FormUpdate extends Form {
     }
 
     checkPolicy(att, value) {
-        const v = this.getView()
-        const state = State.getInstance()
-        const section = this.section[att]
-        v.insertBefore(remove(this.section.policy), this.section.submit)
-        state.setValue(att, value)
+        this.getView().insertBefore(remove(this.section.policy), this.section.submit)
+        State.getInstance().setValue(att, value)
     }
 
     validChanged(valid) {
