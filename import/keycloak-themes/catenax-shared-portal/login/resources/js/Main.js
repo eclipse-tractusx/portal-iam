@@ -129,9 +129,30 @@ class State {
 
 }
 
+const Messages = {
+    en: {
+        OK_LENGTH: 'has a minimum length of 15 characters',
+        HAS_LOWER: 'contains lower case characters [a-z]',
+        HAS_UPPER: 'contains upper case characters [A-Z]',
+        HAS_NUMBER: 'contains numbers [0-9]',
+        HAS_SPECIAL: 'contains characters other than [a-z] [A-Z] [0-9]',
+        NOT_USERNAME: 'is not equal to your username',
+        OK_CONFIRM: 'confirmation and password are equal',
+    }
+}
+
+
 class Validator {
 
-    classes = [/^.{15,200}$/, /[a-z]/, /[A-Z]/, /\d/, /[^a-zA-Z0-9]/]
+    rules = [
+        ['OK_LENGTH', /^.{15,200}$/],
+        ['HAS_LOWER', /[a-z]/],
+        ['HAS_UPPER', /[A-Z]/],
+        ['HAS_NUMBER', /\d/],
+        ['HAS_SPECIAL', /[^a-zA-Z0-9]/],
+        ['NOT_USERNAME', (expr) => expr !== '' && expr !== State.getInstance().atts.username],
+        ['OK_CONFIRM', (expr) => expr !== '' && expr === State.getInstance().atts.confirm],
+    ]
 
     static getInstance() {
         return Validator.instance ?? (Validator.instance = new Validator())
@@ -153,13 +174,21 @@ class Validator {
         this.checkValid()
     }
 
-    checkValid() {
-        this.state.setValid([
-            ...this.classes.map(c => !!this.password.match(c)),
-            this.password !== '' && this.password !== this.state.atts.username,
-            this.password !== '' && this.password === this.confirm,
-        ])
+    checkRule(rule) {
+        const check = rule[1]
+        if (check instanceof RegExp)
+            return !!this.password.match(check)
+        else if (check instanceof Function)
+            return check(this.password)
+        return false
     }
+
+    checkValid() {
+        this.state.setValid(
+            this.rules.map(this.checkRule.bind(this))
+        )
+    }
+
 }
 
 class Viewable {
@@ -299,21 +328,11 @@ class FormLogin extends Form {
 
 class PasswordPolicyHint extends Viewable {
 
-    hintMessages = [
-        'has a minimum length of 15 characters',
-        'contains lower case characters [a-z]',
-        'contains upper case characters [A-Z]',
-        'contains numbers [0-9]',
-        'contains characters other than [a-z] [A-Z] [0-9]',
-        'is not equal to your username',
-        'confirmation and password are equal',
-    ]
-
     constructor() {
         super(
             N('ul', null, { class: 'password-policy-hint' })
         )
-        this.hints = this.hintMessages.map(hint => N('li', hint))
+        this.hints = Validator.getInstance().rules.map(rule => N('li', Messages.en[rule[0]]))
         this.append(this.hints)
         State.getInstance().addValidListener(this)
     }
@@ -360,9 +379,9 @@ class FormUpdate extends Form {
         const items = [...document.querySelectorAll('#kc-passwd-update-form>div')]
         this.section = {
             password: items[0],
-            policy: new PasswordPolicyHint().getView(),
             confirm: items[1],
             submit: items[2],
+            policy: new PasswordPolicyHint().getView(),
         }
         this.button = document.querySelectorAll('input[type=submit]')[0]
         this.button.setAttribute('disabled', '')
