@@ -29,7 +29,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  text-align: center;
   overflow-x: hidden;
 }
 
@@ -45,6 +44,7 @@ header {
   background-repeat: no-repeat;
   background-position: center 50px;
   background-size: 200px 120px;
+  text-align: center;
 }
 
 header h1 {
@@ -221,6 +221,10 @@ form input[type=submit]:hover {
   background-color: rgb(10, 80, 150);
 }
 
+form input[type=submit]:disabled {
+  background-color: rgb(192, 192, 192);
+}
+
 form a {
   display: block;
   font-size: 14px;
@@ -229,6 +233,28 @@ form a {
 
 #kc-form-buttons {
   padding: 16px 0px;
+}
+
+.password-policy-hint {
+  line-height: 20px;
+  list-style-type: none;
+  padding-inline-start: 30px;
+}
+
+.valid {
+  color: darkgreen;
+}
+
+.invalid {
+  color: red;
+}
+
+.valid::before {
+  content: '✔ ';
+}
+
+.invalid::before {
+  content: '✘ ';
 }
 
 footer {
