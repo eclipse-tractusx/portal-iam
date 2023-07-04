@@ -376,7 +376,6 @@ class FormUpdate extends Form {
         const state = State.getInstance()
         const section = this.section[att]
         v.insertBefore(remove(this.section.policy), this.section.submit)
-        //this.section.policy.firstChild.data = value
         state.setValue(att, value)
     }
 
