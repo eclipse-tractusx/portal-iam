@@ -279,8 +279,7 @@ class Form extends Viewable {
                     const isHidden = input.getAttribute('type') === 'password'
                     input.setAttribute('type', isHidden ? 'text' : 'password')
                     e.currentTarget.className = isHidden ? 'visible' : 'hidden'
-                    //document.getElementById('password').focus()
-                }).bind(this)
+                })
             }
         )
         const wrapper = N('div', null, { class: 'pwwrapper' })
@@ -305,7 +304,7 @@ class FormLogin extends Form {
             this.appendPasswordButton(document.getElementById('username'))
             this.appendPasswordButton(document.getElementById('password'))
             document.getElementById('username').focus()
-        }).bind(this), 300)
+        }), 300)
     }
 
 }
@@ -362,7 +361,7 @@ class FormUpdate extends Form {
                     )
                 )
             password.focus()
-        }).bind(this), 300)
+        }), 300)
     }
 
     setItems() {
@@ -474,7 +473,6 @@ addEvents(
     {
         load: () => {
             const title = document.getElementsByTagName('h1').item(0).firstChild.data
-            const realm = document.getElementById('kc-header-wrapper').firstChild.data
             const content = document.getElementById('kc-content')
             const form = Form.fromPage()
             new App(true)
