@@ -125,7 +125,7 @@ form input {
 }
 
 form input[aria-invalid=true] {
-  border-bottom: 2px solid rgb(211, 47, 47);;
+  border-bottom: 2px solid rgb(211, 47, 47);
 }
 
 .pwwrapper {
