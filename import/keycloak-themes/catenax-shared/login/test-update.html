@@ -1,0 +1,110 @@
+<!--
+- Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+-
+- See the NOTICE file(s) distributed with this work for additional
+- information regarding copyright ownership.
+-
+- This program and the accompanying materials are made available under the
+- terms of the Apache License, Version 2.0 which is available at
+- https://www.apache.org/licenses/LICENSE-2.0.
+-
+- Unless required by applicable law or agreed to in writing, software
+- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+- License for the specific language governing permissions and limitations
+- under the License.
+-
+- SPDX-License-Identifier: Apache-2.0
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="robots" content="noindex, nofollow">
+
+    <title>Sign in to Martins Global Enterprise</title>
+    <link rel="icon" href="/auth/resources/2wb2s/login/catenax-shared-portal/img/favicon.ico" />
+    <link href="./resources/css/Main.css" rel="stylesheet" />
+    <script src="./resources/js/Main.js"></script>
+</head>
+
+<body class="">
+<div class="">
+    <div id="kc-header" class="">
+        <div id="kc-header-wrapper"
+             class="">Martins Global Enterprise</div>
+    </div>
+    <div class="">
+        <header class="">
+                <h1 id="kc-page-title">        Update password
+</h1>
+      </header>
+      <div id="kc-content">
+        <div id="kc-content-wrapper">
+
+              <div class="alert-warning  pf-m-warning">
+                  <div class="pf-c-alert__icon">
+                      
+                      <span class=""></span>
+                      
+                      
+                  </div>
+                      <span class="">You need to change your password to activate your account.</span>
+              </div>
+
+        <form id="kc-passwd-update-form" class="" action="https://sharedidp.dev.demo.catena-x.net/auth/realms/idp26/login-actions/required-action?session_code=4gyDbhhLYVwn692-3SZGOIIf0dJDXP9jWdMQgtlxuu0&amp;execution=UPDATE_PASSWORD&amp;client_id=central-idp&amp;tab_id=mNoDfxcVxcc" method="post">
+            <input type="text" id="username" name="username" value="martin.ra.rohrmeier@bmw.de" autocomplete="username"
+                   readonly="readonly" style="display:none;"/>
+            <input type="password" id="password" name="password" autocomplete="current-password" style="display:none;"/>
+
+            <div class="">
+                <div class="">
+                    <label for="password-new" class="">New Password</label>
+                </div>
+                <div class="">
+                    <input type="password" id="password-new" name="password-new" class=""
+                           autofocus autocomplete="new-password"
+                           aria-invalid=""
+                    />
+
+                </div>
+            </div>
+
+            <div class="">
+                <div class="">
+                    <label for="password-confirm" class="">Confirm password</label>
+                </div>
+                <div class="">
+                    <input type="password" id="password-confirm" name="password-confirm"
+                           class=""
+                           autocomplete="new-password"
+                           aria-invalid=""
+                    />
+
+
+                </div>
+            </div>
+
+            <div class="">
+                <div id="kc-form-options" class="">
+                    <div class="">
+                    </div>
+                </div>
+
+                <div id="kc-form-buttons" class="">
+                        <input class="   " type="submit" value="Submit" />
+                </div>
+            </div>
+        </form>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
