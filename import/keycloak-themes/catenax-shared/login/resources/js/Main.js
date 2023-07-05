@@ -279,8 +279,7 @@ class Form extends Viewable {
                     const isHidden = input.getAttribute('type') === 'password'
                     input.setAttribute('type', isHidden ? 'text' : 'password')
                     e.currentTarget.className = isHidden ? 'visible' : 'hidden'
-                    //document.getElementById('password').focus()
-                }).bind(this)
+                })
             }
         )
         const wrapper = N('div', null, { class: 'pwwrapper' })
@@ -294,35 +293,18 @@ class Form extends Viewable {
 class FormLogin extends Form {
 
     constructor(form) {
-        super(form)
-        this.adjustSequence()
+        super(
+            N('div', [
+                N('h3', 'Register to Catena-X' ),
+                N('p', 'Finish the company registration form to join Catena-X automotive network. Please use your email address as username and enter your password.' ),
+                form
+            ])
+        )
         setTimeout((() => {
             this.appendPasswordButton(document.getElementById('username'))
             this.appendPasswordButton(document.getElementById('password'))
             document.getElementById('username').focus()
-        }).bind(this), 300)
-    }
-
-    adjustSequence() {
-        const forgot = [...this.view.children][2]
-        this.view.removeChild(forgot)
-        this.view.appendChild(forgot)
-        const links = [...forgot.getElementsByTagName('a')]
-        if (links.length === 0)
-            return
-        const parent = links[links.length - 1].parentElement
-        parent.appendChild(
-            addEvents(
-                N('a', 'Sign in with another company', { href: '#' }),
-                {
-                    click: (e) => {
-                        e.preventDefault()
-                        history.back()
-                    }
-                }
-            )
-        )
-        return this
+        }), 300)
     }
 
 }
@@ -347,8 +329,14 @@ class PasswordPolicyHint extends Viewable {
 class FormUpdate extends Form {
 
     constructor(form) {
-        super(form)
-
+        super(
+            N('div', [
+                N('h3', 'Update your password' ),
+                N('p', 'Enter a new login password and confirm it.' ),
+                form
+            ])
+        )
+        this.form = form
         State.getInstance().addValidListener(this)
 
         setTimeout((() => {
@@ -373,7 +361,7 @@ class FormUpdate extends Form {
                     )
                 )
             password.focus()
-        }).bind(this), 300)
+        }), 300)
     }
 
     setItems() {
@@ -392,7 +380,7 @@ class FormUpdate extends Form {
     }
 
     checkPolicy(att, value) {
-        this.getView().insertBefore(remove(this.section.policy), this.section.submit)
+        this.form.insertBefore(remove(this.section.policy), this.section.submit)
         State.getInstance().setValue(att, value)
     }
 
@@ -416,7 +404,13 @@ class FormReset extends Form {
 class Section extends Viewable {
 
     constructor() {
-        super(N('section'))
+        super(
+            N('section',
+                N('div', [
+                    N('div', null, { class: 'user-icon' }),
+                ], { class: 'section-header' } )
+            )
+        )
     }
 
 }
@@ -447,9 +441,7 @@ class Header extends Viewable {
 
     constructor(title) {
         super(
-            N('header', [
-                N('h3', title)
-            ])
+            N('header')
         )
     }
 
@@ -481,15 +473,13 @@ addEvents(
     {
         load: () => {
             const title = document.getElementsByTagName('h1').item(0).firstChild.data
-            const realm = document.getElementById('kc-header-wrapper').firstChild.data
             const content = document.getElementById('kc-content')
             const form = Form.fromPage()
             new App(true)
-                .append(new Header(title).append(content))
+                .append(new Header(title))
                 .append(
                     new Main().append(
                         new Section()
-                            .append(new Card(realm))
                             .append(form || content)
                     )
                 )
