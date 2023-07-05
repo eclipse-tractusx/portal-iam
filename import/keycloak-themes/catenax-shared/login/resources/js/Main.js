@@ -295,8 +295,8 @@ class FormLogin extends Form {
     constructor(form) {
         super(
             N('div', [
-                N('h3', 'Register to Catena-X' ),
-                N('p', 'Finish the company registration form to join Catena-X automotive network. Please use your email address as username and enter your password.' ),
+                N('h3', 'Register to Catena-X'),
+                N('p', 'Finish the company registration form to join Catena-X automotive network. Please use your email address as username and enter your password.'),
                 form
             ])
         )
@@ -331,8 +331,8 @@ class FormUpdate extends Form {
     constructor(form) {
         super(
             N('div', [
-                N('h3', 'Update your password' ),
-                N('p', 'Enter a new login password and confirm it.' ),
+                N('h3', 'Update your password'),
+                N('p', 'Enter a new login password and confirm it.'),
                 form
             ])
         )
@@ -396,7 +396,13 @@ class FormUpdate extends Form {
 class FormReset extends Form {
 
     constructor(form) {
-        super(form)
+        super(
+            N('div', [
+                N('h3', 'Reset your password'),
+                N('p', 'Enter your username or email address.'),
+                form
+            ])
+        )
     }
 
 }
@@ -408,7 +414,7 @@ class Section extends Viewable {
             N('section',
                 N('div', [
                     N('div', null, { class: 'user-icon' }),
-                ], { class: 'section-header' } )
+                ], { class: 'section-header' })
             )
         )
     }
