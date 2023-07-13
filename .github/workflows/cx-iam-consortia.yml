@@ -23,6 +23,7 @@ on:
   push:
     tags:
       - '*-consortia'
+      - 'v*.*.*'
   workflow_dispatch:
 
 env:

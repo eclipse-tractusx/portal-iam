@@ -1,10 +1,10 @@
 # Helm chart for Catena-X Central Keycloak Instance
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.1.0](https://img.shields.io/badge/AppVersion-1.1.0-informational?style=flat-square)
+![Version: 1.2.0-RC1](https://img.shields.io/badge/Version-1.2.0--RC1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0-RC1](https://img.shields.io/badge/AppVersion-1.2.0--RC1-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Catena-X Central Keycloak Instance.
 
-For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/1.1.0/developer/Technical%20Documentation).
+For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0-RC1/developer/Technical%20Documentation).
 
 The referenced container images are for demonstration purposes only.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.1.0
+    version: 1.2.0-RC1
 ```
 
 ## Requirements
@@ -57,7 +57,7 @@ dependencies:
 | keycloak.extraEnvVars[3].name | string | `"CACHE_OWNERS_AUTH_SESSIONS_COUNT"` |  |
 | keycloak.extraEnvVars[3].value | string | `"3"` |  |
 | keycloak.extraEnvVars[4].name | string | `"KEYCLOAK_EXTRA_ARGS"` |  |
-| keycloak.extraEnvVars[4].value | string | `"-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=IGNORE_EXISTING"` |  |
+| keycloak.extraEnvVars[4].value | string | `"-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"` |  |
 | keycloak.replicaCount | int | `3` |  |
 | keycloak.extraVolumes[0].name | string | `"themes"` |  |
 | keycloak.extraVolumes[0].emptyDir | object | `{}` |  |
@@ -68,7 +68,7 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"ghcr.io/catenax-ng/tx-portal-iam_iam-import:v1.1.0"` |  |
+| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0-RC1"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -174,3 +174,7 @@ Changes to composite roles of the technical_roles_management client:
 
 * Service Management:
   * assign the add_connectors role of the Cl2-CX-Portal client
+
+This section describes the necessary changes to the CX-Central realm when upgrading from version 1.1.0 to 1.2.0:
+
+WIP - upgrade not yet supported by v1.2.0-RC1, will be supported latest by v1.2.0

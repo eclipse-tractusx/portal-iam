@@ -34,7 +34,7 @@ keycloak:
       mountPath: "/realms"
   initContainers:
     - name: import
-      image: tractusx/portal-iam-consortia:v1.1.0-consortia
+      image: tractusx/portal-iam-consortia:v1.2.0-RC1
       imagePullPolicy: Always
       command:
         - sh

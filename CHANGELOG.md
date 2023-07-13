@@ -2,6 +2,21 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM - Keycloak instances.
 
+## 1.2.0-RC1
+
+### Change
+
+* realm init (centralidp - cx-central): changed config (upgrade from v1.1.0 not yet supported by v1.2.0-RC1, see [Post-Upgrade Configuration](./charts/centralidp/README.md#post-upgrade-configuration)
+* login theme (sharedidp):
+  * enabled hints about password policy
+  * align registration theme with portal theme
+* changed container registry for init containers to Docker Hub
+
+### Bugfix
+
+* login theme (centralidp - cx-central): fixed browser 64k limit for single node text
+* login theme (sharedidp - registration): fixed screen layout for wide displays
+
 ## 1.1.0
 
 ### Change

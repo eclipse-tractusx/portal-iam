@@ -28,7 +28,7 @@ spec:
   source:
     path: charts/sharedidp
     repoURL: 'https://github.com/eclipse-tractusx/portal-iam.git'
-    targetRevision: v1.1.0-consortia
+    targetRevision: v1.2.0-RC1
     plugin:
       env:
         - name: AVP_SECRET
