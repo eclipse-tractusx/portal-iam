@@ -151,3 +151,15 @@ secrets:
         password: ""
         # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
         replicationPassword: ""
+
+seeding:
+  enabled: false
+  name: "cx-central-realm-upgrade"
+  image:
+    name: "tractusx/portal-iam-seeding"
+    tag: ""
+  hostname: "https://centralidp.example.org"
+  authRealm: "master"
+  dataPaths:
+    dataPath0: "realms/CX-Central-realm.json"
+  instanceName: "central"
