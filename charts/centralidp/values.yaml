@@ -153,13 +153,31 @@ secrets:
         replicationPassword: ""
 
 seeding:
-  enabled: false
+  enabled: true
   name: "cx-central-realm-upgrade"
-  image:
-    name: "tractusx/portal-iam-seeding"
-    tag: ""
-  hostname: "https://centralidp.example.org"
+  image: "tractusx/portal-iam-seeding:iam-v1.2.0"
+  portContainer: 8080
   authRealm: "master"
   dataPaths:
     dataPath0: "realms/CX-Central-realm.json"
   instanceName: "central"
+  extraVolumes:
+    - name: realms
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: realms
+      mountPath: "app/realms"
+  initContainers:
+    - name: init-cx-central
+      image: tractusx/portal-iam:v1.2.0-RC1
+      imagePullPolicy: Always
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          echo "Copying CX Central realm..."
+          cp -R /import/catenax-central/realms/* /app/realms
+      volumeMounts:
+      - name: realms
+        mountPath: "app/realms"

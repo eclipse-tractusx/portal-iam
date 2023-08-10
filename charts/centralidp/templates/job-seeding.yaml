@@ -3,6 +3,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ .Values.seeding.name }}
+  namespace: {{ .Release.Namespace }}
   annotations:
     "batch.kubernetes.io/job-tracking": "true"
     "helm.sh/hook": post-upgrade
@@ -21,28 +22,36 @@ spec:
             drop:
             - ALL
           runAsNonRoot: true
-        image: "{{ .Values.seeding.image.name }}:{{ .Values.seeding.image.tag | default .Chart.AppVersion }}"
+        image: "{{ .Values.seeding.image }}"
         imagePullPolicy: "Always"
         env:
-          - name: "KEYCLOAK__MASTER__CONNECTIONSTRING"
-            value: "{{ .Values.seeding.hostname }}"
-          - name: "KEYCLOAK__MASTER__USER"
+          - name: "KEYCLOAK__CENTRAL__CONNECTIONSTRING"
+            value: "http://{{ template "keycloak.fullname" . }}"
+          - name: "KEYCLOAK__CENTRAL__USER"
             value: "{{ .Values.keycloak.auth.adminUser }}"
-          - name: "KEYCLOAK__MASTER__PASSWORD"
+          - name: "KEYCLOAK__CENTRAL__PASSWORD"
             valueFrom:
               secretKeyRef:
                 name: "{{ .Values.keycloak.auth.existingSecret }}"
                 key: "admin-password"
-          - name: "KEYCLOAK__MASTER__AUTHREALM"
+          - name: "KEYCLOAK__CENTRAL__AUTHREALM"
             value: "{{ .Values.seeding.authRealm }}"
           - name: "KEYCLOAKSEEDING__DATAPATHES__0"
             value: "{{ .Values.seeding.dataPaths.dataPath0 }}"
           - name: "KEYCLOAKSEEDING__INSTANCENAME"
             value: "{{ .Values.seeding.instanceName }}"
+          - name: "DOTNET_ENVIRONMENT"
+            value: "{{ .Values.seeding.dotnetEnvironment }}"
         ports:
         - name: http
-          containerPort: {{ .Values.portContainer }}
+          containerPort: {{ .Values.seeding.portContainer }}
           protocol: TCP
         resources:
           {{- toYaml .Values.seeding.resources | nindent 10 }}
+        volumeMounts:
+        {{- toYaml .Values.seeding.extraVolumeMounts | nindent 10 }}
+      initContainers:
+      {{- toYaml .Values.seeding.initContainers | nindent 8 }}
+      volumes:
+      {{- toYaml .Values.seeding.extraVolumes | nindent 8 }}
 {{- end -}}
