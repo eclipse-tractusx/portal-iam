@@ -40,8 +40,6 @@ spec:
             value: "{{ .Values.seeding.dataPaths.dataPath0 }}"
           - name: "KEYCLOAKSEEDING__INSTANCENAME"
             value: "{{ .Values.seeding.instanceName }}"
-          - name: "DOTNET_ENVIRONMENT"
-            value: "{{ .Values.seeding.dotnetEnvironment }}"
         ports:
         - name: http
           containerPort: {{ .Values.seeding.portContainer }}
