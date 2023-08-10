@@ -73,3 +73,6 @@ secrets:
         postgrespassword: "<path:portal/data/dev/iam/centralidp-postgres#postgres-password>"
         password: "<path:portal/data/dev/iam/centralidp-postgres#password>"
         replicationPassword: "<path:portal/data/dev/iam/centralidp-postgres#replication-password>"
+
+seeding:
+  enabled: false

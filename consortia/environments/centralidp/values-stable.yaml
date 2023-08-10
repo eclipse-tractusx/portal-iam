@@ -73,3 +73,20 @@ secrets:
         postgrespassword: "<path:portal/data/stable/iam/centralidp-postgres#postgres-password>"
         password: "<path:portal/data/stable/iam/centralidp-postgres#password>"
         replicationPassword: "<path:portal/data/stable/iam/centralidp-postgres#replication-password>"
+
+seeding:
+  enabled: true
+  initContainers:
+    - name: init-cx-central
+      image: tractusx/portal-iam-consortia:v1.2.0-RC1
+      imagePullPolicy: Always
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          echo "Copying CX Central realm..."
+          cp -R /import/catenax-central/stable/realms/* /app/realms
+      volumeMounts:
+      - name: realms
+        mountPath: "app/realms"
