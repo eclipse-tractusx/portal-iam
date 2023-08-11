@@ -153,6 +153,10 @@ secrets:
         replicationPassword: ""
 
 seeding:
+# -- Seeding job to upgrade CX_Central realm:
+# enable to upgrade the configuration of the CX-Central realm from v1.1.0 to v1.2.0;
+# Please also refer to the 'Post-Upgrade Configuration' section in the README.md
+# for configuration possibly not covered by the seeding job
   enabled: false
   name: "cx-central-realm-upgrade"
   image: "tractusx/portal-iam-seeding:iam-v1.2.0"
