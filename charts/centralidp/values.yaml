@@ -153,7 +153,7 @@ secrets:
         replicationPassword: ""
 
 seeding:
-  enabled: true
+  enabled: false
   name: "cx-central-realm-upgrade"
   image: "tractusx/portal-iam-seeding:iam-v1.2.0"
   portContainer: 8080
