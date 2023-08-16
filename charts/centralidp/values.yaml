@@ -151,3 +151,37 @@ secrets:
         password: ""
         # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
         replicationPassword: ""
+
+seeding:
+# -- Seeding job to upgrade CX_Central realm:
+# enable to upgrade the configuration of the CX-Central realm from v1.1.0 to v1.2.0;
+# Please also refer to the 'Post-Upgrade Configuration' section in the README.md
+# for configuration possibly not covered by the seeding job
+  enabled: false
+  name: "cx-central-realm-upgrade"
+  image: "tractusx/portal-iam-seeding:iam-v1.2.0"
+  portContainer: 8080
+  authRealm: "master"
+  dataPaths:
+    dataPath0: "realms/CX-Central-realm.json"
+  instanceName: "central"
+  extraVolumes:
+    - name: realms
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: realms
+      mountPath: "app/realms"
+  initContainers:
+    - name: init-cx-central
+      image: tractusx/portal-iam:v1.2.0-RC1
+      imagePullPolicy: Always
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          echo "Copying CX Central realm..."
+          cp -R /import/catenax-central/realms/* /app/realms
+      volumeMounts:
+      - name: realms
+        mountPath: "app/realms"

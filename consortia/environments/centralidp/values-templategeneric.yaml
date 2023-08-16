@@ -18,16 +18,6 @@
 ###############################################################
 
 keycloak:
-  extraVolumes:
-    - name: themes
-      emptyDir: {}
-    - name: realms
-      emptyDir: {}
-  extraVolumeMounts:
-    - name: themes
-      mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
-    - name: realms
-      mountPath: "/realms"
   initContainers:
     - name: import
       image: tractusx/portal-iam-consortia:v1.2.0-RC1
@@ -73,3 +63,6 @@ secrets:
         postgrespassword: "<path:portal/data/dev/iam/centralidp-postgres#postgres-password>"
         password: "<path:portal/data/dev/iam/centralidp-postgres#password>"
         replicationPassword: "<path:portal/data/dev/iam/centralidp-postgres#replication-password>"
+
+seeding:
+  enabled: false
