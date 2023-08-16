@@ -165,6 +165,16 @@ seeding:
   dataPaths:
     dataPath0: "realms/CX-Central-realm.json"
   instanceName: "central"
+  # -- We recommend not to specify default resources and to leave this as a conscious choice for the user.
+  # If you do want to specify resources, uncomment the following lines,
+  # adjust them as necessary, and remove the curly braces after 'resources:'.
+  resources: {}
+    # limits:
+    #   cpu: 250m
+    #   memory: 256Mi
+    # requests:
+    #   cpu: 250m
+    #   memory: 256Mi
   extraVolumes:
     - name: realms
       emptyDir: {}
