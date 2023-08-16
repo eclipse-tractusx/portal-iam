@@ -245,6 +245,14 @@
           "attributes": {}
         },
         {
+          "id": "97a7fb1c-f120-4847-9f47-e03d308ef6e3",
+          "name": "modify_connectors",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
           "id": "8cceb06a-fa9d-4251-a336-9173d268c6d3",
           "name": "app_management",
           "description": "can manage apps",
@@ -470,6 +478,14 @@
           "attributes": {}
         },
         {
+          "id": "b47a5ec1-c92a-44a7-b5d7-2b5dd316a4e0",
+          "name": "update_company_role",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
           "id": "9db8ca83-6cfd-4c44-8ab7-ccbcb11da38f",
           "name": "view_tech_roles",
           "description": "View technical user roles",
@@ -580,10 +596,12 @@
                 "view_registration"
               ],
               "Cl2-CX-Portal": [
+                "delete_connectors",
                 "view_technical_setup",
                 "view_certificates",
                 "view_tech_user_management",
                 "add_user_account",
+                "modify_connectors",
                 "view_company_data",
                 "modify_user_account",
                 "view_use_case_participation",
@@ -705,6 +723,7 @@
                 "setup_client",
                 "view_app_subscription",
                 "delete_documents",
+                "modify_connectors",
                 "view_company_data",
                 "view_autosetup_status",
                 "view_app_language",
@@ -720,6 +739,7 @@
                 "view_user_account",
                 "setup_idp",
                 "view_tech_roles",
+                "update_company_role",
                 "view_client_roles",
                 "subscribe_service",
                 "delete_user_account",
@@ -863,8 +883,7 @@
                 "add_user_account",
                 "edit_apps",
                 "activate_subscription",
-                "delete_apps",
-                "view_user_management"
+                "delete_apps"
               ]
             }
           },
@@ -1050,6 +1069,7 @@
                 "setup_client",
                 "view_app_subscription",
                 "delete_documents",
+                "modify_connectors",
                 "app_management",
                 "view_company_data",
                 "approve_app_release",
@@ -1070,6 +1090,7 @@
                 "activate_subscription",
                 "setup_idp",
                 "view_tech_roles",
+                "update_company_role",
                 "view_client_roles",
                 "subscribe_service",
                 "delete_user_account",
@@ -4119,10 +4140,10 @@
       "frontchannelLogout": false,
       "protocol": "openid-connect",
       "attributes": {
-        "saml.assertion.signature": "false",
         "id.token.as.detached.signature": "false",
-        "saml.multivalued.roles": "false",
+        "saml.assertion.signature": "false",
         "saml.force.post.binding": "false",
+        "saml.multivalued.roles": "false",
         "saml.encrypt": "false",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false",
@@ -4135,9 +4156,9 @@
         "backchannel.logout.session.required": "true",
         "client_credentials.use_refresh_token": "false",
         "saml_force_name_id_format": "false",
+        "require.pushed.authorization.requests": "false",
         "saml.client.signature": "false",
         "tls.client.certificate.bound.access.tokens": "false",
-        "require.pushed.authorization.requests": "false",
         "saml.authnstatement": "false",
         "display.on.consent.screen": "false",
         "saml.onetimeuse.condition": "false"

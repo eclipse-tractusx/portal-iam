@@ -124,6 +124,14 @@
           "attributes": {}
         },
         {
+          "id": "c51f3a5a-02e0-414f-9c60-c2ec5c53bb09",
+          "name": "update_company_role",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
           "id": "46905bb9-8d3b-4666-891f-a67e8f963b3b",
           "name": "view_documents",
           "description": "User can view/download documents",
@@ -602,6 +610,7 @@
                 "view_registration"
               ],
               "Cl2-CX-Portal": [
+                "delete_connectors",
                 "view_technical_setup",
                 "view_tech_user_management",
                 "add_user_account",
@@ -630,6 +639,7 @@
                 "view_apps",
                 "view_subscription",
                 "view_use_case_participation",
+                "modify_connectors",
                 "delete_notifications",
                 "view_connectors",
                 "view_partner_network"
@@ -714,6 +724,7 @@
               ],
               "Cl2-CX-Portal": [
                 "view_documents",
+                "update_company_role",
                 "delete_connectors",
                 "setup_client",
                 "view_app_subscription",
@@ -762,6 +773,7 @@
                 "my_user_account",
                 "view_apps",
                 "view_use_case_participation",
+                "modify_connectors",
                 "view_connectors",
                 "view_partner_network"
               ],
@@ -853,8 +865,7 @@
                 "add_user_account",
                 "edit_apps",
                 "activate_subscription",
-                "delete_apps",
-                "view_user_management"
+                "delete_apps"
               ]
             }
           },
@@ -1040,6 +1051,7 @@
               "Cl2-CX-Portal": [
                 "decline_new_partner",
                 "view_documents",
+                "update_company_role",
                 "delete_connectors",
                 "update_service_offering",
                 "invite_new_partner",
@@ -1106,6 +1118,7 @@
                 "edit_apps",
                 "view_apps",
                 "view_use_case_participation",
+                "modify_connectors",
                 "view_connectors",
                 "view_partner_network"
               ],
@@ -1178,6 +1191,14 @@
           "id": "817fa189-808e-465c-b75d-838336ab7a84",
           "name": "view_apps",
           "description": "Users with this role can view apps in the App Marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "dc2b47a7-8e7e-49a1-b23a-e099168b8229",
+          "name": "modify_connectors",
           "composite": false,
           "clientRole": true,
           "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
