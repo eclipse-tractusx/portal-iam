@@ -53,7 +53,9 @@ This is done by setting the 'example.org' placeholder in the CX-Operator' Identi
 
 ## Post-Upgrade Configuration
 
-This section describes the necessary changes to the CX-Central realm when upgrading from version 1.0.0 or 1.0.1 to 1.1.0:
+### Upgrading from version 1.0.0 or 1.0.1 to 1.1.0
+
+This section describes the necessary changes to the CX-Central realm when upgrading from version 1.0.0 or 1.0.1 to 1.1.0
 
 Create the following new client:
 
@@ -96,6 +98,28 @@ Changes to composite roles of the technical_roles_management client:
 * Service Management:
   * assign the add_connectors role of the Cl2-CX-Portal client
 
-This section describes the necessary changes to the CX-Central realm when upgrading from version 1.1.0 to 1.2.0:
+### Upgrading from version 1.1.0 to 1.2.0
 
-WIP - upgrade not yet supported by v1.2.0-RC1, will be supported latest by v1.2.0
+This section describes the configuration changes to the CX-Central realm when upgrading from version 1.1.0 to 1.2.0:
+
+As part of the 1.2.0 version, a job for the seeding of the CX-Central realm configuration changes was implemented.
+By enabling the seeding (Values.seeding.enabled), the CX-Central realm is upgraded by a job defined as a post-upgrade hook.
+
+Currently the automatic upgrade of the configuration still has some limitations and the following **post-upgrade activities** should be executed:
+
+1. Change client_id in portal db to the ID of the client of centralidp
+
+Within the portal database (schema portal), change the field 'client_id' of the table 'company_service_accounts' to the ID of the client from the centralidp instance (field 'id' of the 'client' table) for the following newly added service accounts:
+
+* sa-cl2-03
+* sa-cl21-01
+* sa-cl22-01
+
+If this step isn't executed the details of the service accounts can't be viewed in User Management of the Portal but the service accounts can still be managed in the Keycloak admin console.
+
+2. Deletion of obsolete clients and service accounts for housekeeping (optional)
+
+The following clients and service accounts are obsolete in version 1.2.0 and can be deleted:
+
+* Cl4-CX-DigitalTwin
+* sa-cl6-cx-01
