@@ -54,7 +54,7 @@ keycloak:
       mountPath: "/realms"
   initContainers:
     - name: import
-      image: tractusx/portal-iam:v1.2.0-RC1
+      image: tractusx/portal-iam:v1.2.0-RC2
       imagePullPolicy: Always
       command:
         - sh
@@ -183,7 +183,7 @@ seeding:
       mountPath: "app/realms"
   initContainers:
     - name: init-cx-central
-      image: tractusx/portal-iam:v1.2.0-RC1
+      image: tractusx/portal-iam:v1.2.0-RC2
       imagePullPolicy: Always
       command:
         - sh
