@@ -1,10 +1,10 @@
 # Helm chart for Catena-X Central Keycloak Instance
 
-![Version: 1.2.0-RC1](https://img.shields.io/badge/Version-1.2.0--RC1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0-RC1](https://img.shields.io/badge/AppVersion-1.2.0--RC1-informational?style=flat-square)
+![Version: 1.2.0-RC2](https://img.shields.io/badge/Version-1.2.0--RC2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0-RC2](https://img.shields.io/badge/AppVersion-1.2.0--RC2-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Catena-X Central Keycloak Instance.
 
-For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0-RC1/developer/Technical%20Documentation).
+For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0-RC5/developer/Technical%20Documentation).
 
 The referenced container images are for demonstration purposes only.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.2.0-RC1
+    version: 1.2.0-RC2
 ```
 
 ## Requirements
@@ -68,7 +68,7 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0-RC1"` |  |
+| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0-RC2"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -121,12 +121,13 @@ dependencies:
 | seeding.authRealm | string | `"master"` |  |
 | seeding.dataPaths.dataPath0 | string | `"realms/CX-Central-realm.json"` |  |
 | seeding.instanceName | string | `"central"` |  |
+| seeding.resources | object | `{}` | We recommend not to specify default resources and to leave this as a conscious choice for the user. If you do want to specify resources, uncomment the following lines, adjust them as necessary, and remove the curly braces after 'resources:'. |
 | seeding.extraVolumes[0].name | string | `"realms"` |  |
 | seeding.extraVolumes[0].emptyDir | object | `{}` |  |
 | seeding.extraVolumeMounts[0].name | string | `"realms"` |  |
 | seeding.extraVolumeMounts[0].mountPath | string | `"app/realms"` |  |
 | seeding.initContainers[0].name | string | `"init-cx-central"` |  |
-| seeding.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0-RC1"` |  |
+| seeding.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0-RC2"` |  |
 | seeding.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | seeding.initContainers[0].command[0] | string | `"sh"` |  |
 | seeding.initContainers[0].args[0] | string | `"-c"` |  |
@@ -151,7 +152,9 @@ This is done by setting the 'example.org' placeholder in the CX-Operator' Identi
 
 ## Post-Upgrade Configuration
 
-This section describes the necessary changes to the CX-Central realm when upgrading from version 1.0.0 or 1.0.1 to 1.1.0:
+### Upgrading from version 1.0.0 or 1.0.1 to 1.1.0
+
+This section describes the necessary changes to the CX-Central realm when upgrading from version 1.0.0 or 1.0.1 to 1.1.0
 
 Create the following new client:
 
@@ -194,6 +197,28 @@ Changes to composite roles of the technical_roles_management client:
 * Service Management:
   * assign the add_connectors role of the Cl2-CX-Portal client
 
-This section describes the necessary changes to the CX-Central realm when upgrading from version 1.1.0 to 1.2.0:
+### Upgrading from version 1.1.0 to 1.2.0
 
-WIP - upgrade not yet supported by v1.2.0-RC1, will be supported latest by v1.2.0
+This section describes the configuration changes to the CX-Central realm when upgrading from version 1.1.0 to 1.2.0:
+
+As part of the 1.2.0 version, a job for the seeding of the CX-Central realm configuration changes was implemented.
+By enabling the seeding (Values.seeding.enabled), the CX-Central realm is upgraded by a job defined as a post-upgrade hook.
+
+Currently the automatic upgrade of the configuration still has some limitations and the following **post-upgrade activities** should be executed:
+
+1. Change client_id in portal db to the ID of the client of centralidp
+
+Within the portal database (schema portal), change the field 'client_id' of the table 'company_service_accounts' to the ID of the client from the centralidp instance (field 'id' of the 'client' table) for the following newly added service accounts:
+
+* sa-cl2-03
+* sa-cl21-01
+* sa-cl22-01
+
+If this step isn't executed the details of the service accounts can't be viewed in User Management of the Portal but the service accounts can still be managed in the Keycloak admin console.
+
+2. Deletion of obsolete clients and service accounts for housekeeping (optional)
+
+The following clients and service accounts are obsolete in version 1.2.0 and can be deleted:
+
+* Cl4-CX-DigitalTwin
+* sa-cl6-cx-01

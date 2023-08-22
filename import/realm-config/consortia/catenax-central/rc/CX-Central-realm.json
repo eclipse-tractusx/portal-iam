@@ -124,6 +124,14 @@
           "attributes": {}
         },
         {
+          "id": "c51f3a5a-02e0-414f-9c60-c2ec5c53bb09",
+          "name": "update_company_role",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
           "id": "46905bb9-8d3b-4666-891f-a67e8f963b3b",
           "name": "view_documents",
           "description": "User can view/download documents",
@@ -602,6 +610,7 @@
                 "view_registration"
               ],
               "Cl2-CX-Portal": [
+                "delete_connectors",
                 "view_technical_setup",
                 "view_tech_user_management",
                 "add_user_account",
@@ -630,6 +639,7 @@
                 "view_apps",
                 "view_subscription",
                 "view_use_case_participation",
+                "modify_connectors",
                 "delete_notifications",
                 "view_connectors",
                 "view_partner_network"
@@ -714,6 +724,7 @@
               ],
               "Cl2-CX-Portal": [
                 "view_documents",
+                "update_company_role",
                 "delete_connectors",
                 "setup_client",
                 "view_app_subscription",
@@ -762,6 +773,7 @@
                 "my_user_account",
                 "view_apps",
                 "view_use_case_participation",
+                "modify_connectors",
                 "view_connectors",
                 "view_partner_network"
               ],
@@ -853,8 +865,7 @@
                 "add_user_account",
                 "edit_apps",
                 "activate_subscription",
-                "delete_apps",
-                "view_user_management"
+                "delete_apps"
               ]
             }
           },
@@ -1040,6 +1051,7 @@
               "Cl2-CX-Portal": [
                 "decline_new_partner",
                 "view_documents",
+                "update_company_role",
                 "delete_connectors",
                 "update_service_offering",
                 "invite_new_partner",
@@ -1106,6 +1118,7 @@
                 "edit_apps",
                 "view_apps",
                 "view_use_case_participation",
+                "modify_connectors",
                 "view_connectors",
                 "view_partner_network"
               ],
@@ -1178,6 +1191,14 @@
           "id": "817fa189-808e-465c-b75d-838336ab7a84",
           "name": "view_apps",
           "description": "Users with this role can view apps in the App Marketplace",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
+          "attributes": {}
+        },
+        {
+          "id": "dc2b47a7-8e7e-49a1-b23a-e099168b8229",
+          "name": "modify_connectors",
           "composite": false,
           "clientRole": true,
           "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
@@ -3430,7 +3451,7 @@
       "groups": []
     },
     {
-      "id": "84db695c-ddb2-485e-bab1-0789de724037",
+      "id": "a0bbb8fa-cc40-44e3-828d-342e782fd284",
       "createdTimestamp": 1681380138448,
       "username": "service-account-sa-cl2-03",
       "enabled": true,
@@ -3446,7 +3467,7 @@
       "groups": []
     },
     {
-      "id": "56cab9c5-5f0f-44a1-8b4c-ecac09cb6d42",
+      "id": "319d6b7f-bd88-4103-8124-e8ac4c791acf",
       "createdTimestamp": 1681915810810,
       "username": "service-account-sa-cl21-01",
       "enabled": true,
@@ -3474,7 +3495,7 @@
       "groups": []
     },
     {
-      "id": "d40538c7-e1e5-4ac0-89e3-0854fac31f40",
+      "id": "b52bd8e5-98ce-48b4-af43-0b43b45d0358",
       "createdTimestamp": 1681915925763,
       "username": "service-account-sa-cl22-01",
       "enabled": true,
@@ -8713,7 +8734,7 @@
       ]
     },
     {
-      "id": "4f3b52ca-14c2-453e-87ac-4c97c4c4af5a",
+      "id": "cad1382b-0dd4-4ac7-8183-1c08386c84e8",
       "clientId": "sa-cl2-03",
       "description": "Technical User AutoSetup trigger - Portal to Vendor Autosetup (portal helm chart: backend.processesworker.offerprovider.clientId)",
       "surrogateAuthRequired": false,
@@ -8821,7 +8842,7 @@
       ]
     },
     {
-      "id": "f1f03a93-d654-41fd-b92b-68c6373e7467",
+      "id": "b09392dd-8b0f-4a32-bb0b-d00a4091b890",
       "clientId": "sa-cl21-01",
       "description": "Technical User Discovery Finder",
       "surrogateAuthRequired": false,
@@ -8944,7 +8965,7 @@
       ]
     },
     {
-      "id": "9a79ca1f-42b4-493c-9e1a-68ccd05ad9ac",
+      "id": "f1806543-d0ca-41cb-b029-883cdfb11a8e",
       "clientId": "sa-cl22-01",
       "description": "Technical User BPN Discovery",
       "surrogateAuthRequired": false,
