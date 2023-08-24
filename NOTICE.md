@@ -38,6 +38,11 @@ This project depends on the following Helm chart from Bitnami:
 - Licence Path: https://artifacthub.io/packages/helm/bitnami/keycloak#license
 - Source URL: https://artifacthub.io/packages/helm/bitnami/keycloak
 
+This project uses the following image content:
+
+- Image: Catena-X Logo
+- Source URL: <https://catena-x.net>
+
 ## Cryptography
 
 Content may contain encryption software. The country in which you are currently
