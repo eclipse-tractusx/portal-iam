@@ -2,31 +2,21 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM - Keycloak instances.
 
-## 1.2.0-RC2
+## 1.2.0
 
 ### Change
 
+* realm configuration (centralidp): updated CX-Central realm
 * added post-upgrade documentation for v1.2.0, see [Post-Upgrade Configuration](./charts/centralidp/README.md#post-upgrade-configuration)
-* added second license
-* changed license notice for images
-
-### Feature
-
-* added seeding job to upgrade the configuration of the CX-Central realm
-
-### Bugfix
-
-* updated CX-Central realm config with findings discovered during e2e testing
-
-## 1.2.0-RC1
-
-### Change
-
-* realm init (centralidp - cx-central): changed config (upgrade from v1.1.0 not yet supported by v1.2.0-RC1, see [Post-Upgrade Configuration](./charts/centralidp/README.md#post-upgrade-configuration)
 * login theme (sharedidp):
   * enabled hints about password policy
   * align registration theme with portal theme
 * changed container registry for init containers to Docker Hub
+* changed license notice for images
+
+### Feature
+
+* added seeding job to upgrade the configuration of the CX-Central realm (centralidp)
 
 ### Bugfix
 
