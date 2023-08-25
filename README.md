@@ -17,6 +17,7 @@ For further information please refer to the chart specific README files, availab
 
 * charts/centralidp
   * [Installation](./charts/centralidp/README.md#installation)
+  * [Upgrade](./charts/centralidp/values.yaml#L155)
   * [Post-Install Configuration](./charts/centralidp/README.md#post-install-configuration)
   * [Post-Upgrade Configuration](./charts/centralidp/README.md#post-upgrade-configuration)
 * charts/sharedidp

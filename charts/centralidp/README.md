@@ -1,10 +1,10 @@
 # Helm chart for Catena-X Central Keycloak Instance
 
-![Version: 1.2.0-RC2](https://img.shields.io/badge/Version-1.2.0--RC2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0-RC2](https://img.shields.io/badge/AppVersion-1.2.0--RC2-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Catena-X Central Keycloak Instance.
 
-For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0-RC5/developer/Technical%20Documentation).
+For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0/developer/Technical%20Documentation).
 
 The referenced container images are for demonstration purposes only.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.2.0-RC2
+    version: 1.2.0
 ```
 
 ## Requirements
@@ -68,7 +68,7 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0-RC2"` |  |
+| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -116,7 +116,7 @@ dependencies:
 | secrets.postgresql.auth.existingSecret.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
 | seeding.enabled | bool | `false` | Seeding job to upgrade CX_Central realm: enable to upgrade the configuration of the CX-Central realm from v1.1.0 to v1.2.0; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
 | seeding.name | string | `"cx-central-realm-upgrade"` |  |
-| seeding.image | string | `"tractusx/portal-iam-seeding:iam-v1.2.0"` |  |
+| seeding.image | string | `"tractusx/portal-iam-seeding:v1.2.0-iam"` |  |
 | seeding.portContainer | int | `8080` |  |
 | seeding.authRealm | string | `"master"` |  |
 | seeding.dataPaths.dataPath0 | string | `"realms/CX-Central-realm.json"` |  |
@@ -127,7 +127,7 @@ dependencies:
 | seeding.extraVolumeMounts[0].name | string | `"realms"` |  |
 | seeding.extraVolumeMounts[0].mountPath | string | `"app/realms"` |  |
 | seeding.initContainers[0].name | string | `"init-cx-central"` |  |
-| seeding.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0-RC2"` |  |
+| seeding.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0"` |  |
 | seeding.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | seeding.initContainers[0].command[0] | string | `"sh"` |  |
 | seeding.initContainers[0].args[0] | string | `"-c"` |  |
@@ -149,6 +149,10 @@ In order to enable the login of the initial user (see CX-Operator realm in share
 This is done by setting the 'example.org' placeholder in the CX-Operator' Identity Provider to the address of the sharedidp instance.
 
 3. Setup SMTP configuration (Realm Settings --> Email)
+
+## Upgrade
+
+Please see notes at [Values.seeding](values.yaml#L155).
 
 ## Post-Upgrade Configuration
 

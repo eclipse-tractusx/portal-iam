@@ -4,7 +4,7 @@
 
 This helm chart installs the {{ template "chart.description" . }}.
 
-For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0-RC5/developer/Technical%20Documentation).
+For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0/developer/Technical%20Documentation).
 
 The referenced container images are for demonstration purposes only.
 
@@ -50,6 +50,10 @@ In order to enable the login of the initial user (see CX-Operator realm in share
 This is done by setting the 'example.org' placeholder in the CX-Operator' Identity Provider to the address of the sharedidp instance.
 
 3. Setup SMTP configuration (Realm Settings --> Email)
+
+## Upgrade
+
+Please see notes at [Values.seeding](values.yaml#L155).
 
 ## Post-Upgrade Configuration
 
