@@ -18,6 +18,7 @@
 ###############################################################
 
 keycloak:
+  proxy: edge
   initContainers:
     - name: import
       image: tractusx/portal-iam-consortia:v1.2.0
