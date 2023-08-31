@@ -18,6 +18,7 @@
 ###############################################################
 
 keycloak:
+  production: true
   proxy: edge
   initContainers:
     - name: import
