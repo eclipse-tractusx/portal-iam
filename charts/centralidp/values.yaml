@@ -58,7 +58,6 @@ keycloak:
       - name: realms
         mountPath: "/realms"
   service:
-    type: ClusterIP
     sessionAffinity: ClientIP
   ingress:
     enabled: false
