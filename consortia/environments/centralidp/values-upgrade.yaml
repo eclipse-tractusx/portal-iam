@@ -22,7 +22,7 @@ keycloak:
   proxy: edge
   initContainers:
     - name: import
-      image: tractusx/portal-iam-consortia:v1.2.0
+      image: tractusx/portal-iam-consortia:cplp-3210-consortia
       imagePullPolicy: Always
       command:
         - sh
@@ -32,7 +32,7 @@ keycloak:
           echo "Copying themes..."
           cp -R /import/themes/catenax-central/* /themes
           echo "Copying realms..."
-          cp -R /import/catenax-central/rc/realms/* /realms
+          cp -R /import/catenax-central/upgrade/realms/* /realms
       volumeMounts:
       - name: themes
         mountPath: "/themes"
@@ -70,7 +70,7 @@ seeding:
   enabled: false
   initContainers:
     - name: init-cx-central
-      image: tractusx/portal-iam-consortia:v1.2.0
+      image: tractusx/portal-iam-consortia:cplp-3210-consortia
       imagePullPolicy: Always
       command:
         - sh
@@ -78,7 +78,7 @@ seeding:
         - -c
         - |
           echo "Copying CX Central realm..."
-          cp -R /import/catenax-central/rc/realms/* /app/realms
+          cp -R /import/catenax-central/upgrade/realms/* /app/realms
       volumeMounts:
       - name: realms
         mountPath: "app/realms"
