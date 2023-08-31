@@ -26,17 +26,6 @@ keycloak:
   serviceDiscovery:
     enabled: true
   extraEnvVars:
-    - name: KEYCLOAK_USER
-      value: "admin"
-    - name: KEYCLOAK_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: sharedidp-keycloak
-          key: admin-password
-    - name: CACHE_OWNERS_COUNT
-      value: "3"
-    - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
-      value: "3"
     - name: KEYCLOAK_EXTRA_ARGS
       value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=IGNORE_EXISTING"
   replicaCount: 3
