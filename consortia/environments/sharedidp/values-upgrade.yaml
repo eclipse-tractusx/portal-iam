@@ -41,7 +41,7 @@ keycloak:
       mountPath: "/secrets"
   initContainers:
     - name: import
-      image: tractusx/portal-iam-consortia:v1.2.0
+      image: tractusx/portal-iam-consortia:cplp-3210-consortia
       imagePullPolicy: Always
       command:
         - sh
@@ -53,7 +53,7 @@ keycloak:
           echo "Copying themes-catenax-shared-portal..."
           cp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal
           echo "Copying realms..."
-          cp -R /import/catenax-shared/rc/realms/* /realms
+          cp -R /import/catenax-shared/upgrade/realms/* /realms
           echo "Copying realms-secrets..."
           cp /secrets/* /realms
       volumeMounts:
