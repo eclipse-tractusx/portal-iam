@@ -18,8 +18,6 @@
 ###############################################################
 
 keycloak:
-  image:
-    tag: 16.1.1-debian-10-r103
   auth:
     adminUser: admin
     # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
