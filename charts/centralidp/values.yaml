@@ -22,9 +22,12 @@ keycloak:
     adminUser: admin
     # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
     existingSecret: "centralidp-keycloak"
-  proxyAddressForwarding: true
-  serviceDiscovery:
-    enabled: true
+  # -- Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
+  production: false
+  # -- reverse Proxy mode edge, reencrypt, passthrough or none;
+  # ref: https://www.keycloak.org/server/reverseproxy;
+  # If your ingress controller has the SSL Termination, you should set proxy to edge.
+  proxy: passthrough
   extraEnvVars:
     - name: KEYCLOAK_EXTRA_ARGS
       value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"

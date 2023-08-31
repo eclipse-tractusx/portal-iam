@@ -18,6 +18,8 @@
 ###############################################################
 
 keycloak:
+  production: true
+  proxy: edge
   extraVolumes:
     - name: themes-catenax-shared
       emptyDir: {}
