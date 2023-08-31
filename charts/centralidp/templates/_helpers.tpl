@@ -16,18 +16,18 @@
 *
 * SPDX-License-Identifier: Apache-2.0
 
-Define "keycloak.fullname" in addition to the definition in the bitnami keycloak chart to set ".Chart.Name" to "keycloak".
+Define "keycloak.service.name" like ""common.names.fullname" in the bitnami common chart but setting ".Chart.Name" to "keycloak".
 This is necessary to retrieve the keycloak service name for the execution of the seeding job.
 */}}
-{{- define "keycloak.fullname" -}}
+{{- define "keycloak.service.name" -}}
 {{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 20 | trimSuffix "-" -}}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
 {{- $name := default "keycloak" .Values.nameOverride -}}
 {{- if contains $name .Release.Name -}}
-{{- .Release.Name | trunc 20 | trimSuffix "-" -}}
+{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 20 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
 {{- end -}}
