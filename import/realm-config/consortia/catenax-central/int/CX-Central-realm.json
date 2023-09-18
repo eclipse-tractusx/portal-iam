@@ -15994,7 +15994,7 @@
         "validateSignature": "true",
         "pkceEnabled": "false",
         "clientId": "central-idp",
-        "tokenUrl": "1/auth/realms/Onboarding-Provider/protocol/openid-connect/token",
+        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/token",
         "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/certs",
         "clientAuthMethod": "private_key_jwt",
         "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/auth",

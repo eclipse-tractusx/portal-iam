@@ -15976,6 +15976,33 @@
         "syncMode": "FORCE",
         "useJwksUrl": "true"
       }
+    },
+    {
+      "alias": "Onboarding-Provider",
+      "displayName": "Onboarding-Provider",
+      "internalId": "8c1f0cf6-2872-45aa-8cfe-10a92de89092",
+      "providerId": "keycloak-oidc",
+      "enabled": true,
+      "updateProfileFirstLoginMode": "on",
+      "trustEmail": false,
+      "storeToken": false,
+      "addReadTokenRoleOnCreate": false,
+      "authenticateByDefault": false,
+      "linkOnly": false,
+      "firstBrokerLoginFlowAlias": "Login without auto user creation",
+      "config": {
+        "validateSignature": "true",
+        "pkceEnabled": "false",
+        "clientId": "central-idp",
+        "tokenUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/token",
+        "jwksUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/certs",
+        "clientAuthMethod": "private_key_jwt",
+        "authorizationUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/auth",
+        "logoutUrl": "https://sharedidp-pen.dev.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/logout",
+        "syncMode": "IMPORT",
+        "clientAssertionSigningAlg": "RS256",
+        "useJwksUrl": "true"
+      }
     }
   ],
   "identityProviderMappers": [
