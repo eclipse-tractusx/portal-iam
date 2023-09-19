@@ -4792,6 +4792,35 @@
       },
       "notBefore": 0,
       "groups": []
+    },
+    {
+      "id" : "01b02e4f-1c16-437e-9555-9bbcfe4bade3",
+      "createdTimestamp" : 1652788086549,
+      "username" : "c3819cfb-72c2-45bf-9666-895af2e7fc19",
+      "enabled" : true,
+      "totp" : false,
+      "emailVerified" : true,
+      "firstName" : "Tester",
+      "lastName" : "Onboarding Provider",
+      "email" : "onboarding-provider@osp.com",
+      "attributes" : {
+        "bpn" : [ "BPNL000000001OSP" ],
+        "organisation" : [ "Onboarding-Provider" ]
+      },
+      "credentials" : [ ],
+      "disableableCredentialTypes" : [ ],
+      "requiredActions" : [ ],
+      "federatedIdentities" : [ {
+        "identityProvider" : "Onboarding-Provider",
+        "userId" : "01b02e4f-1c16-437e-9555-9bbcfe4bade3",
+        "userName" : "onboarding-provider@osp.com"
+      } ],
+      "realmRoles" : [ "default-roles-catena-x realm" ],
+      "clientRoles" : {
+        "Cl2-CX-Portal" : [ "Company Admin" ]
+      },
+      "notBefore" : 0,
+      "groups" : [ ]
     }
   ],
   "scopeMappings": [
@@ -15947,6 +15976,33 @@
         "syncMode": "FORCE",
         "useJwksUrl": "true"
       }
+    },
+    {
+      "alias": "Onboarding-Provider",
+      "displayName": "Onboarding-Provider",
+      "internalId": "8c1f0cf6-2872-45aa-8cfe-10a92de89092",
+      "providerId": "keycloak-oidc",
+      "enabled": true,
+      "updateProfileFirstLoginMode": "on",
+      "trustEmail": false,
+      "storeToken": false,
+      "addReadTokenRoleOnCreate": false,
+      "authenticateByDefault": false,
+      "linkOnly": false,
+      "firstBrokerLoginFlowAlias": "Login without auto user creation",
+      "config": {
+        "validateSignature": "true",
+        "pkceEnabled": "false",
+        "clientId": "central-idp",
+        "tokenUrl": "https://sharedidp.stable.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/token",
+        "jwksUrl": "https://sharedidp.stable.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/certs",
+        "clientAuthMethod": "private_key_jwt",
+        "authorizationUrl": "https://sharedidp.stable.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/auth",
+        "logoutUrl": "https://sharedidp.stable.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/logout",
+        "syncMode": "IMPORT",
+        "clientAssertionSigningAlg": "RS256",
+        "useJwksUrl": "true"
+      }
     }
   ],
   "identityProviderMappers": [
@@ -16100,6 +16156,17 @@
       "identityProviderMapper": "hardcoded-attribute-idp-mapper",
       "config": {
         "attribute.value": "App-Provider",
+        "syncMode": "INHERIT",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "5f77e673-37bf-4950-9522-d0299c157926",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "Onboarding-Provider",
+      "identityProviderMapper": "hardcoded-user-session-attribute-idp-mapper",
+      "config": {
+        "attribute.value": "Onboarding-Provider",
         "syncMode": "INHERIT",
         "attribute": "organisation"
       }

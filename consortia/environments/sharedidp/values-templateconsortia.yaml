@@ -39,7 +39,7 @@ keycloak:
       mountPath: "/secrets"
   initContainers:
     - name: import
-      image: tractusx/portal-iam-consortia:v1.2.0
+      image: tractusx/portal-iam-consortia:pr23-consortia
       imagePullPolicy: Always
       command:
         - sh
@@ -99,3 +99,4 @@ secrets:
     cxoperator: "<path:portal/data/iam/sharedidp-user#CX-Operator-users-0.json>"
     serviceprovider: "<path:portal/data/iam/sharedidp-user#Service-Provider-users-0.json>"
     appprovider: "<path:portal/data/iam/sharedidp-user#App-Provider-users-0.json>"
+    onboardingprovider: "<path:portal/data/iam/sharedidp-user#Onboarding-Provider-users-0.json>"
