@@ -4812,7 +4812,7 @@
       "requiredActions" : [ ],
       "federatedIdentities" : [ {
         "identityProvider" : "Onboarding-Provider",
-        "userId" : "01b02e4f-1c16-437e-9555-9bbcfe4bade3",
+        "userId" : "c5e606f8-0808-42ba-b285-74debb9d8335",
         "userName" : "onboarding-provider@osp.com"
       } ],
       "realmRoles" : [ "default-roles-catena-x realm" ],
