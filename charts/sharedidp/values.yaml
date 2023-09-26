@@ -141,8 +141,6 @@ secrets:
     existingSecret:
       # -- Password for the admin username 'admin'. Secret-key 'admin-password'.
       adminpassword: ""
-      # -- Password Wildfly management username 'manager'. Secret-key 'management-password'.
-      managementpassword: ""
   postgresql:
     auth:
       existingSecret:
