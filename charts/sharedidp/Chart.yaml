@@ -29,4 +29,4 @@ sources:
 dependencies:
   - name: keycloak
     repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
-    version: 16.1.0
+    version: 16.1.6
