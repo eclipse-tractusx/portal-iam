@@ -18,6 +18,8 @@
 ###############################################################
 
 keycloak:
+  production: true
+  proxy: edge
   initContainers:
     - name: import
       image: tractusx/portal-iam-consortia:v1.2.0
@@ -56,7 +58,6 @@ secrets:
   auth:
     existingSecret:
       adminpassword: "<path:portal/data/dev/iam/centralidp-keycloak#admin-password>"
-      managementpassword: "<path:portal/data/dev/iam/centralidp-keycloak#management-password>"
   postgresql:
     auth:
       existingSecret:
