@@ -67,7 +67,7 @@ secrets:
         replicationPassword: "<path:portal/data/dev/iam/centralidp-postgres#replication-password>"
 
 seeding:
-  enabled: false
+  enabled: true
   initContainers:
     - name: init-cx-central
       image: tractusx/portal-iam-consortia:cplp-3210-consortia
