@@ -53,7 +53,24 @@ This is done by setting the 'example.org' placeholder in the CX-Operator' Identi
 
 ## Upgrade
 
-Please see notes at [Values.seeding](values.yaml#L155).
+Please see notes at [Values.seeding](values.yaml#L148).
+
+### To 2.0.0
+
+WIP as currently still in alpha phase.
+
+This major changes from Keycloak version 16.1.1 to version 22.0.3.
+
+Please have a look into changelog for a more detailed description.
+
+We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html)
+
+To be mentioned explicitly: this major adds 'production' mode with default value false and reverse 'proxy' mode with default value 'passthrough'.
+Please check the description of those parameters and decide if they're suitable for you.
+
+This major version changes the PostgreSQL version from 14.2.0 to 15.4.0. Follow the [official instructions](https://www.postgresql.org/docs/15/upgrading.html) to upgrade to 15.
+
+Accordingly,this major also updates the PostgreSQL subchart from Bitnami from 11.1.22 to 12.12.9.
 
 ## Post-Upgrade Configuration
 
@@ -127,3 +144,7 @@ The following clients and service accounts are obsolete in version 1.2.0 and can
 
 * Cl4-CX-DigitalTwin
 * sa-cl6-cx-01
+
+### Upgrading from version 1.2.0 to 2.0.0
+
+WIP as currently still in alpha phase.

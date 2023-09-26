@@ -1,6 +1,6 @@
 # Helm chart for Catena-X Central Keycloak Instance
 
-![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.2.0](https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square)
+![Version: 2.0.0-alpha](https://img.shields.io/badge/Version-2.0.0--alpha-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 22.0.3](https://img.shields.io/badge/AppVersion-22.0.3-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Catena-X Central Keycloak Instance.
 
@@ -29,35 +29,26 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 1.2.0
+    version: 2.0.0-alpha
 ```
 
 ## Requirements
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami | keycloak | 7.1.18 |
+| https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami | keycloak | 16.1.6 |
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| keycloak.image.tag | string | `"16.1.1-debian-10-r103"` |  |
 | keycloak.auth.adminUser | string | `"admin"` |  |
 | keycloak.auth.existingSecret | string | `"centralidp-keycloak"` | Secret containing the passwords for admin username 'admin' and management username 'manager'. |
-| keycloak.proxyAddressForwarding | bool | `true` |  |
-| keycloak.serviceDiscovery.enabled | bool | `true` |  |
-| keycloak.extraEnvVars[0].name | string | `"KEYCLOAK_USER"` |  |
-| keycloak.extraEnvVars[0].value | string | `"admin"` |  |
-| keycloak.extraEnvVars[1].name | string | `"KEYCLOAK_PASSWORD"` |  |
-| keycloak.extraEnvVars[1].valueFrom.secretKeyRef.name | string | `"centralidp-keycloak"` |  |
-| keycloak.extraEnvVars[1].valueFrom.secretKeyRef.key | string | `"admin-password"` |  |
-| keycloak.extraEnvVars[2].name | string | `"CACHE_OWNERS_COUNT"` |  |
-| keycloak.extraEnvVars[2].value | string | `"3"` |  |
-| keycloak.extraEnvVars[3].name | string | `"CACHE_OWNERS_AUTH_SESSIONS_COUNT"` |  |
-| keycloak.extraEnvVars[3].value | string | `"3"` |  |
-| keycloak.extraEnvVars[4].name | string | `"KEYCLOAK_EXTRA_ARGS"` |  |
-| keycloak.extraEnvVars[4].value | string | `"-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"` |  |
+| keycloak.production | bool | `false` | Run Keycloak in production mode. TLS configuration is required except when using proxy=edge. |
+| keycloak.proxy | string | `"passthrough"` | reverse Proxy mode edge, reencrypt, passthrough or none; ref: https://www.keycloak.org/server/reverseproxy; If your ingress controller has the SSL Termination, you should set proxy to edge. |
+| keycloak.httpRelativePath | string | `"/auth/"` | Setting the path relative to '/' for serving resources: as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'. ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed |
+| keycloak.extraEnvVars[0].name | string | `"KEYCLOAK_EXTRA_ARGS"` |  |
+| keycloak.extraEnvVars[0].value | string | `"-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"` |  |
 | keycloak.replicaCount | int | `3` |  |
 | keycloak.extraVolumes[0].name | string | `"themes"` |  |
 | keycloak.extraVolumes[0].emptyDir | object | `{}` |  |
@@ -77,7 +68,6 @@ dependencies:
 | keycloak.initContainers[0].volumeMounts[0].mountPath | string | `"/themes"` |  |
 | keycloak.initContainers[0].volumeMounts[1].name | string | `"realms"` |  |
 | keycloak.initContainers[0].volumeMounts[1].mountPath | string | `"/realms"` |  |
-| keycloak.service.type | string | `"ClusterIP"` |  |
 | keycloak.service.sessionAffinity | string | `"ClientIP"` |  |
 | keycloak.ingress.enabled | bool | `false` |  |
 | keycloak.ingress.ingressClassName | string | `"nginx"` |  |
@@ -114,7 +104,7 @@ dependencies:
 | secrets.postgresql.auth.existingSecret.postgrespassword | string | `""` | Password for the root username 'postgres'. Secret-key 'postgres-password'. |
 | secrets.postgresql.auth.existingSecret.password | string | `""` | Password for the non-root username 'kccentral'. Secret-key 'password'. |
 | secrets.postgresql.auth.existingSecret.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
-| seeding.enabled | bool | `false` | Seeding job to upgrade CX_Central realm: enable to upgrade the configuration of the CX-Central realm from v1.1.0 to v1.2.0; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
+| seeding.enabled | bool | `false` | Seeding job to upgrade CX_Central realm: enable to upgrade the configuration of the CX-Central realm from previous version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
 | seeding.name | string | `"cx-central-realm-upgrade"` |  |
 | seeding.image | string | `"tractusx/portal-iam-seeding:v1.2.0-iam"` |  |
 | seeding.portContainer | int | `8080` |  |
@@ -152,7 +142,24 @@ This is done by setting the 'example.org' placeholder in the CX-Operator' Identi
 
 ## Upgrade
 
-Please see notes at [Values.seeding](values.yaml#L155).
+Please see notes at [Values.seeding](values.yaml#L148).
+
+### To 2.0.0
+
+WIP as currently still in alpha phase.
+
+This major changes from Keycloak version 16.1.1 to version 22.0.3.
+
+Please have a look into changelog for a more detailed description.
+
+We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html)
+
+To be mentioned explicitly: this major adds 'production' mode with default value false and reverse 'proxy' mode with default value 'passthrough'.
+Please check the description of those parameters and decide if they're suitable for you.
+
+This major version changes the PostgreSQL version from 14.2.0 to 15.4.0. Follow the [official instructions](https://www.postgresql.org/docs/15/upgrading.html) to upgrade to 15.
+
+Accordingly,this major also updates the PostgreSQL subchart from Bitnami from 11.1.22 to 12.12.9.
 
 ## Post-Upgrade Configuration
 
@@ -226,3 +233,7 @@ The following clients and service accounts are obsolete in version 1.2.0 and can
 
 * Cl4-CX-DigitalTwin
 * sa-cl6-cx-01
+
+### Upgrading from version 1.2.0 to 2.0.0
+
+WIP as currently still in alpha phase.
