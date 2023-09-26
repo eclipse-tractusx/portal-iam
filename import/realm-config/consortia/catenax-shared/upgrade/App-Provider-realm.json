@@ -638,7 +638,7 @@
       "clientAuthenticatorType": "client-jwt",
       "secret": "**********",
       "redirectUris": [
-        "https://centralidp-upgrade.dev.demo.catena-x.net/realms/CX-Central/broker/App-Provider/endpoint/*"
+        "https://centralidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Central/broker/App-Provider/endpoint/*"
       ],
       "webOrigins": [
         "+"
@@ -657,7 +657,7 @@
         "token.endpoint.auth.signing.alg": "RS256",
         "use.jwks.url": "true",
         "backchannel.logout.session.required": "true",
-        "jwks.url": "https://centralidp-upgrade.dev.demo.catena-x.net/realms/CX-Central/protocol/openid-connect/certs",
+        "jwks.url": "https://centralidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Central/protocol/openid-connect/certs",
         "backchannel.logout.revoke.offline.tokens": "false"
       },
       "authenticationFlowBindingOverrides": {},

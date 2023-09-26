@@ -1,7 +1,7 @@
 {
   "id": "master",
   "realm": "master",
-  "displayName": "RC Shared Identity Provider",
+  "displayName": "UPGRADE Shared Identity Provider",
   "displayNameHtml": "<div class=\"kc-logo-text\"><span>Keycloak</span></div>",
   "notBefore": 0,
   "defaultSignatureAlgorithm": "RS256",
