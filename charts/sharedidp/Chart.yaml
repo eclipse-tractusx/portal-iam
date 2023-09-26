@@ -21,7 +21,7 @@ apiVersion: v2
 name: sharedidp
 type: application
 version: 2.0.0
-appVersion: 1.2.0
+appVersion: 22.0.3
 description: Helm chart for Catena-X Shared Keycloak Instance
 home: https://github.com/eclipse-tractusx/portal-iam
 sources:
