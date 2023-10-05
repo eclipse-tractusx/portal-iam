@@ -1657,7 +1657,7 @@
         }
       ],
       "sa-cl6-cx-4": [],
-      "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com": [],
+      "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com": [],
       "sa-cl6-cx-3": [],
       "sa-cl6-cx-2": [],
       "sa-cl6-cx-1": [],
@@ -4844,7 +4844,7 @@
     ],
     "https://catenax-dt-rec.authentication.eu10.hana.ondemand.com": [
       {
-        "client": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
+        "client": "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
         "roles": [
           "EC.Buyer.Manager",
           "EarthCommerce.Content.Manager",
@@ -5201,7 +5201,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://partners-gate.int.demo.catena-x.net/*"
+        "https://partners-gate.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -5264,8 +5264,8 @@
       "redirectUris": [
         "http://localhost:8080/*",
         "https://dtc-translator.adac.openresearch.com/*",
-        "https://fleet.int.adac.openresearch.com/*",
-        "https://dtc.int.adac.openresearch.com/*",
+        "https://fleet.dev.adac.openresearch.com/*",
+        "https://dtc.dev.adac.openresearch.com/*",
         "https://fleet-management.adac.openresearch.com/*"
       ],
       "webOrigins": [
@@ -5441,7 +5441,7 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://materialpass.int.demo.catena-x.net/*",
+        "https://materialpass.dev.demo.catena-x.net/*",
         "http://localhost:8080/*"
       ],
       "webOrigins": [
@@ -5590,10 +5590,10 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://dft.int.demo.catena-x.net/*",
+        "https://dft.dev.demo.catena-x.net/*",
         "https://dft.pen.int.demo.catena-x.net/*",
         "http://localhost:3000/*",
-        "http://dft-int.germanywestcentral.cloudapp.azure.com:8080/*"
+        "http://dft-dev.germanywestcentral.cloudapp.azure.com:8080/*"
       ],
       "webOrigins": [
         "+"
@@ -5686,7 +5686,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://partners-gate.int.demo.catena-x.net/*"
+        "https://partners-gate.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -5750,7 +5750,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://portal-gate.int.demo.catena-x.net/"
+        "https://portal-gate.dev.demo.catena-x.net/"
       ],
       "webOrigins": [
         "*"
@@ -5817,8 +5817,8 @@
       "redirectUris": [
         "http://localhost:8080/*",
         "http://localhost:3000/*",
-        "https://country-risk-dashboard.int.demo.catena-x.net/*",
-        "https://vas-country-risk-backend.int.demo.catena-x.net/swagger-ui/*"
+        "https://country-risk-dashboard.dev.demo.catena-x.net/*",
+        "https://vas-country-risk-backend.dev.demo.catena-x.net/swagger-ui/*"
       ],
       "webOrigins": [
         "+"
@@ -5913,13 +5913,13 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://traceability-portal-e2e-b.int.demo.catena-x.net/*",
-        "https://traceability-portal.int.demo.catena-x.net/*",
+        "https://traceability-portal-e2e-b.dev.demo.catena-x.net/*",
+        "https://traceability-portal.dev.demo.catena-x.net/*",
         "http://localhost:4200/*",
-        "https://traceability-portal-int-a.int.demo.catena-x.net/*",
-        "https://traceability-portal-int-b.int.demo.catena-x.net/*",
-        "https://traceability-portal-test.int.demo.catena-x.net/*",
-        "https://traceability-portal-e2e-a.int.demo.catena-x.net/*"
+        "https://traceability-portal-dev-a.dev.demo.catena-x.net/*",
+        "https://traceability-portal-dev-b.dev.demo.catena-x.net/*",
+        "https://traceability-portal-test.dev.demo.catena-x.net/*",
+        "https://traceability-portal-e2e-a.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -6108,9 +6108,9 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://portal.int.demo.catena-x.net/*",
+        "https://portal-upgrade.dev.demo.catena-x.net/*",
         "http://localhost:3000/*",
-        "https://portal-rc.int.demo.catena-x.net/*"
+        "https://portal-upgrade.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -6397,21 +6397,21 @@
       "clientId": "Cl2-CX-Portal",
       "name": "",
       "description": "",
-      "rootUrl": "https://portal.int.demo.catena-x.net/home",
+      "rootUrl": "https://portal-upgrade.dev.demo.catena-x.net/home",
       "adminUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://portal-swagger.int.demo.catena-x.net/*",
-        "https://portal.int.demo.catena-x.net/*",
+        "https://portal-swagger.dev.demo.catena-x.net/*",
+        "https://portal-upgrade.dev.demo.catena-x.net/*",
         "http://localhost:8080/*",
-        "https://partners-pool.int.demo.catena-x.net/*",
-        "https://catenax-bpdm-int.demo.catena-x.net/*",
+        "https://partners-pool.dev.demo.catena-x.net/*",
+        "https://catenax-bpdm-dev.demo.catena-x.net/*",
         "http://localhost:3000/*",
-        "https://portal-rc.int.demo.catena-x.net/*",
-        "https://partners-gate.int.demo.catena-x.net/*"
+        "https://portal-upgrade.dev.demo.catena-x.net/*",
+        "https://partners-gate.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -6499,13 +6499,13 @@
       "id": "36e2745d-f331-4fa5-bbfa-90947d7f1dc4",
       "clientId": "Cl3-CX-Semantic",
       "rootUrl": "",
-      "adminUrl": "https://portal.int.demo.catena-x.net/home",
+      "adminUrl": "https://portal-upgrade.dev.demo.catena-x.net/home",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://portal.int.demo.catena-x.net/*",
+        "https://portal-upgrade.dev.demo.catena-x.net/*",
         "http://localhost:8080/*",
         "http://localhost:3000/*"
       ],
@@ -6594,14 +6594,14 @@
     {
       "id": "e6ab12bb-3b26-472c-ad0b-3d871bd1461b",
       "clientId": "Cl5-CX-Custodian",
-      "name": "Cl5-CX-Custodian INT",
+      "name": "Cl5-CX-Custodian UPGRADE",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://managed-identity-wallets.int.demo.catena-x.net/*"
+        "https://managed-identity-wallets.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -6795,8 +6795,8 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://partners-pool.int.demo.catena-x.net/*",
-        "https://catenax-bpdm-int.demo.catena-x.net/*"
+        "https://partners-pool.dev.demo.catena-x.net/*",
+        "https://catenax-bpdm-dev.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
@@ -6859,7 +6859,7 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://fraud-dashboard.int.demo.catena-x.net/*",
+        "https://fraud-dashboard.dev.demo.catena-x.net/*",
         "https://keycloak.catenax-cdq.com/auth/*"
       ],
       "webOrigins": [
@@ -6917,17 +6917,17 @@
     },
     {
       "id": "6a9209c2-ec16-476b-9a9f-61474610b790",
-      "clientId": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
+      "clientId": "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10"
+        "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-dev-dismantler-s66pftcc.aws-live-eu10"
       ],
       "webOrigins": [
-        "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com"
+        "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -6955,14 +6955,14 @@
         "saml.client.signature": "true",
         "id.token.as.detached.signature": "false",
         "saml.assertion.signature": "true",
-        "saml_single_logout_service_url_post": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10",
+        "saml_single_logout_service_url_post": "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-dev-dismantler-s66pftcc.aws-live-eu10",
         "saml.encrypt": "false",
-        "saml_assertion_consumer_url_post": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10",
+        "saml_assertion_consumer_url_post": "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SSO/alias/catenax-dev-dismantler-s66pftcc.aws-live-eu10",
         "saml.server.signature": "true",
         "exclude.session.state.from.auth.response": "false",
         "saml.artifact.binding.identifier": "ZGMZhC4yxOKbOI3azIQQxCjXbLw=",
         "saml.artifact.binding": "false",
-        "saml_single_logout_service_url_redirect": "https://catenax-int-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-int-dismantler-s66pftcc.aws-live-eu10",
+        "saml_single_logout_service_url_redirect": "https://catenax-dev-dismantler-s66pftcc.authentication.eu10.hana.ondemand.com/saml/SingleLogout/alias/catenax-dev-dismantler-s66pftcc.aws-live-eu10",
         "saml_force_name_id_format": "false",
         "saml.encryption.certificate": "MIIDQjCCAiqgAwIBAgIGElXjqKNAMA0GCSqGSIb3DQEBCwUAMFgxVjBUBgNVBAMMTWh0dHBzOi8vY2F0ZW5heC1pbnQtZGlzbWFudGxlci1zNjZwZnRjYy5hdXRoZW50aWNhdGlvbi5ldTEwLmhhbmEub25kZW1hbmQuY29tMCAXDTE2MDEwMTAwMDAwMFoYDzIwNTAwMTAxMDAwMDAwWjBYMVYwVAYDVQQDDE1odHRwczovL2NhdGVuYXgtaW50LWRpc21hbnRsZXItczY2cGZ0Y2MuYXV0aGVudGljYXRpb24uZXUxMC5oYW5hLm9uZGVtYW5kLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKVD5SYVIsC3M8PqMuiw/IMypyZU0V5pUwxBaZlMWljz1D1iNPGaOg9LhhLGAWOD0cdfFs70Q4Ov391raGRn5/9cQma0dJtH1PiTMM67+FZFvn1FWeEJ5a3qwIgoQrcDZn9NDTmtL+yaYOAsg5SGEkjrOZlJp1U3xVZDmuToUZ96WDodsy/nVQTkvaORSh+XDPIQ3sH5jqFdFuQsWf3xXSFHobF1sbi2IjGSZxLEi9yszPVff999Q0Q86kAoCh5gVKdB3WSHgkzDD6gxlcIGGQM6y3HZigIKlPRwK1o3SrEvl0IbPKDNM6rtFgWwRfp5KsQLRfe7TxLq7IWkqQd29vcCAwEAAaMQMA4wDAYDVR0TAQH/BAIwADANBgkqhkiG9w0BAQsFAAOCAQEAoScTGCrzKq4bbYFTJcyKwtgL80OM7RgZlfSsP/+k7fiZKUaY6WbUKDwRl7yHglgjL6NiC/Tz1PklgbB08RMwXIHbnG4VvdpcMUlHn5wGfZnNViHZYsjb4TgK8QS/zD8CSaJguUuK0ym/KUT9Hn6bHQuk4CQICVZmlp1N/bIWoSinY565rZ1amg9Ap0sgy1wWuqH8zKeTClrxjbuQeRTyj7d4kb/Ocg12rrUP8dznS5SGiR7WL9LpVrJZH72cKuOM1dYV6O94KH9uiuMe+VoUxWqgHiYbA/LOCxLSgI2fVTG8cGz0bCviFSf2tfVEB8mi/cU2Ikz6LzGNdaEpr4NoaA==",
         "tls.client.certificate.bound.access.tokens": "false",
@@ -12567,7 +12567,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://materialpass.int.demo.catena-x.net/*",
+        "https://materialpass.dev.demo.catena-x.net/*",
         "http://localhost:8080/*"
       ],
       "webOrigins": [
@@ -12819,7 +12819,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://materialpass.int.demo.catena-x.net/*",
+        "https://materialpass.dev.demo.catena-x.net/*",
         "http://localhost:8080/*"
       ],
       "webOrigins": [
@@ -15802,15 +15802,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access",
+        "jwksUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Test-Access",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/auth",
         "clientAuthMethod": "private_key_jwt",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Test-Access/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientAssertionSigningAlg": "RS256"
       }
@@ -15829,15 +15829,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1",
+        "jwksUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-1",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/auth",
         "clientAuthMethod": "private_key_jwt",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-1/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientAssertionSigningAlg": "RS256"
       }
@@ -15856,15 +15856,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2",
+        "jwksUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-2",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/auth",
         "clientAuthMethod": "private_key_jwt",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Company-2/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientAssertionSigningAlg": "RS256"
       }
@@ -15883,15 +15883,15 @@
       "firstBrokerLoginFlowAlias": "first broker login",
       "config": {
         "validateSignature": "true",
-        "userInfoUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/userinfo",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/token",
+        "userInfoUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/userinfo",
+        "tokenUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/token",
         "clientId": "Central-IdP",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/certs",
-        "issuer": "https://sharedidp.int.demo.catena-x.net/auth/realms/Security-Company",
+        "jwksUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/certs",
+        "issuer": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Security-Company",
         "useJwksUrl": "true",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/auth",
+        "authorizationUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/auth",
         "clientAuthMethod": "private_key_jwt",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Security-Company/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientAssertionSigningAlg": "RS256"
       }
@@ -15913,11 +15913,11 @@
         "hideOnLoginPage": "false",
         "validateSignature": "true",
         "clientId": "central-idp",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Service-Provider/protocol/openid-connect/token",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Service-Provider/protocol/openid-connect/auth",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Service-Provider/protocol/openid-connect/certs",
+        "tokenUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Service-Provider/protocol/openid-connect/token",
+        "authorizationUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Service-Provider/protocol/openid-connect/auth",
+        "jwksUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Service-Provider/protocol/openid-connect/certs",
         "clientAuthMethod": "private_key_jwt",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Service-Provider/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Service-Provider/protocol/openid-connect/logout",
         "clientAssertionSigningAlg": "RS256",
         "syncMode": "FORCE",
         "useJwksUrl": "true"
@@ -15940,11 +15940,11 @@
         "hideOnLoginPage": "false",
         "validateSignature": "true",
         "clientId": "central-idp",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/App-Provider/protocol/openid-connect/token",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/App-Provider/protocol/openid-connect/auth",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/App-Provider/protocol/openid-connect/certs",
+        "tokenUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/App-Provider/protocol/openid-connect/token",
+        "authorizationUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/App-Provider/protocol/openid-connect/auth",
+        "jwksUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/App-Provider/protocol/openid-connect/certs",
         "clientAuthMethod": "private_key_jwt",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/App-Provider/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/App-Provider/protocol/openid-connect/logout",
         "clientAssertionSigningAlg": "RS256",
         "syncMode": "FORCE",
         "useJwksUrl": "true"
@@ -15967,11 +15967,11 @@
         "hideOnLoginPage": "false",
         "validateSignature": "true",
         "clientId": "central-idp",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Operator/protocol/openid-connect/token",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Operator/protocol/openid-connect/auth",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Operator/protocol/openid-connect/certs",
+        "tokenUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Operator/protocol/openid-connect/token",
+        "authorizationUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Operator/protocol/openid-connect/auth",
+        "jwksUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Operator/protocol/openid-connect/certs",
         "clientAuthMethod": "private_key_jwt",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/CX-Operator/protocol/openid-connect/logout",
+        "logoutUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/CX-Operator/protocol/openid-connect/logout",
         "clientAssertionSigningAlg": "RS256",
         "syncMode": "FORCE",
         "useJwksUrl": "true"
@@ -15994,11 +15994,11 @@
         "validateSignature": "true",
         "pkceEnabled": "false",
         "clientId": "central-idp",
-        "tokenUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/token",
-        "jwksUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/certs",
+        "tokenUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/token",
+        "jwksUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/certs",
         "clientAuthMethod": "private_key_jwt",
-        "authorizationUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/auth",
-        "logoutUrl": "https://sharedidp.int.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/logout",
+        "authorizationUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/auth",
+        "logoutUrl": "https://sharedidp-upgrade.dev.demo.catena-x.net/auth/realms/Onboarding-Provider/protocol/openid-connect/logout",
         "syncMode": "IMPORT",
         "clientAssertionSigningAlg": "RS256",
         "useJwksUrl": "true"

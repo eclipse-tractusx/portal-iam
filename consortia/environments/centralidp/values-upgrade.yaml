@@ -22,7 +22,7 @@ keycloak:
   proxy: edge
   initContainers:
     - name: import
-      image: tractusx/portal-iam-consortia:v1.2.0
+      image: tractusx/portal-iam-consortia:pr20-consortia
       imagePullPolicy: Always
       command:
         - sh
@@ -32,7 +32,7 @@ keycloak:
           echo "Copying themes..."
           cp -R /import/themes/catenax-central/* /themes
           echo "Copying realms..."
-          cp -R /import/catenax-central/dev/realms/* /realms
+          cp -R /import/catenax-central/upgrade/realms/* /realms
       volumeMounts:
       - name: themes
         mountPath: "/themes"
@@ -41,12 +41,12 @@ keycloak:
   ingress:
     enabled: true
     ingressClassName: nginx
-    hostname: centralidp-templategeneric.dev.demo.catena-x.net
+    hostname: centralidp-upgrade.dev.demo.catena-x.net
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-      nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp-templategeneric.dev.demo.catena-x.net, http://localhost:3000
+      nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp-upgrade.dev.demo.catena-x.net, http://localhost:3000
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
       nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -67,3 +67,17 @@ secrets:
 
 seeding:
   enabled: false
+  initContainers:
+    - name: init-cx-central
+      image: tractusx/portal-iam-consortia:pr20-consortia
+      imagePullPolicy: Always
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          echo "Copying CX Central realm..."
+          cp -R /import/catenax-central/upgrade/realms/* /app/realms
+      volumeMounts:
+      - name: realms
+        mountPath: "app/realms"

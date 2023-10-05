@@ -18,27 +18,21 @@
 ###############################################################
 
 keycloak:
-  image:
-    tag: 16.1.1-debian-10-r103
   auth:
     adminUser: admin
     # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
     existingSecret: "centralidp-keycloak"
-  proxyAddressForwarding: true
-  serviceDiscovery:
-    enabled: true
+  # -- Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
+  production: false
+  # -- reverse Proxy mode edge, reencrypt, passthrough or none;
+  # ref: https://www.keycloak.org/server/reverseproxy;
+  # If your ingress controller has the SSL Termination, you should set proxy to edge.
+  proxy: passthrough
+  # -- Setting the path relative to '/' for serving resources:
+  # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
+  # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
+  httpRelativePath: "/auth/"
   extraEnvVars:
-    - name: KEYCLOAK_USER
-      value: "admin"
-    - name: KEYCLOAK_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: centralidp-keycloak
-          key: admin-password
-    - name: CACHE_OWNERS_COUNT
-      value: "3"
-    - name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
-      value: "3"
     - name: KEYCLOAK_EXTRA_ARGS
       value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"
   replicaCount: 3
@@ -71,7 +65,6 @@ keycloak:
       - name: realms
         mountPath: "/realms"
   service:
-    type: ClusterIP
     sessionAffinity: ClientIP
   ingress:
     enabled: false
@@ -140,8 +133,6 @@ secrets:
     existingSecret:
       # -- Password for the admin username 'admin'. Secret-key 'admin-password'.
       adminpassword: ""
-      # -- Password Wildfly management username 'manager'. Secret-key 'management-password'.
-      managementpassword: ""
   postgresql:
     auth:
       existingSecret:
@@ -154,7 +145,7 @@ secrets:
 
 seeding:
 # -- Seeding job to upgrade CX_Central realm:
-# enable to upgrade the configuration of the CX-Central realm from v1.1.0 to v1.2.0;
+# enable to upgrade the configuration of the CX-Central realm from previous version;
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
 # for configuration possibly not covered by the seeding job
   enabled: false

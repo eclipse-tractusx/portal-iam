@@ -18,6 +18,8 @@
 ###############################################################
 
 keycloak:
+  production: true
+  proxy: edge
   extraVolumes:
     - name: themes-catenax-shared
       emptyDir: {}
@@ -83,7 +85,6 @@ secrets:
   auth:
     existingSecret:
       adminpassword: "<path:portal/data/dev/iam/sharedidp-keycloak#admin-password>"
-      managementpassword: "<path:portal/data/dev/iam/sharedidp-keycloak#management-password>"
   postgresql:
     auth:
       existingSecret:
