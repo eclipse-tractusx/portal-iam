@@ -1,0 +1,15 @@
+# templates/hooks/check-variable.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-check-variable
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+spec:
+  template:
+    spec:
+      containers:
+        - name: check-variable
+          image: busybox
+          args: ["/bin/sh", "-c", "if [ -z \"{{ .Values.instanceType }}\" ]; then exit 1; fi"]
+      restartPolicy: Never

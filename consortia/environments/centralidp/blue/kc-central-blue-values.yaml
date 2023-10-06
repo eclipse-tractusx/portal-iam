@@ -1,0 +1,49 @@
+# Variables to use by Portal IAM Helm Chart
+
+instanceType: "central"
+
+secrets:
+  auth:
+    existingSecret:
+      adminpassword: admincentral
+      managementpassword: managercentral
+  externalDatabase:
+    password: password
+
+seeding:
+  enabled: true
+  name: kc-central-blue-cx-central-realm-upgrade
+
+# Variables to use by Bitname Keycloak Helm Chart
+keycloak:
+  auth:
+    adminUser: admin
+    existingSecret: "kc-central-blue-admin-password"
+  externalDatabase:
+    host: "postgresql-db-central-blue"
+    port: 5432
+    database: "keycloak"
+    user: "admin"
+    existingSecret: "kc-central-blue-postgresql-secret"
+    existingSecretPasswordKey: "password"
+  service:
+    type: LoadBalancer
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    servicePort: 8080
+    hostname: "kc-central-blue.example.org"
+  extraEnvVars:
+    - name: KEYCLOAK_USER
+      value: "admin"
+    - name: KEYCLOAK_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: kc-central-blue-admin-password
+          key: admin-password
+    #- name: CACHE_OWNERS_COUNT
+    #  value: "3"
+    #- name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+    #  value: "3"
+    #- name: KEYCLOAK_EXTRA_ARGS
+    #  value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"

@@ -1,0 +1,58 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql-pvc-shared-blue
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgresql-db-shared-blue
+spec:
+  serviceName: postgresql-db-shared-blue
+  selector:
+    matchLabels:
+      app: postgresql-db-shared-blue
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgresql-db-shared-blue
+    spec:
+      containers:
+        - name: postgresql-db
+          image: postgres:latest
+          volumeMounts:
+            - mountPath: /data
+              name: postgresql-pvc-shared-blue
+          env:
+            - name: POSTGRES_USER
+              value: admin
+            - name: POSTGRES_PASSWORD
+              value: password
+            - name: PGDATA
+              value: /data/pgdata
+            - name: POSTGRES_DB
+              value: keycloak
+      volumes:
+        - name: postgresql-pvc-shared-blue
+          persistentVolumeClaim:
+            claimName: postgresql-pvc-shared-blue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql-db-shared-blue
+spec:
+  selector:
+    app: postgresql-db-shared-blue
+  ports:
+  - port: 5432
+    targetPort: 5432
