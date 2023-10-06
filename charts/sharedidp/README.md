@@ -63,7 +63,7 @@ dependencies:
 | keycloak.extraVolumeMounts[2].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[2].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0"` |  |
+| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v2.0.0-alpha"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
