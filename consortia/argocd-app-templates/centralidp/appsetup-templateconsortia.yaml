@@ -28,7 +28,7 @@ spec:
   source:
     path: charts/centralidp
     repoURL: 'https://github.com/eclipse-tractusx/portal-iam.git'
-    targetRevision: pr23-consortia
+    targetRevision: v2.0.0-alpha
     plugin:
       env:
         - name: AVP_SECRET
