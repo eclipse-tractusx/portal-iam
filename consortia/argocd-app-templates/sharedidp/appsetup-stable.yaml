@@ -56,7 +56,7 @@ spec:
                   mountPath: "/secrets"
               initContainers:
                 - name: import
-                  image: tractusx/portal-iam-consortia:v1.2.0
+                  image: tractusx/portal-iam-consortia:v2.0.0-alpha
                   imagePullPolicy: Always
                   command:
                     - sh

@@ -59,7 +59,7 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0"` |  |
+| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v2.0.0-alpha"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -100,7 +100,6 @@ dependencies:
 | keycloak.externalDatabase.existingSecret | string | `"centralidp-keycloak-external-db"` | Secret containing the password non-root username, (default 'kccentral'). |
 | keycloak.externalDatabase.existingSecretPasswordKey | string | `"password"` | Name of an existing secret key containing the database credentials. |
 | secrets.auth.existingSecret.adminpassword | string | `""` | Password for the admin username 'admin'. Secret-key 'admin-password'. |
-| secrets.auth.existingSecret.managementpassword | string | `""` | Password Wildfly management username 'manager'. Secret-key 'management-password'. |
 | secrets.postgresql.auth.existingSecret.postgrespassword | string | `""` | Password for the root username 'postgres'. Secret-key 'postgres-password'. |
 | secrets.postgresql.auth.existingSecret.password | string | `""` | Password for the non-root username 'kccentral'. Secret-key 'password'. |
 | secrets.postgresql.auth.existingSecret.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
@@ -117,7 +116,7 @@ dependencies:
 | seeding.extraVolumeMounts[0].name | string | `"realms"` |  |
 | seeding.extraVolumeMounts[0].mountPath | string | `"app/realms"` |  |
 | seeding.initContainers[0].name | string | `"init-cx-central"` |  |
-| seeding.initContainers[0].image | string | `"tractusx/portal-iam:v1.2.0"` |  |
+| seeding.initContainers[0].image | string | `"tractusx/portal-iam:v2.0.0-alpha"` |  |
 | seeding.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | seeding.initContainers[0].command[0] | string | `"sh"` |  |
 | seeding.initContainers[0].args[0] | string | `"-c"` |  |
@@ -154,12 +153,11 @@ Please have a look into changelog for a more detailed description.
 
 We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html)
 
-To be mentioned explicitly: this major adds 'production' mode with default value false and reverse 'proxy' mode with default value 'passthrough'.
+To be explicitly mentioned: this major adds the production mode with default value false and the reverse proxy mode with default value passthrough.
 Please check the description of those parameters and decide if they're suitable for you.
 
-This major version changes the PostgreSQL version from 14.2.0 to 15.4.0. Follow the [official instructions](https://www.postgresql.org/docs/15/upgrading.html) to upgrade to 15.
-
-Accordingly,this major also updates the PostgreSQL subchart from Bitnami from 11.1.22 to 12.12.9.
+Please be aware that this major changes the version of the PostgreSQL dependency by Bitnami from 14.2.0 to 15.4.0 (subchart updated from version 11.1.22 to 12.12.9).
+The database upgrade for the subchart by Bitnami isn't supported.
 
 ## Post-Upgrade Configuration
 
