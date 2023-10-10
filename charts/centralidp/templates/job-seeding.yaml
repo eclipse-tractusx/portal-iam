@@ -45,7 +45,7 @@ spec:
         imagePullPolicy: "Always"
         env:
           - name: "KEYCLOAK__CENTRAL__CONNECTIONSTRING"
-            value: "http://{{ template "keycloak.fullname" . }}"
+            value: "http://{{ template "keycloak.service.name" . }}"
           - name: "KEYCLOAK__CENTRAL__USER"
             value: "{{ .Values.keycloak.auth.adminUser }}"
           - name: "KEYCLOAK__CENTRAL__PASSWORD"

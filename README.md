@@ -4,7 +4,7 @@
 
 This repository contains the reference configuration to deploy the Catena-X (CX) specific Keycloak instances.
 
-The instances depend on the [helm chart from Bitnami](https://artifacthub.io/packages/helm/bitnami/keycloak) (chart version 7.1.18, app version 16.1.1).
+The instances depend on the [helm chart from Bitnami](https://artifacthub.io/packages/helm/bitnami/keycloak) (chart version 16.1.6, app version 22.0.3).
 
 The repository is split up in:
 
@@ -17,12 +17,13 @@ For further information please refer to the chart specific README files, availab
 
 * charts/centralidp
   * [Installation](./charts/centralidp/README.md#installation)
-  * [Upgrade](./charts/centralidp/values.yaml#L155)
   * [Post-Install Configuration](./charts/centralidp/README.md#post-install-configuration)
+  * [Upgrade](./charts/centralidp/README.md#upgrade)
   * [Post-Upgrade Configuration](./charts/centralidp/README.md#post-upgrade-configuration)
 * charts/sharedidp
   * [Installation](./charts/sharedidp/README.md#installation)
   * [Post-Install Configuration](./charts/sharedidp/README.md#post-install-configuration)
+  * [Upgrade](./charts/sharedidp/README.md#upgrade)
 
 ## Notice for Docker images
 

@@ -18,6 +18,8 @@
 ###############################################################
 
 keycloak:
+  production: true
+  proxy: edge
   extraVolumes:
     - name: themes-catenax-shared
       emptyDir: {}
@@ -39,7 +41,7 @@ keycloak:
       mountPath: "/secrets"
   initContainers:
     - name: import
-      image: tractusx/portal-iam-consortia:v1.2.0
+      image: tractusx/portal-iam-consortia:pr20-consortia
       imagePullPolicy: Always
       command:
         - sh
@@ -51,7 +53,7 @@ keycloak:
           echo "Copying themes-catenax-shared-portal..."
           cp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal
           echo "Copying realms..."
-          cp -R /import/catenax-shared/stable/realms/* /realms
+          cp -R /import/catenax-shared/upgrade/realms/* /realms
           echo "Copying realms-secrets..."
           cp /secrets/* /realms
       volumeMounts:
@@ -66,12 +68,12 @@ keycloak:
   ingress:
     enabled: true
     ingressClassName: nginx
-    hostname: sharedidp.stable.demo.catena-x.net
+    hostname: sharedidp-upgrade.dev.demo.catena-x.net
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-      nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.stable.demo.catena-x.net, http://localhost:3000
+      nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp-upgrade.dev.demo.catena-x.net, http://localhost:3000
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
       nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -82,14 +84,13 @@ keycloak:
 secrets:
   auth:
     existingSecret:
-      adminpassword: "<path:portal/data/stable/iam/sharedidp-keycloak#admin-password>"
-      managementpassword: "<path:portal/data/stable/iam/sharedidp-keycloak#management-password>"
+      adminpassword: "<path:portal/data/dev/iam/sharedidp-keycloak#admin-password>"
   postgresql:
     auth:
       existingSecret:
-        postgrespassword: "<path:portal/data/stable/iam/sharedidp-postgres#postgres-password>"
-        password: "<path:portal/data/stable/iam/sharedidp-postgres#password>"
-        replicationPassword: "<path:portal/data/stable/iam/sharedidp-postgres#replication-password>"
+        postgrespassword: "<path:portal/data/dev/iam/sharedidp-postgres#postgres-password>"
+        password: "<path:portal/data/dev/iam/sharedidp-postgres#password>"
+        replicationPassword: "<path:portal/data/dev/iam/sharedidp-postgres#replication-password>"
   realmuser:
     enabled: true
     cxtestaccessuser: "<path:portal/data/iam/sharedidp-user#CX-Test-Access-users-0.json>"
@@ -99,3 +100,4 @@ secrets:
     cxoperator: "<path:portal/data/iam/sharedidp-user#CX-Operator-users-0.json>"
     serviceprovider: "<path:portal/data/iam/sharedidp-user#Service-Provider-users-0.json>"
     appprovider: "<path:portal/data/iam/sharedidp-user#App-Provider-users-0.json>"
+    onboardingprovider: "<path:portal/data/iam/sharedidp-user#Onboarding-Provider-users-0.json>"

@@ -18,6 +18,8 @@
 ###############################################################
 
 keycloak:
+  production: true
+  proxy: edge
   extraVolumes:
     - name: themes-catenax-shared
       emptyDir: {}
@@ -34,7 +36,7 @@ keycloak:
       mountPath: "/realms"
   initContainers:
     - name: import
-      image: tractusx/portal-iam-consortia:v1.2.0
+      image: tractusx/portal-iam:v2.0.0-alpha
       imagePullPolicy: Always
       command:
         - sh
@@ -46,7 +48,7 @@ keycloak:
           echo "Copying themes-catenax-shared-portal..."
           cp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal
           echo "Copying realms..."
-          cp -R /import/catenax-shared/dev/realms/* /realms
+          cp -R /import/catenax-shared/realms/* /realms
       volumeMounts:
       - name: themes-catenax-shared
         mountPath: "/themes-catenax-shared"
@@ -74,7 +76,6 @@ secrets:
   auth:
     existingSecret:
       adminpassword: "<path:portal/data/dev/iam/sharedidp-keycloak#admin-password>"
-      managementpassword: "<path:portal/data/dev/iam/sharedidp-keycloak#management-password>"
   postgresql:
     auth:
       existingSecret:
