@@ -62,7 +62,7 @@ helm dependency update ./charts/portal-iam
 
 
 ```shell
-kubectl apply -f ./consortia/environments/centralidp/blue/postgresql-db-central-blue-statefulset.yaml
+kubectl apply -f ./environments/centralidp/blue/postgresql-db-central-blue-statefulset.yaml
 ```
 
 4. Deploy the **Keycloak Central** instance:
@@ -71,7 +71,7 @@ kubectl apply -f ./consortia/environments/centralidp/blue/postgresql-db-central-
 helm upgrade --install kc-central-blue \
     ./charts/portal-iam \
     --history-max=2 \
-    -f ./consortia/environments/centralidp/blue/kc-central-blue-values.yaml
+    -f ./environments/centralidp/blue/kc-central-blue-values.yaml
 ```
 
 This instance will use the previous database created, and initialize it with the initial values. The following
@@ -107,19 +107,19 @@ postgresql-db-central-blue   1/1     13m
 
 To access to the Keycloak Central instance, execute the `minikube service kc-central-blue-keycloak` command.
 
-The credentials are declared in the [values file](../consortia/environments/centralidp/blue/kc-central-blue-values.yaml).
+The credentials are declared in the [values file](./environments/centralidp/blue/kc-central-blue-values.yaml).
 
 5. Deploy the **Keycloak Shared** instance is very similar, including its own database:
 
 ```shell
-kubectl apply -f ./consortia/environments/sharedidp/blue/postgresql-db-shared-blue-statefulset.yaml
+kubectl apply -f ./environments/sharedidp/blue/postgresql-db-shared-blue-statefulset.yaml
 ```
 
 ```shell
 helm upgrade --install kc-shared-blue \
     ./charts/portal-iam \
     --history-max=2 \
-    -f ./consortia/environments/sharedidp/blue/kc-shared-blue-values.yaml
+    -f ./environments/sharedidp/blue/kc-shared-blue-values.yaml
 ```
 
 To access to the Keycloak Shared instance, execute the `minikube service kc-shared-blue-keycloak` command.
@@ -160,8 +160,8 @@ helm uninstall kc-shared-blue
 2. Deleting Databases and other resources:
 
 ```shell
-kubectl delete -f ./consortia/environments/centralidp/blue/postgresql-db-central-blue-statefulset.yaml
-kubectl delete -f ./consortia/environments/sharedidp/blue/postgresql-db-shared-blue-statefulset.yaml
+kubectl delete -f ./environments/centralidp/blue/postgresql-db-central-blue-statefulset.yaml
+kubectl delete -f ./environments/sharedidp/blue/postgresql-db-shared-blue-statefulset.yaml
 k delete job -l job-name=kc-central-blue-check-variable
 k delete job -l job-name=kc-shared-blue-check-variable
 k delete job -l job-name=kc-central-blue-cx-central-realm-upgrade
