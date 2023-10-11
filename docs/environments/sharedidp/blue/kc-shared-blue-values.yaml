@@ -1,0 +1,45 @@
+# Variables to use by Portal IAM Helm Chart
+
+instanceType: "shared"
+
+secrets:
+  auth:
+    existingSecret:
+      adminpassword: adminshared
+      managementpassword: managershared
+  externalDatabase:
+    password: password      
+
+# Variables to use by Bitname Keycloak Helm Chart
+keycloak:
+  auth:
+    adminUser: admin
+    existingSecret: "kc-shared-blue-admin-password"
+  externalDatabase:
+    host: "postgresql-db-shared-blue"
+    port: 5432
+    database: "keycloak"
+    user: "admin"
+    existingSecret: "kc-shared-bluepostgresql-secret"
+    existingSecretPasswordKey: "password"
+  service:
+    type: LoadBalancer
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    servicePort: 8080
+    hostname: "kc-shared-blue.example.org"
+  extraEnvVars:
+    - name: KEYCLOAK_USER
+      value: "admin"
+    - name: KEYCLOAK_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: kc-shared-blue-admin-password
+          key: admin-password
+    #- name: CACHE_OWNERS_COUNT
+    #  value: "3"
+    #- name: CACHE_OWNERS_AUTH_SESSIONS_COUNT
+    #  value: "3"
+    #- name: KEYCLOAK_EXTRA_ARGS
+    #  value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=IGNORE_EXISTING"
