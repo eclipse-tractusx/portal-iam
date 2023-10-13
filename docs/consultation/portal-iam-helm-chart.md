@@ -38,7 +38,7 @@ The chart is implemented [here](../charts/portal-iam/README.md).
 This example will deploy the following instances:
 
 * A Central instance identified as `kc-central-blue`
-* A Shared intance identified as `kc-shared-blue`
+* A Shared instance identified as `kc-shared-blue`
 * Each instance will have its own database (not managed by the Helm Chart)
 
 This section describes step by step how to use this repository using `minikube` as Kubernetes platform.
@@ -177,4 +177,12 @@ It requires to adapt the templates to operate across the different instances. Pl
 about Helm Charts Umbrella, review the following references:
 
 * [Chart Development Tips and Tricks](https://helm.sh/docs/howto/charts_tips_and_tricks/)
-* [How to simplyfy your kubernetes Helm deployments](https://codefresh.io/blog/simplify-kubernetes-helm-deployments/)
+* [How to simplify your kubernetes Helm deployments](https://codefresh.io/blog/simplify-kubernetes-helm-deployments/)
+
+## NOTICE
+
+This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+- SPDX-License-Identifier: Apache-2.0
+- SPDX-FileCopyrightText: 2021-2023 Contributors to the Eclipse Foundation
+- Source URL: https://github.com/eclipse-tractusx/portal-iam
