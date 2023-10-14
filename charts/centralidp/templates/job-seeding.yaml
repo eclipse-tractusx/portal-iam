@@ -55,6 +55,8 @@ spec:
                 key: "admin-password"
           - name: "KEYCLOAK__CENTRAL__AUTHREALM"
             value: "{{ .Values.seeding.authRealm }}"
+          - name: "KEYCLOAK__CENTRAL__USEAUTHTRAIL"
+            value: "{{ .Values.seeding.useAuthTrail }}"
           - name: "KEYCLOAKSEEDING__DATAPATHES__0"
             value: "{{ .Values.seeding.dataPaths.dataPath0 }}"
           - name: "KEYCLOAKSEEDING__INSTANCENAME"
