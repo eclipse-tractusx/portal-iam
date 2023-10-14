@@ -153,6 +153,7 @@ seeding:
   image: "tractusx/portal-iam-seeding:v1.2.0-iam"
   portContainer: 8080
   authRealm: "master"
+  useAuthTrail: "true"
   dataPaths:
     dataPath0: "realms/CX-Central-realm.json"
   instanceName: "central"
