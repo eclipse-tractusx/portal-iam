@@ -78,7 +78,7 @@ Is handling the username created for each user account inside the central idp.
 
 To look up all users created in keycloak under a specific realm or inside the central realm, click on <strong>Users</strong> in the left menu bar.
 
-![ViewUser](/docs/static/12_viewUser.png)
+![UsersView](/docs/static/users-view.png)
 
 To display the users; click on "View all users" or use the search box to find a specific user via full name, last name or email address.
 
@@ -96,6 +96,14 @@ As soon as the page is reached, select the <strong>Add User</strong> on the top 
 Required mandatory field is Username only. However in Catena-X we also set the first name, last name, email as well as some user attributes.
 Details regarding the attributes can get found under the link [attribute details](./04.%20User%20Management.md)
 
-![CreateUser](/docs/static/12_createUser.png)
+![CreateUser](/docs/static/create-user.png)
 
 Details regarding the attributes can get found under the link [attribute details](./04.%20User%20Management.md)
+
+## NOTICE
+
+This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+- SPDX-License-Identifier: Apache-2.0
+- SPDX-FileCopyrightText: 2021-2023 Contributors to the Eclipse Foundation
+- Source URL: https://github.com/eclipse-tractusx/portal-iam
