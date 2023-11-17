@@ -2,7 +2,7 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
-## 2.0.0-alpha
+## 2.0.0
 
 ### Change
 
@@ -16,12 +16,37 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * removed serviceDiscovery
   * set httpRelativePath to '/auth/', as we're migrating from 16.1.1 version which was using the trailing 'auth'
   * updated retrieval of service name for seeding job
+  * enabled seeding for trailing 'auth'
   * removed management-password from secrets as key isn't part of default secret anymore
+  * changed file structure of the initially imported realms to the one of the new version
+* realm configuration (centralidp) - updates to CX-Central realm:
+  * reviewed client scopes of all service accounts and limited it to the assigned roles, if the client scope and the service account roles were not aligned yet
+  * created role "view_managed_idp" inside the Cl2-CX-Portal client and assigned it to the composite roles "IT Admin" and "Company Admin"
+  * assigned role "view_semantic_models" from the Cl3-CX-Semantic client to the composite role "Semantic Model Management" from the technical_roles_management client
+  * assigned role "view_membership" from the Cl2-CX-Portal client to the composite role "CX Membership Info" from the technical_roles_management client
+  * assigned roles "view_bpn_discovery", "add_bpn_discovery" and "delete_bpn_discovery" from of the Cl22-CX-BPND client and the role "view_discovery_endpoint" from of the Cl21-CX-DF client to the composite role "Dataspace Discovery" from the technical_roles_management client
+  * created roles "configure_partner_registration" and "create_partner_registration" inside the Cl2-CX-Portal client
+  * assigned role "create_partner_registration" to the composite role "Registration External" from the technical_roles_management client
+  * assigned role "configure_partner_registration" to the composite roles "Company Admin" and "IT Admin"
+  * created composite role "Offer Management" in client technical_roles_management and associated client roles "add_service_offering", "add_connectors" and "activate_subscription" from Cl2-CX-Portal
+  * deleted the composite roles "App Tech User", "Connector User" and "Service Management" from client technical_roles_management
+  * deleted clients "Cl6-CX-DAPS" and "Cl20-CX-IRS"
+  * deleted all redirects from Cl2-CX-Portal client other than portal itself
 
- Please be aware that **this version is still in alpha phase**: especially the upgrade documentation WIP.
 ### Bugfix
 
 * fixed escaping of secret values: quotes added
+* realm configuration (centralidp) - fixes to CX-Central realm:
+  * created role "unsubscribe_apps" inside the Cl2-CX-Portal client and assigned it to the composite roles "Sales Manager", "Purchaser", "CX Admin", "Company Admin" and "Business Admin"
+  * created role "unsubscribe_services" inside the Cl2-CX-Portal client and assigned it to the composite roles "Sales Manager", "Purchaser", "CX Admin", "Company Admin" and "Business Admin"
+  * unassigned role "manage-users" and "view-clients" (realm-management client) from the role default-roles-catena-x realm and assigned to the service account sa-cl1-reg-2 the role "manage-users" from the realm-management client
+  * unassigned role "view_submitted_application" from the Cl2-CX-Portal from the composite role "Service Manager"
+  * unassigned roles "add_semantic_model", "update_semantic_model" and "delete_semantic_model" from the Cl2-CX-Portal from the composite role "IT Admin"
+  * assigned roles "view_semantic_model", "add_semantic_model", "update_semantic_model" and "delete_semantic_model" from the Cl2-CX-Portal from the composite roles "Business Admin", "App Manager" and "Service Manager"
+  * assigned roles "add_semantic_model", "update_semantic_model" and "delete_semantic_model" from the Cl2-CX-Portal from the composite role "Company Admin"
+  * assigned role "add_self_descriptions" from the Cl2-CX-Portal client to the client scope mapping of the service account sa-cl8-cx-1
+  * assigned role "update_wallets" from the Cl5-CX-Custodian client to the roles of the service account sa-cl5-custodian-2
+  * assigned role "view_company_data" from the Cl7-CX-BPDM client to the roles of the service account sa-cl7-cx-5 and to the composite role "Company Admin" from the Cl1-CX-Registration client
 
 ### Technical Support
 
@@ -80,7 +105,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Change
 
-* moved centralidp login theme into iam repository, removed link to portal-assets.
+* moved centralidp login theme into iam repository, removed link to Cl2-CX-Portal-assets.
 * updated init realms.
 * moved to bitnami-full-index as dependency repository.
 
