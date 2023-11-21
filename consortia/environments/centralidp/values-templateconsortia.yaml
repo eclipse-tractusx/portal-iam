@@ -22,7 +22,7 @@ keycloak:
   proxy: edge
   initContainers:
     - name: import
-      image: tractusx/portal-iam-consortia:pr29-consortia
+      image: tractusx/portal-iam-consortia:pr29-test-1
       imagePullPolicy: Always
       command:
         - sh
@@ -66,11 +66,11 @@ secrets:
         replicationPassword: "<path:portal/data/dev/iam/centralidp-postgres#replication-password>"
 
 seeding:
-  enabled: false
+  enabled: true
   image: "tractusx/portal-iam-seeding:dev"
   initContainers:
     - name: init-cx-central
-      image: tractusx/portal-iam-consortia:pr29-consortia
+      image: tractusx/portal-iam-consortia:pr29-test-1
       imagePullPolicy: Always
       command:
         - sh
