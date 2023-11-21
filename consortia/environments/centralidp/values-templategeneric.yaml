@@ -78,7 +78,7 @@ seeding:
         - -c
         - |
           echo "Copying CX Central realm..."
-          cp -R /import/catenax-central/dev/realms/* /app/realms
+          cp -R /import/catenax-central/realms/* /app/realms
       volumeMounts:
       - name: realms
         mountPath: "app/realms"
