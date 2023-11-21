@@ -22,7 +22,7 @@ keycloak:
   proxy: edge
   initContainers:
     - name: import
-      image: tractusx/portal-iam:v2.0.0-alpha
+      image: tractusx/portal-iam:pr29-test-2
       imagePullPolicy: Always
       command:
         - sh
@@ -66,4 +66,19 @@ secrets:
         replicationPassword: "<path:portal/data/dev/iam/centralidp-postgres#replication-password>"
 
 seeding:
-  enabled: false
+  enabled: true
+  image: "tractusx/portal-iam-seeding:dev"
+  initContainers:
+    - name: init-cx-central
+      image: tractusx/portal-iam-consortia:pr29-test-2
+      imagePullPolicy: Always
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          echo "Copying CX Central realm..."
+          cp -R /import/catenax-central/dev/realms/* /app/realms
+      volumeMounts:
+      - name: realms
+        mountPath: "app/realms"
