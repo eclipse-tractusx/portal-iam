@@ -156,6 +156,9 @@ seeding:
   dataPaths:
     dataPath0: "realms/CX-Central-realm.json"
   instanceName: "central"
+  excludedUserAttributes:
+    bpn: "bpn"
+    organisation: "organisation"
   # -- We recommend not to specify default resources and to leave this as a conscious choice for the user.
   # If you do want to specify resources, uncomment the following lines,
   # adjust them as necessary, and remove the curly braces after 'resources:'.
