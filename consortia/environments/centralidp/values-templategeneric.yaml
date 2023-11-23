@@ -70,7 +70,7 @@ seeding:
   image: "tractusx/portal-iam-seeding:rc"
   initContainers:
     - name: init-cx-central
-      image: tractusx/portal-iam-consortia:pr29-test-2
+      image: tractusx/portal-iam:pr29-test-2
       imagePullPolicy: Always
       command:
         - sh
@@ -78,7 +78,7 @@ seeding:
         - -c
         - |
           echo "Copying CX Central realm..."
-          cp -R /import/catenax-central/dev/realms/* /app/realms
+          cp -R /import/catenax-central/realms/* /app/realms
       volumeMounts:
       - name: realms
         mountPath: "app/realms"
