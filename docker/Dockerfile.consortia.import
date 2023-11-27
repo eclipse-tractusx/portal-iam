@@ -17,7 +17,7 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-FROM alpine:3.17
+FROM alpine:3.18
 
 RUN mkdir import
 
@@ -37,5 +37,3 @@ COPY import/realm-config/consortia/catenax-central/rc/ import/catenax-central/rc
 COPY import/realm-config/consortia/catenax-shared/rc/ import/catenax-shared/rc/realms
 COPY import/realm-config/consortia/catenax-central/stable/ import/catenax-central/stable/realms
 COPY import/realm-config/consortia/catenax-shared/stable/ import/catenax-shared/stable/realms
-COPY import/realm-config/consortia/catenax-central/upgrade/ import/catenax-central/upgrade/realms
-COPY import/realm-config/consortia/catenax-shared/upgrade/ import/catenax-shared/upgrade/realms

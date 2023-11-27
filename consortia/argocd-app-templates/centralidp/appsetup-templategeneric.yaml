@@ -28,7 +28,7 @@ spec:
   source:
     path: charts/centralidp
     repoURL: 'https://github.com/eclipse-tractusx/portal-iam.git'
-    targetRevision: v2.0.0-alpha
+    targetRevision: upgrade/update-init-realm-json-files
     plugin:
       env:
         - name: AVP_SECRET

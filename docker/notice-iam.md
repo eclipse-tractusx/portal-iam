@@ -13,7 +13,7 @@ __Portal IAM__
 
 __Used base images__
 
-- Dockerfile: [alpinelinux/docker-alpine:3.17](https://github.com/alpinelinux/docker-alpine/blob/681b8c677aaed66e48a5ce721509647bd4dcd017/x86_64/Dockerfile)
+- Dockerfile: [alpinelinux/docker-alpine:3.18](https://github.com/alpinelinux/docker-alpine/blob/v3.18/x86_64/Dockerfile)
 - GitHub project: [https://github.com/alpinelinux/docker-alpine](https://github.com/alpinelinux/docker-alpine)
 - DockerHub: [https://hub.docker.com/_/alpine](https://hub.docker.com/_/alpine)
 
