@@ -6625,7 +6625,7 @@
     {
       "id": "e6ab12bb-3b26-472c-ad0b-3d871bd1461b",
       "clientId": "Cl5-CX-Custodian",
-      "name": "Cl5-CX-Custodian PEN",
+      "name": "Cl5-CX-Custodian",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -6735,8 +6735,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://partners-pool-pen.dev.demo.catena-x.net/*",
-        "https://catenax-bpdm-pen-dev.demo.catena-x.net/*"
+        "https://partners-pool-pen.dev.demo.catena-x.net/*"
       ],
       "webOrigins": [
         "+"
