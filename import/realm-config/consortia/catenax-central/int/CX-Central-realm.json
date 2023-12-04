@@ -1176,9 +1176,9 @@
                 "delete_tech_user_management",
                 "delete_own_user_account",
                 "my_user_account",
-                "unsubscribe_services",
                 "create_notifications",
                 "edit_apps",
+                "unsubscribe_services",
                 "view_apps",
                 "modify_connectors",
                 "view_use_case_participation",
@@ -1943,9 +1943,6 @@
               "Cl21-CX-DF": [
                 "view_discovery_endpoint"
               ],
-              "Cl5-CX-Custodian": [
-                "view_wallet"
-              ],
               "Cl2-CX-Portal": [
                 "view_connectors"
               ]
@@ -2548,9 +2545,9 @@
   "otpPolicyPeriod": 30,
   "otpPolicyCodeReusable": false,
   "otpSupportedApplications": [
-    "totpAppGoogleName",
     "totpAppMicrosoftAuthenticatorName",
-    "totpAppFreeOTPName"
+    "totpAppFreeOTPName",
+    "totpAppGoogleName"
   ],
   "webAuthnPolicyRpEntityName": "keycloak",
   "webAuthnPolicySignatureAlgorithms": [
@@ -3221,6 +3218,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -3248,6 +3246,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -3275,6 +3274,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -3302,6 +3302,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -3329,6 +3330,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -3356,6 +3358,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -3383,6 +3386,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -3615,6 +3619,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ],
         "Cl3-CX-Semantic": [
@@ -3647,6 +3652,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -3813,6 +3819,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ],
         "Cl5-CX-Custodian": [
@@ -3843,6 +3850,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -3932,6 +3940,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ],
         "Cl3-CX-Semantic": [
@@ -3964,6 +3973,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ],
         "Cl3-CX-Semantic": [
@@ -3997,6 +4007,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -4055,6 +4066,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -4113,6 +4125,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ],
         "Cl3-CX-Semantic": [
@@ -4164,6 +4177,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -4191,6 +4205,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ],
         "Cl3-CX-Semantic": [
@@ -4222,6 +4237,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ],
         "Cl3-CX-Semantic": [
@@ -4370,6 +4386,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -4453,6 +4470,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -4503,6 +4521,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -4525,6 +4544,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -4552,6 +4572,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -4579,6 +4600,7 @@
       "clientRoles": {
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ]
       },
@@ -4609,6 +4631,7 @@
         ],
         "technical_roles_management": [
           "Semantic Model Management",
+          "Identity Wallet Management",
           "Dataspace Discovery"
         ],
         "Cl3-CX-Semantic": [
@@ -4995,7 +5018,8 @@
         "client": "sa-cl3-cx-1",
         "roles": [
           "Dataspace Discovery",
-          "Semantic Model Management"
+          "Semantic Model Management",
+          "Identity Wallet Management"
         ]
       }
     ],
@@ -7486,8 +7510,8 @@
         "backchannel.logout.session.required": "true",
         "client_credentials.use_refresh_token": "false",
         "saml_force_name_id_format": "false",
-        "require.pushed.authorization.requests": "false",
         "saml.client.signature": "false",
+        "require.pushed.authorization.requests": "false",
         "tls.client.certificate.bound.access.tokens": "false",
         "saml.authnstatement": "false",
         "display.on.consent.screen": "false",
@@ -15181,6 +15205,21 @@
           }
         },
         {
+          "id": "4baa14b7-833e-4bcb-a052-090e65c2bc2c",
+          "name": "username",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "userinfo.token.claim": "true",
+            "user.attribute": "username",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "preferred_username",
+            "jsonType.label": "String"
+          }
+        },
+        {
           "id": "1d94ee73-6981-486c-a2d8-2e2f857cd125",
           "name": "bpn-mapper",
           "protocol": "openid-connect",
@@ -15331,7 +15370,6 @@
           "protocolMapper": "oidc-address-mapper",
           "consentRequired": false,
           "config": {
-            "user.attribute.formatted": "formatted",
             "user.attribute.country": "country",
             "user.attribute.postal_code": "postal_code",
             "userinfo.token.claim": "true",
@@ -16049,139 +16087,7 @@
   ],
   "identityProviderMappers": [
     {
-      "id": "6f8779b1-dda1-4803-ac46-d5c921a68219",
-      "name": "username-mapper",
-      "identityProviderAlias": "App-Provider",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "8fb729cf-2836-417b-95c5-e83f2dcf9425",
-      "name": "username-mapper",
-      "identityProviderAlias": "Service-Provider",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "64417652-af15-4e95-bebd-5cf2cec7ce0c",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "App-Provider",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "attribute.value": "App-Provider",
-        "syncMode": "INHERIT",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "ddd0398c-c38a-48b4-b1b3-9eaa6599ac5d",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "CX-Test-Access",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "attribute.value": "CX-Test-Access",
-        "syncMode": "INHERIT",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "6b19e978-7602-46e3-84fd-9faaa4d28c19",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "CX-Operator",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "attribute.value": "CX-Operator",
-        "syncMode": "INHERIT",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "69d4a3f9-3e58-4efc-97f3-b4b4d633dcea",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "Company-2",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "attribute.value": "company-2",
-        "syncMode": "INHERIT",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "f2bf3c88-2da6-4162-b354-349820707d09",
-      "name": "username-mapper",
-      "identityProviderAlias": "Company-1",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "d2d5c005-0059-4853-b64b-dad4c4bdbacb",
-      "name": "organisation-mapper",
-      "identityProviderAlias": "Company-1",
-      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
-      "config": {
-        "attribute.value": "company-1",
-        "syncMode": "INHERIT",
-        "attribute": "organisation"
-      }
-    },
-    {
-      "id": "7b380535-fdb6-4766-a5e6-4405260831ba",
-      "name": "username-mapper",
-      "identityProviderAlias": "Company-2",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "cdbba93b-808f-4101-bd02-f51139ebb107",
-      "name": "username-mapper",
-      "identityProviderAlias": "CX-Operator",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "84c1924d-2208-4a55-b96a-9dfbadd9ce29",
-      "name": "username mapper",
-      "identityProviderAlias": "CX-Test-Access",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "b40269c4-a53b-42d1-8949-c20088824b68",
-      "name": "username mapper",
-      "identityProviderAlias": "Security-Company",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "target": "LOCAL"
-      }
-    },
-    {
-      "id": "9933e158-0d5b-4eea-8836-08b54be84330",
+      "id": "7698c5c5-61de-47d4-a0f7-45956bc3448b",
       "name": "organisation-mapper",
       "identityProviderAlias": "Service-Provider",
       "identityProviderMapper": "hardcoded-attribute-idp-mapper",
@@ -16192,7 +16098,7 @@
       }
     },
     {
-      "id": "3320adcc-acc2-4129-9a3c-ed10a71bee5e",
+      "id": "362c4703-c93c-46d0-8b44-57410a2f83b5",
       "name": "organisation-mapper",
       "identityProviderAlias": "Security-Company",
       "identityProviderMapper": "hardcoded-attribute-idp-mapper",
@@ -16203,7 +16109,106 @@
       }
     },
     {
-      "id": "3200e954-6228-4bd2-b7c0-bd894f4b288e",
+      "id": "6077f452-443a-405e-b0bd-a31f90b15a6a",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "Company-1",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "attribute.value": "company-1",
+        "syncMode": "INHERIT",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "01872600-e492-4891-bf1e-a87d682f60d6",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "App-Provider",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "attribute.value": "App-Provider",
+        "syncMode": "INHERIT",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "8f34d0e9-5f0d-46b5-a863-533493e4b5e2",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "CX-Test-Access",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "attribute.value": "CX-Test-Access",
+        "syncMode": "INHERIT",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "b3eac58e-f6a1-45b3-aae4-99ab9a273004",
+      "name": "username-mapper",
+      "identityProviderAlias": "Company-2",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "b4908715-22a5-4d5a-85c9-aadba0edc548",
+      "name": "username-mapper",
+      "identityProviderAlias": "CX-Operator",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "63f85232-7f4b-4888-932b-af98e69a9db7",
+      "name": "username mapper",
+      "identityProviderAlias": "Security-Company",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "3ca68e56-c9ab-4532-8ade-086c06fc962b",
+      "name": "username mapper",
+      "identityProviderAlias": "CX-Test-Access",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "1194d08d-4b9d-4f03-83ec-68dba650d8c7",
+      "name": "username-mapper",
+      "identityProviderAlias": "App-Provider",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "e01bcaa1-fbfc-4069-a7d7-1dc9844e6696",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "CX-Operator",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "attribute.value": "CX-Operator",
+        "syncMode": "INHERIT",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "aac3870c-4c68-4d2a-984a-d443ad7d253c",
       "name": "organisation-mapper",
       "identityProviderAlias": "Onboarding-Provider",
       "identityProviderMapper": "hardcoded-user-session-attribute-idp-mapper",
@@ -16211,6 +16216,39 @@
         "attribute.value": "Onboarding-Provider",
         "syncMode": "INHERIT",
         "attribute": "organisation"
+      }
+    },
+    {
+      "id": "7502ee53-a2e9-4d14-80e9-304e96489d85",
+      "name": "username-mapper",
+      "identityProviderAlias": "Service-Provider",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "target": "LOCAL"
+      }
+    },
+    {
+      "id": "00c2fd45-916e-490c-9f95-39ff539e7922",
+      "name": "organisation-mapper",
+      "identityProviderAlias": "Company-2",
+      "identityProviderMapper": "hardcoded-attribute-idp-mapper",
+      "config": {
+        "attribute.value": "company-2",
+        "syncMode": "INHERIT",
+        "attribute": "organisation"
+      }
+    },
+    {
+      "id": "c3c541ed-eed4-4b07-aa36-45457ee0fe67",
+      "name": "username-mapper",
+      "identityProviderAlias": "Company-1",
+      "identityProviderMapper": "oidc-username-idp-mapper",
+      "config": {
+        "syncMode": "INHERIT",
+        "template": "${ALIAS}.${CLAIM.sub}",
+        "target": "LOCAL"
       }
     }
   ],
@@ -16259,14 +16297,14 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "saml-user-property-mapper",
-            "oidc-usermodel-attribute-mapper",
-            "oidc-usermodel-property-mapper",
-            "oidc-full-name-mapper",
             "oidc-address-mapper",
             "saml-user-attribute-mapper",
+            "oidc-full-name-mapper",
+            "saml-role-list-mapper",
+            "oidc-usermodel-attribute-mapper",
+            "oidc-usermodel-property-mapper",
             "oidc-sha256-pairwise-sub-mapper",
-            "saml-role-list-mapper"
+            "saml-user-property-mapper"
           ]
         }
       },
@@ -16287,13 +16325,13 @@
         "config": {
           "allowed-protocol-mapper-types": [
             "oidc-usermodel-attribute-mapper",
+            "saml-user-attribute-mapper",
+            "saml-role-list-mapper",
             "oidc-address-mapper",
-            "oidc-usermodel-property-mapper",
             "oidc-sha256-pairwise-sub-mapper",
             "oidc-full-name-mapper",
-            "saml-user-attribute-mapper",
-            "saml-user-property-mapper",
-            "saml-role-list-mapper"
+            "oidc-usermodel-property-mapper",
+            "saml-user-property-mapper"
           ]
         }
       },
