@@ -63,16 +63,45 @@ Generate client-secrets for the service account with access type 'confidential'.
 
 ### To 2.0.0
 
-WIP as currently still in alpha phase.
-
 This major changes from Keycloak version 16.1.1 to version 22.0.3.
 
-Please have a look into changelog for a more detailed description.
+Please have a look at the [CHANGELOG](../../CHANGELOG.md#200) for a more detailed description.
 
 We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html)
 
 To be explicitly mentioned: this major adds the production mode with default value false and the reverse proxy mode with default value passthrough.
 Please check the description of those parameters and decide if they're suitable for you.
 
-Please be aware that this major changes the version of the PostgreSQL dependency by Bitnami from 14.2.0 to 15.4.0 (subchart updated from version 11.1.22 to 12.12.9).
-The database upgrade for the subchart by Bitnami isn't supported.
+#### Upgrade approach
+
+For the overall process of migrating from version 16.1.1 to version 22.0.3., we recommend to follow a blue-green deployment approach. In the following, you find a rough outline of the necessary steps:
+
+1. Scale down current the Keycloak services (blue deployment)
+2. Backup the current data
+3. Deploy the new Keycloak instance (green deployment e.g: `-green`, `-kc22`, ...) in another namespace than the blue instance
+4. Restore the data of the blue instance to the green instance
+5. Start the new Keycloak services
+6. Once the new/green instance is validated, switch the user traffic to it 
+
+#### Upgrade PostgreSQL
+
+Please be aware that this major changes the version of the PostgreSQL subchart by Bitnami from 14.x.x to 15.x.x (subchart updated from version 11.x.x to 12.x.x).
+
+In case you are using an external PostgreSQL instance and would like to upgrade to 15.x, please follow the [official instructions](https://www.postgresql.org/docs/15/upgrading.html).
+
+In case you would like to upgrade the PostgreSQL subchart from Bitnami, we recommend blue-green deployment approach, like described [above](#upgrade-approach). 
+For restoring the data of the blue instance to the green instance (step 4), execute the following statement using [pg-dumpall](https://www.postgresql.org/docs/current/app-pg-dumpall.html):
+
+On the cluster:
+
+```shell
+ kubectl exec -it green-postgresql-primary-0 -n green-namespace -- /opt/bitnami/scripts/postgresql/entrypoint.sh /bin/bash -c 'export PGPASSWORD=""; echo "local all postgres trust" > /opt/bitnami/postgresql/conf/pg_hba.conf; pg_ctl reload; time pg_dumpall -c -h 10-123-45-67.blue-namespace.pod.cluster.local -U postgres | psql -U postgres'
+ ```
+
+Or on the primary pod of the new/green PostgreSQL instance:
+
+```shell
+/opt/bitnami/scripts/postgresql/entrypoint.sh /bin/bash -c 'export PGPASSWORD=""; echo "local all postgres trust" > /opt/bitnami/postgresql/conf/pg_hba.conf; pg_ctl reload; time pg_dumpall -c -h 10-123-45-67.blue-namespace..pod.cluster.local -U postgres | psql -U postgres'
+```
+
+Where '10-123-45-67' is the cluster IP of the old/blue PostgreSQL instance.
