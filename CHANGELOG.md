@@ -24,10 +24,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * created role "view_managed_idp" inside the Cl2-CX-Portal client and assigned it to the composite roles "IT Admin" and "Company Admin"
   * assigned role "view_semantic_models" from the Cl3-CX-Semantic client to the composite role "Semantic Model Management" from the technical_roles_management client
   * assigned role "view_membership" from the Cl2-CX-Portal client to the composite role "CX Membership Info" from the technical_roles_management client
-  * assigned roles "view_bpn_discovery", "add_bpn_discovery" and "delete_bpn_discovery" from of the Cl22-CX-BPND client, the role "view_discovery_endpoint" from of the Cl21-CX-DF client and role "view_wallet" from of the Cl5-CX-Custodian client to the composite role "Dataspace Discovery" from the technical_roles_management client
+  * assigned roles "view_bpn_discovery", "add_bpn_discovery" and "delete_bpn_discovery" from of the Cl22-CX-BPND client, the role "view_discovery_endpoint" from of the Cl21-CX-DF client to the composite role "Dataspace Discovery" from the technical_roles_management client
   * created roles "configure_partner_registration" and "create_partner_registration" inside the Cl2-CX-Portal client
   * assigned role "create_partner_registration" to the composite role "Registration External" from the technical_roles_management client
   * assigned role "configure_partner_registration" to the composite roles "Company Admin" and "IT Admin"
+  * assigned composite roles Semantic Model Management", "Dataspace Discovery" and "Identity Wallet Management" from the technical_roles_management client to service account sa-cl3-cx-1
   * created composite role "Offer Management" in client technical_roles_management and associated client roles "add_service_offering", "add_connectors" and "activate_subscription" from Cl2-CX-Portal
   * created the client "Cl16-CX-BPDMGate" with the client roles "view_company_data", "update_company_data" and "view_shared_data" and assigned those to service account sa-cl7-cx-5
   * deleted the composite roles "App Tech User", "Connector User" and "Service Management" from client technical_roles_management
