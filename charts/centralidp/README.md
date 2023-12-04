@@ -152,7 +152,7 @@ This major changes from Keycloak version 16.1.1 to version 22.0.3.
 
 Please have a look at the [CHANGELOG](../../CHANGELOG.md#200) for a more detailed description.
 
-We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html)
+We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html).
 
 To be explicitly mentioned: this major adds the production mode with default value false and the reverse proxy mode with default value passthrough.
 Please check the description of those parameters and decide if they're suitable for you.
@@ -187,7 +187,7 @@ On the cluster:
 Or on the primary pod of the new/green PostgreSQL instance:
 
 ```shell
-/opt/bitnami/scripts/postgresql/entrypoint.sh /bin/bash -c 'export PGPASSWORD=""; echo "local all postgres trust" > /opt/bitnami/postgresql/conf/pg_hba.conf; pg_ctl reload; time pg_dumpall -c -h 10-123-45-67.blue-namespace..pod.cluster.local -U postgres | psql -U postgres'
+/opt/bitnami/scripts/postgresql/entrypoint.sh /bin/bash -c 'export PGPASSWORD=""; echo "local all postgres trust" > /opt/bitnami/postgresql/conf/pg_hba.conf; pg_ctl reload; time pg_dumpall -c -h 10-123-45-67.blue-namespace.pod.cluster.local -U postgres | psql -U postgres'
 ```
 
 Where '10-123-45-67' is the cluster IP of the old/blue PostgreSQL instance.
