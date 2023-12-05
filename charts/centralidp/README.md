@@ -59,7 +59,7 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v2.0.0-alpha"` |  |
+| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:pr38"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -105,18 +105,21 @@ dependencies:
 | secrets.postgresql.auth.existingSecret.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
 | seeding.enabled | bool | `false` | Seeding job to upgrade CX_Central realm: enable to upgrade the configuration of the CX-Central realm from previous version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
 | seeding.name | string | `"cx-central-realm-upgrade"` |  |
-| seeding.image | string | `"tractusx/portal-iam-seeding:v1.2.0-iam"` |  |
+| seeding.image | string | `"tractusx/portal-iam-seeding:rc"` |  |
 | seeding.portContainer | int | `8080` |  |
 | seeding.authRealm | string | `"master"` |  |
+| seeding.useAuthTrail | string | `"true"` |  |
 | seeding.dataPaths.dataPath0 | string | `"realms/CX-Central-realm.json"` |  |
 | seeding.instanceName | string | `"central"` |  |
+| seeding.excludedUserAttributes.attribute0 | string | `"bpn"` |  |
+| seeding.excludedUserAttributes.attribute1 | string | `"organisation"` |  |
 | seeding.resources | object | `{}` | We recommend not to specify default resources and to leave this as a conscious choice for the user. If you do want to specify resources, uncomment the following lines, adjust them as necessary, and remove the curly braces after 'resources:'. |
 | seeding.extraVolumes[0].name | string | `"realms"` |  |
 | seeding.extraVolumes[0].emptyDir | object | `{}` |  |
 | seeding.extraVolumeMounts[0].name | string | `"realms"` |  |
 | seeding.extraVolumeMounts[0].mountPath | string | `"app/realms"` |  |
 | seeding.initContainers[0].name | string | `"init-cx-central"` |  |
-| seeding.initContainers[0].image | string | `"tractusx/portal-iam:v2.0.0-alpha"` |  |
+| seeding.initContainers[0].image | string | `"tractusx/portal-iam:pr38"` |  |
 | seeding.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | seeding.initContainers[0].command[0] | string | `"sh"` |  |
 | seeding.initContainers[0].args[0] | string | `"-c"` |  |
@@ -141,23 +144,53 @@ This is done by setting the 'example.org' placeholder in the CX-Operator' Identi
 
 ## Upgrade
 
-Please see notes at [Values.seeding](values.yaml#L148).
+Please see notes at [Values.seeding](values.yaml#L146) for upgrading the configuration of the CX-Central realm.
 
 ### To 2.0.0
 
-WIP as currently still in alpha phase.
-
 This major changes from Keycloak version 16.1.1 to version 22.0.3.
 
-Please have a look into changelog for a more detailed description.
+Please have a look at the [CHANGELOG](../../CHANGELOG.md#200) for a more detailed description.
 
-We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html)
+We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html).
 
 To be explicitly mentioned: this major adds the production mode with default value false and the reverse proxy mode with default value passthrough.
 Please check the description of those parameters and decide if they're suitable for you.
 
-Please be aware that this major changes the version of the PostgreSQL dependency by Bitnami from 14.2.0 to 15.4.0 (subchart updated from version 11.1.22 to 12.12.9).
-The database upgrade for the subchart by Bitnami isn't supported.
+#### Upgrade approach
+
+For the overall process of migrating from version 16.1.1 to version 22.0.3., we recommend to follow a blue-green deployment approach. In the following, you find a rough outline of the necessary steps:
+
+1. Scale down current the Keycloak services (blue deployment)
+2. Backup the current data
+3. Deploy the new Keycloak instance (green deployment e.g: `-green`, `-kc22`, ...) in another namespace than the blue instance
+4. Restore the data of the blue instance to the green instance
+5. Start the new Keycloak services
+6. Make sure that the configuration of the CX-Central realm is upgraded by the seeding job defined as post-upgrade hook (Values.seeding.enabled)
+7. Once the new/green instance is validated, switch the user traffic to it
+
+#### Upgrade PostgreSQL
+
+Please be aware that this major changes the version of the PostgreSQL subchart by Bitnami from 14.x.x to 15.x.x (subchart updated from version 11.x.x to 12.x.x).
+
+In case you are using an external PostgreSQL instance and would like to upgrade to 15.x, please follow the [official instructions](https://www.postgresql.org/docs/15/upgrading.html).
+
+In case you would like to upgrade the PostgreSQL subchart from Bitnami, we recommend blue-green deployment approach, like described [above](#upgrade-approach).
+For restoring the data of the blue instance to the green instance (step 4), execute the following statement using [pg-dumpall](https://www.postgresql.org/docs/current/app-pg-dumpall.html):
+
+On the cluster:
+
+```shell
+ kubectl exec -it green-postgresql-primary-0 -n green-namespace -- /opt/bitnami/scripts/postgresql/entrypoint.sh /bin/bash -c 'export PGPASSWORD=""; echo "local all postgres trust" > /opt/bitnami/postgresql/conf/pg_hba.conf; pg_ctl reload; time pg_dumpall -c -h 10-123-45-67.blue-namespace.pod.cluster.local -U postgres | psql -U postgres'
+ ```
+
+Or on the primary pod of the new/green PostgreSQL instance:
+
+```shell
+/opt/bitnami/scripts/postgresql/entrypoint.sh /bin/bash -c 'export PGPASSWORD=""; echo "local all postgres trust" > /opt/bitnami/postgresql/conf/pg_hba.conf; pg_ctl reload; time pg_dumpall -c -h 10-123-45-67.blue-namespace.pod.cluster.local -U postgres | psql -U postgres'
+```
+
+Where '10-123-45-67' is the cluster IP of the old/blue PostgreSQL instance.
 
 ## Post-Upgrade Configuration
 
@@ -234,4 +267,10 @@ The following clients and service accounts are obsolete in version 1.2.0 and can
 
 ### Upgrading from version 1.2.0 to 2.0.0
 
-WIP as currently still in alpha phase.
+By enabling the seeding (Values.seeding.enabled), the CX-Central realm is upgraded by a job defined as a post-upgrade hook.
+
+As part of an optional housekeeping, the following clients are obsolete in version 2.0.0 and can be deleted:
+
+* Cl6-CX-DAPS (was already obsolete with v1.2.0)
+* Cl20-CX-IRS
+* Cl16-CX-BPDMGate-Portal

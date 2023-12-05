@@ -6,12 +6,12 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Change
 
-* changed to v22.0.3 ([bitnami chart version: 16.1.6](https://artifacthub.io/packages/helm/bitnami/keycloak/16.1.6))
+* changed to v22.0.3 ([Bitnami chart version: 16.1.6](https://artifacthub.io/packages/helm/bitnami/keycloak/16.1.6))
   * bumped chart version to to major 2.0.0 (alpha)
   * changed appVersion from 1.2.0 to 22.0.3 to align with Keycloak version as that's more intuitive
   * added production mode with default false
   * added reverse proxy mode with default passthrough
-  * removed service type: default value is ClusterIP in new bitnami chart version
+  * removed service type: default value is ClusterIP in new Bitnami chart version
   * removed proxyAddressForwarding
   * removed serviceDiscovery
   * set httpRelativePath to '/auth/', as we're migrating from 16.1.1 version which was using the trailing 'auth'
@@ -34,6 +34,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * deleted the composite roles "App Tech User", "Connector User" and "Service Management" from client technical_roles_management
   * deleted clients "Cl6-CX-DAPS", "Cl20-CX-IRS" and "Cl16-CX-BPDMGate-Portal"
   * deleted all redirects from Cl2-CX-Portal client other than portal itself
+* updated seeding job to upgrade the configuration of the CX-Central realm (centralidp)
+  * adjusted seeding to exclude the following properties if already existing
+    * firstname, lastname, email and configurable attributes for users
+    * idp config urls
+    * client urls
+    * smtp server settings
+  * added configuration to exclude bpn and organisation from user attributes while seeding
+  * extended seeding to seed ClientScopeMappers
+* moved IAM specific documentation from [portal-assets](https://github.com/eclipse-tractusx/portal-assets) to [portal-iam](https://github.com/eclipse-tractusx/portal-iam)
 
 ### Bugfix
 
@@ -54,6 +63,15 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * updated k8s version and version to upgrade from for helm test workflows
 * updated SECURITY.md
+* Trivy scan: changed to no failure on high findings, as it should only fail if there is an error/misconfiguration
+* Trivy and KICS scan: excluded docs directory from scan
+
+### Known Knowns
+
+The following issues were recently discovered:
+
+* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshop-20231005.md#user-token-lifespan)
+* Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
 
 ## 1.2.0
 
