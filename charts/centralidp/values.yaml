@@ -48,7 +48,7 @@ keycloak:
       mountPath: "/realms"
   initContainers:
     - name: import
-      image: tractusx/portal-iam:pr38
+      image: tractusx/portal-iam:v2.0.0
       imagePullPolicy: Always
       command:
         - sh
@@ -150,7 +150,7 @@ seeding:
 # for configuration possibly not covered by the seeding job
   enabled: false
   name: "cx-central-realm-upgrade"
-  image: "tractusx/portal-iam-seeding:rc"
+  image: "tractusx/portal-iam-seeding:v2.0.0-iam"
   portContainer: 8080
   authRealm: "master"
   useAuthTrail: "true"
@@ -178,7 +178,7 @@ seeding:
       mountPath: "app/realms"
   initContainers:
     - name: init-cx-central
-      image: tractusx/portal-iam:pr38
+      image: tractusx/portal-iam:v2.0.0
       imagePullPolicy: Always
       command:
         - sh

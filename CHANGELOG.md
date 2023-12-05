@@ -65,6 +65,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 * updated SECURITY.md
 * Trivy scan: changed to no failure on high findings, as it should only fail if there is an error/misconfiguration
 * Trivy and KICS scan: excluded docs directory from scan
+* added pull request linting
 
 ### Known Knowns
 
