@@ -12,6 +12,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * created the composite role "BPDM Gate Read" in client technical_roles_management and associated client roles "view_company_data", "update_company_data" and "view_shared_data" from Cl16-CX-BPDMGate
   * assigned the roles "view_wallet" and "view_certificates" from the Cl5-CX-Custodian client to all the composite role of the client Cl2-CX-Portal
   * created the roles "upload_certificates" and "delete_certificates" inside the Cl2-CX-Portal client and assigned them to the composite roles "Business Admin", "IT Admin" and "Company Admin" and "Purchaser"
+  * removed tenant-mapper from the "catena" client scope
 
 ### Bugfix
 

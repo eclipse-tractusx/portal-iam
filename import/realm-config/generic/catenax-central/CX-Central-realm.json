@@ -5106,21 +5106,6 @@
       },
       "protocolMappers": [
         {
-          "id": "748924d3-243b-4d66-9708-89e258dffb2c",
-          "name": "tenant-mapper",
-          "protocol": "openid-connect",
-          "protocolMapper": "oidc-usermodel-attribute-mapper",
-          "consentRequired": false,
-          "config": {
-            "userinfo.token.claim": "true",
-            "user.attribute": "tenant",
-            "id.token.claim": "true",
-            "access.token.claim": "true",
-            "claim.name": "tenant",
-            "jsonType.label": "String"
-          }
-        },
-        {
           "id": "b3dd05cc-7289-4a87-9625-af60b859d748",
           "name": "organisation-mapper",
           "protocol": "openid-connect",
