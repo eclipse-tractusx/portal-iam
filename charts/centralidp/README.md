@@ -4,7 +4,7 @@
 
 This helm chart installs the Helm chart for Catena-X Central Keycloak Instance.
 
-For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0/developer/Technical%20Documentation).
+For further information please refer to the [technical documentation](../../docs/technical%20documentation).
 
 The referenced container images are for demonstration purposes only.
 
@@ -156,6 +156,8 @@ We also recommend checking out the [Keycloak Upgrading Guide](https://www.keyclo
 
 To be explicitly mentioned: this major adds the production mode with default value false and the reverse proxy mode with default value passthrough.
 Please check the description of those parameters and decide if they're suitable for you.
+
+Please also refer to [Upgrade Details](../../docs/technical%20documentation/12.%20Upgrade%20Details.md#v200).
 
 #### Upgrade approach
 

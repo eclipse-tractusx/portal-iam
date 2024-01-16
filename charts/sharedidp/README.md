@@ -4,7 +4,7 @@
 
 This helm chart installs the Helm chart for Catena-X Shared Keycloak Instance.
 
-For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0/developer/Technical%20Documentation).
+For further information please refer to the [technical documentation](../../docs/technical%20documentation).
 
 The referenced container images are for demonstration purposes only.
 
