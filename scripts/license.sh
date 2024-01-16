@@ -41,7 +41,7 @@ This work is licensed under the [CC-BY-4.0](https://creativecommons.org/licenses
 
 - SPDX-License-Identifier: CC-BY-4.0
 - SPDX-FileCopyrightText: Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
-- Source URL: https://github.com/eclipse-tractusx/portal-assets
+- Source URL: https://github.com/eclipse-tractusx/portal-iam
 
 EOF
   done

@@ -34,19 +34,19 @@ DockerHub:
 * https://hub.docker.com/r/tractusx/portal-iam
 * https://hub.docker.com/r/tractusx/portal-iam-consortia
 
-Base image: alpinelinux/docker-alpine:3.17
+Base image: alpinelinux/docker-alpine:3.18
 
-* Dockerfile: [alpinelinux/docker-alpine:3.17](https://github.com/alpinelinux/docker-alpine/blob/681b8c677aaed66e48a5ce721509647bd4dcd017/x86_64/Dockerfile)
-* GitHub project: [https://github.com/alpinelinux/docker-alpine](https://github.com/alpinelinux/docker-alpine))
+* Dockerfile: [alpinelinux/docker-alpine:3.18](https://github.com/alpinelinux/docker-alpine/blob/v3.18/x86_64/Dockerfile)
+* GitHub project: [https://github.com/alpinelinux/docker-alpine](https://github.com/alpinelinux/docker-alpine)
 * DockerHub: [https://hub.docker.com/_/alpine](https://hub.docker.com/_/alpine)
 
 DockerHub:
 
 * https://hub.docker.com/r/tractusx/portal-iam-seeding
 
-Base image: mcr.microsoft.com/dotnet/runtime:6.0-alpine
+Base image: mcr.microsoft.com/dotnet/runtime:7.0-alpine
 
-* Dockerfile: [mcr.microsoft.com/dotnet/runtime:6.0-alpine](https://github.com/dotnet/dotnet-docker/blob/main/src/runtime/6.0/alpine3.17/amd64/Dockerfile)
+* Dockerfile: [mcr.microsoft.com/dotnet/runtime:7.0-alpine](https://github.com/dotnet/dotnet-docker/blob/main/src/runtime/7.0/alpine3.17/amd64/Dockerfile)
 * GitHub project: [https://github.com/dotnet/dotnet-docker](https://github.com/dotnet/dotnet-docker)
 * DockerHub: [https://hub.docker.com/_/microsoft-dotnet-runtime](https://hub.docker.com/_/microsoft-dotnet-runtime)
 

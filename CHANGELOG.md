@@ -2,6 +2,61 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## 2.1.0-RC1
+
+### Change
+
+* realm configuration (centralidp) - updates to CX-Central realm:
+  * changed the username of initial CX Operator user to align with CX portal company_users ID
+  * created the composite role "BPDM Gate Read" in client technical_roles_management and associated client role "view_company_data" from Cl16-CX-BPDMGate
+  * created the composite role "BPDM Gate Read" in client technical_roles_management and associated client roles "view_company_data", "update_company_data" and "view_shared_data" from Cl16-CX-BPDMGate
+  * assigned the roles "view_wallet" and "view_certificates" from the Cl5-CX-Custodian client to all the composite role of the client Cl2-CX-Portal
+  * created the roles "upload_certificates" and "delete_certificates" inside the Cl2-CX-Portal client and assigned them to the composite roles "Business Admin", "IT Admin" and "Company Admin" and "Purchaser"
+  * removed tenant-mapper from the "catena" client scope
+
+### Bugfix
+
+* realm configuration (centralidp) - fixes to CX-Central realm:
+  * assigned the following roles from the Cl2-CX-Portal from the composite role "IT Admin":
+    * delete_user_account
+    * delete_own_user_account
+    * view_service_marketplace
+    * view_service_offering
+    * subscribe_service
+    * view_service_subscriptions
+    * view_membership
+    * delete_notifications
+  * assigned the following roles from the Cl2-CX-Portal from the composite role "Business Admin":
+    * delete_own_user_account
+    * view_user_management
+    * view_connectors
+    * view_apps
+    * view_subscription
+    * view_app_subscription
+    * view_autosetup_status
+    * view_service_marketplace
+    * view_service_offering
+    * view_service_subscriptions
+    * view_company_data
+    * view_use_case_participation
+    * view_certificates
+
+### Technical Support
+
+* build of init containers
+  * enabled build of images for arm64, in addition to amd64
+  * added additional image tags of type semver
+* updated base image versions for init container in README
+* updated generic-security documentation
+* adjusted source url in license files for static content
+
+### Known Knowns
+
+The following issues were recently discovered:
+
+* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshop-20231005.md#user-token-lifespan)
+* Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
+
 ## 2.0.0
 
 ### Change
