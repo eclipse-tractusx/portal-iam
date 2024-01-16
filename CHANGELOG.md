@@ -46,7 +46,8 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * enabled build of images for arm64, in addition to amd64
   * added additional image tags of type semver
 * updated base image versions for init container in README
-* update generic-security documentation
+* updated generic-security documentation
+* adjusted source url in license files for static content
 
 ### Known Knowns
 
