@@ -1,10 +1,10 @@
 # Helm chart for Catena-X Shared Keycloak Instance
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 22.0.3](https://img.shields.io/badge/AppVersion-22.0.3-informational?style=flat-square)
+![Version: 2.1.0-RC1](https://img.shields.io/badge/Version-2.1.0--RC1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 22.0.3](https://img.shields.io/badge/AppVersion-22.0.3-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Catena-X Shared Keycloak Instance.
 
-For further information please refer to the [technical documentation](https://github.com/eclipse-tractusx/portal-assets/tree/v1.6.0/developer/Technical%20Documentation).
+For further information please refer to the [technical documentation](../../docs/technical%20documentation).
 
 The referenced container images are for demonstration purposes only.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: sharedidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 2.0.0
+    version: 2.1.0-RC1
 ```
 
 ## Requirements
@@ -63,7 +63,7 @@ dependencies:
 | keycloak.extraVolumeMounts[2].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[2].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v2.0.0"` |  |
+| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v2.1.0-RC1"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |

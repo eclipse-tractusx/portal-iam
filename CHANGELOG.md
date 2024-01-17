@@ -16,6 +16,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 ### Bugfix
 
+* fixed upgrade documentation for previous version 2.0.0, pointing to upgrade details for centralidp
 * realm configuration (centralidp) - fixes to CX-Central realm:
   * assigned the following roles from the Cl2-CX-Portal from the composite role "IT Admin":
     * delete_user_account
@@ -56,6 +57,8 @@ The following issues were recently discovered:
 
 * Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshop-20231005.md#user-token-lifespan)
 * Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
+
+Please be aware that **this version is still in Release Candidate phase**: especially documentation is still WIP.
 
 ## 2.0.0
 
