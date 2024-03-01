@@ -1,6 +1,6 @@
-# Catena-X IAM: Keycloak instances
+![LeadingRepository](https://img.shields.io/badge/Leading_Repository-blue)
 
-![Tag](https://img.shields.io/static/v1?label=&message=LeadingRepository&color=green&style=flat)
+# IAM: Keycloak instances
 
 This repository contains the reference configuration to deploy the Catena-X (CX) specific Keycloak instances.
 
@@ -9,7 +9,7 @@ The instances depend on the [helm chart from Bitnami](https://artifacthub.io/pac
 The repository is split up in:
 
 * The helm charts to deploy the CX Keycloak instances
-* The CX specific configuration (e.g. keycloak-themes and initial realm-config)
+* The CX specific configuration (e.g. Keycloak themes and initial realm-config)
 * The dockerfile (Dockerfile.import) to build an image containing the CX specific configuration which is used as init container at Keycloak startup
 * The CX consortia specific configuration
 
@@ -29,26 +29,10 @@ For further information please refer to the chart specific README files, availab
 
 This application provides container images (init containers only) for demonstration purposes.
 
-DockerHub:
+See Docker notice files for more information:
 
-* https://hub.docker.com/r/tractusx/portal-iam
-* https://hub.docker.com/r/tractusx/portal-iam-consortia
-
-Base image: alpinelinux/docker-alpine:3.18
-
-* Dockerfile: [alpinelinux/docker-alpine:3.18](https://github.com/alpinelinux/docker-alpine/blob/v3.18/x86_64/Dockerfile)
-* GitHub project: [https://github.com/alpinelinux/docker-alpine](https://github.com/alpinelinux/docker-alpine)
-* DockerHub: [https://hub.docker.com/_/alpine](https://hub.docker.com/_/alpine)
-
-DockerHub:
-
-* https://hub.docker.com/r/tractusx/portal-iam-seeding
-
-Base image: mcr.microsoft.com/dotnet/runtime:7.0-alpine
-
-* Dockerfile: [mcr.microsoft.com/dotnet/runtime:7.0-alpine](https://github.com/dotnet/dotnet-docker/blob/main/src/runtime/7.0/alpine3.17/amd64/Dockerfile)
-* GitHub project: [https://github.com/dotnet/dotnet-docker](https://github.com/dotnet/dotnet-docker)
-* DockerHub: [https://hub.docker.com/_/microsoft-dotnet-runtime](https://hub.docker.com/_/microsoft-dotnet-runtime)
+* [portal-iam](./docker/notice-iam.md)
+* [portal-iam-consortia](./docker/notice-iam-consortia.md)
 
 ## License
 
