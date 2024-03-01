@@ -17,9 +17,9 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-product: "cx-iam"
+product: "iam"
 leadingRepository: "https://github.com/eclipse-tractusx/portal-iam"
 repositories:
-  - name: "cx-iam"
-    usage: "cx-iam: Keycloak instances"
+  - name: "iam"
+    usage: "IAM: Keycloak instances"
     url: "https://github.com/eclipse-tractusx/portal-iam"
