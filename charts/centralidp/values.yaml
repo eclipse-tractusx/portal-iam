@@ -160,16 +160,15 @@ seeding:
   excludedUserAttributes:
     attribute0: "bpn"
     attribute1: "organisation"
-  # -- We recommend not to specify default resources and to leave this as a conscious choice for the user.
-  # If you do want to specify resources, uncomment the following lines,
-  # adjust them as necessary, and remove the curly braces after 'resources:'.
-  resources: {}
+  # -- We recommend not to specify default resource limits and to leave this as a conscious choice for the user.
+  # If you do want to specify resource limits, uncomment the following lines and adjust them as necessary.
+  resources:
+    requests:
+      cpu: 15m
+      memory: 105M
     # limits:
-    #   cpu: 250m
-    #   memory: 256Mi
-    # requests:
-    #   cpu: 250m
-    #   memory: 256Mi
+    #   cpu: 45m
+    #   memory: 105M
   extraVolumes:
     - name: realms
       emptyDir: {}
