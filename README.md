@@ -27,12 +27,13 @@ For further information please refer to the chart specific README files, availab
 
 ## Notice for Docker images
 
-This application provides container images (init containers only) for demonstration purposes.
+This application provides container images for demonstration purposes.
 
 See Docker notice files for more information:
 
 * [portal-iam](./docker/notice-iam.md)
 * [portal-iam-consortia](./docker/notice-iam-consortia.md)
+* [portal-iam-seeding](https://github.com/eclipse-tractusx/portal-backend/blob/main/docker/notice-iam-seeding.md)
 
 ## License
 
