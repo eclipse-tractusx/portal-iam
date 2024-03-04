@@ -2,7 +2,7 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
-## 2.1.0-RC1
+## 2.1.0
 
 ### Change
 
@@ -13,6 +13,11 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * assigned the roles "view_wallet" and "view_certificates" from the Cl5-CX-Custodian client to all the composite role of the client Cl2-CX-Portal
   * created the roles "upload_certificates" and "delete_certificates" inside the Cl2-CX-Portal client and assigned them to the composite roles "Business Admin", "IT Admin" and "Company Admin" and "Purchaser"
   * removed tenant-mapper from the "catena" client scope
+  * added Policy Hub client
+  * changed client protocol mapper "Client ID": changed user.session.note and claim.name value from clientId to client_id
+  * assigned the roles "view_tech_user_management" and "app_management" from the Cl2-CX-Portal client to the composite role "Offer Management" of the client technical_roles_management
+  * assigned the role "configure_partner_registration" from the Cl2-CX-Portal client to the composite role "Registration External" of the client technical_roles_management
+  * assigned the role "view_managed_idp" from the Cl2-CX-Portal client to the composite role "CX Admin" of the client Cl2-CX-Portal
 
 ### Bugfix
 
@@ -41,6 +46,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
     * view_company_data
     * view_use_case_participation
     * view_certificates
+  * removed username mapper from CX-Operator identity provider
 
 ### Technical Support
 
