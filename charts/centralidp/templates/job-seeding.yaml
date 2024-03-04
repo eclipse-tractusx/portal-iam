@@ -1,5 +1,5 @@
 {{- /*
-* Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+* Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
 *
 * See the NOTICE file(s) distributed with this work for additional
 * information regarding copyright ownership.
@@ -21,7 +21,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Values.seeding.name }}
+  name: {{ include "centralidp.fullname" . }}-upgrade-seeding
   namespace: {{ .Release.Namespace }}
   annotations:
     "batch.kubernetes.io/job-tracking": "true"
@@ -30,11 +30,11 @@ metadata:
 spec:
   template:
     metadata:
-      name: {{ .Values.seeding.name }}
+      name: {{ include "centralidp.fullname" . }}-upgrade-seeding
     spec:
       restartPolicy: Never
       containers:
-      - name: {{ .Values.seeding.name }}
+      - name: {{ include "centralidp.fullname" . }}-upgrade-seeding
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -45,7 +45,7 @@ spec:
         imagePullPolicy: "Always"
         env:
           - name: "KEYCLOAK__CENTRAL__CONNECTIONSTRING"
-            value: "http://{{ template "keycloak.service.name" . }}"
+            value: "http://{{ template "centralidp.fullname" . }}"
           - name: "KEYCLOAK__CENTRAL__USER"
             value: "{{ .Values.keycloak.auth.adminUser }}"
           - name: "KEYCLOAK__CENTRAL__PASSWORD"

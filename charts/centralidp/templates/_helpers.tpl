@@ -16,10 +16,10 @@
 *
 * SPDX-License-Identifier: Apache-2.0
 
-Define "keycloak.service.name" like ""common.names.fullname" in the bitnami common chart but setting ".Chart.Name" to "keycloak".
+Define "centralidp.fullname" like ""common.names.fullname" in the bitnami common chart but setting ".Chart.Name" to "keycloak".
 This is necessary to retrieve the keycloak service name for the execution of the seeding job.
 */}}
-{{- define "keycloak.service.name" -}}
+{{- define "centralidp.fullname" -}}
 {{- if .Values.keycloak.fullnameOverride -}}
 {{- .Values.keycloak.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
