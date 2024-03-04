@@ -1,5 +1,5 @@
 {{/*
-* Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+* Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
 *
 * See the NOTICE file(s) distributed with this work for additional
 * information regarding copyright ownership.
@@ -20,10 +20,10 @@ Define "keycloak.service.name" like ""common.names.fullname" in the bitnami comm
 This is necessary to retrieve the keycloak service name for the execution of the seeding job.
 */}}
 {{- define "keycloak.service.name" -}}
-{{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- if .Values.keycloak.fullnameOverride -}}
+{{- .Values.keycloak.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- $name := default "keycloak" .Values.nameOverride -}}
+{{- $name := default "keycloak" .Values.keycloak.nameOverride -}}
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
