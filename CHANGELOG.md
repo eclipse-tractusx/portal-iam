@@ -19,6 +19,10 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * assigned the role "configure_partner_registration" from the Cl2-CX-Portal client to the composite role "Registration External" of the client technical_roles_management
   * assigned the role "view_managed_idp" from the Cl2-CX-Portal client to the composite role "CX Admin" of the client Cl2-CX-Portal
 * added (docker.io) container registry to images
+* seeding job for upgrade (centralidp):
+  * set resource requests
+  * changed to imagePullPolicy "IfNotPresent"
+  * enabled unique resource name
 
 ### Bugfix
 
@@ -48,15 +52,20 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
     * view_use_case_participation
     * view_certificates
   * removed username mapper from CX-Operator identity provider
+* seeding job for upgrade (centralidp): fixed Keyclaok service name not being found in the case of nameOverride or fullnameOverride
 
 ### Technical Support
 
 * build of init containers
+  * TRG-7.05: added legal documentation
   * enabled build of images for arm64, in addition to amd64
   * added additional image tags of type semver
 * updated base image versions for init container in README
 * updated generic-security documentation
 * adjusted source url in license files for static content
+* introduceed CodeQL scan
+* changed portal-cd references to portal due to repository renaming
+* updated documentation
 
 ### Known Knowns
 
