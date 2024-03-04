@@ -41,7 +41,7 @@ keycloak:
       mountPath: "/secrets"
   initContainers:
     - name: import
-      image: tractusx/portal-iam-consortia:latest
+      image: docker.io/tractusx/portal-iam-consortia:latest
       imagePullPolicy: Always
       command:
         - sh
