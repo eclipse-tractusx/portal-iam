@@ -150,6 +150,7 @@ seeding:
 # for configuration possibly not covered by the seeding job
   enabled: false
   image: "tractusx/portal-iam-seeding:v2.1.0-iam-RC1"
+  imagePullPolicy: "IfNotPresent"
   portContainer: 8080
   authRealm: "master"
   useAuthTrail: "true"
@@ -177,7 +178,7 @@ seeding:
   initContainers:
     - name: init-cx-central
       image: tractusx/portal-iam:v2.1.0-RC1
-      imagePullPolicy: Always
+      imagePullPolicy: IfNotPresent
       command:
         - sh
       args:

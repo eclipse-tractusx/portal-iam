@@ -42,7 +42,7 @@ spec:
             - ALL
           runAsNonRoot: true
         image: "{{ .Values.seeding.image }}"
-        imagePullPolicy: "Always"
+        imagePullPolicy: "{{ .Values.seeding.imagePullPolicy }}"
         env:
           - name: "KEYCLOAK__CENTRAL__CONNECTIONSTRING"
             value: "http://{{ template "centralidp.fullname" . }}"
