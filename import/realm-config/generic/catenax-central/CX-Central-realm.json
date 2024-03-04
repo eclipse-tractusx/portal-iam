@@ -75,6 +75,9 @@
             "uma_authorization"
           ],
           "client": {
+            "Cl23-CX-Policy-Hub": [
+              "view_policy_hub"
+            ],
             "account": [
               "manage-account",
               "view-profile"
@@ -1560,7 +1563,8 @@
           "composites": {
             "client": {
               "Cl2-CX-Portal": [
-                "create_partner_registration"
+                "create_partner_registration",
+                "configure_partner_registration"
               ]
             }
           },
@@ -1576,8 +1580,10 @@
           "composites": {
             "client": {
               "Cl2-CX-Portal": [
+                "view_tech_user_management",
                 "add_service_offering",
                 "add_connectors",
+                "app_management",
                 "activate_subscription"
               ]
             }
@@ -2270,6 +2276,17 @@
           "containerId": "60313b78-e131-4358-9817-163ee938cc59",
           "attributes": {}
         }
+      ],
+      "Cl23-CX-Policy-Hub": [
+        {
+          "id": "c9dd28a0-8abe-428b-88e0-56c9de63758a",
+          "name": "view_policy_hub",
+          "description": "",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "6546aea2-dbb9-4ffb-a034-c8544c4aebe0",
+          "attributes": {}
+        }
       ]
     }
   },
@@ -2293,9 +2310,9 @@
   "otpPolicyPeriod": 30,
   "otpPolicyCodeReusable": false,
   "otpSupportedApplications": [
+    "totpAppGoogleName",
     "totpAppFreeOTPName",
-    "totpAppMicrosoftAuthenticatorName",
-    "totpAppGoogleName"
+    "totpAppMicrosoftAuthenticatorName"
   ],
   "webAuthnPolicyRpEntityName": "keycloak",
   "webAuthnPolicySignatureAlgorithms": [
@@ -3303,6 +3320,73 @@
       ]
     },
     {
+      "id": "6546aea2-dbb9-4ffb-a034-c8544c4aebe0",
+      "clientId": "Cl23-CX-Policy-Hub",
+      "name": "",
+      "description": "Client for Policy-Hub",
+      "rootUrl": "",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": [
+        "",
+        "/*"
+      ],
+      "webOrigins": [
+        "",
+        "/*"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "oidc.ciba.grant.enabled": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "a438c97e-80c6-40f5-9a27-05d4fb68ff40",
+          "name": "catenax-policy-hub-audience-mapper",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "Cl23-CX-Policy-Hub",
+            "id.token.claim": "true",
+            "access.token.claim": "true"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
       "id": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
       "clientId": "Cl2-CX-Portal",
       "name": "",
@@ -3585,11 +3669,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         }
@@ -3777,11 +3861,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         },
@@ -3886,11 +3970,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         },
@@ -3995,11 +4079,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         },
@@ -4104,11 +4188,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         },
@@ -4198,11 +4282,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         },
@@ -4337,11 +4421,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         },
@@ -4462,11 +4546,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         },
@@ -4573,11 +4657,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         },
@@ -4739,11 +4823,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         }
@@ -4843,11 +4927,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         }
@@ -4954,11 +5038,11 @@
           "protocolMapper": "oidc-usersessionmodel-note-mapper",
           "consentRequired": false,
           "config": {
-            "user.session.note": "clientId",
+            "user.session.note": "client_id",
             "userinfo.token.claim": "true",
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "claim.name": "clientId",
+            "claim.name": "client_id",
             "jsonType.label": "String"
           }
         }
@@ -5803,17 +5887,6 @@
     }
   ],
   "identityProviderMappers": [
-    {
-      "id": "4307e9a1-df8d-441a-b601-70e0ef510959",
-      "name": "username-mapper",
-      "identityProviderAlias": "CX-Operator",
-      "identityProviderMapper": "oidc-username-idp-mapper",
-      "config": {
-        "syncMode": "INHERIT",
-        "template": "${ALIAS}.${CLAIM.sub}",
-        "target": "LOCAL"
-      }
-    },
     {
       "id": "05407473-42a0-4630-90ed-ce2d6d70108e",
       "name": "organisation-mapper",
