@@ -18,6 +18,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
   * assigned the roles "view_tech_user_management" and "app_management" from the Cl2-CX-Portal client to the composite role "Offer Management" of the client technical_roles_management
   * assigned the role "configure_partner_registration" from the Cl2-CX-Portal client to the composite role "Registration External" of the client technical_roles_management
   * assigned the role "view_managed_idp" from the Cl2-CX-Portal client to the composite role "CX Admin" of the client Cl2-CX-Portal
+* added (docker.io) container registry to images
 
 ### Bugfix
 
