@@ -55,6 +55,10 @@ This is done by setting the 'example.org' placeholder in the CX-Operator' Identi
 
 Please see notes at [Values.seeding](values.yaml#L146) for upgrading the configuration of the CX-Central realm.
 
+### To 2.1.0
+
+No specific upgrade notes.
+
 ### To 2.0.0
 
 This major changes from Keycloak version 16.1.1 to version 22.0.3.
@@ -185,3 +189,7 @@ As part of an optional housekeeping, the following clients are obsolete in versi
 * Cl6-CX-DAPS (was already obsolete with v1.2.0) 
 * Cl20-CX-IRS
 * Cl16-CX-BPDMGate-Portal
+
+### Upgrading from version 2.0.0 to 2.1.0
+
+By enabling the seeding (Values.seeding.enabled), the CX-Central realm is upgraded by a job defined as a post-upgrade hook.
