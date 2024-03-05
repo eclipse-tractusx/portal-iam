@@ -1,6 +1,6 @@
 # Helm chart for Catena-X Central Keycloak Instance
 
-![Version: 2.1.0-RC1](https://img.shields.io/badge/Version-2.1.0--RC1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 22.0.3](https://img.shields.io/badge/AppVersion-22.0.3-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 22.0.3](https://img.shields.io/badge/AppVersion-22.0.3-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Catena-X Central Keycloak Instance.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 2.1.0-RC1
+    version: 2.1.0
 ```
 
 ## Requirements
@@ -59,7 +59,7 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v2.1.0-RC1"` |  |
+| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v2.1.0"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -87,7 +87,7 @@ dependencies:
 | keycloak.rbac.rules[0].resources[0] | string | `"pods"` |  |
 | keycloak.rbac.rules[0].verbs[0] | string | `"get"` |  |
 | keycloak.rbac.rules[0].verbs[1] | string | `"list"` |  |
-| keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration; default configurations: host: "centralidp-postgresql-primary", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
+| keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration (recommended for demonstration purposes only); default configurations: host: "centralidp-postgresql-primary", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
 | keycloak.postgresql.auth.username | string | `"kccentral"` | Non-root username. |
 | keycloak.postgresql.auth.database | string | `"iamcentralidp"` | Database name. |
 | keycloak.postgresql.auth.existingSecret | string | `"centralidp-postgres"` | Secret containing the passwords for root usernames postgres and non-root username kccentral. |
@@ -104,8 +104,8 @@ dependencies:
 | secrets.postgresql.auth.existingSecret.password | string | `""` | Password for the non-root username 'kccentral'. Secret-key 'password'. |
 | secrets.postgresql.auth.existingSecret.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
 | seeding.enabled | bool | `false` | Seeding job to upgrade CX_Central realm: enable to upgrade the configuration of the CX-Central realm from previous version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
-| seeding.name | string | `"cx-central-realm-upgrade"` |  |
-| seeding.image | string | `"tractusx/portal-iam-seeding:v2.1.0-iam-RC1"` |  |
+| seeding.image | string | `"docker.io/tractusx/portal-iam-seeding:v2.1.0-iam"` |  |
+| seeding.imagePullPolicy | string | `"IfNotPresent"` |  |
 | seeding.portContainer | int | `8080` |  |
 | seeding.authRealm | string | `"master"` |  |
 | seeding.useAuthTrail | string | `"true"` |  |
@@ -113,14 +113,14 @@ dependencies:
 | seeding.instanceName | string | `"central"` |  |
 | seeding.excludedUserAttributes.attribute0 | string | `"bpn"` |  |
 | seeding.excludedUserAttributes.attribute1 | string | `"organisation"` |  |
-| seeding.resources | object | `{}` | We recommend not to specify default resources and to leave this as a conscious choice for the user. If you do want to specify resources, uncomment the following lines, adjust them as necessary, and remove the curly braces after 'resources:'. |
+| seeding.resources | object | `{"requests":{"cpu":"15m","memory":"105M"}}` | We recommend not to specify default resource limits and to leave this as a conscious choice for the user. If you do want to specify resource limits, uncomment the following lines and adjust them as necessary. |
 | seeding.extraVolumes[0].name | string | `"realms"` |  |
 | seeding.extraVolumes[0].emptyDir | object | `{}` |  |
 | seeding.extraVolumeMounts[0].name | string | `"realms"` |  |
 | seeding.extraVolumeMounts[0].mountPath | string | `"app/realms"` |  |
 | seeding.initContainers[0].name | string | `"init-cx-central"` |  |
-| seeding.initContainers[0].image | string | `"tractusx/portal-iam:v2.1.0-RC1"` |  |
-| seeding.initContainers[0].imagePullPolicy | string | `"Always"` |  |
+| seeding.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v2.1.0"` |  |
+| seeding.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | seeding.initContainers[0].command[0] | string | `"sh"` |  |
 | seeding.initContainers[0].args[0] | string | `"-c"` |  |
 | seeding.initContainers[0].args[1] | string | `"echo \"Copying CX Central realm...\"\ncp -R /import/catenax-central/realms/* /app/realms\n"` |  |
@@ -145,6 +145,10 @@ This is done by setting the 'example.org' placeholder in the CX-Operator' Identi
 ## Upgrade
 
 Please see notes at [Values.seeding](values.yaml#L146) for upgrading the configuration of the CX-Central realm.
+
+### To 2.1.0
+
+No specific upgrade notes.
 
 ### To 2.0.0
 
@@ -276,3 +280,7 @@ As part of an optional housekeeping, the following clients are obsolete in versi
 * Cl6-CX-DAPS (was already obsolete with v1.2.0)
 * Cl20-CX-IRS
 * Cl16-CX-BPDMGate-Portal
+
+### Upgrading from version 2.0.0 to 2.1.0
+
+By enabling the seeding (Values.seeding.enabled), the CX-Central realm is upgraded by a job defined as a post-upgrade hook.

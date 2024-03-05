@@ -1,6 +1,6 @@
 # Helm chart for Catena-X Shared Keycloak Instance
 
-![Version: 2.1.0-RC1](https://img.shields.io/badge/Version-2.1.0--RC1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 22.0.3](https://img.shields.io/badge/AppVersion-22.0.3-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 22.0.3](https://img.shields.io/badge/AppVersion-22.0.3-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Catena-X Shared Keycloak Instance.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: sharedidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 2.1.0-RC1
+    version: 2.1.0
 ```
 
 ## Requirements
@@ -63,7 +63,7 @@ dependencies:
 | keycloak.extraVolumeMounts[2].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[2].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"tractusx/portal-iam:v2.1.0-RC1"` |  |
+| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v2.1.0"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -93,7 +93,7 @@ dependencies:
 | keycloak.rbac.rules[0].resources[0] | string | `"pods"` |  |
 | keycloak.rbac.rules[0].verbs[0] | string | `"get"` |  |
 | keycloak.rbac.rules[0].verbs[1] | string | `"list"` |  |
-| keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration; default configurations: host: "sharedidp-postgresql-primary", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
+| keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration (recommended for demonstration purposes only); default configurations: host: "sharedidp-postgresql-primary", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
 | keycloak.postgresql.auth.username | string | `"kcshared"` | Non-root username. |
 | keycloak.postgresql.auth.database | string | `"iamsharedidp"` | Database name. |
 | keycloak.postgresql.auth.existingSecret | string | `"sharedidp-postgres"` | Secret containing the passwords for root usernames postgres and non-root username kcshared. |
@@ -135,6 +135,10 @@ Generate client-secrets for the service account with access type 'confidential'.
 3. Setup SMTP configuration (Realm Settings --> Email)
 
 ## Upgrade
+
+### To 2.1.0
+
+No specific upgrade notes.
 
 ### To 2.0.0
 
