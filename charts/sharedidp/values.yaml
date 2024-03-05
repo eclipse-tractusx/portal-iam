@@ -104,7 +104,7 @@ keycloak:
           - get
           - list
   postgresql:
-  # -- PostgreSQL chart configuration;
+  # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
   # default configurations:
   # host: "sharedidp-postgresql-primary",
   # port: 5432;
