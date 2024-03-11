@@ -52,7 +52,7 @@ keycloak:
       mountPath: "/realms"
   initContainers:
     - name: import
-      image: docker.io/tractusx/portal-iam:v2.1.0
+      image: docker.io/tractusx/portal-iam:pr63
       imagePullPolicy: Always
       command:
         - sh
