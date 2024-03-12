@@ -22,6 +22,9 @@ keycloak:
     existingSecret: "centralidp-keycloak-v23"
   production: true
   proxy: edge
+
+  replicaCount: 0
+
   ingress:
     enabled: true
     ingressClassName: nginx
