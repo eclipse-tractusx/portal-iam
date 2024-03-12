@@ -20,7 +20,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: centralidp-v23
+  name: centralidp
 spec:
   destination:
     namespace: product-iam
