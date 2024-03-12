@@ -23,7 +23,7 @@ keycloak:
   production: true
   proxy: edge
 
-  replicaCount: 0
+  replicaCount: 3
 
   ingress:
     enabled: true
