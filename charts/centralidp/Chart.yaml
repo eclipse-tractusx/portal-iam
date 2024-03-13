@@ -20,13 +20,13 @@
 apiVersion: v2
 name: centralidp
 type: application
-version: 2.1.0
-appVersion: 22.0.3
-description: Helm chart for Catena-X Central Keycloak Instance
+version: 3.0.0-rc.1
+appVersion: 23.0.7
+description: Helm chart for Central Keycloak Instance
 home: https://github.com/eclipse-tractusx/portal-iam
 sources:
   - https://github.com/eclipse-tractusx/portal-iam
 dependencies:
   - name: keycloak
     repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
-    version: 16.1.6
+    version: 19.3.0

@@ -48,7 +48,7 @@ keycloak:
       mountPath: "/realms"
   initContainers:
     - name: import
-      image: docker.io/tractusx/portal-iam:v2.1.0
+      image: docker.io/tractusx/portal-iam:pr63
       imagePullPolicy: Always
       command:
         - sh
@@ -102,6 +102,11 @@ keycloak:
   # port: 5432;
     # Switch to enable or disable the PostgreSQL helm chart.
     enabled: true
+    # -- Setting to Postgres version 15 as that is the aligned version,
+    # https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions).
+    # Keycloak helm-chart from Bitnami has moved on to version 16.
+    image:
+      tag: "15.6.0"
     auth:
       # -- Non-root username.
       username: kccentral
@@ -177,7 +182,7 @@ seeding:
       mountPath: "app/realms"
   initContainers:
     - name: init-cx-central
-      image: docker.io/tractusx/portal-iam:v2.1.0
+      image: docker.io/tractusx/portal-iam:pr63
       imagePullPolicy: IfNotPresent
       command:
         - sh
