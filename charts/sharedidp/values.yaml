@@ -115,6 +115,8 @@ keycloak:
     # Keycloak helm-chart from Bitnami has moved on to version 16.
     image:
       tag: "15-debian-11"
+    commonLabels:
+      app.kubernetes.io/version: "15"
     auth:
       # -- Non-root username.
       username: kcshared
