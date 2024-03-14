@@ -114,7 +114,9 @@ keycloak:
     # https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions).
     # Keycloak helm-chart from Bitnami has moved on to version 16.
     image:
-      tag: "15.6.0"
+      tag: "15-debian-11"
+    commonLabels:
+      app.kubernetes.io/version: "15"
     auth:
       # -- Non-root username.
       username: kcshared
