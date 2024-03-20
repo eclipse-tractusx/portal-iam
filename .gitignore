@@ -2,6 +2,7 @@
 # Chart dependencies
 **/charts/*.tgz
 Chart.lock
+**/values-local.yaml
 
 ### Visual Studio Code ###
 .vscode/
