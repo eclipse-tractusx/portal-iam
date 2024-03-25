@@ -167,15 +167,14 @@ seeding:
   excludedUserAttributes:
     attribute0: "bpn"
     attribute1: "organisation"
-  # -- We recommend not to specify default resource limits and to leave this as a conscious choice for the user.
-  # If you do want to specify resource limits, uncomment the following lines and adjust them as necessary.
+  # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:
-      cpu: 15m
-      memory: 105M
-    # limits:
-    #   cpu: 45m
-    #   memory: 105M
+      cpu: 75m
+      memory: 200M
+    limits:
+      cpu: 225m
+      memory: 200M
   extraVolumes:
     - name: realms
       emptyDir: {}
