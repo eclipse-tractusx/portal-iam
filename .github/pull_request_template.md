@@ -14,7 +14,7 @@ Link to Github issue.
 
 Please delete options that are not relevant.
 
-- [ ] I have followed the [contributing guidelines](https://github.com/eclipse-tractusx/portal-assets/blob/main/developer/Technical%20Documentation/Dev%20Process/How%20to%20contribute.md#commit-and-pr-guidelines)
+- [ ] I have followed the [contributing guidelines](https://github.com/eclipse-tractusx/portal-iam/blob/main/docs/technical%20documentation/14.%20How%20to%20contribute.md)
 - [ ] I have added copyright and license headers, footers (for .md files) or files (for images) 
 - [ ] I have performed a self-review of my changes
 - [ ] I have successfully tested my changes
