@@ -23,10 +23,12 @@ on:
   push:
     paths:
       - 'charts/centralidp/**'
+      - 'import/**'
     branches: [ main ]
   pull_request:
     paths:
       - 'charts/centralidp/**'
+      - 'import/**'
   workflow_dispatch:
     inputs:
       node_image:
