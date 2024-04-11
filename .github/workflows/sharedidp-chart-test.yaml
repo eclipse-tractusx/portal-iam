@@ -57,6 +57,14 @@ jobs:
           version: v0.19.0
           node_image: ${{ github.event.inputs.node_image || 'kindest/node:v1.27.3' }}
 
+      - name: Build init container image
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
+        with:
+          context: .
+          file: docker/Dockerfile.import
+          push: true
+          tags: kind-registry:5000/iam:testing
+
       - name: Set up Helm
         uses: azure/setup-helm@b7246b12e77f7134dc2d460a3d5bad15bbe29390 # v4
         with:
@@ -85,7 +93,7 @@ jobs:
 
       # define charts to test with the --charts parameter
       - name: Run chart-testing (install)
-        run: ct install --charts charts/sharedidp --config charts/chart-testing-config.yaml
+        run: helm install portal charts/sharedidp -f charts/values-test-sharedidp.yaml --namespace install --create-namespace --debug
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
         # Upgrade the released sharedidp chart version with the locally available chart
