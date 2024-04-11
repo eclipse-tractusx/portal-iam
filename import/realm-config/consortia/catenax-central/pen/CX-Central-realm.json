@@ -2909,7 +2909,6 @@
       "realmRoles" : [ "default-roles-catena-x realm" ],
       "clientRoles" : {
         "Cl15-CX-DFT" : [ "User" ],
-        "Cl9-CDQ-Fraud" : [ "fraud_app_user" ],
         "Cl1-CX-Registration" : [ "CX Admin", "Company Admin" ],
         "Cl2-CX-Portal" : [ "CX User" ]
       },
@@ -2998,7 +2997,6 @@
       "realmRoles" : [ "default-roles-catena-x realm" ],
       "clientRoles" : {
         "Cl16-CX-CRisk" : [ "Company Admin", "User" ],
-        "Cl9-CDQ-Fraud" : [ "fraud_app_manager", "fraud_app_user" ],
         "technical_roles_management" : [ "BPDM Management" ],
         "Cl1-CX-Registration" : [ "CX Admin" ],
         "Cl2-CX-Portal" : [ "CX Admin" ]
