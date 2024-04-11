@@ -48,7 +48,7 @@ keycloak:
       mountPath: "/realms"
   initContainers:
     - name: import
-      image: docker.io/tractusx/portal-iam:pr63
+      image: docker.io/tractusx/portal-iam:v3.0.0-rc.1
       imagePullPolicy: IfNotPresent
       command:
         - sh
@@ -156,7 +156,7 @@ seeding:
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
 # for configuration possibly not covered by the seeding job
   enabled: false
-  image: "docker.io/tractusx/portal-iam-seeding:v2.1.0-iam"
+  image: "docker.io/tractusx/portal-iam-seeding:v3.0.0-rc.1-iam"
   imagePullPolicy: "IfNotPresent"
   portContainer: 8080
   authRealm: "master"
@@ -183,7 +183,7 @@ seeding:
       mountPath: "app/realms"
   initContainers:
     - name: init-cx-central
-      image: docker.io/tractusx/portal-iam:pr63
+      image: docker.io/tractusx/portal-iam:v3.0.0-rc.1
       imagePullPolicy: IfNotPresent
       command:
         - sh
