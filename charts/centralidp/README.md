@@ -1,8 +1,8 @@
-# Helm chart for Catena-X Central Keycloak Instance
+# Helm chart for Central Keycloak Instance
 
-![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 22.0.3](https://img.shields.io/badge/AppVersion-22.0.3-informational?style=flat-square)
+![Version: 3.0.0-rc.1](https://img.shields.io/badge/Version-3.0.0--rc.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 23.0.7](https://img.shields.io/badge/AppVersion-23.0.7-informational?style=flat-square)
 
-This helm chart installs the Helm chart for Catena-X Central Keycloak Instance.
+This helm chart installs the Helm chart for Central Keycloak Instance.
 
 For further information please refer to the [technical documentation](../../docs/technical%20documentation).
 
@@ -29,14 +29,14 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 2.1.0
+    version: 3.0.0-rc.1
 ```
 
 ## Requirements
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami | keycloak | 16.1.6 |
+| https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami | keycloak | 19.3.0 |
 
 ## Values
 
@@ -59,8 +59,8 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v2.1.0"` |  |
-| keycloak.initContainers[0].imagePullPolicy | string | `"Always"` |  |
+| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.0-rc.1"` |  |
+| keycloak.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
 | keycloak.initContainers[0].args[1] | string | `"echo \"Copying themes...\"\ncp -R /import/themes/catenax-central/* /themes\necho \"Copying realms...\"\ncp -R /import/catenax-central/realms/* /realms\n"` |  |
@@ -88,6 +88,8 @@ dependencies:
 | keycloak.rbac.rules[0].verbs[0] | string | `"get"` |  |
 | keycloak.rbac.rules[0].verbs[1] | string | `"list"` |  |
 | keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration (recommended for demonstration purposes only); default configurations: host: "centralidp-postgresql-primary", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
+| keycloak.postgresql.image | object | `{"tag":"15-debian-11"}` | Setting to Postgres version 15 as that is the aligned version, https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions). Keycloak helm-chart from Bitnami has moved on to version 16. |
+| keycloak.postgresql.commonLabels."app.kubernetes.io/version" | string | `"15"` |  |
 | keycloak.postgresql.auth.username | string | `"kccentral"` | Non-root username. |
 | keycloak.postgresql.auth.database | string | `"iamcentralidp"` | Database name. |
 | keycloak.postgresql.auth.existingSecret | string | `"centralidp-postgres"` | Secret containing the passwords for root usernames postgres and non-root username kccentral. |
@@ -104,7 +106,7 @@ dependencies:
 | secrets.postgresql.auth.existingSecret.password | string | `""` | Password for the non-root username 'kccentral'. Secret-key 'password'. |
 | secrets.postgresql.auth.existingSecret.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
 | seeding.enabled | bool | `false` | Seeding job to upgrade CX_Central realm: enable to upgrade the configuration of the CX-Central realm from previous version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
-| seeding.image | string | `"docker.io/tractusx/portal-iam-seeding:v2.1.0-iam"` |  |
+| seeding.image | string | `"docker.io/tractusx/portal-iam-seeding:v3.0.0-rc.1-iam"` |  |
 | seeding.imagePullPolicy | string | `"IfNotPresent"` |  |
 | seeding.portContainer | int | `8080` |  |
 | seeding.authRealm | string | `"master"` |  |
@@ -113,13 +115,13 @@ dependencies:
 | seeding.instanceName | string | `"central"` |  |
 | seeding.excludedUserAttributes.attribute0 | string | `"bpn"` |  |
 | seeding.excludedUserAttributes.attribute1 | string | `"organisation"` |  |
-| seeding.resources | object | `{"requests":{"cpu":"15m","memory":"105M"}}` | We recommend not to specify default resource limits and to leave this as a conscious choice for the user. If you do want to specify resource limits, uncomment the following lines and adjust them as necessary. |
+| seeding.resources | object | `{"limits":{"cpu":"225m","memory":"200M"},"requests":{"cpu":"75m","memory":"200M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
 | seeding.extraVolumes[0].name | string | `"realms"` |  |
 | seeding.extraVolumes[0].emptyDir | object | `{}` |  |
 | seeding.extraVolumeMounts[0].name | string | `"realms"` |  |
 | seeding.extraVolumeMounts[0].mountPath | string | `"app/realms"` |  |
 | seeding.initContainers[0].name | string | `"init-cx-central"` |  |
-| seeding.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v2.1.0"` |  |
+| seeding.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.0-rc.1"` |  |
 | seeding.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | seeding.initContainers[0].command[0] | string | `"sh"` |  |
 | seeding.initContainers[0].args[0] | string | `"-c"` |  |
@@ -146,13 +148,19 @@ This is done by setting the 'example.org' placeholder in the CX-Operator' Identi
 
 Please see notes at [Values.seeding](values.yaml#L146) for upgrading the configuration of the CX-Central realm.
 
+### To 3.0.0
+
+This major changes from the Keycloak version from  22.0.3 to 23.0.7 and bumps the PostgresSQL version of the subchart from 15.4.0 to the latest available version of 15.
+
+No major issues are expected during the upgrade.
+
 ### To 2.1.0
 
 No specific upgrade notes.
 
 ### To 2.0.0
 
-This major changes from Keycloak version 16.1.1 to version 22.0.3.
+This major changes from the Keycloak version from 16.1.1 to version 22.0.3.
 
 Please have a look at the [CHANGELOG](../../CHANGELOG.md#200) for a more detailed description.
 
