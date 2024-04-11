@@ -2997,7 +2997,6 @@
       "realmRoles" : [ "default-roles-catena-x realm" ],
       "clientRoles" : {
         "Cl16-CX-CRisk" : [ "Company Admin", "User" ],
-        "technical_roles_management" : [ "BPDM Management" ],
         "Cl1-CX-Registration" : [ "CX Admin" ],
         "Cl2-CX-Portal" : [ "CX Admin" ]
       },
