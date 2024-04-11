@@ -2,6 +2,27 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## 3.0.0-rc.1
+
+### Change
+
+* [upgraded to Keycloak v23.0.7](https://github.com/eclipse-tractusx/portal-iam/issues/62)
+* realm configuration (centralidp) - [updated CX-Central realm](https://github.com/eclipse-tractusx/portal-iam/issues/66)
+* set postgres version of chart dependency to 15 (changed to major tag for image to get latest minor updates)
+* set resource limits and increased requests for seeding job (centralidp)
+* changed imagePullPolicy for initContainers to IfNotPresent
+
+### Technical Support
+
+* [added dependabot.yml file](https://github.com/eclipse-tractusx/portal/issues/219)
+* [upgraded gh-actions and changed to pinned commit sha](https://github.com/eclipse-tractusx/portal/issues/225)
+* helm test: updated version to upgrade from and k8s version
+* helm-test: build images for init containers within workflow [(#89)](https://github.com/eclipse-tractusx/portal-iam/pull/89)
+* combined helm chart release and image build for init containers [(#89)](https://github.com/eclipse-tractusx/portal-iam/pull/89)
+* changed image build workflows for init containers: refactor those workflows to be only relevant for development phase, no latest tag anymore
+
+Please be aware that **this version is still in Release Candidate phase**: especially documentation is still WIP.
+
 ## 2.1.0
 
 ### Change
@@ -73,8 +94,6 @@ The following issues were recently discovered:
 
 * Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshop-20231005.md#user-token-lifespan)
 * Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
-
-Please be aware that **this version is still in Release Candidate phase**: especially documentation is still WIP.
 
 ## 2.0.0
 
