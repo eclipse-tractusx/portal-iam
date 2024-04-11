@@ -23,10 +23,12 @@ on:
   push:
     paths:
       - 'charts/sharedidp/**'
+      - 'import/**'
     branches: [ main ]
   pull_request:
     paths:
       - 'charts/sharedidp/**'
+      - 'import/**'
   workflow_dispatch:
     inputs:
       node_image:
