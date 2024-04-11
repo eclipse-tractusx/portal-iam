@@ -49,7 +49,7 @@ keycloak:
   initContainers:
     - name: import
       image: docker.io/tractusx/portal-iam:pr63
-      imagePullPolicy: Always
+      imagePullPolicy: IfNotPresent
       command:
         - sh
       args:
