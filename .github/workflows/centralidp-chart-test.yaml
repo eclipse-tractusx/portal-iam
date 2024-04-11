@@ -101,7 +101,7 @@ jobs:
         run: |
           helm repo add bitnami-full-index https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
           helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-          helm install centralidp tractusx-dev/centralidp --version ${{ github.event.inputs.upgrade_from || '2.1.0' }}
+          helm install centralidp tractusx-dev/centralidp --version ${{ github.event.inputs.upgrade_from || '2.1.0' }} --namespace upgrade --create-namespace --debug
           helm dependency update charts/centralidp
-          helm upgrade centralidp charts/centralidp
+          helm upgrade centralidp charts/centralidp -f charts/values-test-centralidp.yaml --namespace upgrade --debug
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'

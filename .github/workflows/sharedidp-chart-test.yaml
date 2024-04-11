@@ -101,7 +101,7 @@ jobs:
         run: |
           helm repo add bitnami-full-index https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
           helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-          helm install sharedidp tractusx-dev/sharedidp --version ${{ github.event.inputs.upgrade_from || '2.1.0' }}
+          helm install sharedidp tractusx-dev/sharedidp --version ${{ github.event.inputs.upgrade_from || '2.1.0' }} --namespace upgrade --create-namespace --debug
           helm dependency update charts/sharedidp
-          helm upgrade sharedidp charts/sharedidp
+          helm upgrade sharedidp charts/sharedidp -f charts/values-test-sharedidp.yaml --namespace upgrade --debug
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
