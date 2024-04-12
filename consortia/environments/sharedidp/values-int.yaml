@@ -68,12 +68,12 @@ keycloak:
   ingress:
     enabled: true
     ingressClassName: nginx
-    hostname: sharedidp.int.demo.catena-x.net
+    hostname: sharedidp-v2.int.demo.catena-x.net
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-      nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.int.demo.catena-x.net, http://localhost:3000
+      nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp-v2.int.demo.catena-x.net, http://localhost:3000
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
       nginx.ingress.kubernetes.io/proxy-buffering: "on"
