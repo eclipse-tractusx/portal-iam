@@ -66,7 +66,7 @@ secrets:
         replicationPassword: "<path:portal/data/dev/iam/centralidp-postgres#replication-password>"
 
 seeding:
-  enabled: true
+  enabled: false
   image: "docker.io/tractusx/portal-iam-seeding:dev"
   initContainers:
     - name: init-cx-central
