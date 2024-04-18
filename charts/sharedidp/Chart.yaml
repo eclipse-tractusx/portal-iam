@@ -20,7 +20,7 @@
 apiVersion: v2
 name: sharedidp
 type: application
-version: 3.0.0-rc.1
+version: 3.0.0-rc.2
 appVersion: 23.0.7
 description: Helm chart for Shared Keycloak Instance
 home: https://github.com/eclipse-tractusx/portal-iam

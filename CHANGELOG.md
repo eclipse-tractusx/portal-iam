@@ -2,6 +2,14 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## 3.0.0-rc.2
+
+### Bugfix
+
+sharedidp:
+  * fixed broken "Update your password" theme and removed password username check ([#100](https://github.com/eclipse-tractusx/portal-iam/issues/100))
+  * fix json syntax error in import realm [(#96)](https://github.com/eclipse-tractusx/portal-iam/pull/96)
+
 ## 3.0.0-rc.1
 
 ### Change
