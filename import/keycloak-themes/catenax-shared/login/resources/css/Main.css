@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -187,6 +187,15 @@ form a {
 
 #kc-form-buttons {
   padding: 16px 0 0 0;
+}
+
+button[aria-controls="password-new"],
+button[aria-controls="password-confirm"] {
+  display: none;
+}
+
+#logout-sessions {
+  width: 20px;
 }
 
 .password-policy-hint {
