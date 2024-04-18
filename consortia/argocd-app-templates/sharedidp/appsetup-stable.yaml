@@ -29,7 +29,7 @@ spec:
   source:
     path: ''
     repoURL: 'https://eclipse-tractusx.github.io/charts/dev'
-    targetRevision: 3.0.0-rc.1
+    targetRevision: 3.0.0-rc.2
     plugin:
       env:
         - name: HELM_VALUES
@@ -56,7 +56,7 @@ spec:
                   mountPath: "/secrets"
               initContainers:
                 - name: import
-                  image: docker.io/tractusx/portal-iam-consortia:v3.0.0-rc.1
+                  image: docker.io/tractusx/portal-iam-consortia:v3.0.0-rc.2
                   imagePullPolicy: Always
                   command:
                     - sh
