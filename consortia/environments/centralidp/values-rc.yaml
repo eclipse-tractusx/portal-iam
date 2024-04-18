@@ -22,7 +22,7 @@ keycloak:
   proxy: edge
   initContainers:
     - name: import
-      image: docker.io/tractusx/portal-iam-consortia:v3.0.0-rc.1
+      image: docker.io/tractusx/portal-iam-consortia:main
       imagePullPolicy: Always
       command:
         - sh
@@ -69,7 +69,7 @@ seeding:
   enabled: false
   initContainers:
     - name: init-cx-central
-      image: docker.io/tractusx/portal-iam-consortia:v3.0.0-rc.1
+      image: docker.io/tractusx/portal-iam-consortia:main
       imagePullPolicy: Always
       command:
         - sh

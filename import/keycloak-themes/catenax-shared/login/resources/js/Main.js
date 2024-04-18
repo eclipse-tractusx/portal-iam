@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -374,7 +374,7 @@ class FormUpdate extends Form {
         }
         this.button = document.querySelectorAll('input[type=submit]')[0]
         this.button.setAttribute('disabled', '')
-        State.getInstance().setUsername(document.getElementById('username').value)
+        State.getInstance().setUsername(document.getElementById('username')?.value ?? '')
         Validator.getInstance()
         return this
     }

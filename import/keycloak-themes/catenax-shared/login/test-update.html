@@ -1,5 +1,5 @@
 <!--
-- Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+- Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
 -
 - See the NOTICE file(s) distributed with this work for additional
 - information regarding copyright ownership.
@@ -17,16 +17,14 @@
 - SPDX-License-Identifier: Apache-2.0
 -->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" class="">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="robots" content="noindex, nofollow">
-
-    <title>Sign in to Martins Global Enterprise</title>
-    <link rel="icon" href="/auth/resources/2wb2s/login/catenax-shared-portal/img/favicon.ico" />
+    <title>Sign in to Test Company</title>
     <link href="./resources/css/Main.css" rel="stylesheet" />
     <script src="./resources/js/Main.js"></script>
 </head>
@@ -35,7 +33,7 @@
 <div class="">
     <div id="kc-header" class="">
         <div id="kc-header-wrapper"
-             class="">Martins Global Enterprise</div>
+             class="">Test Company</div>
     </div>
     <div class="">
         <header class="">
@@ -55,20 +53,24 @@
                       <span class="">You need to change your password to activate your account.</span>
               </div>
 
-        <form id="kc-passwd-update-form" class="" action="https://sharedidp.dev.demo.catena-x.net/auth/realms/idp26/login-actions/required-action?session_code=4gyDbhhLYVwn692-3SZGOIIf0dJDXP9jWdMQgtlxuu0&amp;execution=UPDATE_PASSWORD&amp;client_id=central-idp&amp;tab_id=mNoDfxcVxcc" method="post">
-            <input type="text" id="username" name="username" value="martin.ra.rohrmeier@bmw.de" autocomplete="username"
-                   readonly="readonly" style="display:none;"/>
-            <input type="password" id="password" name="password" autocomplete="current-password" style="display:none;"/>
-
+        <form id="kc-passwd-update-form" class="" action="https://sharedidp-rc.dev.demo.catena-x.net/auth/realms/idp8/login-actions/required-action?session_code=XNVYRo3eoPdMlMrlUUj0iFVZLPZADBcjxHTnQB9D_68&amp;execution=UPDATE_PASSWORD&amp;client_id=central-idp&amp;tab_id=nqQOPk24W9A" method="post">
             <div class="">
                 <div class="">
                     <label for="password-new" class="">New Password</label>
                 </div>
                 <div class="">
-                    <input type="password" id="password-new" name="password-new" class=""
-                           autofocus autocomplete="new-password"
-                           aria-invalid=""
-                    />
+                    <div class="">
+                        <input type="password" id="password-new" name="password-new" class=""
+                               autofocus autocomplete="new-password"
+                               aria-invalid=""
+                        />
+                        <button class="" type="button" aria-label="Show password"
+                                aria-controls="password-new"  data-password-toggle
+                                data-icon-show="" data-icon-hide=""
+                                data-label-show="Show password" data-label-hide="Hide password">
+                            <i class="" aria-hidden="true"></i>
+                        </button>
+                    </div>
 
                 </div>
             </div>
@@ -78,27 +80,43 @@
                     <label for="password-confirm" class="">Confirm password</label>
                 </div>
                 <div class="">
-                    <input type="password" id="password-confirm" name="password-confirm"
-                           class=""
-                           autocomplete="new-password"
-                           aria-invalid=""
-                    />
+                    <div class="">
+                        <input type="password" id="password-confirm" name="password-confirm"
+                               class=""
+                               autocomplete="new-password"
+                               aria-invalid=""
+                        />
+                        <button class="" type="button" aria-label="Show password"
+                                aria-controls="password-confirm"  data-password-toggle
+                                data-icon-show="" data-icon-hide=""
+                                data-label-show="Show password" data-label-hide="Hide password">
+                            <i class="" aria-hidden="true"></i>
+                        </button>
+                    </div>
 
 
                 </div>
             </div>
 
             <div class="">
-                <div id="kc-form-options" class="">
-                    <div class="">
-                    </div>
-                </div>
+    <div id="kc-form-options" class="">
+        <div class="">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="logout-sessions" name="logout-sessions" value="on" checked>
+                    Sign out from other devices
+                </label>
+            </div>
+        </div>
+    </div>
 
                 <div id="kc-form-buttons" class="">
                         <input class="   " type="submit" value="Submit" />
                 </div>
             </div>
         </form>
+        <script type="module" src="./resources/js/passwordVisibility.js"></script>
+
 
 
         </div>
