@@ -1,5 +1,5 @@
 /********************************************************************************
- * Copyright (c) 2021, 2023 Contributors to the Eclipse Foundation
+ * Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information regarding copyright ownership.
@@ -136,7 +136,6 @@ const Messages = {
         HAS_UPPER: 'contains upper case characters [A-Z]',
         HAS_NUMBER: 'contains numbers [0-9]',
         HAS_SPECIAL: 'contains characters other than [a-z] [A-Z] [0-9]',
-        NOT_USERNAME: 'is not equal to your username',
         OK_CONFIRM: 'confirmation and password are equal',
     }
 }
@@ -150,7 +149,6 @@ class Validator {
         ['HAS_UPPER', /[A-Z]/],
         ['HAS_NUMBER', /\d/],
         ['HAS_SPECIAL', /[^a-zA-Z0-9]/],
-        ['NOT_USERNAME', (expr) => expr !== '' && expr !== State.getInstance().atts.username],
         ['OK_CONFIRM', (expr) => expr !== '' && expr === State.getInstance().atts.confirm],
     ]
 
@@ -386,7 +384,7 @@ class FormUpdate extends Form {
         }
         this.button = document.querySelectorAll('input[type=submit]')[0]
         this.button.setAttribute('disabled', '')
-        State.getInstance().setUsername(document.getElementById('username').value)
+        State.getInstance().setUsername(document.getElementById('username')?.value ?? '')
         Validator.getInstance()
         return this
     }
