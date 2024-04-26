@@ -3,6 +3,23 @@ entries:
   centralidp:
   - apiVersion: v2
     appVersion: 23.0.7
+    created: "2024-04-26T09:23:10.368789986Z"
+    dependencies:
+    - name: keycloak
+      repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+      version: 19.3.0
+    description: Helm chart for Central Keycloak Instance
+    digest: ff64ab42a8e724a3f2f395b10d655d6c3e54f6241741b6ab36cdcb79ce674a11
+    home: https://github.com/eclipse-tractusx/portal-iam
+    name: centralidp
+    sources:
+    - https://github.com/eclipse-tractusx/portal-iam
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/portal-iam/releases/download/centralidp-3.0.0-rc.3/centralidp-3.0.0-rc.3.tgz
+    version: 3.0.0-rc.3
+  - apiVersion: v2
+    appVersion: 23.0.7
     created: "2024-04-18T10:58:26.054036692Z"
     dependencies:
     - name: keycloak
@@ -205,6 +222,23 @@ entries:
   sharedidp:
   - apiVersion: v2
     appVersion: 23.0.7
+    created: "2024-04-26T09:23:10.692406406Z"
+    dependencies:
+    - name: keycloak
+      repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+      version: 19.3.0
+    description: Helm chart for Shared Keycloak Instance
+    digest: a4571c95880f70db0ac9ea5576a747437d7581ebcabd68091e4901fabdbf3c57
+    home: https://github.com/eclipse-tractusx/portal-iam
+    name: sharedidp
+    sources:
+    - https://github.com/eclipse-tractusx/portal-iam
+    type: application
+    urls:
+    - https://github.com/eclipse-tractusx/portal-iam/releases/download/sharedidp-3.0.0-rc.3/sharedidp-3.0.0-rc.3.tgz
+    version: 3.0.0-rc.3
+  - apiVersion: v2
+    appVersion: 23.0.7
     created: "2024-04-18T10:58:26.256475073Z"
     dependencies:
     - name: keycloak
@@ -404,4 +438,4 @@ entries:
     urls:
     - https://github.com/eclipse-tractusx/portal-iam/releases/download/sharedidp-1.0.0/sharedidp-1.0.0.tgz
     version: 1.0.0
-generated: "2024-04-18T10:58:26.256590347Z"
+generated: "2024-04-26T09:23:10.692594178Z"
