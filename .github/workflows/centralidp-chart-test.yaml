@@ -95,7 +95,7 @@ jobs:
 
       # define charts to test with the --charts parameter
       - name: Run chart-testing (install)
-        run: helm install portal charts/centralidp -f charts/values-test-centralidp.yaml --namespace install --create-namespace --debug
+        run: helm install centralidp charts/centralidp -f charts/values-test-centralidp.yaml --namespace install --create-namespace --debug
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
         # Upgrade the released centralidp chart version with the locally available chart
