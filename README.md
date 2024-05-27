@@ -25,6 +25,10 @@ For further information please refer to the chart specific README files, availab
   * [Post-Install Configuration](./charts/sharedidp/README.md#post-install-configuration)
   * [Upgrade](./charts/sharedidp/README.md#upgrade)
 
+## Known Issues and Limitations
+
+See [Known Knowns](/docs/technical%20documentation/16.%20Known-Knowns.md).
+
 ## Notice for Docker images
 
 This application provides container images for demonstration purposes.
