@@ -199,3 +199,19 @@ As part of an optional housekeeping, the following clients are obsolete in versi
 ### Upgrading from version 2.0.0 to 2.1.0
 
 By enabling the seeding (Values.seeding.enabled), the CX-Central realm is upgraded by a job defined as a post-upgrade hook.
+
+### Upgrading from version 2.1.0 to 3.0.0
+
+By enabling the seeding (Values.seeding.enabled), the CX-Central realm is upgraded by a job defined as a post-upgrade hook.
+
+As the seeding job is configured to not update the bpn user attribute, make sure that the bpn user attribute of the service account "sa-cl3-cx-1" is changed to CX-Operator BPN.
+
+As part of an optional housekeeping, the following obsolete service accounts composite roles and can be deleted:
+
+* remove service account `sa-cl5-custodian-1`
+* remove the following composite roles Inside the `technical_roles_management` client
+  * "BPDM Gate Read"
+  * "BPDM Gate Read & Write"
+  * "BPDM Partner Gate"
+  * "BPDM Management"
+  * "BPDM Pool"
