@@ -95,7 +95,7 @@ jobs:
 
       # define charts to test with the --charts parameter
       - name: Run chart-testing (install)
-        run: helm install portal charts/sharedidp -f charts/values-test-sharedidp.yaml --namespace install --create-namespace --debug
+        run: helm install sharedidp charts/sharedidp -f charts/values-test-sharedidp.yaml --namespace install --create-namespace --debug
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
         # Upgrade the released sharedidp chart version with the locally available chart
