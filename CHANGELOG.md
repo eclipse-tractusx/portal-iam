@@ -2,31 +2,250 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
-## 3.0.0-rc.3
-
-### Bugfix
-
-sharedidp:
-  * fixed password update theme for portal([#109](https://github.com/eclipse-tractusx/portal-iam/issues/109))
-  * removed empty buttons from password update theme for portal [(#110)](https://github.com/eclipse-tractusx/portal-iam/pull/110)
-
-## 3.0.0-rc.2
-
-### Bugfix
-
-sharedidp:
-  * fixed broken "Update your password" theme and removed password username check ([#100](https://github.com/eclipse-tractusx/portal-iam/issues/100))
-  * fix json syntax error in import realm [(#96)](https://github.com/eclipse-tractusx/portal-iam/pull/96)
-
-## 3.0.0-rc.1
+## 3.0.0
 
 ### Change
 
 * [upgraded to Keycloak v23.0.7](https://github.com/eclipse-tractusx/portal-iam/issues/62)
-* realm configuration (centralidp) - [updated CX-Central realm](https://github.com/eclipse-tractusx/portal-iam/issues/66)
 * set postgres version of chart dependency to 15 (changed to major tag for image to get latest minor updates)
 * set resource limits and increased requests for seeding job (centralidp)
 * changed imagePullPolicy for initContainers to IfNotPresent
+* realm configuration (centralidp) * updated CX-Central realm ([#66](https://github.com/eclipse-tractusx/portal-iam/issues/66)),([#102](https://github.com/eclipse-tractusx/portal-iam/issues/102)):
+
+#### SSI
+
+* added new client for SSI Issuer Component: `Cl24-CX-SSI-CredentialIssuer`
+* added the following roles to the new client
+  * request_ssicredential
+  * decision_ssicredential
+  * view_use_case_participation
+  * view_certificates (BTW: `view_certificates` refers to credential not certificates, it's poorly named role)
+  * revoke_credentials_issuer
+  * revoke_credential
+* added thr service account `sa-cl2-04` which has role to access `Cl24-CX-SSI-CredentialIssuer` with all its roles
+* added `Cl2-CX-Portal` roles
+  * send_mail
+  * update_application_bpn_credential
+  * update_application_membership_credential
+* store_didDocument
+* service account `sa-cl24-01` added which has role to access `Cl2-CX-Portal` with the roles
+  * send_mail
+  * create_notifications
+  * update_application_bpn_credential
+  * update_application_membership_credential
+* service account `sa-cl2-05` added which has role to access the portal with the role `store_didDocument`
+* role changes to composite portal roles
+  * CX Admin
+    * added `view_use_case_participation`
+    * added `revoke_credentials_issuer`
+    * added `revoke_credential`
+    * added `view_certificates`
+    * added `view_credential_requests`
+    * added `decision_ssicredential`
+  * Company Admin
+    * added `view_use_case_participation`
+    * added `revoke_credential`
+    * added `view_certificates`
+    * added `view_credential_requests`
+  * IT Admin
+    * added `view_use_case_participation`
+    * added `revoke_credential`
+    * added `view_certificates`
+    * added `view_credential_requests`
+  * Business Admin
+    * added `view_use_case_participation`
+    * added `revoke_credential`
+    * added `view_certificates`
+    * added `view_credential_requests`
+  * `view_credential_requests` was assigned to:
+    * CX User
+    * Purchaser
+    * App Developer
+    * App Manager
+    * Sales Manager
+    * Service Manager
+    * Business Partner Data Manager
+* removed `decision_ssicredential` role from `Cl2-CX-Portal`
+
+#### BPDM
+
+* cleaned up `Cl7-CX-BPDM` client:
+  * description: BPDM Pool
+  * roles:
+    * read_partner
+    * write_partner
+    * read_partner_member
+    * read_changelog
+    * read_changelog_member
+    * read_metadata
+    * write_metadata
+* cleaned up `Cl16-CX-BPDMGate` client:
+  * description: Portal Gate
+  * roles:
+    * read_input_partner
+    * write_input_partner
+    * read_input_changelog
+    * read_output_partner
+    * write_output_partner
+    * read_output_changelog
+    * read_sharing_state
+    * write_sharing_state
+    * read_stats
+* removed the following composite roles Inside the `technical_roles_management` client
+  * `BPDM Gate Read`
+  * `BPDM Gate Read & Write`
+  * `BPDM Partner Gate`
+  * `BPDM Management`
+  * `BPDM Pool`
+* created the following composite roles inside the `technical_roles_management` client:
+  * BPDM Sharing Admin
+     With roles:
+     * read_input_partner
+     * write_input_partner 
+     * read_input_changelog
+     * read_output_partner
+     * write_output_partner 
+     * read_output_changelog
+     * read_sharing_state
+     * write_sharing_state
+     * read_stats
+  * BPDM Sharing Input Manager
+     * read_input_partner
+     * write_input_partner 
+     * read_input_changelog
+     * read_sharing_state
+     * write_sharing_state
+     * read_stats
+  * BPDM Sharing Input Consumer
+     * read_input_partner
+     * read_input_changelog
+     * read_sharing_state
+     * read_stats
+  * BPDM Sharing Output Consumer
+     * read_output_partner
+     * read_output_changelog
+     * read_sharing_state
+     * read_stats
+  * BPDM Pool Consumer
+     * read_changelog
+     * read_changelog_member
+     * read_metadata 
+  * BPDM Pool Admin
+     * read_partner
+     * write_partner
+     * read_partner_member
+     * read_changelog
+     * read_changelog_member
+     * read_metadata
+     * write_metadata
+* role `Company Admin` inside the client `Cl1-CX-Registration` got following roles added:
+  * `read_partner_member` of client Cl7-CX-BPDM
+  * `read_changelog_member` of client Cl7-CX-BPDM
+  * `read_metadata` of client Cl7-CX-BPDM
+  * `read_partner` of client Cl7-CX-BPDM
+* role `Company Admin` inside the client `Cl2-CX-Portal` got the following roles added:
+  * `read_partner_member` of client Cl7-CX-BPDM
+  * `read_changelog_member` of client Cl7-CX-BPDM
+  * `read_metadata` of client Cl7-CX-BPDM
+* role `CX Admin` inside the client `Cl2-CX-Portal` got the following roles added:
+  * all roles of Cl7-CX-BPDM
+  * all roles of Cl16-CX-BPDMGate
+* added the composite role `Business Partner Data Manager` inside the client `Cl2-CX-Portal`, with following roles
+  * `read_partner_member` of client Cl7-CX-BPDM
+  * `read_changelog_member` of client Cl7-CX-BPDM
+  * `read_metadata` of client Cl7-CX-BPDM
+  * and all `CX User` roles
+* added the composite role `BPDM Pool Sharing Consumer` inside the client `technical_roles_management` and assign following roles
+  * `read_partner_member` of client Cl7-CX-BPDM
+  * `read_changelog_member` of client Cl7-CX-BPDM
+  * `read_metadata` of client Cl7-CX-BPDM
+  * `read_changelog` of client Cl7-CX-BPDM
+* assigned the composite role `BPDM Pool Consumer`of the client `technical_user_management` to all Composite roles in the Portal Client.
+  * CX Admin
+  * Company Admin
+  * Business Admin
+  * IT Admin
+  * CX User
+  * Purchaser
+  * App Developer
+  * App Manager
+  * Sales Manager
+  * Service Manager
+  * Business Partner Data Manager
+* assigned to the `sa-cl7-cx-5` the composite roles `BPDM Pool Admin` and `BPDM Sharing Admin`
+
+#### Clean up
+
+* removed `sa-cl5-custodian-1` (obsolete)
+* BPN mapper and user attribute `bpn` were added to the following service accounts:
+  * sa-cl1-reg-2
+  * sa-cl2-01
+  * sa-cl2-02
+  * sa-cl2-03
+  * sa-cl2-04
+  * sa-cl2-05
+  * sa-cl24-01
+  * sa-cl7-cx-5
+  * sa-cl8-cx-1
+* fixed `sa-cl3-cx-1`
+  * remove composite roles `Identity Wallet Management` and `Dataspace Discovery`
+  * change to bpn value in user attribute to CX-Operator BPN
+* removed `upload_documents` role from `Cl2-CX-Portal`
+* removed `my_user_account` role from `Cl2-CX-Portal`
+* removed `view_tech_roles` role from `Cl2-CX-Portal`
+* removed `setup_client` role from `Cl2-CX-Portal`
+* removed `view_dataspaces` role from `Cl2-CX-Portal`
+* removed `filter_apps` role from `Cl2-CX-Portal`
+* removed `view_services` role from `Cl2-CX-Portal`
+* removed `subscribe_service_offering` role from `Cl2-CX-Portal`
+* created `service_management` for client `Cl2-CX-Portal`
+* role changes to composite portal roles:
+  * App Manager
+    * removed `add_user_account`
+    * added `view_connectors`
+    * added `view_app_subscription`
+    * added `view_service_subscriptions`
+  * Business Admin
+    * added `view_client_roles`
+    * added `view_own_user_account**?**
+    * added `update_own_user_account`
+    * removed `view_connectors`
+    * added `view_documents`
+    * added `view_membership`
+    * added `delete_notifications`
+    * added `request_ssicredential` (Client: `Cl2-CX-Portal`)
+  * IT Admin
+    * added `view_documents`
+    * added `request_ssicredential` (Client: `Cl2-CX-Portal`)
+  * Service Manager
+    * added `add_self_descriptions`
+    * added `delete_documents`
+    * added `service_management`
+  * App Developer
+    * added `view_license_types`
+    * added `view_service_subscriptions`
+  * Sales Manager
+    * added `view_app_subscription`
+    * added `app_management`
+    * added view_service_subscriptions
+    * added `service_management`
+  * CX Admin
+    * added `service_management`
+    * added `request_ssicredential` (Client: `Cl2-CX-Portal`)
+  * Purchaser
+    * added `subscribe_service`
+    * added `view_service_subscriptions`
+  * CX User
+    * added `view_service_subscriptions`
+  * Company Admin
+    * added `request_ssicredential` (Client: `Cl2-CX-Portal`)
+
+### Bugfix
+
+sharedidp:
+  * fixed broken `Update your password` theme and removed password username check ([#109](https://github.com/eclipse-tractusx/portal-iam/issues/109)),([#100](https://github.com/eclipse-tractusx/portal-iam/issues/100))
+  * removed empty buttons from password update theme for portal [(#110)](https://github.com/eclipse-tractusx/portal-iam/pull/110)
+  * fix json syntax error in import realm [(#96)](https://github.com/eclipse-tractusx/portal-iam/pull/96)
 
 ### Technical Support
 
@@ -36,8 +255,6 @@ sharedidp:
 * helm-test: build images for init containers within workflow [(#89)](https://github.com/eclipse-tractusx/portal-iam/pull/89)
 * combined helm chart release and image build for init containers [(#89)](https://github.com/eclipse-tractusx/portal-iam/pull/89)
 * changed image build workflows for init containers: refactor those workflows to be only relevant for development phase, no latest tag anymore
-
-Please be aware that **this version is still in Release Candidate phase**: especially documentation is still WIP.
 
 ## 2.1.0
 
