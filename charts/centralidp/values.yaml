@@ -32,20 +32,13 @@ keycloak:
   # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
   # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
   httpRelativePath: "/auth/"
-  extraEnvVars:
-    - name: KEYCLOAK_EXTRA_ARGS
-      value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"
   replicaCount: 3
   extraVolumes:
     - name: themes
       emptyDir: {}
-    - name: realms
-      emptyDir: {}
   extraVolumeMounts:
     - name: themes
       mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
-    - name: realms
-      mountPath: "/realms"
   initContainers:
     - name: import
       image: docker.io/tractusx/portal-iam:v3.0.1
@@ -57,13 +50,9 @@ keycloak:
         - |
           echo "Copying themes..."
           cp -R /import/themes/catenax-central/* /themes
-          echo "Copying realms..."
-          cp -R /import/catenax-central/realms/* /realms
       volumeMounts:
       - name: themes
         mountPath: "/themes"
-      - name: realms
-        mountPath: "/realms"
   service:
     sessionAffinity: ClientIP
   ingress:
@@ -155,15 +144,21 @@ seeding:
 # enable to upgrade the configuration of the CX-Central realm from previous version;
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
 # for configuration possibly not covered by the seeding job
-  enabled: false
-  image: "docker.io/tractusx/portal-iam-seeding:v3.0.1-iam"
-  imagePullPolicy: "IfNotPresent"
+  enabled: true
+  image: "192.168.49.2:5000/iam-seeding:latest"
+  imagePullPolicy: "Always"
   portContainer: 8080
   authRealm: "master"
   useAuthTrail: "true"
   dataPaths:
     dataPath0: "realms/CX-Central-realm.json"
   instanceName: "central"
+  existingSecret: ""
+  clients:
+    - clientId: "sa-cl2-01"
+      clientSecret: ""
+    - clientId: "sa-cl2-02"
+      clientSecret: ""
   excludedUserAttributes:
     attribute0: "bpn"
     attribute1: "organisation"
@@ -183,8 +178,8 @@ seeding:
       mountPath: "app/realms"
   initContainers:
     - name: init-cx-central
-      image: docker.io/tractusx/portal-iam:v3.0.1
-      imagePullPolicy: IfNotPresent
+      image: 192.168.49.2:5000/iam:latest
+      imagePullPolicy: Always
       command:
         - sh
       args:

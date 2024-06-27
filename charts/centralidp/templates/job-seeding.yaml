@@ -25,7 +25,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     "batch.kubernetes.io/job-tracking": "true"
-    "helm.sh/hook": post-upgrade
+    "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "-5"
 spec:
   template:
@@ -65,6 +65,29 @@ spec:
             value: "{{ .Values.seeding.excludedUserAttributes.attribute0 }}"
           - name: "KEYCLOAKSEEDING__EXCLUDEDUSERATTRIBUTES__1"
             value: "{{ .Values.seeding.excludedUserAttributes.attribute1 }}"
+          - name: "KeycloakSeeding__Realms__0__Realm"
+            value: "CX-Central"
+          - name: "KeycloakSeeding__Realms__0__Clients__100__ClientId"
+            value: "Cl2-CX-Portal"
+          - name: "KeycloakSeeding__Realms__0__Clients__100__RedirectUris__0"
+            value: "http://redirect.test"
+
+          #############################
+          ## SERVICE ACCOUNTS
+          #############################
+
+          {{- $index := 0 }}
+          {{- $secret := include "centralidp.seeding.secretName" . -}}
+          {{- range .Values.seeding.clients }}
+          - name: KeycloakSeeding__Realms__0__Clients__{{ $index }}__ClientId
+            value: {{ .clientId | quote }}
+          - name: KeycloakSeeding__Realms__0__Clients__{{ $index }}__Secret
+            valueFrom:
+              secretKeyRef:
+                name: {{ $secret }}
+                key: {{ .clientId }}
+          {{- $index = add1 $index }}
+          {{- end }}
         ports:
         - name: http
           containerPort: {{ .Values.seeding.portContainer }}

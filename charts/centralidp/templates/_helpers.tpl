@@ -15,7 +15,9 @@
 * under the License.
 *
 * SPDX-License-Identifier: Apache-2.0
+*/}}
 
+{{/*
 Define "centralidp.fullname" like ""common.names.fullname" in the bitnami common chart but setting ".Chart.Name" to "keycloak".
 This is necessary to retrieve the keycloak service name for the execution of the seeding job.
 */}}
@@ -29,5 +31,16 @@ This is necessary to retrieve the keycloak service name for the execution of the
 {{- else -}}
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Define secret name for realm seeding.
+*/}}
+{{- define "centralidp.seeding.secretName" -}}
+{{- if .Values.seeding.existingSecret -}}
+{{- .Values.seeding.existingSecret }}
+{{- else -}}
+{{- include "centralidp.fullname" . -}}-realm-seeding
 {{- end -}}
 {{- end -}}
