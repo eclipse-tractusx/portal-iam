@@ -18,21 +18,22 @@
 ###############################################################
 
 keycloak:
+  # set secret to enable upgrade from chart version 3.0.0
+  postgresql:
+    auth:
+      existingSecret: "centralidp-postgresql"
+realmSeeding:
   initContainers:
-    - name: import
+    - name: init-cx-central
       image: kind-registry:5000/iam:testing
-      imagePullPolicy: IfNotPresent
+      imagePullPolicy: Always
       command:
         - sh
       args:
         - -c
         - |
-          echo "Copying themes..."
-          cp -R /import/themes/catenax-central/* /themes
-          echo "Copying realms..."
-          cp -R /import/catenax-central/realms/* /realms
+          echo "Copying CX Central realm..."
+          cp -R /import/catenax-central/realms/* /app/realms
       volumeMounts:
-      - name: themes
-        mountPath: "/themes"
       - name: realms
-        mountPath: "/realms"
+        mountPath: "app/realms"
