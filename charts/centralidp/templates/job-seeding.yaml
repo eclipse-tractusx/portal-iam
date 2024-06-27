@@ -21,16 +21,16 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "centralidp.fullname" . }}-upgrade-seeding-{{ .Release.Revision }}
+  name: {{ include "centralidp.fullname" . }}-realm-seeding-{{ .Release.Revision }}
   namespace: {{ .Release.Namespace }}
 spec:
   template:
     metadata:
-      name: {{ include "centralidp.fullname" . }}-upgrade-seeding
+      name: {{ include "centralidp.fullname" . }}-realm-seeding
     spec:
       restartPolicy: Never
       containers:
-      - name: {{ include "centralidp.fullname" . }}-upgrade-seeding
+      - name: {{ include "centralidp.fullname" . }}-realm-seeding
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
