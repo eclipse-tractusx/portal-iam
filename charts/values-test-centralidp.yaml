@@ -18,10 +18,20 @@
 ###############################################################
 
 keycloak:
-  # set secret to enable upgrade from chart version 3.0.0
-  postgresql:
-    auth:
-      existingSecret: "centralidp-postgresql"
+  initContainers:
+    - name: import
+      image: kind-registry:5000/iam:testing
+      imagePullPolicy: Always
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          echo "Copying themes..."
+          cp -R /import/themes/catenax-central/* /themes
+      volumeMounts:
+      - name: themes
+        mountPath: "/themes"
 realmSeeding:
   initContainers:
     - name: init-cx-central
