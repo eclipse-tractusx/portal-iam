@@ -213,4 +213,5 @@ spec:
       {{- toYaml .Values.realmSeeding.initContainers | nindent 8 }}
       volumes:
       {{- toYaml .Values.realmSeeding.extraVolumes | nindent 8 }}
+      automountServiceAccountToken: false
 {{- end -}}
