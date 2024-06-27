@@ -210,12 +210,14 @@ realmSeeding:
   bpnUserAttribute:
     bpn: "BPNL00000003CRHK"
     initialUser: "ac1cf001-7fbc-1f2f-817f-bce058020006"
-  identityProvider:
-    alias: "CX-Operator"
-    tokenUrl: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/token"
-    jwksUrl: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/certs"
-    authorizationUrl: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/auth"
-    logoutUrl: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/logout"
+  # -- Set sharedidp address to enable the identity provider connection to CX-Operator realm (sharedidp)
+  sharedidp:
+    address: "https://sharedidp.example.org"
+    idpAlias: "CX-Operator"
+    tokenPath: "/auth/realms/CX-Operator/protocol/openid-connect/token"
+    jwksPath: "/auth/realms/CX-Operator/protocol/openid-connect/certs"
+    authorizationPath: "/auth/realms/CX-Operator/protocol/openid-connect/auth"
+    logoutPath: "/auth/realms/CX-Operator/protocol/openid-connect/logout"
   # -- Set client secrets and bpn user attribute for additional service accounts;
   # meant to enable possible test data, default value for client secrets is "changeme"
   extraServiceAccounts:

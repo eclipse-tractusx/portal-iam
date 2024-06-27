@@ -167,15 +167,15 @@ spec:
           #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__ALIAS"
-            value: "{{ .Values.realmSeeding.identityProvider.alias }}"
+            value: "{{ .Values.realmSeeding.sharedidp.idpAlias }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__TOKENURL"
-            value: "{{ .Values.realmSeeding.identityProvider.tokenUrl }}"
+            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.tokenPath }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__JWKSURL"
-            value: "{{ .Values.realmSeeding.identityProvider.jwksUrl }}"
+            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.jwksPath }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__AUTHORIZATIONURL"
-            value: "{{ .Values.realmSeeding.identityProvider.authorizationUrl }}"
+            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.authorizationPath }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__LOGOUTURL"
-            value: "{{ .Values.realmSeeding.identityProvider.logoutUrl }}"
+            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.logoutPath }}"
 
           ###############################
           ## EXTRA SERVICE ACCOUNTS

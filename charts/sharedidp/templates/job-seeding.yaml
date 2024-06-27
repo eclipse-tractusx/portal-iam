@@ -70,13 +70,13 @@ spec:
           #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__CLIENTID"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.cxCentralConnection.clientId }}"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp.clientId }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__REDIRECTURIS__0"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.cxCentralConnection.redirect }}"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp.address }}{{ .Values.realmSeeding.realms.cxOperator.centralidp.redirectPath }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__ATTRIBUTES__0__NAME"
             value: "jwks.url"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__ATTRIBUTES__0__VALUE"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.cxCentralConnection.jwksUrl }}"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp.address }}{{ .Values.realmSeeding.realms.cxOperator.centralidp.jwksPath }}"
 
           #############################
           ## CX-OPERATOR MAIL CONFIG
