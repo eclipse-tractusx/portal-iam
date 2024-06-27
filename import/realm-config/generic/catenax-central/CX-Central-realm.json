@@ -66,7 +66,7 @@
       },
       {
         "id": "4c19f2aa-f9b9-473e-ba5c-46c2f4e52c8b",
-        "name": "default-roles-catena-x realm",
+        "name": "default-roles-cx-central",
         "description": "${role_default-roles}",
         "composite": true,
         "composites": {
@@ -2576,7 +2576,7 @@
   "groups": [],
   "defaultRole": {
     "id": "4c19f2aa-f9b9-473e-ba5c-46c2f4e52c8b",
-    "name": "default-roles-catena-x realm",
+    "name": "default-roles-cx-central",
     "description": "${role_default-roles}",
     "composite": true,
     "clientRole": false,
@@ -2647,7 +2647,7 @@
         "userId" : "656e8a94-188b-4a3e-9eec-b45d8efd8347",
         "userName" : "cx-operator@cx.com"
       } ],
-      "realmRoles" : [ "default-roles-catena-x realm" ],
+      "realmRoles" : [ "default-roles-cx-central" ],
       "clientRoles" : {
         "Cl2-CX-Portal" : [ "CX Admin" ]
       },
@@ -2670,7 +2670,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "realm-management": [
@@ -2698,7 +2698,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "Cl2-CX-Portal": [
@@ -2724,7 +2724,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "Cl2-CX-Portal": [
@@ -2751,7 +2751,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "notBefore": 0,
       "groups": []
@@ -2772,7 +2772,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "Cl24-CX-SSI-CredentialIssuer": [
@@ -2803,7 +2803,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "Cl2-CX-Portal": [
@@ -2830,7 +2830,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "Cl21-CX-DF": [
@@ -2858,7 +2858,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "Cl22-CX-BPND": [
@@ -2886,7 +2886,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "Cl2-CX-Portal": [
@@ -2915,7 +2915,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "technical_roles_management": [
@@ -2946,7 +2946,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "Cl5-CX-Custodian": [
@@ -2979,7 +2979,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "technical_roles_management": [
@@ -3033,7 +3033,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "Cl2-CX-Portal": [
