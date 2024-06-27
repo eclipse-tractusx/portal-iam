@@ -33,7 +33,7 @@ keycloak:
   # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
   # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
   httpRelativePath: "/auth/"
-  replicaCount: 3
+  replicaCount: 1
   extraVolumes:
     - name: themes
       emptyDir: {}
