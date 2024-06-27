@@ -131,7 +131,7 @@ keycloak:
     existingSecretDatabaseKey: ""
     existingSecretPasswordKey: ""
 
-seeding:
+realmSeeding:
 # -- Seeding job to create and update the CX-Central realm:
 # besides creating the CX-Central realm, the job can be used to update
 # the configuration of the realm when upgrading to a new version;
