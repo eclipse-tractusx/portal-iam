@@ -149,16 +149,17 @@ spec:
             value: "bpn"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__Attributes__0__VALUES__0"
             value: "{{ .Values.seeding.bpnUserAttribute.bpn }}"
-          # Comment out until fix for seeding script
-          # {{- $index := 1 }}
-          # {{- $bpn := .Values.seeding.bpnUserAttribute.bpn -}}
-          # {{- range .Values.seeding.serviceAccounts.clientSecrets }}
-          # - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME
-          #   value: {{ printf "service-account-%s" .clientId | quote }}
-          # - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__Attributes__0__VALUES__0
-          #   value: {{ $bpn }}
-          # {{- $index = add1 $index }}
-          # {{- end }}
+          {{- $index := 1 }}
+          {{- $bpn := .Values.seeding.bpnUserAttribute.bpn -}}
+          {{- range .Values.seeding.serviceAccounts.clientSecrets }}
+          - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME
+            value: {{ printf "service-account-%s" .clientId | quote }}
+          - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__Attributes__0__NAME
+            value: "bpn"
+          - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__Attributes__0__VALUES__0
+            value: {{ $bpn }}
+          {{- $index = add1 $index }}
+          {{- end }}
 
           #############################
           ## IDENTITY PROVIDER
