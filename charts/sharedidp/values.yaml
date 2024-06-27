@@ -149,12 +149,10 @@ realmSeeding:
   realms:
     cxOperator:
       name: "CX-Operator"
-      # -- Set centralidp address and clients secret for the connection to the CX-Central (centralidp)
+      # -- Set centralidp address for the connection to the CX-Central (centralidp)
       centralidp:
         address: "https://centralidp.example.org"
         clientId: "central-idp"
-        # PLEASE SET CLIENT SECRET for all non-testing and non-local purposes, default value is "changeme"
-        clientSecret: ""
         redirectPath: "/auth/realms/CX-Central/broker/CX-Operator/endpoint/*"
         jwksPath: "/auth/realms/CX-Central/protocol/openid-connect/certs"
       mailing:
