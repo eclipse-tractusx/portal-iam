@@ -68,34 +68,34 @@ spec:
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__CLIENTID"
             value: "{{ .Values.realmSeeding.clients.registration.clientId }}"
           {{- range $index, $redirects := .Values.realmSeeding.clients.registration.redirects }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__REDIRECTURIS__{{ $index }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
           {{- end }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__CLIENTID"
             value: "{{ .Values.realmSeeding.clients.portal.clientId }}"
           {{- range $index, $redirects := .Values.realmSeeding.clients.portal.redirects }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__REDIRECTURIS__{{ $index }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
           {{- end }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__2__CLIENTID"
             value: "{{ .Values.realmSeeding.clients.semantics.clientId }}"
           {{- range $index, $redirects := .Values.realmSeeding.clients.semantics.redirects }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__2__REDIRECTURIS__{{ $index }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__2__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
           {{- end }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__CLIENTID"
             value: "{{ .Values.realmSeeding.clients.semantics.clientId }}"
           {{- range $index, $redirects := .Values.realmSeeding.clients.semantics.redirects }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__REDIRECTURIS__{{ $index }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
           {{- end }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__CLIENTID"
             value: "{{ .Values.realmSeeding.clients.miw.clientId }}"
           {{- range $index, $redirects := .Values.realmSeeding.clients.miw.redirects }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__REDIRECTURIS__{{ $index }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
           {{- end }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__SECRET
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__SECRET"
             valueFrom:
               secretKeyRef:
                 name: "{{ template "centralidp.secret.clients" . }}"
@@ -103,10 +103,10 @@ spec:
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__CLIENTID"
             value: "{{ .Values.realmSeeding.clients.bpdm.clientId }}"
           {{- range $index, $redirects := .Values.realmSeeding.clients.bpdm.redirects }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__REDIRECTURIS__{{ $index }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
           {{- end }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__SECRET
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__SECRET"
             valueFrom:
               secretKeyRef:
                 name: "{{ template "centralidp.secret.clients" . }}"
@@ -114,10 +114,10 @@ spec:
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__6__CLIENTID"
             value: "{{ .Values.realmSeeding.clients.bpdmGate.clientId }}"
           {{- range $index, $redirects := .Values.realmSeeding.clients.bpdmGate.redirects }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__6__REDIRECTURIS__{{ $index }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__6__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
           {{- end }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__6__SECRET
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__6__SECRET"
             valueFrom:
               secretKeyRef:
                 name: "{{ template "centralidp.secret.clients" . }}"
@@ -130,13 +130,13 @@ spec:
           {{- $index := 20 }}
           {{- $secretBaseSa := include "centralidp.secret.serviceAccounts" . -}}
           {{- range .Values.realmSeeding.serviceAccounts.clientSecrets }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__CLIENTID
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__CLIENTID"
             value: {{ .clientId | quote }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__SECRET
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__SECRET"
             valueFrom:
               secretKeyRef:
-                name: {{ $secretBaseSa }}
-                key: {{ .clientId }}
+                name: "{{ $secretBaseSa }}"
+                key: "{{ .clientId }}"
           {{- $index = add1 $index }}
           {{- end }}
 
@@ -153,11 +153,11 @@ spec:
           {{- $index := 1 }}
           {{- $bpn := .Values.realmSeeding.bpnUserAttribute.bpn -}}
           {{- range .Values.realmSeeding.serviceAccounts.clientSecrets }}
-          - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME"
             value: {{ printf "service-account-%s" .clientId | quote }}
-          - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__Attributes__0__NAME
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__ATTRIBUTES__0__NAME"
             value: "bpn"
-          - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__Attributes__0__VALUES__0
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__ATTRIBUTES__0__VALUES__0"
             value: {{ $bpn }}
           {{- $index = add1 $index }}
           {{- end }}
@@ -184,16 +184,16 @@ spec:
           {{- $index := 100 }}
           {{- $secret := include "centralidp.secret.extraServiceAccounts" . -}}
           {{- range .Values.realmSeeding.extraServiceAccounts.clientSecretsAndBpn }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__CLIENTID
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__CLIENTID"
             value: {{ .clientId | quote }}
-          - name: KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__SECRET
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__SECRET"
             valueFrom:
               secretKeyRef:
                 name: {{ $secret }}
                 key: {{ .clientId }}
-          - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME"
             value: {{ printf "service-account-%s" .clientId | quote }}
-          - name: KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__Attributes__0__VALUES__0
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__ATTRIBUTES__0__VALUES__0"
             value: {{ .bpn | quote }}
           {{- $index = add1 $index }}
           {{- end }}
