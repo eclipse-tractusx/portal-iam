@@ -155,6 +155,7 @@ realmSeeding:
         clientId: "central-idp"
         redirectPath: "/auth/realms/CX-Central/broker/CX-Operator/endpoint/*"
         jwksPath: "/auth/realms/CX-Central/protocol/openid-connect/certs"
+      # -- Set mailing configuration for CX-Operator realm
       mailing:
         host: "smtp.example.org"
         port: "123"
