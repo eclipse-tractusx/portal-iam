@@ -20,8 +20,9 @@
 keycloak:
   auth:
     adminUser: admin
+    adminPassword: ""
     # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
-    existingSecret: "centralidp-keycloak"
+    existingSecret: ""
   # -- Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   production: false
   # -- reverse Proxy mode edge, reencrypt, passthrough or none;
@@ -101,46 +102,37 @@ keycloak:
     auth:
       # -- Non-root username.
       username: kccentral
+      # -- Non-root user password.
+      password: ""
+      # -- Root user password.
+      postgresPassword: ""
       # -- Database name.
       database: iamcentralidp
       # -- Secret containing the passwords for root usernames postgres and non-root username kccentral.
-      existingSecret: "centralidp-postgres"
+      existingSecret: ""
     architecture: replication
   externalDatabase:
   # -- External PostgreSQL configuration
   # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
-    # Database host ('-primary' is added as postfix).
-    host: "centralidp-postgresql-external-db"
+    host: ""
     # -- Database port number.
     port: 5432
-    # -- Non-root username for centralidp.
-    user: "kccentral"
+    # -- Non-root username.
+    user: ""
     # -- Database name.
-    database: "iamcentralidp"
-    # -- Password for the non-root username (default 'kccentral'). Secret-key 'password'.
+    database: ""
+    # -- Password for the non-root username.
     password: ""
-    # -- Secret containing the password non-root username, (default 'kccentral').
-    existingSecret: "centralidp-keycloak-external-db"
-    # -- Name of an existing secret key containing the database credentials.
-    existingSecretPasswordKey: "password"
-
-secrets:
-  auth:
-    existingSecret:
-      # -- Password for the admin username 'admin'. Secret-key 'admin-password'.
-      adminpassword: ""
-  postgresql:
-    auth:
-      existingSecret:
-        # -- Password for the root username 'postgres'. Secret-key 'postgres-password'.
-        postgrespassword: ""
-        # -- Password for the non-root username 'kccentral'. Secret-key 'password'.
-        password: ""
-        # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
-        replicationPassword: ""
+    # -- Secret containing the database credentials
+    existingSecret: ""
+    existingSecretHostKey: ""
+    existingSecretPortKey: ""
+    existingSecretUserKey: ""
+    existingSecretDatabaseKey: ""
+    existingSecretPasswordKey: ""
 
 seeding:
-# -- Seeding job to upgrade CX_Central realm:
+# -- Seeding job to create and upgrade CX_Central realm:
 # enable to upgrade the configuration of the CX-Central realm from previous version;
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
 # for configuration possibly not covered by the seeding job
@@ -178,7 +170,7 @@ seeding:
       mountPath: "app/realms"
   initContainers:
     - name: init-cx-central
-      image: 192.168.49.2:5000/iam:latest
+      image: 192.168.49.2:5000/iam:test
       imagePullPolicy: Always
       command:
         - sh

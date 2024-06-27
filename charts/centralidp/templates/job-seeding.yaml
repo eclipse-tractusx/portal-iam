@@ -51,7 +51,7 @@ spec:
           - name: "KEYCLOAK__CENTRAL__PASSWORD"
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.keycloak.auth.existingSecret }}"
+                name: "{{ template "centralidp.fullname" . }}"
                 key: "admin-password"
           - name: "KEYCLOAK__CENTRAL__AUTHREALM"
             value: "{{ .Values.seeding.authRealm }}"
