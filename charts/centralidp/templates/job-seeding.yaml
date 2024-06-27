@@ -93,6 +93,9 @@ spec:
         volumeMounts:
         {{- toYaml .Values.seeding.extraVolumeMounts | nindent 10 }}
       initContainers:
+        - name: wait-for-keycloak
+          image: appropriate/curl:latest
+          command: [ 'sh', '-c', 'until curl -s http://{{ template "centralidp.fullname" . }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
       {{- toYaml .Values.seeding.initContainers | nindent 8 }}
       volumes:
       {{- toYaml .Values.seeding.extraVolumes | nindent 8 }}
