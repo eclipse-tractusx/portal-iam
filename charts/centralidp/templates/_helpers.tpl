@@ -35,12 +35,34 @@ This is necessary to retrieve the keycloak service name for the execution of the
 {{- end -}}
 
 {{/*
-Define secret name for realm seeding.
+Define secret name for clients secrets of clients (realm seeding).
 */}}
-{{- define "centralidp.seeding.secretName" -}}
-{{- if .Values.seeding.existingSecret -}}
-{{- .Values.seeding.existingSecret }}
+{{- define "centralidp.secret.clients" -}}
+{{- if .Values.seeding.clients.existingSecret -}}
+{{- .Values.seeding.clients.existingSecret }}
 {{- else -}}
-{{- include "centralidp.fullname" . -}}-realm-seeding
+{{- include "centralidp.fullname" . -}}-clients
+{{- end -}}
+{{- end -}}
+
+{{/*
+Define secret name for clients secrets of base service accounts (realm seeding).
+*/}}
+{{- define "centralidp.secret.serviceAccounts" -}}
+{{- if .Values.seeding.serviceAccounts.existingSecret -}}
+{{- .Values.seeding.serviceAccounts.existingSecret }}
+{{- else -}}
+{{- include "centralidp.fullname" . -}}-base-service-accounts
+{{- end -}}
+{{- end -}}
+
+{{/*
+Define secret name for clients secrets of additional service accounts (realm seeding).
+*/}}
+{{- define "centralidp.secret.extraServiceAccounts" -}}
+{{- if .Values.seeding.extraServiceAccounts.existingSecret -}}
+{{- .Values.seeding.extraServiceAccounts.existingSecret }}
+{{- else -}}
+{{- include "centralidp.fullname" . -}}-extra-service-accounts
 {{- end -}}
 {{- end -}}

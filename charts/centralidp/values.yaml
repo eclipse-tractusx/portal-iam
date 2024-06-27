@@ -132,36 +132,116 @@ keycloak:
     existingSecretPasswordKey: ""
 
 seeding:
-# -- Seeding job to create and upgrade CX_Central realm:
-# enable to upgrade the configuration of the CX-Central realm from previous version;
+# -- Seeding job to create and update the CX-Central realm:
+# besides creating the CX-Central realm, the job can be used to update
+# the configuration of the realm when upgrading to a new version;
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
 # for configuration possibly not covered by the seeding job
   enabled: true
+  realm: "CX-Central"
+  # -- Set redirect addresses and - in the case of confidential clients - clients secrets
+  # for clients which are part of the basic CX-Central realm setup
+  # PLEASE SET CLIENT SECRETS for all non-testing and non-local purposes, default value is "changeme"
+  clients:
+    registration:
+      clientId: "Cl1-CX-Registration"
+      redirects:
+        - https://portal.example.org
+    portal:
+      clientId: "Cl2-CX-Portal"
+      rootUrl: https://portal.example.org/home
+      redirects:
+        - https://portal.example.org
+    semantics:
+      clientId: "Cl3-CX-Semantic"
+      redirects:
+        - https://portal.example.org/*
+    miw:
+      clientId: "Cl5-CX-Custodian"
+      clientSecret: ""
+      redirects:
+        - https://managed-identity-wallets.example.org/*
+    bpdm:
+      clientId: "Cl7-CX-BPDM"
+      clientSecret: ""
+      redirects:
+        - https://partners-pool.example.org/*
+    bpdmGate:
+      clientId: "Cl16-CX-BPDMGate"
+      clientSecret: ""
+      redirects:
+        - https://partners-gate.example.org/*
+    # -- Option to provide an existingSecret for the clients with clientId as key and clientSecret as value
+    existingSecret: ""
+  # -- Set client secrets for service accounts which are part of the basic CX-Central realm setup
+  # PLEASE SET CLIENT SECRETS for all non-testing and non-local purposes, default value is "changeme"
+  serviceAccounts:
+    clientSecrets:
+      - clientId: "sa-cl1-reg-2"
+        clientSecret: ""
+      - clientId: "sa-cl2-01"
+        clientSecret: ""
+      - clientId: "sa-cl2-02"
+        clientSecret: ""
+      - clientId: "sa-cl2-03"
+        clientSecret: ""
+      - clientId: "sa-cl2-04"
+        clientSecret: ""
+      - clientId: "sa-cl2-05"
+        clientSecret: ""
+      - clientId: "sa-cl3-cx-1"
+        clientSecret: ""
+      - clientId: "sa-cl5-custodian-2"
+        clientSecret: ""
+      - clientId: "sa-cl7-cx-5"
+        clientSecret: ""
+      - clientId: "sa-cl8-cx-1"
+        clientSecret: ""
+      - clientId: "sa-cl21-01"
+        clientSecret: ""
+      - clientId: "sa-cl22-01"
+        clientSecret: ""
+      - clientId: "sa-cl24-01"
+        clientSecret: ""
+    # -- Option to provide an existingSecret for the base service accounts with clientId as key and clientSecret as value
+    existingSecret: ""
+  # -- Set value for the 'bpn' user attribute for the initial user and the base service account users
+  # initialUser refers to the username
+  bpnUserAttribute:
+    bpn: "BPNL00000003CRHK"
+    initialUser: "ac1cf001-7fbc-1f2f-817f-bce058020006"
+  identityProvider:
+    alias: "CX-Operator"
+    tokenUrl: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/token"
+    jwksUrl: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/certs"
+    authorizationUrl: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/auth"
+    logoutUrl: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/logout"
+  # -- Set client secrets and bpn user attribute for additional service accounts;
+  # meant to enable possible test data, default value for client secrets is "changeme"
+  extraServiceAccounts:
+    clientSecretsAndBpn: []
+      # - clientId: "sa-test-01"
+      #   clientSecret: ""
+      #   bpn: "TBD1"
+      # - clientId: "sa-test-02"
+      #   clientSecret: ""
+      #   bpn: "TBD2"
+    # -- Option to provide an existingSecret for additional service accounts with clientId as key and clientSecret as value
+    existingSecret: ""
   image: "192.168.49.2:5000/iam-seeding:latest"
   imagePullPolicy: "Always"
   portContainer: 8080
   authRealm: "master"
   useAuthTrail: "true"
-  dataPaths:
-    dataPath0: "realms/CX-Central-realm.json"
-  instanceName: "central"
-  existingSecret: ""
-  clients:
-    - clientId: "sa-cl2-01"
-      clientSecret: ""
-    - clientId: "sa-cl2-02"
-      clientSecret: ""
-  excludedUserAttributes:
-    attribute0: "bpn"
-    attribute1: "organisation"
+  dataPath: "realms/CX-Central-realm.json"
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:
-      cpu: 75m
-      memory: 200M
+      cpu: 250m
+      memory: 600M
     limits:
-      cpu: 225m
-      memory: 200M
+      cpu: 500m
+      memory: 600M
   extraVolumes:
     - name: realms
       emptyDir: {}
