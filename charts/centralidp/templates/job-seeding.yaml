@@ -36,6 +36,7 @@ spec:
           capabilities:
             drop:
             - ALL
+          readOnlyRootFilesystem: true
           runAsNonRoot: true
         image: "{{ .Values.realmSeeding.image }}"
         imagePullPolicy: "{{ .Values.realmSeeding.imagePullPolicy }}"
