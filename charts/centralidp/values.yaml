@@ -110,7 +110,7 @@ keycloak:
       database: iamcentralidp
       # -- Secret containing the passwords for root usernames postgres and non-root username kccentral.
       existingSecret: ""
-    architecture: replication
+    architecture: standalone
   externalDatabase:
   # -- External PostgreSQL configuration
   # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
