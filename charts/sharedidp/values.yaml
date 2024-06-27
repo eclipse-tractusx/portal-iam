@@ -20,8 +20,9 @@
 keycloak:
   auth:
     adminUser: admin
+    adminPassword: ""
     # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
-    existingSecret: "sharedidp-keycloak"
+    existingSecret: ""
   # -- Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   production: false
   # -- reverse Proxy mode edge, reencrypt, passthrough or none;
@@ -32,24 +33,17 @@ keycloak:
   # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
   # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
   httpRelativePath: "/auth/"
-  extraEnvVars:
-    - name: KEYCLOAK_EXTRA_ARGS
-      value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=IGNORE_EXISTING"
-  replicaCount: 3
+  replicaCount: 1
   extraVolumes:
     - name: themes-catenax-shared
       emptyDir: {}
     - name: themes-catenax-shared-portal
-      emptyDir: {}
-    - name: realms
       emptyDir: {}
   extraVolumeMounts:
     - name: themes-catenax-shared
       mountPath: "/opt/bitnami/keycloak/themes/catenax-shared"
     - name: themes-catenax-shared-portal
       mountPath: "/opt/bitnami/keycloak/themes/catenax-shared-portal"
-    - name: realms
-      mountPath: "/realms"
   initContainers:
     - name: import
       image: docker.io/tractusx/portal-iam:v3.0.1
@@ -63,15 +57,11 @@ keycloak:
           cp -R /import/themes/catenax-shared/* /themes-catenax-shared
           echo "Copying themes-catenax-shared-portal..."
           cp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal
-          echo "Copying realms..."
-          cp -R /import/catenax-shared/realms/* /realms
       volumeMounts:
       - name: themes-catenax-shared
         mountPath: "/themes-catenax-shared"
       - name: themes-catenax-shared-portal
         mountPath: "/themes-catenax-shared-portal"
-      - name: realms
-        mountPath: "/realms"
   service:
     sessionAffinity: ClientIP
   ingress:
@@ -120,43 +110,109 @@ keycloak:
     auth:
       # -- Non-root username.
       username: kcshared
+      # -- Non-root user password.
+      password: ""
+      # -- Root user password.
+      postgresPassword: ""
       # -- Database name.
       database: iamsharedidp
       # -- Secret containing the passwords for root usernames postgres and non-root username kcshared.
-      existingSecret: "sharedidp-postgres"
-    architecture: replication
+      existingSecret: ""
+    architecture: standalone
   externalDatabase:
   # -- External PostgreSQL configuration
   # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
-    # Database host ('-primary' is added as postfix).
-    host: "sharedidp-postgresql-external-db"
+    host: ""
     # -- Database port number.
     port: 5432
-    # -- Non-root username for sharedidp.
-    user: "kcshared"
+    # -- Non-root username.
+    user: ""
     # -- Database name.
-    database: "iamsharedidp"
-    # -- Password for the non-root username (default 'kcshared'). Secret-key 'password'.
+    database: ""
+    # -- Password for the non-root username.
     password: ""
-    # -- Secret containing the password non-root username, (default 'kcshared').
-    existingSecret: "sharedidp-keycloak-external-db"
-    # -- Name of an existing secret key containing the database credentials.
-    existingSecretPasswordKey: "password"
+    # -- Secret containing the database credentials
+    existingSecret: ""
+    existingSecretHostKey: ""
+    existingSecretPortKey: ""
+    existingSecretUserKey: ""
+    existingSecretDatabaseKey: ""
+    existingSecretPasswordKey: ""
 
-secrets:
-  auth:
-    existingSecret:
-      # -- Password for the admin username 'admin'. Secret-key 'admin-password'.
-      adminpassword: ""
-  postgresql:
-    auth:
-      existingSecret:
-        # -- Password for the root username 'postgres'. Secret-key 'postgres-password'.
-        postgrespassword: ""
-        # -- Password for the non-root username 'kcshared'. Secret-key 'password'.
+realmSeeding:
+# -- Seeding job to create and update the CX-Central realm:
+# besides creating the CX-Central realm, the job can be used to update
+# the configuration of the realm when upgrading to a new version;
+# Please also refer to the 'Post-Upgrade Configuration' section in the README.md
+# for configuration possibly not covered by the seeding job
+  enabled: true
+  realms:
+    cxOperator:
+      name: "CX-Operator"
+      # -- Set redirect and jwks addresses as well as clients secret for the connection to the CX-Central (centralidp)
+      cxCentralConnection:
+        clientId: "central-idp"
+        # PLEASE SET CLIENT SECRET for all non-testing and non-local purposes, default value is "changeme"
+        clientSecret: ""
+        redirect: "http://centralidp.example.org/auth/realms/CX-Central/broker/CX-Operator/endpoint/*"
+        jwksUrl: "http://centralidp.example.org/auth/realms/CX-Central/protocol/openid-connect/certs"
+      mailing:
+        host: "smtp.example.org"
+        port: "123"
+        user: "smtp-user"
         password: ""
-        # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
-        replicationPassword: ""
-  realmuser:
-    # Enables the import of test users via secret.
-    enabled: false
+        from: "email@example.org"
+        replyTo: "email@example.org"
+      # -- Option to provide an existingSecret for mailing configuration
+      existingSecret: ""
+    master:
+      name: "master"
+      serviceAccounts:
+        # -- Set clients secret for the service account which enables the portal to provision new realms
+        provisioning:
+          clientId: "sa-cl1-reg-1"
+          # PLEASE SET CLIENT SECRET for all non-testing and non-local purposes, default value is "changeme"
+          clientSecret: ""
+        # -- Set clients secret for the service account which enables the portal to manage the CX-Operator realm
+        saCxOperator:
+          clientId: "saCX-Operator"
+          # PLEASE SET CLIENT SECRET for all non-testing and non-local purposes, default value is "changeme"
+          clientSecret: ""
+      # -- Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value
+      existingSecret: ""
+  image: "192.168.49.2:5000/iam-seeding:latest"
+  imagePullPolicy: "Always"
+  portContainer: 8080
+  authRealm: "master"
+  useAuthTrail: "true"
+  dataPaths:
+    path0: "realms/CX-Operator-realm.json"
+    path1: "realms/master-realm.json"
+  # -- We recommend to review the default resource limits as this should a conscious choice.
+  resources:
+    requests:
+      cpu: 250m
+      memory: 600M
+    limits:
+      cpu: 500m
+      memory: 600M
+  extraVolumes:
+    - name: realms
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: realms
+      mountPath: "app/realms"
+  initContainers:
+    - name: init-cx-central
+      image: 192.168.49.2:5000/iam:test
+      imagePullPolicy: Always
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          echo "Copying realms..."
+          cp -R /import/catenax-shared/realms/* /app/realms
+      volumeMounts:
+      - name: realms
+        mountPath: "app/realms"

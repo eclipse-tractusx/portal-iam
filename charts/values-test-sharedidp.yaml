@@ -21,7 +21,7 @@ keycloak:
   initContainers:
     - name: import
       image: kind-registry:5000/iam:testing
-      imagePullPolicy: IfNotPresent
+      imagePullPolicy: Always
       command:
         - sh
       args:
@@ -31,12 +31,23 @@ keycloak:
           cp -R /import/themes/catenax-shared/* /themes-catenax-shared
           echo "Copying themes-catenax-shared-portal..."
           cp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal
-          echo "Copying realms..."
-          cp -R /import/catenax-shared/realms/* /realms
       volumeMounts:
       - name: themes-catenax-shared
         mountPath: "/themes-catenax-shared"
       - name: themes-catenax-shared-portal
         mountPath: "/themes-catenax-shared-portal"
+realmSeeding:
+  initContainers:
+    - name: init-cx-central
+      image: kind-registry:5000/iam:testing
+      imagePullPolicy: Always
+      command:
+        - sh
+      args:
+        - -c
+        - |
+          echo "Copying realms..."
+          cp -R /import/catenax-shared/realms/* /app/realms
+      volumeMounts:
       - name: realms
-        mountPath: "/realms"
+        mountPath: "app/realms"
