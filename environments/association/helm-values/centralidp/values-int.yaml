@@ -43,6 +43,6 @@ secrets:
   postgresql:
     auth:
       existingSecret:
-        postgrespassword: "<path:portal/data/int/iam/centralidp-postgres#postgres-password>"
-        password: "<path:portal/data/int/iam/centralidp-postgres#password>"
+        postgrespassword: "<path:portal/data/int/iam/centralidp-keycloak#postgres-password>"
+        password: "<path:portal/data/int/iam/centralidp-keycloak#password>"
 
