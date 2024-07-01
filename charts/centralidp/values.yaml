@@ -20,8 +20,9 @@
 keycloak:
   auth:
     adminUser: admin
+    adminPassword: ""
     # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
-    existingSecret: "centralidp-keycloak"
+    existingSecret: ""
   # -- Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   production: false
   # -- reverse Proxy mode edge, reencrypt, passthrough or none;
@@ -32,20 +33,13 @@ keycloak:
   # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
   # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
   httpRelativePath: "/auth/"
-  extraEnvVars:
-    - name: KEYCLOAK_EXTRA_ARGS
-      value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"
-  replicaCount: 3
+  replicaCount: 1
   extraVolumes:
     - name: themes
-      emptyDir: {}
-    - name: realms
       emptyDir: {}
   extraVolumeMounts:
     - name: themes
       mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
-    - name: realms
-      mountPath: "/realms"
   initContainers:
     - name: import
       image: docker.io/tractusx/portal-iam:v3.0.0
@@ -57,13 +51,9 @@ keycloak:
         - |
           echo "Copying themes..."
           cp -R /import/themes/catenax-central/* /themes
-          echo "Copying realms..."
-          cp -R /import/catenax-central/realms/* /realms
       volumeMounts:
       - name: themes
         mountPath: "/themes"
-      - name: realms
-        mountPath: "/realms"
   service:
     sessionAffinity: ClientIP
   ingress:
@@ -112,69 +102,150 @@ keycloak:
     auth:
       # -- Non-root username.
       username: kccentral
+      # -- Non-root user password.
+      password: ""
+      # -- Root user password.
+      postgresPassword: ""
       # -- Database name.
       database: iamcentralidp
       # -- Secret containing the passwords for root usernames postgres and non-root username kccentral.
-      existingSecret: "centralidp-postgres"
-    architecture: replication
+      existingSecret: ""
+    architecture: standalone
   externalDatabase:
   # -- External PostgreSQL configuration
   # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
-    # Database host ('-primary' is added as postfix).
-    host: "centralidp-postgresql-external-db"
+    host: ""
     # -- Database port number.
     port: 5432
-    # -- Non-root username for centralidp.
-    user: "kccentral"
+    # -- Non-root username.
+    user: ""
     # -- Database name.
-    database: "iamcentralidp"
-    # -- Password for the non-root username (default 'kccentral'). Secret-key 'password'.
+    database: ""
+    # -- Password for the non-root username.
     password: ""
-    # -- Secret containing the password non-root username, (default 'kccentral').
-    existingSecret: "centralidp-keycloak-external-db"
-    # -- Name of an existing secret key containing the database credentials.
-    existingSecretPasswordKey: "password"
+    # -- Secret containing the database credentials
+    existingSecret: ""
+    existingSecretHostKey: ""
+    existingSecretPortKey: ""
+    existingSecretUserKey: ""
+    existingSecretDatabaseKey: ""
+    existingSecretPasswordKey: ""
 
-secrets:
-  auth:
-    existingSecret:
-      # -- Password for the admin username 'admin'. Secret-key 'admin-password'.
-      adminpassword: ""
-  postgresql:
-    auth:
-      existingSecret:
-        # -- Password for the root username 'postgres'. Secret-key 'postgres-password'.
-        postgrespassword: ""
-        # -- Password for the non-root username 'kccentral'. Secret-key 'password'.
-        password: ""
-        # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
-        replicationPassword: ""
-
-seeding:
-# -- Seeding job to upgrade CX_Central realm:
-# enable to upgrade the configuration of the CX-Central realm from previous version;
+realmSeeding:
+# -- Seeding job to create and update the CX-Central realm:
+# besides creating the CX-Central realm, the job can be used to update
+# the configuration of the realm when upgrading to a new version;
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
 # for configuration possibly not covered by the seeding job
-  enabled: false
-  image: "docker.io/tractusx/portal-iam-seeding:v3.0.0-iam"
-  imagePullPolicy: "IfNotPresent"
+  enabled: true
+  realm: "CX-Central"
+  # -- Set redirect addresses and - in the case of confidential clients - clients secrets
+  # for clients which are part of the basic CX-Central realm setup
+  # PLEASE SET CLIENT SECRETS for all non-testing and non-local purposes, default value is "changeme"
+  clients:
+    registration:
+      clientId: "Cl1-CX-Registration"
+      redirects:
+        - https://portal.example.org
+    portal:
+      clientId: "Cl2-CX-Portal"
+      rootUrl: https://portal.example.org/home
+      redirects:
+        - https://portal.example.org
+    semantics:
+      clientId: "Cl3-CX-Semantic"
+      redirects:
+        - https://portal.example.org/*
+    miw:
+      clientId: "Cl5-CX-Custodian"
+      clientSecret: ""
+      redirects:
+        - https://managed-identity-wallets.example.org/*
+    bpdm:
+      clientId: "Cl7-CX-BPDM"
+      clientSecret: ""
+      redirects:
+        - https://partners-pool.example.org/*
+    bpdmGate:
+      clientId: "Cl16-CX-BPDMGate"
+      clientSecret: ""
+      redirects:
+        - https://partners-gate.example.org/*
+    # -- Option to provide an existingSecret for the clients with clientId as key and clientSecret as value
+    existingSecret: ""
+  # -- Set client secrets for service accounts which are part of the basic CX-Central realm setup
+  # PLEASE SET CLIENT SECRETS for all non-testing and non-local purposes, default value is "changeme"
+  serviceAccounts:
+    clientSecrets:
+      - clientId: "sa-cl1-reg-2"
+        clientSecret: ""
+      - clientId: "sa-cl2-01"
+        clientSecret: ""
+      - clientId: "sa-cl2-02"
+        clientSecret: ""
+      - clientId: "sa-cl2-03"
+        clientSecret: ""
+      - clientId: "sa-cl2-04"
+        clientSecret: ""
+      - clientId: "sa-cl2-05"
+        clientSecret: ""
+      - clientId: "sa-cl3-cx-1"
+        clientSecret: ""
+      - clientId: "sa-cl5-custodian-2"
+        clientSecret: ""
+      - clientId: "sa-cl7-cx-5"
+        clientSecret: ""
+      - clientId: "sa-cl8-cx-1"
+        clientSecret: ""
+      - clientId: "sa-cl21-01"
+        clientSecret: ""
+      - clientId: "sa-cl22-01"
+        clientSecret: ""
+      - clientId: "sa-cl24-01"
+        clientSecret: ""
+    # -- Option to provide an existingSecret for the base service accounts with clientId as key and clientSecret as value
+    existingSecret: ""
+  # -- Set value for the 'bpn' user attribute for the initial user and the base service account users
+  # initialUser refers to the username
+  bpnUserAttribute:
+    bpn: "BPNL00000003CRHK"
+    initialUser: "ac1cf001-7fbc-1f2f-817f-bce058020006"
+  # -- Set sharedidp address to enable the identity provider connection to CX-Operator realm (sharedidp)
+  sharedidp:
+    address: "https://sharedidp.example.org"
+    idpAlias: "CX-Operator"
+    tokenPath: "/auth/realms/CX-Operator/protocol/openid-connect/token"
+    jwksPath: "/auth/realms/CX-Operator/protocol/openid-connect/certs"
+    authorizationPath: "/auth/realms/CX-Operator/protocol/openid-connect/auth"
+    logoutPath: "/auth/realms/CX-Operator/protocol/openid-connect/logout"
+  # -- Set client secrets and bpn user attribute for additional service accounts;
+  # meant to enable possible test data, default value for client secrets is "changeme"
+  extraServiceAccounts:
+    clientSecretsAndBpn: []
+      # - clientId: "sa-test-01"
+      #   clientSecret: ""
+      #   bpn: "TBD1"
+      # - clientId: "sa-test-02"
+      #   clientSecret: ""
+      #   bpn: "TBD2"
+    # -- Option to provide an existingSecret for additional service accounts with clientId as key and clientSecret as value
+    existingSecret: ""
+  image: "192.168.49.2:5000/iam-seeding:latest"
+  imagePullPolicy: "Always"
   portContainer: 8080
   authRealm: "master"
   useAuthTrail: "true"
-  dataPaths:
-    dataPath0: "realms/CX-Central-realm.json"
-  instanceName: "central"
-  excludedUserAttributes:
-    attribute0: "bpn"
-    attribute1: "organisation"
+  dataPath: "realms/CX-Central-realm.json"
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:
-      cpu: 75m
-      memory: 200M
+      cpu: 250m
+      memory: 600M
+      ephemeral-storage: 50Mi
     limits:
-      cpu: 225m
-      memory: 200M
+      cpu: 500m
+      memory: 600M
+      ephemeral-storage: 1024Mi
   extraVolumes:
     - name: realms
       emptyDir: {}
@@ -183,8 +254,8 @@ seeding:
       mountPath: "app/realms"
   initContainers:
     - name: init-cx-central
-      image: docker.io/tractusx/portal-iam:v3.0.0
-      imagePullPolicy: IfNotPresent
+      image: 192.168.49.2:5000/iam:test
+      imagePullPolicy: Always
       command:
         - sh
       args:
