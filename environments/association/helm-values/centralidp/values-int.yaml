@@ -46,4 +46,3 @@ secrets:
         postgrespassword: "<path:portal/data/int/iam/centralidp-keycloak#postgres-admin-user>"
         password: "<path:portal/data/int/iam/centralidp-keycloak#postgres-custom-user>"
         replicationPassword: "<path:portal/data/int/iam/centralidp-keycloak#postgres-replication-user>"
-
