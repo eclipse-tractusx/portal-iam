@@ -415,6 +415,7 @@
               "Cl24-CX-SSI-CredentialIssuer": [
                 "view_credential_requests",
                 "revoke_credential",
+                "request_ssicredential",
                 "view_use_case_participation",
                 "view_certificates"
               ],
@@ -743,6 +744,7 @@
                 "view_credential_requests",
                 "view_use_case_participation",
                 "revoke_credential",
+                "request_ssicredential",
                 "view_certificates"
               ],
               "Cl2-CX-Portal": [
@@ -922,6 +924,7 @@
                 "view_credential_requests",
                 "view_use_case_participation",
                 "revoke_credential",
+                "request_ssicredential",
                 "view_certificates"
               ],
               "Cl2-CX-Portal": [
@@ -1306,7 +1309,9 @@
                 "view_certificates",
                 "view_credential_requests",
                 "view_use_case_participation",
-                "revoke_credential"
+                "revoke_credential",
+                "decision_ssicredential",
+                "request_ssicredential"
               ],
               "Cl2-CX-Portal": [
                 "view_documents",
@@ -2426,6 +2431,7 @@
           "attributes": {}
         }
       ],
+      "sa-cl7-cx-7": [],
       "Cl3-CX-Semantic": [
         {
           "id": "beef62b1-2e1c-4fc2-8813-7f3981ebfde2",
@@ -2801,7 +2807,8 @@
       ],
       "clientRoles": {
         "Cl2-CX-Portal": [
-          "store_didDocument"
+          "store_didDocument",
+          "technical_roles_management"
         ]
       },
       "notBefore": 0,
@@ -2984,6 +2991,33 @@
       "groups": []
     },
     {
+      "id": "3f9fc7e8-d312-4912-a9a1-4db8849ce8f7",
+      "createdTimestamp": 1722276592957,
+      "username": "service-account-sa-cl7-cx-7",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "serviceAccountClientId": "sa-cl7-cx-7",
+      "attributes": {
+        "bpn": [
+          "BPNL00000003CRHK"
+        ]
+      },
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "default-roles-catena-x realm"
+      ],
+      "clientRoles": {
+        "technical_roles_management": [
+          "BPDM Sharing Admin",
+          "BPDM Pool Admin"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    },
+    {
       "id": "dcb9a153-e1b4-4fac-bc51-7032023e9db9",
       "createdTimestamp": 1675867052982,
       "username": "service-account-sa-cl8-cx-1",
@@ -3060,6 +3094,13 @@
       },
       {
         "client": "sa-cl7-cx-5",
+        "roles": [
+          "BPDM Pool Admin",
+          "BPDM Sharing Admin"
+        ]
+      },
+      {
+        "client": "sa-cl7-cx-7",
         "roles": [
           "BPDM Pool Admin",
           "BPDM Sharing Admin"
@@ -4750,8 +4791,8 @@
         "oidc.ciba.grant.enabled": "false",
         "client.secret.creation.time": "1712762229",
         "backchannel.logout.session.required": "true",
-        "display.on.consent.screen": "false",
         "oauth2.device.authorization.grant.enabled": "false",
+        "display.on.consent.screen": "false",
         "backchannel.logout.revoke.offline.tokens": "false"
       },
       "authenticationFlowBindingOverrides": {},
@@ -5231,8 +5272,8 @@
         "oidc.ciba.grant.enabled": "false",
         "client.secret.creation.time": "1712762671",
         "backchannel.logout.session.required": "true",
-        "display.on.consent.screen": "false",
         "oauth2.device.authorization.grant.enabled": "false",
+        "display.on.consent.screen": "false",
         "backchannel.logout.revoke.offline.tokens": "false"
       },
       "authenticationFlowBindingOverrides": {},
@@ -5679,6 +5720,122 @@
       ],
       "defaultClientScopes": [
         "web-origins",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "id": "5ec47b9d-6808-4e11-88b0-a7863d4ebf4f",
+      "clientId": "sa-cl7-cx-7",
+      "name": "",
+      "description": "Technical User for BPDM services to communicate between each other to realize the golden record process: used by the Portal Gate, Pool and Cleaning Service.",
+      "rootUrl": "",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
+      "redirectUris": [
+        "/*"
+      ],
+      "webOrigins": [
+        "/*"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "oidc.ciba.grant.enabled": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "client.secret.creation.time": "1722276592",
+        "backchannel.logout.session.required": "true",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": false,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "e883740c-6417-432e-9c0c-a68878e03909",
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "4524a57a-d00c-4472-b425-b5337c5ef498",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "61fd448d-d12f-4148-b8dd-f084af1cb485",
+          "name": "BPN",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "user.attribute": "bpn",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "bpn",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "7e3f9e39-dcba-464e-9797-94e8ad9aef40",
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "client_id",
+            "introspection.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "client_id",
+            "jsonType.label": "String"
+          }
+        }
+      ],
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
         "roles",
         "profile",
         "email"
