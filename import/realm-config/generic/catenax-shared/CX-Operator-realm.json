@@ -453,6 +453,21 @@
   "webAuthnPolicyPasswordlessCreateTimeout": 0,
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister": false,
   "webAuthnPolicyPasswordlessAcceptableAaguids": [],
+  "users" : [ {
+    "id" : "656e8a94-188b-4a3e-9eec-b45d8efd8347",
+    "username" : "cx-operator@cx.com",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Operator",
+    "lastName" : "CX Admin",
+    "email" : "tobeadded@cx.com",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "notBefore" : 0,
+    "groups" : [ ]
+  } ],
   "scopeMappings": [
     {
       "clientScope": "offline_access",
@@ -1332,7 +1347,17 @@
     "xXSSProtection": "1; mode=block",
     "strictTransportSecurity": "max-age=31536000; includeSubDomains"
   },
-  "smtpServer": {},
+  "smtpServer": {
+    "password": "**********",
+    "starttls": "true",
+    "auth": "true",
+    "port": "123",
+    "host": "smtp.example.org",
+    "replyTo": "email@example.org",
+    "from": "email@example.org",
+    "ssl": "",
+    "user": "smtp-user"
+  },
   "eventsEnabled": false,
   "eventsListeners": [
     "jboss-logging"

@@ -17,32 +17,29 @@
 * SPDX-License-Identifier: Apache-2.0
 */}}
 
-{{- if .Values.seeding.enabled -}}
+{{- if .Values.realmSeeding.enabled -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "centralidp.fullname" . }}-upgrade-seeding
+  name: {{ include "centralidp.fullname" . }}-realm-seeding-{{ .Release.Revision }}
   namespace: {{ .Release.Namespace }}
-  annotations:
-    "batch.kubernetes.io/job-tracking": "true"
-    "helm.sh/hook": post-upgrade
-    "helm.sh/hook-weight": "-5"
 spec:
   template:
     metadata:
-      name: {{ include "centralidp.fullname" . }}-upgrade-seeding
+      name: {{ include "centralidp.fullname" . }}-realm-seeding
     spec:
       restartPolicy: Never
       containers:
-      - name: {{ include "centralidp.fullname" . }}-upgrade-seeding
+      - name: {{ include "centralidp.fullname" . }}-realm-seeding
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
             drop:
             - ALL
+          readOnlyRootFilesystem: true
           runAsNonRoot: true
-        image: "{{ .Values.seeding.image }}"
-        imagePullPolicy: "{{ .Values.seeding.imagePullPolicy }}"
+        image: "{{ .Values.realmSeeding.image }}"
+        imagePullPolicy: "{{ .Values.realmSeeding.imagePullPolicy }}"
         env:
           - name: "KEYCLOAK__CENTRAL__CONNECTIONSTRING"
             value: "http://{{ template "centralidp.fullname" . }}"
@@ -51,30 +48,167 @@ spec:
           - name: "KEYCLOAK__CENTRAL__PASSWORD"
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.keycloak.auth.existingSecret }}"
+                name: "{{ template "centralidp.fullname" . }}"
                 key: "admin-password"
           - name: "KEYCLOAK__CENTRAL__AUTHREALM"
-            value: "{{ .Values.seeding.authRealm }}"
+            value: "{{ .Values.realmSeeding.authRealm }}"
           - name: "KEYCLOAK__CENTRAL__USEAUTHTRAIL"
-            value: "{{ .Values.seeding.useAuthTrail }}"
+            value: "{{ .Values.realmSeeding.useAuthTrail }}"
           - name: "KEYCLOAKSEEDING__DATAPATHES__0"
-            value: "{{ .Values.seeding.dataPaths.dataPath0 }}"
+            value: "{{ .Values.realmSeeding.dataPath }}"
           - name: "KEYCLOAKSEEDING__INSTANCENAME"
-            value: "{{ .Values.seeding.instanceName }}"
-          - name: "KEYCLOAKSEEDING__EXCLUDEDUSERATTRIBUTES__0"
-            value: "{{ .Values.seeding.excludedUserAttributes.attribute0 }}"
-          - name: "KEYCLOAKSEEDING__EXCLUDEDUSERATTRIBUTES__1"
-            value: "{{ .Values.seeding.excludedUserAttributes.attribute1 }}"
+            value: "central"
+          - name: "KEYCLOAKSEEDING__REALMS__0__REALM"
+            value: "{{ .Values.realmSeeding.realm }}"
+
+          ###########
+          ## CLIENTS
+          ###########
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__CLIENTID"
+            value: "{{ .Values.realmSeeding.clients.registration.clientId }}"
+          {{- range $index, $redirects := .Values.realmSeeding.clients.registration.redirects }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__REDIRECTURIS__{{ $index }}"
+            value: {{ $redirects | quote }}
+          {{- end }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__CLIENTID"
+            value: "{{ .Values.realmSeeding.clients.portal.clientId }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__ROOTURL"
+            value: "{{ .Values.realmSeeding.clients.portal.rootUrl }}"
+          {{- range $index, $redirects := .Values.realmSeeding.clients.portal.redirects }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__REDIRECTURIS__{{ $index }}"
+            value: {{ $redirects | quote }}
+          {{- end }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__2__CLIENTID"
+            value: "{{ .Values.realmSeeding.clients.semantics.clientId }}"
+          {{- range $index, $redirects := .Values.realmSeeding.clients.semantics.redirects }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__2__REDIRECTURIS__{{ $index }}"
+            value: {{ $redirects | quote }}
+          {{- end }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__CLIENTID"
+            value: "{{ .Values.realmSeeding.clients.miw.clientId }}"
+          {{- range $index, $redirects := .Values.realmSeeding.clients.miw.redirects }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__REDIRECTURIS__{{ $index }}"
+            value: {{ $redirects | quote }}
+          {{- end }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "centralidp.secret.clients" . }}"
+                key: "{{ .Values.realmSeeding.clients.miw.clientId }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__CLIENTID"
+            value: "{{ .Values.realmSeeding.clients.bpdm.clientId }}"
+          {{- range $index, $redirects := .Values.realmSeeding.clients.bpdm.redirects }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__REDIRECTURIS__{{ $index }}"
+            value: {{ $redirects | quote }}
+          {{- end }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "centralidp.secret.clients" . }}"
+                key: "{{ .Values.realmSeeding.clients.bpdm.clientId }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__CLIENTID"
+            value: "{{ .Values.realmSeeding.clients.bpdmGate.clientId }}"
+          {{- range $index, $redirects := .Values.realmSeeding.clients.bpdmGate.redirects }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__REDIRECTURIS__{{ $index }}"
+            value: {{ $redirects | quote }}
+          {{- end }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "centralidp.secret.clients" . }}"
+                key: "{{ .Values.realmSeeding.clients.bpdmGate.clientId }}"
+
+          #############################
+          ## BASE SERVICE ACCOUNTS
+          #############################
+
+          {{- $index := 20 }}
+          {{- $secretBaseSa := include "centralidp.secret.serviceAccounts" . -}}
+          {{- range .Values.realmSeeding.serviceAccounts.clientSecrets }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__CLIENTID"
+            value: {{ .clientId | quote }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ $secretBaseSa }}"
+                key: "{{ .clientId }}"
+          {{- $index = add1 $index }}
+          {{- end }}
+
+          #############################
+          ## BPN USER ATTRIBUTE
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__USERNAME"
+            value: "{{ .Values.realmSeeding.bpnUserAttribute.initialUser }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__Attributes__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__Attributes__0__VALUES__0"
+            value: "{{ .Values.realmSeeding.bpnUserAttribute.bpn }}"
+          {{- $index := 1 }}
+          {{- $bpn := .Values.realmSeeding.bpnUserAttribute.bpn -}}
+          {{- range .Values.realmSeeding.serviceAccounts.clientSecrets }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME"
+            value: {{ printf "service-account-%s" .clientId | quote }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__ATTRIBUTES__0__VALUES__0"
+            value: {{ $bpn | quote }}
+          {{- $index = add1 $index }}
+          {{- end }}
+
+          #############################
+          ## IDENTITY PROVIDER
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__ALIAS"
+            value: "{{ .Values.realmSeeding.sharedidp.idpAlias }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__TOKENURL"
+            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.tokenPath }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__JWKSURL"
+            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.jwksPath }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__AUTHORIZATIONURL"
+            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.authorizationPath }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__LOGOUTURL"
+            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.logoutPath }}"
+
+          ###############################
+          ## EXTRA SERVICE ACCOUNTS
+          ###############################
+
+          {{- $index := 100 }}
+          {{- $secret := include "centralidp.secret.extraServiceAccounts" . -}}
+          {{- range .Values.realmSeeding.extraServiceAccounts.clientSecretsAndBpn }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__CLIENTID"
+            value: {{ .clientId | quote }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__{{ $index }}__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: {{ $secret }}
+                key: {{ .clientId }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME"
+            value: {{ printf "service-account-%s" .clientId | quote }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__ATTRIBUTES__0__VALUES__0"
+            value: {{ .bpn | quote }}
+          {{- $index = add1 $index }}
+          {{- end }}
+
         ports:
         - name: http
-          containerPort: {{ .Values.seeding.portContainer }}
+          containerPort: {{ .Values.realmSeeding.portContainer }}
           protocol: TCP
         resources:
-          {{- toYaml .Values.seeding.resources | nindent 10 }}
+          {{- toYaml .Values.realmSeeding.resources | nindent 10 }}
         volumeMounts:
-        {{- toYaml .Values.seeding.extraVolumeMounts | nindent 10 }}
+        {{- toYaml .Values.realmSeeding.extraVolumeMounts | nindent 10 }}
       initContainers:
-      {{- toYaml .Values.seeding.initContainers | nindent 8 }}
+        - name: wait-for-keycloak
+          image: appropriate/curl:latest
+          command: [ 'sh', '-c', 'until curl -s http://{{ template "centralidp.fullname" . }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
+          imagePullPolicy: IfNotPresent
+      {{- toYaml .Values.realmSeeding.initContainers | nindent 8 }}
       volumes:
-      {{- toYaml .Values.seeding.extraVolumes | nindent 8 }}
+      {{- toYaml .Values.realmSeeding.extraVolumes | nindent 8 }}
+      automountServiceAccountToken: false
 {{- end -}}
