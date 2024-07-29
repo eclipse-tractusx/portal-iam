@@ -20,19 +20,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sharedidp-templateconsortia
+  name: centralidp
 spec:
   destination:
-    namespace: product-portal
+    namespace: product-iam
     server: 'https://kubernetes.default.svc'
   source:
-    path: charts/sharedidp
+    path: charts/centralidp
     repoURL: 'https://github.com/eclipse-tractusx/portal-iam.git'
-    targetRevision: v3.0.0
+    targetRevision: main
     plugin:
       env:
         - name: AVP_SECRET
           value: vault-secret
         - name: helm_args
-          value: '-f values.yaml -f ../../consortia/environments/sharedidp/values-templateconsortia.yaml'
+          value: '-f values.yaml -f ../../environments/consortia/helm-values/centralidp/values-dev.yaml'
   project: project-portal

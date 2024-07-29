@@ -20,10 +20,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sharedidp-pen
+  name: sharedidp-rc
 spec:
   destination:
-    namespace: product-portal-pen
+    namespace: product-iam
     server: 'https://kubernetes.default.svc'
   source:
     path: charts/sharedidp
@@ -34,5 +34,5 @@ spec:
         - name: AVP_SECRET
           value: vault-secret
         - name: helm_args
-          value: '-f values.yaml -f ../../consortia/environments/sharedidp/values-pen.yaml'
+          value: '-f values.yaml -f ../../environments/consortia/helm-values/sharedidp/values-rc.yaml'
   project: project-portal
