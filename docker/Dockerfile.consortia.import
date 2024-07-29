@@ -29,12 +29,6 @@ COPY import/realm-config/consortia/catenax-central/dev/ import/catenax-central/d
 COPY import/realm-config/consortia/catenax-shared/dev/ import/catenax-shared/dev/realms
 COPY import/realm-config/consortia/catenax-central/int/ import/catenax-central/int/realms
 COPY import/realm-config/consortia/catenax-shared/int/ import/catenax-shared/int/realms
-COPY import/realm-config/consortia/catenax-central/beta/ import/catenax-central/beta/realms
-COPY import/realm-config/consortia/catenax-shared/beta/ import/catenax-shared/beta/realms
-COPY import/realm-config/consortia/catenax-central/pen/ import/catenax-central/pen/realms
-COPY import/realm-config/consortia/catenax-shared/pen/ import/catenax-shared/pen/realms
 COPY import/realm-config/consortia/catenax-central/rc/ import/catenax-central/rc/realms
 COPY import/realm-config/consortia/catenax-shared/rc/ import/catenax-shared/rc/realms
-COPY import/realm-config/consortia/catenax-central/stable/ import/catenax-central/stable/realms
-COPY import/realm-config/consortia/catenax-shared/stable/ import/catenax-shared/stable/realms
 COPY LICENSE NOTICE.md SECURITY.md import/
