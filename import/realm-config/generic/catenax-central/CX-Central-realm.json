@@ -3006,7 +3006,7 @@
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "realmRoles": [
-        "default-roles-catena-x realm"
+        "default-roles-cx-central"
       ],
       "clientRoles": {
         "technical_roles_management": [
