@@ -1,6 +1,6 @@
 # Helm chart for Shared Keycloak Instance
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 23.0.7](https://img.shields.io/badge/AppVersion-23.0.7-informational?style=flat-square)
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 23.0.7](https://img.shields.io/badge/AppVersion-23.0.7-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Shared Keycloak Instance.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: sharedidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 3.0.0
+    version: 3.0.1
 ```
 
 ## Requirements
@@ -63,7 +63,7 @@ dependencies:
 | keycloak.extraVolumeMounts[2].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[2].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.0"` |  |
+| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.1"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -137,6 +137,10 @@ Generate client-secrets for the service account with access type 'confidential'.
 3. Setup SMTP configuration (Realm Settings --> Email)
 
 ## Upgrade
+
+### To 3.0.1
+
+No major issues are expected during the upgrade.
 
 ### To 3.0.0
 

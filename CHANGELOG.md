@@ -2,6 +2,37 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## 3.0.1
+
+### Change
+
+* realm configuration (centralidp) - changes to CX-Central realm:
+  * added service account for BPDM communication #[#146](https://github.com/eclipse-tractusx/portal-iam/pull/146)
+* added documentation for seeded clients and service accounts [#158](https://github.com/eclipse-tractusx/portal-iam/pull/158)
+* changed in roles and rights concept to markdown tables [#160](https://github.com/eclipse-tractusx/portal-iam/pull/160)
+* changed licensing and legal docs [#144](https://github.com/eclipse-tractusx/portal-iam/pull/144)
+
+ ### Bugfix
+
+* realm configuration (centralidp) - fixes to CX-Central realm:
+  * renamed default role [#157](https://github.com/eclipse-tractusx/portal-iam/pull/157), please see [upgrade note](/charts/centralidp/README.md#to-301) before using seeding job for upgrading the CX-Central configuration
+  * assigned the role `request_ssicredential` from the `Cl24-CX-SSI-CredentialIssuer` client to the composites roles `CX Admin`, `Company Admin`, `IT Admin` and `Business Admin` from the `Cl2-CX-Portal` client [#136](https://github.com/eclipse-tractusx/portal-iam/pull/136)
+  * assigned the role `decision_ssicredential` from the `Cl24-CX-SSI-CredentialIssuer` client to the composite role `CX Admin` from the `Cl2-CX-Portal` client [#143](https://github.com/eclipse-tractusx/portal-iam/pull/143)
+  * assigned the role `technical_roles_management` from the `Cl2-CX-Portal` client to the service account `sa-cl2-05` [#151](https://github.com/eclipse-tractusx/portal-iam/pull/151)
+
+### Technical Support
+
+* grouped version update pull request for dependabot [#133](https://github.com/eclipse-tractusx/portal-iam/pull/133)
+* upgraded GitHub actions and alpine version in dockerfiles [#153](https://github.com/eclipse-tractusx/portal-iam/pull/153), [#126](https://github.com/eclipse-tractusx/portal-iam/pull/126)
+
+### Known Knowns
+
+The following issues were discovered:
+
+* 403 error when accessing the Partner Network in the Portal Frontend [#132](https://github.com/eclipse-tractusx/portal-iam/pull/132)
+* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshop-20231005.md#user-token-lifespan)
+* Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
+
 ## 3.0.0
 
 ### Change
@@ -320,13 +351,6 @@ sharedidp:
 * introduceed CodeQL scan
 * changed portal-cd references to portal due to repository renaming
 * updated documentation
-
-### Known Knowns
-
-The following issues were recently discovered:
-
-* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshop-20231005.md#user-token-lifespan)
-* Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
 
 ## 2.0.0
 
