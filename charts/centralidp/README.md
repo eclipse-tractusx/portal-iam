@@ -1,6 +1,6 @@
 # Helm chart for Central Keycloak Instance
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 23.0.7](https://img.shields.io/badge/AppVersion-23.0.7-informational?style=flat-square)
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 23.0.7](https://img.shields.io/badge/AppVersion-23.0.7-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Central Keycloak Instance.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 3.0.0
+    version: 3.0.1
 ```
 
 ## Requirements
@@ -59,7 +59,7 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.0"` |  |
+| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.1"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -106,7 +106,7 @@ dependencies:
 | secrets.postgresql.auth.existingSecret.password | string | `""` | Password for the non-root username 'kccentral'. Secret-key 'password'. |
 | secrets.postgresql.auth.existingSecret.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
 | seeding.enabled | bool | `false` | Seeding job to upgrade CX_Central realm: enable to upgrade the configuration of the CX-Central realm from previous version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
-| seeding.image | string | `"docker.io/tractusx/portal-iam-seeding:v3.0.0-iam"` |  |
+| seeding.image | string | `"docker.io/tractusx/portal-iam-seeding:v3.0.1-iam"` |  |
 | seeding.imagePullPolicy | string | `"IfNotPresent"` |  |
 | seeding.portContainer | int | `8080` |  |
 | seeding.authRealm | string | `"master"` |  |
@@ -121,7 +121,7 @@ dependencies:
 | seeding.extraVolumeMounts[0].name | string | `"realms"` |  |
 | seeding.extraVolumeMounts[0].mountPath | string | `"app/realms"` |  |
 | seeding.initContainers[0].name | string | `"init-cx-central"` |  |
-| seeding.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.0"` |  |
+| seeding.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.1"` |  |
 | seeding.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | seeding.initContainers[0].command[0] | string | `"sh"` |  |
 | seeding.initContainers[0].args[0] | string | `"-c"` |  |
@@ -146,7 +146,24 @@ This is done by setting the 'example.org' placeholder in the CX-Operator' Identi
 
 ## Upgrade
 
-Please see notes at [Values.seeding](values.yaml#L146) for upgrading the configuration of the CX-Central realm.
+Please see notes at [Values.seeding](values.yaml#L153) for upgrading the configuration of the CX-Central realm.
+
+### To 3.0.1
+
+The name of the default role was corrected with [#157](https://github.com/eclipse-tractusx/portal-iam/pull/157).
+If you want to use the seeding job (Values.seeding.enabled) to upgrade the CX-Central realm configuration, make sure to rename the default role on the running instance beforehand.
+
+By executing the following sql query:
+
+```sql
+UPDATE public.keycloak_role
+	SET name = 'default-roles-cx-central'
+	WHERE name = 'default-roles-catena-x realm';
+```
+
+And restarting the Keycloak services afterwards once.
+
+Otherwise you will encounter an error 400 at the seeding job, see [portal-backend/pull/800#issuecomment-2188207713](https://github.com/eclipse-tractusx/portal-backend/pull/800#issuecomment-2188207713) for more information.
 
 ### To 3.0.0
 
