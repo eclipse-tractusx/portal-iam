@@ -113,6 +113,23 @@ Or on the primary pod of the new/green PostgreSQL instance:
 
 Where '10-123-45-67' is the cluster IP of the old/blue PostgreSQL instance.
 
+### From 3.0.0 to 3.0.1
+
+The name of the default role was corrected with [#157](https://github.com/eclipse-tractusx/portal-iam/pull/157).
+If you want to use the seeding job (Values.seeding.enabled) to upgrade the CX-Central realm configuration, make sure to rename the default role on the running instance beforehand.
+
+By executing the following sql query:
+
+```sql
+UPDATE public.keycloak_role
+	SET name = 'default-roles-cx-central'
+	WHERE name = 'default-roles-catena-x realm';
+```
+
+And restarting the Keycloak service afterwards once.
+
+Otherwise you will encounter an error 400 at the seeding job, see [portal-backend/pull/800#issuecomment-2188207713](https://github.com/eclipse-tractusx/portal-backend/pull/800#issuecomment-2188207713) for more information.
+
 ## Post-Upgrade Configuration
 
 ### Upgrading from version 1.0.0 or 1.0.1 to 1.1.0
