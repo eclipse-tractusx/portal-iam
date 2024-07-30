@@ -50,6 +50,10 @@ This project uses the following image content:
 - Image: Catena-X Logo
 - Source URL: <https://catena-x.net>
 
+## Test Environments
+
+The project contains deployment configuration specific to hosted test environments and needed for end-to-end testing. This configuration is maintained within the [environments](/environments) directory.
+
 ## Cryptography
 
 Content may contain encryption software. The country in which you are currently

@@ -36,7 +36,6 @@ This application provides container images for demonstration purposes.
 See Docker notice files for more information:
 
 * [portal-iam](./docker/notice-iam.md)
-* [portal-iam-consortia](./docker/notice-iam-consortia.md)
 * [portal-iam-seeding](https://github.com/eclipse-tractusx/portal-backend/blob/main/docker/notice-iam-seeding.md)
 
 ## License

@@ -99,9 +99,6 @@ jobs:
           - image: tractusx/portal-iam
             dockerfile: ./docker/Dockerfile.import
             dockernotice: ./docker/notice-iam.md
-          - image: tractusx/portal-iam-consortia
-            dockerfile: ./docker/Dockerfile.consortia.import
-            dockernotice: ./docker/notice-iam-consortia.md
     outputs:
       chart-version: ${{ steps.chart-version.outputs.current }}
       version-check: ${{ steps.version-check.outputs.exists }}
