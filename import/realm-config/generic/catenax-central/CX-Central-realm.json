@@ -873,13 +873,10 @@
           "composite": true,
           "composites": {
             "client": {
-              "Cl7-CX-BPDM": [
-                "read_metadata",
-                "read_partner_member",
-                "read_changelog_member"
-              ],
               "technical_roles_management": [
-                "BPDM Pool Consumer"
+                "BPDM Pool Consumer",
+                "BPDM Sharing Output Consumer",
+                "BPDM Sharing Input Manager"
               ],
               "Cl24-CX-SSI-CredentialIssuer": [
                 "view_credential_requests"
@@ -908,11 +905,6 @@
           "composite": true,
           "composites": {
             "client": {
-              "Cl7-CX-BPDM": [
-                "read_changelog_member",
-                "read_partner_member",
-                "read_metadata"
-              ],
               "technical_roles_management": [
                 "BPDM Pool Consumer"
               ],
@@ -1276,7 +1268,6 @@
             "client": {
               "Cl16-CX-BPDMGate": [
                 "read_input_changelog",
-                "write_output_partner",
                 "read_output_changelog",
                 "read_output_partner",
                 "read_input_partner",
@@ -1844,8 +1835,8 @@
             "client": {
               "Cl7-CX-BPDM": [
                 "read_metadata",
-                "read_changelog",
-                "read_changelog_member"
+                "read_changelog_member",
+                "read_partner_member"
               ]
             }
           },
@@ -1885,7 +1876,6 @@
             "client": {
               "Cl16-CX-BPDMGate": [
                 "read_input_changelog",
-                "write_output_partner",
                 "read_output_changelog",
                 "read_stats",
                 "write_sharing_state",
@@ -1942,8 +1932,7 @@
               "Cl7-CX-BPDM": [
                 "read_metadata",
                 "read_changelog",
-                "read_partner_member",
-                "read_changelog_member"
+                "read_partner"
               ]
             }
           },
@@ -2260,15 +2249,6 @@
         {
           "id": "913fa128-8614-49c9-9214-93958fc69758",
           "name": "read_input_changelog",
-          "description": "",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "52f90723-b4c1-44c3-bef2-fd8ebe59ae6c",
-          "attributes": {}
-        },
-        {
-          "id": "08009ffe-2058-4fcd-82ef-12ee52d86557",
-          "name": "write_output_partner",
           "description": "",
           "composite": false,
           "clientRole": true,
