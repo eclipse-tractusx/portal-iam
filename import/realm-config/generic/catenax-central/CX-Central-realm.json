@@ -1623,6 +1623,80 @@
           "attributes": {}
         }
       ],
+      "Cl25-CX-BPDM-Orchestrator": [
+        {
+          "id": "4b20dc8b-0231-41a0-acef-662ed5353c18",
+          "name": "create_result_poolSync",
+          "description": "Allowed to create results for reserved golden record tasks in the 'PoolSync' queue.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "632271be-e00c-47c2-b2e9-4b12d75c8c5b",
+          "attributes": {}
+        },
+        {
+          "id": "0a5befef-6ecf-4bc8-ab94-7f0e3731c858",
+          "name": "read_task",
+          "description": "Allowed to read the processing state and result of golden record tasks.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "632271be-e00c-47c2-b2e9-4b12d75c8c5b",
+          "attributes": {}
+        },
+        {
+          "id": "4632b001-25e2-4ef8-bd04-05f7b9e0453d",
+          "name": "create_result_cleanAndSync",
+          "description": "Allowed to create results for reserved golden record tasks in the 'CleanAndSync' queue.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "632271be-e00c-47c2-b2e9-4b12d75c8c5b",
+          "attributes": {}
+        },
+        {
+          "id": "d335c39d-d160-40d6-86b1-11a6e1889ddd",
+          "name": "create_task",
+          "description": "Allowed to create new golden record tasks",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "632271be-e00c-47c2-b2e9-4b12d75c8c5b",
+          "attributes": {}
+        },
+        {
+          "id": "1f15361f-c5ee-40e5-9169-fd32b3d0c8da",
+          "name": "create_reservation_clean",
+          "description": "Allowed to create reservations for golden record tasks inside the 'Clean' queue.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "632271be-e00c-47c2-b2e9-4b12d75c8c5b",
+          "attributes": {}
+        },
+        {
+          "id": "90451361-9282-4cee-bb43-96f084a43d7e",
+          "name": "create_reservation_poolSync",
+          "description": "Allowed to create reservations for golden record tasks in the 'PoolSync' queue.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "632271be-e00c-47c2-b2e9-4b12d75c8c5b",
+          "attributes": {}
+        },
+        {
+          "id": "f972bf5c-7454-4c3f-882b-0535eacd7dd9",
+          "name": "create_result_clean",
+          "description": "Allowed to create results for reserved golden record tasks in the 'Clean' queue.",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "632271be-e00c-47c2-b2e9-4b12d75c8c5b",
+          "attributes": {}
+        },
+        {
+          "id": "dbb4cbda-671b-4b8c-8ed8-a9c3e8ad7256",
+          "name": "create_reservation_cleanAndSync",
+          "description": "Allowed to create reservations for golden record tasks in the 'CleanAndSync' queue",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "632271be-e00c-47c2-b2e9-4b12d75c8c5b",
+          "attributes": {}
+        }
+      ],
       "technical_roles_management": [
         {
           "id": "1e3bef93-036c-44a8-b37a-04ca9effcfcb",
@@ -1866,6 +1940,97 @@
                 "read_changelog",
                 "read_partner_member",
                 "read_changelog_member"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "3fbeeb23-c281-43a4-b76a-f0805e919905",
+          "name": "BPDM Orchestrator Admin",
+          "description": "Full read and write access to the BPDM Orchestrator component",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl25-CX-BPDM-Orchestrator": [
+                "create_result_poolSync",
+                "read_task",
+                "create_result_cleanAndSync",
+                "create_task",
+                "create_reservation_clean",
+                "create_reservation_poolSync",
+                "create_result_clean",
+                "create_reservation_cleanAndSync"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "a0dab74a-13d2-4ced-b0af-fa8a3894c2ec",
+          "name": "BPDM Orchestrator Task Creator",
+          "description": "Allowed to create new golden record tasks, monitor the processing state and result.",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl25-CX-BPDM-Orchestrator": [
+                "read_task",
+                "create_task"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "efb560b1-3649-4af9-931e-4799c61504e6",
+          "name": "BPDM Orchestrator Processor Clean",
+          "description": "Allowed to process golden record tasks in the 'Clean' queue",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl25-CX-BPDM-Orchestrator": [
+                "create_reservation_clean",
+                "create_result_clean"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "4444626e-b5dd-4c8d-8897-0b7ad3ccdf21",
+          "name": "BPDM Orchestrator Processor CleanAndSync",
+          "description": "Allowed to process golden record tasks in the 'CleanAndSync' queue",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl25-CX-BPDM-Orchestrator": [
+                "create_result_cleanAndSync",
+                "create_reservation_cleanAndSync"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
+        },
+        {
+          "id": "a1e82d28-ab78-40ac-aae5-cda1f3615c61",
+          "name": "BPDM Orchestrator Processor PoolSync",
+          "description": "Allowed to process golden record tasks in the 'PoolSync' queue",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl25-CX-BPDM-Orchestrator": [
+                "create_result_poolSync",
+                "create_reservation_poolSync"
               ]
             }
           },
@@ -2986,7 +3151,8 @@
       "clientRoles": {
         "technical_roles_management": [
           "BPDM Sharing Admin",
-          "BPDM Pool Admin"
+          "BPDM Pool Admin",
+          "BPDM Orchestrator Admin"
         ]
       },
       "notBefore": 0,
@@ -3013,7 +3179,8 @@
       "clientRoles": {
         "technical_roles_management": [
           "BPDM Sharing Admin",
-          "BPDM Pool Admin"
+          "BPDM Pool Admin",
+          "BPDM Orchestrator Admin"
         ]
       },
       "notBefore": 0,
@@ -3098,14 +3265,16 @@
         "client": "sa-cl7-cx-5",
         "roles": [
           "BPDM Pool Admin",
-          "BPDM Sharing Admin"
+          "BPDM Sharing Admin",
+          "BPDM Orchestrator Admin"
         ]
       },
       {
         "client": "sa-cl7-cx-7",
         "roles": [
           "BPDM Pool Admin",
-          "BPDM Sharing Admin"
+          "BPDM Sharing Admin",
+          "BPDM Orchestrator Admin"
         ]
       }
     ],
@@ -4206,6 +4375,117 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
       "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "web-origins",
+        "roles",
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "id": "983159fa-37f3-4519-9c98-8fe23d8ab8bf",
+      "clientId": "Cl25-CX-BPDM-Orchestrator",
+      "name": "BPDM Orchestrator",
+      "description": "Roles resource for the BPDM Orchestrator component",
+      "rootUrl": "",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": false,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
+      "redirectUris": [],
+      "webOrigins": [],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "oidc.ciba.grant.enabled": "false",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "client.secret.creation.time": "1722276592",
+        "backchannel.logout.session.required": "true",
+        "backchannel.logout.revoke.offline.tokens": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": false,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "de42377c-8b7a-466c-91d6-c95d8a8533b8",
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "3f29cf79-e84c-4c1a-bf71-29238f655bfc",
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "client_id",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "client_id",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "831b2dfd-0c87-4328-b5ed-49a4efced60e",
+          "name": "BPN",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "introspection.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "user.attribute": "bpn",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "bpn",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "200ce257-7bee-4662-988a-750bf3e03790",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        }
+      ],
       "defaultClientScopes": [
         "web-origins",
         "roles",
