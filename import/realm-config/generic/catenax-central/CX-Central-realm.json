@@ -1346,7 +1346,7 @@
                 "add_service_offering",
                 "view_notifications",
                 "view_certificates",
-                "create_notifications",
+                "create_ssi_notifications",
                 "unsubscribe_services",
                 "modify_connectors",
                 "view_use_case_participation",
@@ -1431,8 +1431,8 @@
         },
         {
           "id": "22b05ced-cd8e-4769-a368-b8266bf967ef",
-          "name": "create_notifications",
-          "description": "User can create notifications (ONLY FOR TEST REASONS)",
+          "name": "create_ssi_notifications",
+          "description": "User can create notifications for ssi credentials",
           "composite": false,
           "clientRole": true,
           "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
@@ -2891,7 +2891,6 @@
       "clientRoles": {
         "Cl2-CX-Portal": [
           "update_application_bpn_credential",
-          "create_notifications",
           "send_mail",
           "update_application_membership_credential"
         ]
@@ -3168,7 +3167,7 @@
         "client": "sa-cl24-01",
         "roles": [
           "send_mail",
-          "create_notifications",
+          "create_ssi_notifications",
           "update_application_membership_credential",
           "update_application_bpn_credential"
         ]
