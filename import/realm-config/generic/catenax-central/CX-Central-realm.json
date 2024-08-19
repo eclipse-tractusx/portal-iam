@@ -433,6 +433,7 @@
                 "view_own_user_account",
                 "view_user_management",
                 "subscribe_apps",
+                "subscribe_service",
                 "view_membership",
                 "update_own_user_account",
                 "request_ssicredential",
