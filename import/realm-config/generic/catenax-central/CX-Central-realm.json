@@ -422,8 +422,10 @@
               "Cl2-CX-Portal": [
                 "view_documents",
                 "view_app_subscription",
+                "add_user_account",
                 "view_company_data",
                 "view_service_marketplace",
+                "modify_user_account",
                 "view_service_offering",
                 "view_autosetup_status",
                 "unsubscribe_apps",
@@ -438,13 +440,15 @@
                 "view_notifications",
                 "view_certificates",
                 "delete_certificates",
+                "view_client_roles",
                 "delete_own_user_account",
                 "unsubscribe_services",
                 "view_apps",
                 "view_subscription",
                 "view_use_case_participation",
                 "delete_notifications",
-                "view_partner_network"
+                "view_partner_network",
+                "view_idp"
               ],
               "Cl3-CX-Semantic": [
                 "add_semantic_model",
