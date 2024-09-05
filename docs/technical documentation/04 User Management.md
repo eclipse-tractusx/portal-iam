@@ -88,10 +88,9 @@ As soon as the page is reached, select the **Add User** on the top right of the 
 Required mandatory field is Username only.
 However in Catena-X we also set:
 
-- first name
-- last name
-- email
-- ...
+- First name
+- Last name
+- Email
 
 ![CreateUser](/docs/static/create-user.png)
 
