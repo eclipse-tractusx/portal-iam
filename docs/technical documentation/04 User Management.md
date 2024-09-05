@@ -57,7 +57,7 @@ With the registration, a user is invited without the company/bpn connection. The
 
 The IT Administrator is adding one or multiple users to the CX network. By doing so, the user accounts get created => as part of this flow, the newly created user(s) should get a user attribute added which is the same as the Company BPN from the table "company"
 
-**Option 3 - Manually added, by permission (via the user management permission "add user"):**
+**Option 3 - Manually added, by permission (via the user management permission `add_user`):**
 
  By opening the user admin account inside the portal, the administrator can add another BPN to the user account. Currently without any limitations. However there is the plan to limit the functionality and to restrict the BPNs which can get selected / added by the admin
 
