@@ -447,7 +447,8 @@
                 "view_subscription",
                 "view_use_case_participation",
                 "delete_notifications",
-                "view_partner_network"
+                "view_partner_network",
+                "view_idp"
               ],
               "Cl3-CX-Semantic": [
                 "add_semantic_model",
