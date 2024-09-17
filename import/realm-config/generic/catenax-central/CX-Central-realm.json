@@ -1872,6 +1872,23 @@
           "clientRole": true,
           "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
           "attributes": {}
+        },
+        {
+          "id": "884698bc-bb74-4661-a90f-3ba214b74593",
+          "name": "Registration Internal",
+          "description": "Technical user enabling the invitation API to integrate 3rd party software.",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl2-CX-Portal": [
+                "invite_new_partner",
+                "view_submitted_applications"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "6df310ed-500e-43d5-b510-fa4668e939ee",
+          "attributes": {}
         }
       ],
       "admin-cli": [],
