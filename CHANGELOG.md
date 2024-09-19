@@ -2,6 +2,16 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## Unreleased
+
+### Change
+
+* created the following composite roles inside the `technical_roles_management` client:
+  * `Registration Internal` [#189](https://github.com/eclipse-tractusx/portal-iam/pull/189)
+     * With `Cl2-CX-Portal` roles:
+       * invite_new_partner
+       * view_submitted_applications 
+
 ## 3.0.1
 
 ### Change
