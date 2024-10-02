@@ -78,13 +78,13 @@ spec:
           ###########
 
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__CLIENTID"
-            value: "{{ .Values.realmSeeding.clients.registration.clientId }}"
+            value: "Cl1-CX-Registration"
           {{- range $index, $redirects := .Values.realmSeeding.clients.registration.redirects }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
           {{- end }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__CLIENTID"
-            value: "{{ .Values.realmSeeding.clients.portal.clientId }}"
+            value: "Cl2-CX-Portal"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__ROOTURL"
             value: "{{ .Values.realmSeeding.clients.portal.rootUrl }}"
           {{- range $index, $redirects := .Values.realmSeeding.clients.portal.redirects }}
@@ -92,13 +92,13 @@ spec:
             value: {{ $redirects | quote }}
           {{- end }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__2__CLIENTID"
-            value: "{{ .Values.realmSeeding.clients.semantics.clientId }}"
+            value: "Cl3-CX-Semantic"
           {{- range $index, $redirects := .Values.realmSeeding.clients.semantics.redirects }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__2__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
           {{- end }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__CLIENTID"
-            value: "{{ .Values.realmSeeding.clients.miw.clientId }}"
+            value: "Cl5-CX-Custodian"
           {{- range $index, $redirects := .Values.realmSeeding.clients.miw.redirects }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
@@ -107,9 +107,9 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: "{{ template "centralidp.secret.clients" . }}"
-                key: "{{ .Values.realmSeeding.clients.miw.clientId }}"
+                key: "miw"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__CLIENTID"
-            value: "{{ .Values.realmSeeding.clients.bpdm.clientId }}"
+            value: "Cl7-CX-BPDM"
           {{- range $index, $redirects := .Values.realmSeeding.clients.bpdm.redirects }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
@@ -118,9 +118,9 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: "{{ template "centralidp.secret.clients" . }}"
-                key: "{{ .Values.realmSeeding.clients.bpdm.clientId }}"
+                key: "bpdm"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__CLIENTID"
-            value: "{{ .Values.realmSeeding.clients.bpdmGate.clientId }}"
+            value: "Cl16-CX-BPDMGate"
           {{- range $index, $redirects := .Values.realmSeeding.clients.bpdmGate.redirects }}
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__REDIRECTURIS__{{ $index }}"
             value: {{ $redirects | quote }}
@@ -129,7 +129,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: "{{ template "centralidp.secret.clients" . }}"
-                key: "{{ .Values.realmSeeding.clients.bpdmGate.clientId }}"
+                key: "bpdm-gate"
 
           #############################
           ## BASE SERVICE ACCOUNTS

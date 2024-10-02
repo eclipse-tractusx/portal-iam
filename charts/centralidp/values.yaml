@@ -143,30 +143,24 @@ realmSeeding:
   # SET client secrets for all non-testing and non-local purposes, default value is "changeme"
   clients:
     registration:
-      clientId: "Cl1-CX-Registration"
       redirects:
         - https://portal.example.org
     portal:
-      clientId: "Cl2-CX-Portal"
       rootUrl: https://portal.example.org/home
       redirects:
         - https://portal.example.org
     semantics:
-      clientId: "Cl3-CX-Semantic"
       redirects:
         - https://portal.example.org/*
     miw:
-      clientId: "Cl5-CX-Custodian"
       clientSecret: ""
       redirects:
         - https://managed-identity-wallets.example.org/*
     bpdm:
-      clientId: "Cl7-CX-BPDM"
       clientSecret: ""
       redirects:
         - https://partners-pool.example.org/*
     bpdmGate:
-      clientId: "Cl16-CX-BPDMGate"
       clientSecret: ""
       redirects:
         - https://partners-gate.example.org/*
