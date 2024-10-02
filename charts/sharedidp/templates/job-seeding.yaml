@@ -79,11 +79,11 @@ spec:
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__CLIENTID"
             value: "central-idp"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__REDIRECTURIS__0"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp }}/auth/realms/CX-Central/broker/CX-Operator/endpoint/* }}"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp }}/auth/realms/CX-Central/broker/CX-Operator/endpoint/*"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__ATTRIBUTES__0__NAME"
             value: "jwks.url"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__ATTRIBUTES__0__VALUE"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp }}/auth/realms/CX-Central/protocol/openid-connect/certs }}"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp }}/auth/realms/CX-Central/protocol/openid-connect/certs"
 
           #############################
           ## CX-OPERATOR INITIAL USER
