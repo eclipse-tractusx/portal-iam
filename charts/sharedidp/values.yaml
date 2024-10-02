@@ -148,18 +148,16 @@ realmSeeding:
   enabled: true
   realms:
     cxOperator:
-      # -- Set centralidp address for the connection to the CX-Central (centralidp)
+      # -- Set centralidp address for the connection to the CX-Central realm
       centralidp: "https://centralidp.example.org"
+       # -- Configure initial user in CX-Operator realm
       initialUser:
-        # -- SET username for initial user for all non-testing and non-local purposes
+        # -- SET username for all non-testing and non-local purposes
         username: "cx-operator@tx.org"
-        # -- SET password for initial user for all non-testing and non-local purposes, default value is "!3changemeTractus-X"
+        # -- SET password for all non-testing and non-local purposes, default value is "!3changemeTractus-X"
         password: ""
-        # -- Set first name for initial user
         firstName: "Operator"
-        # -- Set last name for initial user
         lastName: "CX Admin"
-        # -- Set e-mail for initial user
         eMail: "cx-operator@tx.org"
       # -- Set mailing configuration for CX-Operator realm
       mailing:
