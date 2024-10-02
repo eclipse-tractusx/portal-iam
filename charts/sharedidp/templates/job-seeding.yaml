@@ -56,41 +56,41 @@ spec:
                 name: "{{ template "sharedidp.fullname" . }}"
                 key: "admin-password"
           - name: "KEYCLOAK__SHARED__AUTHREALM"
-            value: "{{ .Values.realmSeeding.authRealm }}"
+            value: "master"
           - name: "KEYCLOAK__SHARED__USEAUTHTRAIL"
-            value: "{{ .Values.realmSeeding.useAuthTrail }}"
+            value: "true"
           - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__0"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.dataPaths.path0 }}"
+            value: "realms/CX-Operator-realm.json"
           - name: "KEYCLOAKSEEDING__REALMS__1__DATAPATHS__0"
-            value: "{{ .Values.realmSeeding.realms.master.dataPath }}"
+            value: "realms/master-realm.json"
           - name: "KEYCLOAKSEEDING__REALMS__0__INSTANCENAME"
             value: "shared"
           - name: "KEYCLOAKSEEDING__REALMS__1__INSTANCENAME"
             value: "shared"
           - name: "KEYCLOAKSEEDING__REALMS__0__REALM"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.name }}"
+            value: "CX-Operator"
           - name: "KEYCLOAKSEEDING__REALMS__1__REALM"
-            value: "{{ .Values.realmSeeding.realms.master.name }}"
+            value: "master"
 
           #############################
           ## CX-OPERATOR CLIENT
           #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__CLIENTID"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp.clientId }}"
+            value: "central-idp"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__REDIRECTURIS__0"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp.address }}{{ .Values.realmSeeding.realms.cxOperator.centralidp.redirectPath }}"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp }}/auth/realms/CX-Central/broker/CX-Operator/endpoint/* }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__ATTRIBUTES__0__NAME"
             value: "jwks.url"
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__ATTRIBUTES__0__VALUE"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp.address }}{{ .Values.realmSeeding.realms.cxOperator.centralidp.jwksPath }}"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp }}/auth/realms/CX-Central/protocol/openid-connect/certs }}"
 
           #############################
           ## CX-OPERATOR INITIAL USER
           #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__1"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.dataPaths.path1 }}"
+            value: "realms/CX-Operator-users-0.json"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__ID"
             value: "656e8a94-188b-4a3e-9eec-b45d8efd8347"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__USERNAME"
@@ -186,14 +186,28 @@ spec:
         resources:
           {{- toYaml .Values.realmSeeding.resources | nindent 10 }}
         volumeMounts:
-        {{- toYaml .Values.realmSeeding.extraVolumeMounts | nindent 10 }}
+          - name: realms
+            mountPath: "app/realms"
       initContainers:
+        - name: init-cx-central
+          image: {{ .Values.realmSeeding.initContainer.image }}
+          imagePullPolicy: {{ .Values.realmSeeding.initContainer.imagePullPolicy }}
+          command:
+            - sh
+          args:
+            - -c
+            - |
+              echo "Copying realms..."
+              cp -R /import/catenax-shared/realms/* /app/realms
+          volumeMounts:
+          - name: realms
+            mountPath: "app/realms"
         - name: wait-for-keycloak
           image: appropriate/curl:latest
           command: [ 'sh', '-c', 'until curl -s http://{{ template "sharedidp.fullname" . }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
           imagePullPolicy: IfNotPresent
-      {{- toYaml .Values.realmSeeding.initContainers | nindent 8 }}
       volumes:
-      {{- toYaml .Values.realmSeeding.extraVolumes | nindent 8 }}
+        - name: realms
+          emptyDir: {}
       automountServiceAccountToken: false
 {{- end -}}

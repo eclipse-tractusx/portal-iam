@@ -139,25 +139,17 @@ keycloak:
     existingSecretDatabaseKey: ""
     existingSecretPasswordKey: ""
 
-realmSeeding:
 # -- Seeding job to create and update the CX-Central realm:
 # besides creating the CX-Central realm, the job can be used to update
 # the configuration of the realm when upgrading to a new version;
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
 # for configuration possibly not covered by the seeding job
+realmSeeding:
   enabled: true
   realms:
     cxOperator:
-      name: "CX-Operator"
-      dataPaths:
-        path0: "realms/CX-Operator-realm.json"
-        path1: "realms/CX-Operator-users-0.json"
       # -- Set centralidp address for the connection to the CX-Central (centralidp)
-      centralidp:
-        address: "https://centralidp.example.org"
-        clientId: "central-idp"
-        redirectPath: "/auth/realms/CX-Central/broker/CX-Operator/endpoint/*"
-        jwksPath: "/auth/realms/CX-Central/protocol/openid-connect/certs"
+      centralidp: "https://centralidp.example.org"
       initialUser:
         # -- SET username for initial user for all non-testing and non-local purposes
         username: "cx-operator@tx.org"
@@ -180,8 +172,6 @@ realmSeeding:
       # -- Option to provide an existingSecret for mailing configuration
       existingSecret: ""
     master:
-      name: "master"
-      dataPath: "realms/master-realm.json"
       serviceAccounts:
         # -- Set clients secret for the service account which enables the portal to provision new realms
         provisioning:
@@ -197,9 +187,11 @@ realmSeeding:
       existingSecret: ""
   image: "docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1"
   imagePullPolicy: "IfNotPresent"
+  initContainer:
+    image: docker.io/tractusx/portal-iam:v4.0.0-alpha.1
+    imagePullPolicy: IfNotPresent
+  tls: false
   portContainer: 8080
-  authRealm: "master"
-  useAuthTrail: "true"
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:
@@ -210,24 +202,3 @@ realmSeeding:
       cpu: 750m
       memory: 600M
       ephemeral-storage: 1024Mi
-  tls: false
-  extraVolumes:
-    - name: realms
-      emptyDir: {}
-  extraVolumeMounts:
-    - name: realms
-      mountPath: "app/realms"
-  initContainers:
-    - name: init-cx-central
-      image: docker.io/tractusx/portal-iam:v4.0.0-alpha.1
-      imagePullPolicy: IfNotPresent
-      command:
-        - sh
-      args:
-        - -c
-        - |
-          echo "Copying realms..."
-          cp -R /import/catenax-shared/realms/* /app/realms
-      volumeMounts:
-      - name: realms
-        mountPath: "app/realms"
