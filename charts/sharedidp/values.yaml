@@ -168,7 +168,7 @@ realmSeeding:
         # -- Set last name for initial user
         lastName: "CX Admin"
         # -- Set e-mail for initial user
-        eMail: "email@example.org"
+        eMail: "cx-operator@tx.org"
       # -- Set mailing configuration for CX-Operator realm
       mailing:
         host: "smtp.example.org"
