@@ -131,17 +131,16 @@ keycloak:
     existingSecretDatabaseKey: ""
     existingSecretPasswordKey: ""
 
-realmSeeding:
 # -- Seeding job to create and update the CX-Central realm:
 # besides creating the CX-Central realm, the job can be used to update
 # the configuration of the realm when upgrading to a new version;
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
 # for configuration possibly not covered by the seeding job
+realmSeeding:
   enabled: true
-  realm: "CX-Central"
   # -- Set redirect addresses and - in the case of confidential clients - clients secrets
-  # for clients which are part of the basic CX-Central realm setup
-  # -- SET client secrets for all non-testing and non-local purposes, default value is "changeme"
+  # for clients which are part of the basic CX-Central realm setup;
+  # SET client secrets for all non-testing and non-local purposes, default value is "changeme"
   clients:
     registration:
       clientId: "Cl1-CX-Registration"
@@ -206,18 +205,9 @@ realmSeeding:
     # -- Option to provide an existingSecret for the base service accounts with clientId as key and clientSecret as value
     existingSecret: ""
   # -- Set value for the 'bpn' user attribute for the initial user and the base service account users
-  # initialUser refers to the username
-  bpnUserAttribute:
-    bpn: "BPNL00000003CRHK"
-    initialUser: "ac1cf001-7fbc-1f2f-817f-bce058020006"
-  sharedidp:
-    # -- Set sharedidp address to enable the identity provider connection to CX-Operator realm (sharedidp)
-    address: "https://sharedidp.example.org"
-    idpAlias: "CX-Operator"
-    tokenPath: "/auth/realms/CX-Operator/protocol/openid-connect/token"
-    jwksPath: "/auth/realms/CX-Operator/protocol/openid-connect/certs"
-    authorizationPath: "/auth/realms/CX-Operator/protocol/openid-connect/auth"
-    logoutPath: "/auth/realms/CX-Operator/protocol/openid-connect/logout"
+  bpn: "BPNL00000003CRHK"
+  # -- Set sharedidp address to enable the identity provider connection to CX-Operator realm
+  sharedidp: "https://sharedidp.example.org"
   # -- Set client secrets and bpn user attribute for additional service accounts;
   # meant to enable possible test data, default value for client secrets is "changeme"
   extraServiceAccounts:
@@ -232,12 +222,11 @@ realmSeeding:
     existingSecret: ""
   image: "docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1"
   imagePullPolicy: "IfNotPresent"
+  initContainer:
+    image: "docker.io/tractusx/portal-iam:v4.0.0-alpha.1"
+    imagePullPolicy: "IfNotPresent"
+  tls: false
   portContainer: 8080
-  authRealm: "master"
-  useAuthTrail: "true"
-  dataPaths:
-    path0: "realms/CX-Central-realm.json"
-    path1: "realms/CX-Central-users-0.json"
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:
@@ -248,24 +237,3 @@ realmSeeding:
       cpu: 750m
       memory: 600M
       ephemeral-storage: 1024Mi
-  tls: false
-  extraVolumes:
-    - name: realms
-      emptyDir: {}
-  extraVolumeMounts:
-    - name: realms
-      mountPath: "app/realms"
-  initContainers:
-    - name: init-cx-central
-      image: docker.io/tractusx/portal-iam:v4.0.0-alpha.1
-      imagePullPolicy: IfNotPresent
-      command:
-        - sh
-      args:
-        - -c
-        - |
-          echo "Copying CX Central realm..."
-          cp -R /import/catenax-central/realms/* /app/realms
-      volumeMounts:
-      - name: realms
-        mountPath: "app/realms"

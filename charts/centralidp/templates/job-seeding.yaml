@@ -56,22 +56,22 @@ spec:
                 name: "{{ template "centralidp.fullname" . }}"
                 key: "admin-password"
           - name: "KEYCLOAK__CENTRAL__AUTHREALM"
-            value: "{{ .Values.realmSeeding.authRealm }}"
+            value: "master"
           - name: "KEYCLOAK__CENTRAL__USEAUTHTRAIL"
-            value: "{{ .Values.realmSeeding.useAuthTrail }}"
+            value: "true"
           - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__0"
-            value: "{{ .Values.realmSeeding.dataPaths.path0 }}"
+            value: "realms/CX-Central-realm.json"
           - name: "KEYCLOAKSEEDING__REALMS__0__INSTANCENAME"
             value: "central"
           - name: "KEYCLOAKSEEDING__REALMS__0__REALM"
-            value: "{{ .Values.realmSeeding.realm }}"
+            value: "CX-Central"
 
           #################
           ## INITIAL USER
           #################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__1"
-            value: "{{ .Values.realmSeeding.dataPaths.path1 }}"
+            value: "realms/CX-Central-users-0.json"
 
           ###########
           ## CLIENTS
@@ -153,13 +153,13 @@ spec:
           #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__USERNAME"
-            value: "{{ .Values.realmSeeding.bpnUserAttribute.initialUser }}"
+            value: "ac1cf001-7fbc-1f2f-817f-bce058020006"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__Attributes__0__NAME"
             value: "bpn"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__Attributes__0__VALUES__0"
-            value: "{{ .Values.realmSeeding.bpnUserAttribute.bpn }}"
+            value: "{{ .Values.realmSeeding.bpn }}"
           {{- $index := 1 }}
-          {{- $bpn := .Values.realmSeeding.bpnUserAttribute.bpn -}}
+          {{- $bpn := .Values.realmSeeding.bpn -}}
           {{- range .Values.realmSeeding.serviceAccounts.clientSecrets }}
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME"
             value: {{ printf "service-account-%s" .clientId | quote }}
@@ -175,15 +175,15 @@ spec:
           #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__ALIAS"
-            value: "{{ .Values.realmSeeding.sharedidp.idpAlias }}"
+            value: "CX-Operator"
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__TOKENURL"
-            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.tokenPath }}"
+            value: "{{ .Values.realmSeeding.sharedidp }}/auth/realms/CX-Operator/protocol/openid-connect/token"
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__JWKSURL"
-            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.jwksPath }}"
+            value: "{{ .Values.realmSeeding.sharedidp }}/auth/realms/CX-Operator/protocol/openid-connect/certs"
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__AUTHORIZATIONURL"
-            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.authorizationPath }}"
+            value: "{{ .Values.realmSeeding.sharedidp }}/auth/realms/CX-Operator/protocol/openid-connect/auth"
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__LOGOUTURL"
-            value: "{{ .Values.realmSeeding.sharedidp.address }}{{ .Values.realmSeeding.sharedidp.logoutPath }}"
+            value: "{{ .Values.realmSeeding.sharedidp }}/auth/realms/CX-Operator/protocol/openid-connect/logout"
 
           ###############################
           ## EXTRA SERVICE ACCOUNTS
@@ -213,14 +213,28 @@ spec:
         resources:
           {{- toYaml .Values.realmSeeding.resources | nindent 10 }}
         volumeMounts:
-        {{- toYaml .Values.realmSeeding.extraVolumeMounts | nindent 10 }}
+          - name: realms
+            mountPath: "app/realms"
       initContainers:
+        - name: init-cx-central
+          image: {{ .Values.realmSeeding.initContainer.image }}
+          imagePullPolicy: {{ .Values.realmSeeding.initContainer.imagePullPolicy }}
+          command:
+            - sh
+          args:
+            - -c
+            - |
+              echo "Copying CX Central realm..."
+              cp -R /import/catenax-central/realms/* /app/realms
+          volumeMounts:
+          - name: realms
+            mountPath: "app/realms"
         - name: wait-for-keycloak
           image: appropriate/curl:latest
           command: [ 'sh', '-c', 'until curl -s http://{{ template "centralidp.fullname" . }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
           imagePullPolicy: IfNotPresent
-      {{- toYaml .Values.realmSeeding.initContainers | nindent 8 }}
       volumes:
-      {{- toYaml .Values.realmSeeding.extraVolumes | nindent 8 }}
+        - name: realms
+          emptyDir: {}
       automountServiceAccountToken: false
 {{- end -}}
