@@ -81,6 +81,24 @@ spec:
             value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp.address }}{{ .Values.realmSeeding.realms.cxOperator.centralidp.jwksPath }}"
 
           #############################
+          ## CX-OPERATOR INITIAL USER
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHES__1"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.dataPaths.path1 }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__USERNAME"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.initialUserCredentials.username }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__CREDENTIALS__0__TEMPORARY"
+            value: "false"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__CREDENTIALS__0__TYPE"
+            value: "password"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__CREDENTIALS__0__VALUE"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initialuserpassword"
+
+          #############################
           ## CX-OPERATOR MAIL CONFIG
           #############################
 
