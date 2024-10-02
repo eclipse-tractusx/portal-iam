@@ -149,6 +149,9 @@ realmSeeding:
   realms:
     cxOperator:
       name: "CX-Operator"
+      dataPaths:
+        path0: "realms/CX-Operator-realm.json"
+        path1: "realms/CX-Operator-users-0.json"
       # -- Set centralidp address for the connection to the CX-Central (centralidp)
       centralidp:
         address: "https://centralidp.example.org"
@@ -167,6 +170,7 @@ realmSeeding:
       existingSecret: ""
     master:
       name: "master"
+      dataPath: "realms/master-realm.json"
       serviceAccounts:
         # -- Set clients secret for the service account which enables the portal to provision new realms
         provisioning:
@@ -185,9 +189,6 @@ realmSeeding:
   portContainer: 8080
   authRealm: "master"
   useAuthTrail: "true"
-  dataPaths:
-    path0: "realms/CX-Operator-realm.json"
-    path1: "realms/master-realm.json"
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:
