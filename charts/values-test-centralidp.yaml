@@ -33,17 +33,6 @@ keycloak:
       - name: themes
         mountPath: "/themes"
 realmSeeding:
-  initContainers:
-    - name: init-cx-central
-      image: kind-registry:5000/iam:testing
-      imagePullPolicy: Always
-      command:
-        - sh
-      args:
-        - -c
-        - |
-          echo "Copying CX Central realm..."
-          cp -R /import/catenax-central/realms/* /app/realms
-      volumeMounts:
-      - name: realms
-        mountPath: "app/realms"
+  initContainer:
+    image: kind-registry:5000/iam:testing
+    imagePullPolicy: Always

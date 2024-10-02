@@ -37,17 +37,6 @@ keycloak:
       - name: themes-catenax-shared-portal
         mountPath: "/themes-catenax-shared-portal"
 realmSeeding:
-  initContainers:
-    - name: init-cx-central
-      image: kind-registry:5000/iam:testing
-      imagePullPolicy: Always
-      command:
-        - sh
-      args:
-        - -c
-        - |
-          echo "Copying realms..."
-          cp -R /import/catenax-shared/realms/* /app/realms
-      volumeMounts:
-      - name: realms
-        mountPath: "app/realms"
+  initContainer:
+    image: kind-registry:5000/iam:testing
+    imagePullPolicy: Always
