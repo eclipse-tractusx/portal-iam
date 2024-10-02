@@ -96,7 +96,7 @@ keycloak:
   postgresql:
   # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
   # default configurations:
-  # host: "sharedidp-postgresql-primary",
+  # host: "sharedidp-postgresql",
   # port: 5432;
     # Switch to enable or disable the PostgreSQL helm chart.
     enabled: true
