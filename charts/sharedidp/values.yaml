@@ -175,12 +175,10 @@ realmSeeding:
       serviceAccounts:
         # -- Set clients secret for the service account which enables the portal to provision new realms
         provisioning:
-          clientId: "sa-cl1-reg-1"
           # -- SET client secret for all non-testing and non-local purposes, default value is "changeme"
           clientSecret: ""
         # -- Set clients secret for the service account which enables the portal to manage the CX-Operator realm
         saCxOperator:
-          clientId: "saCX-Operator"
           # -- SET client secret for all non-testing and non-local purposes, default value is "changeme"
           clientSecret: ""
       # -- Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value

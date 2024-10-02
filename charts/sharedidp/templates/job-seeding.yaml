@@ -165,19 +165,19 @@ spec:
           #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__1__CLIENTS__0__CLIENTID"
-            value: "{{ .Values.realmSeeding.realms.master.serviceAccounts.provisioning.clientId }}"
+            value: "sa-cl1-reg-1"
           - name: "KEYCLOAKSEEDING__REALMS__1__CLIENTS__0__SECRET"
             valueFrom:
               secretKeyRef:
                 name: "{{ template "sharedidp.secret.realmSeeding.master" . }}"
-                key: "{{ .Values.realmSeeding.realms.master.serviceAccounts.provisioning.clientId }}"
+                key: "sa-provisioning"
           - name: "KEYCLOAKSEEDING__REALMS__1__CLIENTS__1__CLIENTID"
-            value: "{{ .Values.realmSeeding.realms.master.serviceAccounts.saCxOperator.clientId }}"
+            value: "saCX-Operator"
           - name: "KEYCLOAKSEEDING__REALMS__1__CLIENTS__1__SECRET"
             valueFrom:
               secretKeyRef:
                 name: "{{ template "sharedidp.secret.realmSeeding.master" . }}"
-                key: "{{ .Values.realmSeeding.realms.master.serviceAccounts.saCxOperator.clientId }}"
+                key: "sa-cx-operator"
 
         ports:
         - name: http
