@@ -181,11 +181,13 @@ realmSeeding:
           clientSecret: ""
       # -- Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value
       existingSecret: ""
-  image: "docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1"
-  imagePullPolicy: "IfNotPresent"
+  image:
+    name: "docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1"
+    pullPolicy: "IfNotPresent"
   initContainer:
-    image: docker.io/tractusx/portal-iam:v4.0.0-alpha.1
-    imagePullPolicy: IfNotPresent
+    image:
+      name: "docker.io/tractusx/portal-iam:v4.0.0-alpha.1"
+      pullPolicy: "IfNotPresent"
   tls: false
   portContainer: 8080
   # -- We recommend to review the default resource limits as this should a conscious choice.

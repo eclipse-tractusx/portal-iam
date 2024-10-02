@@ -38,8 +38,8 @@ spec:
             - ALL
           readOnlyRootFilesystem: true
           runAsNonRoot: true
-        image: "{{ .Values.realmSeeding.image }}"
-        imagePullPolicy: "{{ .Values.realmSeeding.imagePullPolicy }}"
+        image: "{{ .Values.realmSeeding.image.name }}"
+        imagePullPolicy: "{{ .Values.realmSeeding.image.pullPolicy }}"
         env:
           - name: "KEYCLOAK__SHARED__CONNECTIONSTRING"
             value: |
@@ -190,8 +190,8 @@ spec:
             mountPath: "app/realms"
       initContainers:
         - name: init-cx-central
-          image: {{ .Values.realmSeeding.initContainer.image }}
-          imagePullPolicy: {{ .Values.realmSeeding.initContainer.imagePullPolicy }}
+          image: {{ .Values.realmSeeding.initContainer.image.name }}
+          imagePullPolicy: {{ .Values.realmSeeding.initContainer.image.pullPolicy }}
           command:
             - sh
           args:

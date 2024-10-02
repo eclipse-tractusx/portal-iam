@@ -34,5 +34,6 @@ keycloak:
         mountPath: "/themes"
 realmSeeding:
   initContainer:
-    image: kind-registry:5000/iam:testing
-    imagePullPolicy: Always
+    image:
+      name: "kind-registry:5000/iam:testing"
+      pullPolicy: "Always"
