@@ -207,7 +207,7 @@ realmSeeding:
       memory: 600M
       ephemeral-storage: 50Mi
     limits:
-      cpu: 500m
+      cpu: 750m
       memory: 600M
       ephemeral-storage: 1024Mi
   extraVolumes:
