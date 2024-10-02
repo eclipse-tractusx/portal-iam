@@ -42,7 +42,12 @@ spec:
         imagePullPolicy: "{{ .Values.realmSeeding.imagePullPolicy }}"
         env:
           - name: "KEYCLOAK__SHARED__CONNECTIONSTRING"
-            value: "http://{{ template "sharedidp.fullname" . }}"
+            value: |
+              {{ if .Values.realmSeeding.tls }}
+              "https://{{ template "sharedidp.fullname" . }}"
+              {{ else }}
+              "http://{{ template "sharedidp.fullname" . }}"
+              {{ end }}
           - name: "KEYCLOAK__SHARED__USER"
             value: "{{ .Values.keycloak.auth.adminUser }}"
           - name: "KEYCLOAK__SHARED__PASSWORD"

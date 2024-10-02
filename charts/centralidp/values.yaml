@@ -248,6 +248,7 @@ realmSeeding:
       cpu: 750m
       memory: 600M
       ephemeral-storage: 1024Mi
+  tls: false
   extraVolumes:
     - name: realms
       emptyDir: {}

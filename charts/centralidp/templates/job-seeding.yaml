@@ -42,7 +42,12 @@ spec:
         imagePullPolicy: "{{ .Values.realmSeeding.imagePullPolicy }}"
         env:
           - name: "KEYCLOAK__CENTRAL__CONNECTIONSTRING"
-            value: "http://{{ template "centralidp.fullname" . }}"
+            value: |
+              {{ if .Values.realmSeeding.tls }}
+              "https://{{ template "centralidp.fullname" . }}"
+              {{ else }}
+              "http://{{ template "centralidp.fullname" . }}"
+              {{ end }}
           - name: "KEYCLOAK__CENTRAL__USER"
             value: "{{ .Values.keycloak.auth.adminUser }}"
           - name: "KEYCLOAK__CENTRAL__PASSWORD"
