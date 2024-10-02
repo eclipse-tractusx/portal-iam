@@ -44,9 +44,9 @@ spec:
           - name: "KEYCLOAK__SHARED__CONNECTIONSTRING"
             value: |
               {{ if .Values.realmSeeding.tls }}
-              "https://{{ template "sharedidp.fullname" . }}"
+              https://{{ template "sharedidp.fullname" . }}
               {{ else }}
-              "http://{{ template "sharedidp.fullname" . }}"
+              http://{{ template "sharedidp.fullname" . }}
               {{ end }}
           - name: "KEYCLOAK__SHARED__USER"
             value: "{{ .Values.keycloak.auth.adminUser }}"

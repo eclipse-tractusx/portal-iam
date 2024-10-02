@@ -44,9 +44,9 @@ spec:
           - name: "KEYCLOAK__CENTRAL__CONNECTIONSTRING"
             value: |
               {{ if .Values.realmSeeding.tls }}
-              "https://{{ template "centralidp.fullname" . }}"
+              https://{{ template "centralidp.fullname" . }}
               {{ else }}
-              "http://{{ template "centralidp.fullname" . }}"
+              http://{{ template "centralidp.fullname" . }}
               {{ end }}
           - name: "KEYCLOAK__CENTRAL__USER"
             value: "{{ .Values.keycloak.auth.adminUser }}"
