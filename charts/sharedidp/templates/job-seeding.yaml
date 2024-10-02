@@ -54,10 +54,10 @@ spec:
             value: "{{ .Values.realmSeeding.authRealm }}"
           - name: "KEYCLOAK__SHARED__USEAUTHTRAIL"
             value: "{{ .Values.realmSeeding.useAuthTrail }}"
-          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHES__0"
-            value: "{{ .Values.realmSeeding.cxOperator.dataPaths.path0 }}"
-          - name: "KEYCLOAKSEEDING__REALMS__1__DATAPATHES__0"
-            value: "{{ .Values.realmSeeding.master.dataPath }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__0"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.dataPaths.path0 }}"
+          - name: "KEYCLOAKSEEDING__REALMS__1__DATAPATHS__0"
+            value: "{{ .Values.realmSeeding.realms.master.dataPath }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__INSTANCENAME"
             value: "shared"
           - name: "KEYCLOAKSEEDING__REALMS__1__INSTANCENAME"
@@ -84,7 +84,7 @@ spec:
           ## CX-OPERATOR INITIAL USER
           #############################
 
-          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHES__1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__1"
             value: "{{ .Values.realmSeeding.realms.cxOperator.dataPaths.path1 }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__USERNAME"
             value: "{{ .Values.realmSeeding.realms.cxOperator.initialUserCredentials.username }}"
