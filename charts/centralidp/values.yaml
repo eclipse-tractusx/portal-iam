@@ -164,6 +164,8 @@ realmSeeding:
       clientSecret: ""
       redirects:
         - https://partners-gate.example.org/*
+    bpdmOrchestrator:
+      clientSecret: ""
     # -- Option to provide an existingSecret for the clients with clientId as key and clientSecret as value
     existingSecret: ""
   # Client secrets for service accounts which are part of the basic CX-Central realm setup;
@@ -186,7 +188,11 @@ realmSeeding:
         clientSecret: ""
       - clientId: "sa-cl5-custodian-2"
         clientSecret: ""
+      - clientId: "sa-cl7-cx-1"
+        clientSecret: ""
       - clientId: "sa-cl7-cx-5"
+        clientSecret: ""
+      - clientId: "sa-cl7-cx-7"
         clientSecret: ""
       - clientId: "sa-cl8-cx-1"
         clientSecret: ""
@@ -195,6 +201,12 @@ realmSeeding:
       - clientId: "sa-cl22-01"
         clientSecret: ""
       - clientId: "sa-cl24-01"
+        clientSecret: ""
+      - clientId: "sa-cl25-cx-1"
+        clientSecret: ""
+      - clientId: "sa-cl25-cx-2"
+        clientSecret: ""
+      - clientId: "sa-cl25-cx-3"
         clientSecret: ""
     # -- Option to provide an existingSecret for the base service accounts with clientId as key and clientSecret as value
     existingSecret: ""

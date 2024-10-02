@@ -130,6 +130,13 @@ spec:
               secretKeyRef:
                 name: "{{ template "centralidp.secret.clients" . }}"
                 key: "bpdm-gate"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__6__CLIENTID"
+            value: "Cl25-CX-BPDM-Orchestrator"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__6__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "centralidp.secret.clients" . }}"
+                key: "bpdm-orchestrator"
 
           #############################
           ## BASE SERVICE ACCOUNTS
