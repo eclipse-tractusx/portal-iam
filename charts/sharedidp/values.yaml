@@ -158,16 +158,22 @@ realmSeeding:
         clientId: "central-idp"
         redirectPath: "/auth/realms/CX-Central/broker/CX-Operator/endpoint/*"
         jwksPath: "/auth/realms/CX-Central/protocol/openid-connect/certs"
-      initialUserCredentials:
-        # PLEASE SET INITIAL USERNAME for all non-testing and non-local purposes
+      initialUser:
+        # -- SET username for initial user for all non-testing and non-local purposes
         username: "cx-operator@tx.org"
-        # PLEASE SET INITIAL PASSWORD for all non-testing and non-local purposes, default value is "!3changemeTractus-X"
+        # -- SET password for initial user for all non-testing and non-local purposes, default value is "!3changemeTractus-X"
         password: ""
+        # -- Set first name for initial user
+        firstName: "Operator"
+        # -- Set last name for initial user
+        lastName: "CX Admin"
+        # -- Set e-mail for initial user
+        eMail: "email@example.org"
       # -- Set mailing configuration for CX-Operator realm
       mailing:
         host: "smtp.example.org"
         port: "123"
-        user: "smtp-user"
+        username: "smtp-user"
         password: ""
         from: "email@example.org"
         replyTo: "email@example.org"
@@ -180,12 +186,12 @@ realmSeeding:
         # -- Set clients secret for the service account which enables the portal to provision new realms
         provisioning:
           clientId: "sa-cl1-reg-1"
-          # PLEASE SET CLIENT SECRET for all non-testing and non-local purposes, default value is "changeme"
+          # -- SET client secret for all non-testing and non-local purposes, default value is "changeme"
           clientSecret: ""
         # -- Set clients secret for the service account which enables the portal to manage the CX-Operator realm
         saCxOperator:
           clientId: "saCX-Operator"
-          # PLEASE SET CLIENT SECRET for all non-testing and non-local purposes, default value is "changeme"
+          # -- SET client secret for all non-testing and non-local purposes, default value is "changeme"
           clientSecret: ""
       # -- Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value
       existingSecret: ""

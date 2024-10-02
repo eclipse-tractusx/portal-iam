@@ -86,8 +86,30 @@ spec:
 
           - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__1"
             value: "{{ .Values.realmSeeding.realms.cxOperator.dataPaths.path1 }}"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__ID"
+            value: "656e8a94-188b-4a3e-9eec-b45d8efd8347"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__USERNAME"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.initialUserCredentials.username }}"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initial-user-username"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__ENABLED"
+            value: "true"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__FIRSTNAME"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initial-user-first-name"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__LASTNAME"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initial-user-last-name"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__EMAIL"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initial-user-email"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__CREDENTIALS__0__TEMPORARY"
             value: "false"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__CREDENTIALS__0__TYPE"
@@ -96,27 +118,42 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
-                key: "initialuserpassword"
+                key: "initial-user-password"
 
           #############################
           ## CX-OPERATOR MAIL CONFIG
           #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__HOST"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.mailing.host }}"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-host"
           - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__PORT"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.mailing.port }}"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-port"
           - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__USER"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.mailing.user }}"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-username"
           - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__FROM"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.mailing.from }}"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-from"
           - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__REPLYTO"
-            value: "{{ .Values.realmSeeding.realms.cxOperator.mailing.replyTo }}"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-reply-to"
           - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__PASSWORD"
             valueFrom:
               secretKeyRef:
                 name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
-                key: "password"
+                key: "mailing-password"
 
           #############################
           ## MASTER SERVICE ACCOUNTS
