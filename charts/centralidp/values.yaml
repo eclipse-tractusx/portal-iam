@@ -235,7 +235,9 @@ realmSeeding:
   portContainer: 8080
   authRealm: "master"
   useAuthTrail: "true"
-  dataPath: "realms/CX-Central-realm.json"
+  dataPaths:
+    path0: "realms/CX-Central-realm.json"
+    path1: "realms/CX-Central-users-0.json"
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:

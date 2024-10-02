@@ -55,11 +55,18 @@ spec:
           - name: "KEYCLOAK__CENTRAL__USEAUTHTRAIL"
             value: "{{ .Values.realmSeeding.useAuthTrail }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__0"
-            value: "{{ .Values.realmSeeding.dataPath }}"
+            value: "{{ .Values.realmSeeding.dataPaths.path0 }}"
           - name: "KEYCLOAKSEEDING__REALMS__0__INSTANCENAME"
             value: "central"
           - name: "KEYCLOAKSEEDING__REALMS__0__REALM"
             value: "{{ .Values.realmSeeding.realm }}"
+
+          #################
+          ## INITIAL USER
+          #################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__1"
+            value: "{{ .Values.realmSeeding.dataPaths.path1 }}"
 
           ###########
           ## CLIENTS
