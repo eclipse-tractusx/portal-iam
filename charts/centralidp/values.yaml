@@ -210,8 +210,8 @@ realmSeeding:
   bpnUserAttribute:
     bpn: "BPNL00000003CRHK"
     initialUser: "ac1cf001-7fbc-1f2f-817f-bce058020006"
-  # -- Set sharedidp address to enable the identity provider connection to CX-Operator realm (sharedidp)
   sharedidp:
+    # -- Set sharedidp address to enable the identity provider connection to CX-Operator realm (sharedidp)
     address: "https://sharedidp.example.org"
     idpAlias: "CX-Operator"
     tokenPath: "/auth/realms/CX-Operator/protocol/openid-connect/token"
