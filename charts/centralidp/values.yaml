@@ -141,7 +141,7 @@ realmSeeding:
   realm: "CX-Central"
   # -- Set redirect addresses and - in the case of confidential clients - clients secrets
   # for clients which are part of the basic CX-Central realm setup
-  # PLEASE SET CLIENT SECRETS for all non-testing and non-local purposes, default value is "changeme"
+  # -- SET client secrets for all non-testing and non-local purposes, default value is "changeme"
   clients:
     registration:
       clientId: "Cl1-CX-Registration"
@@ -173,8 +173,8 @@ realmSeeding:
         - https://partners-gate.example.org/*
     # -- Option to provide an existingSecret for the clients with clientId as key and clientSecret as value
     existingSecret: ""
-  # -- Set client secrets for service accounts which are part of the basic CX-Central realm setup
-  # PLEASE SET CLIENT SECRETS for all non-testing and non-local purposes, default value is "changeme"
+  # Client secrets for service accounts which are part of the basic CX-Central realm setup;
+  # SET client secrets for all non-testing and non-local purposes, default value is "changeme"
   serviceAccounts:
     clientSecrets:
       - clientId: "sa-cl1-reg-2"
