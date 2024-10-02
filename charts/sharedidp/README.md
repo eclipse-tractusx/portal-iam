@@ -43,37 +43,30 @@ dependencies:
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | keycloak.auth.adminUser | string | `"admin"` |  |
-| keycloak.auth.existingSecret | string | `"sharedidp-keycloak"` | Secret containing the passwords for admin username 'admin' and management username 'manager'. |
+| keycloak.auth.adminPassword | string | `""` |  |
+| keycloak.auth.existingSecret | string | `""` | Secret containing the passwords for admin username 'admin' and management username 'manager'. |
 | keycloak.production | bool | `false` | Run Keycloak in production mode. TLS configuration is required except when using proxy=edge. |
 | keycloak.proxy | string | `"passthrough"` | reverse Proxy mode edge, reencrypt, passthrough or none; ref: https://www.keycloak.org/server/reverseproxy; If your ingress controller has the SSL Termination, you should set proxy to edge. |
 | keycloak.httpRelativePath | string | `"/auth/"` | Setting the path relative to '/' for serving resources: as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'. ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed |
-| keycloak.extraEnvVars[0].name | string | `"KEYCLOAK_EXTRA_ARGS"` |  |
-| keycloak.extraEnvVars[0].value | string | `"-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=IGNORE_EXISTING"` |  |
-| keycloak.replicaCount | int | `3` |  |
+| keycloak.replicaCount | int | `1` |  |
 | keycloak.extraVolumes[0].name | string | `"themes-catenax-shared"` |  |
 | keycloak.extraVolumes[0].emptyDir | object | `{}` |  |
 | keycloak.extraVolumes[1].name | string | `"themes-catenax-shared-portal"` |  |
 | keycloak.extraVolumes[1].emptyDir | object | `{}` |  |
-| keycloak.extraVolumes[2].name | string | `"realms"` |  |
-| keycloak.extraVolumes[2].emptyDir | object | `{}` |  |
 | keycloak.extraVolumeMounts[0].name | string | `"themes-catenax-shared"` |  |
 | keycloak.extraVolumeMounts[0].mountPath | string | `"/opt/bitnami/keycloak/themes/catenax-shared"` |  |
 | keycloak.extraVolumeMounts[1].name | string | `"themes-catenax-shared-portal"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/opt/bitnami/keycloak/themes/catenax-shared-portal"` |  |
-| keycloak.extraVolumeMounts[2].name | string | `"realms"` |  |
-| keycloak.extraVolumeMounts[2].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
 | keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.1"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
-| keycloak.initContainers[0].args[1] | string | `"echo \"Copying themes-catenax-shared...\"\ncp -R /import/themes/catenax-shared/* /themes-catenax-shared\necho \"Copying themes-catenax-shared-portal...\"\ncp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal\necho \"Copying realms...\"\ncp -R /import/catenax-shared/realms/* /realms\n"` |  |
+| keycloak.initContainers[0].args[1] | string | `"echo \"Copying themes-catenax-shared...\"\ncp -R /import/themes/catenax-shared/* /themes-catenax-shared\necho \"Copying themes-catenax-shared-portal...\"\ncp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal\n"` |  |
 | keycloak.initContainers[0].volumeMounts[0].name | string | `"themes-catenax-shared"` |  |
 | keycloak.initContainers[0].volumeMounts[0].mountPath | string | `"/themes-catenax-shared"` |  |
 | keycloak.initContainers[0].volumeMounts[1].name | string | `"themes-catenax-shared-portal"` |  |
 | keycloak.initContainers[0].volumeMounts[1].mountPath | string | `"/themes-catenax-shared-portal"` |  |
-| keycloak.initContainers[0].volumeMounts[2].name | string | `"realms"` |  |
-| keycloak.initContainers[0].volumeMounts[2].mountPath | string | `"/realms"` |  |
 | keycloak.service.sessionAffinity | string | `"ClientIP"` |  |
 | keycloak.ingress.enabled | bool | `false` |  |
 | keycloak.ingress.ingressClassName | string | `"nginx"` |  |
@@ -93,48 +86,41 @@ dependencies:
 | keycloak.rbac.rules[0].resources[0] | string | `"pods"` |  |
 | keycloak.rbac.rules[0].verbs[0] | string | `"get"` |  |
 | keycloak.rbac.rules[0].verbs[1] | string | `"list"` |  |
-| keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration (recommended for demonstration purposes only); default configurations: host: "sharedidp-postgresql-primary", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
+| keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration (recommended for demonstration purposes only); default configurations: host: "sharedidp-postgresql", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
 | keycloak.postgresql.image | object | `{"tag":"15-debian-11"}` | Setting to Postgres version 15 as that is the aligned version, https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions). Keycloak helm-chart from Bitnami has moved on to version 16. |
 | keycloak.postgresql.commonLabels."app.kubernetes.io/version" | string | `"15"` |  |
 | keycloak.postgresql.auth.username | string | `"kcshared"` | Non-root username. |
+| keycloak.postgresql.auth.password | string | `""` | Non-root user password. |
+| keycloak.postgresql.auth.postgresPassword | string | `""` | Root user password. |
 | keycloak.postgresql.auth.database | string | `"iamsharedidp"` | Database name. |
-| keycloak.postgresql.auth.existingSecret | string | `"sharedidp-postgres"` | Secret containing the passwords for root usernames postgres and non-root username kcshared. |
-| keycloak.postgresql.architecture | string | `"replication"` |  |
-| keycloak.externalDatabase.host | string | `"sharedidp-postgresql-external-db"` | External PostgreSQL configuration IMPORTANT: non-root db user needs needs to be created beforehand on external database. Database host ('-primary' is added as postfix). |
+| keycloak.postgresql.auth.existingSecret | string | `""` | Secret containing the passwords for root usernames postgres and non-root username kcshared. |
+| keycloak.postgresql.architecture | string | `"standalone"` |  |
+| keycloak.externalDatabase.host | string | `""` | External PostgreSQL configuration IMPORTANT: non-root db user needs needs to be created beforehand on external database. |
 | keycloak.externalDatabase.port | int | `5432` | Database port number. |
-| keycloak.externalDatabase.user | string | `"kcshared"` | Non-root username for sharedidp. |
-| keycloak.externalDatabase.database | string | `"iamsharedidp"` | Database name. |
-| keycloak.externalDatabase.password | string | `""` | Password for the non-root username (default 'kcshared'). Secret-key 'password'. |
-| keycloak.externalDatabase.existingSecret | string | `"sharedidp-keycloak-external-db"` | Secret containing the password non-root username, (default 'kcshared'). |
-| keycloak.externalDatabase.existingSecretPasswordKey | string | `"password"` | Name of an existing secret key containing the database credentials. |
-| secrets.auth.existingSecret.adminpassword | string | `""` | Password for the admin username 'admin'. Secret-key 'admin-password'. |
-| secrets.postgresql.auth.existingSecret.postgrespassword | string | `""` | Password for the root username 'postgres'. Secret-key 'postgres-password'. |
-| secrets.postgresql.auth.existingSecret.password | string | `""` | Password for the non-root username 'kcshared'. Secret-key 'password'. |
-| secrets.postgresql.auth.existingSecret.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
-| secrets.realmuser.enabled | bool | `false` |  |
+| keycloak.externalDatabase.user | string | `""` | Non-root username. |
+| keycloak.externalDatabase.database | string | `""` | Database name. |
+| keycloak.externalDatabase.password | string | `""` | Password for the non-root username. |
+| keycloak.externalDatabase.existingSecret | string | `""` | Secret containing the database credentials |
+| keycloak.externalDatabase.existingSecretHostKey | string | `""` |  |
+| keycloak.externalDatabase.existingSecretPortKey | string | `""` |  |
+| keycloak.externalDatabase.existingSecretUserKey | string | `""` |  |
+| keycloak.externalDatabase.existingSecretDatabaseKey | string | `""` |  |
+| keycloak.externalDatabase.existingSecretPasswordKey | string | `""` |  |
+| realmSeeding | object | `{"enabled":true,"image":{"name":"docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1","pullPolicy":"IfNotPresent"},"initContainer":{"image":{"name":"docker.io/tractusx/portal-iam:v4.0.0-alpha.1","pullPolicy":"IfNotPresent"}},"portContainer":8080,"realms":{"cxOperator":{"centralidp":"https://centralidp.example.org","existingSecret":"","initialUser":{"eMail":"cx-operator@tx.org","firstName":"Operator","lastName":"CX Admin","password":"","username":"cx-operator@tx.org"},"mailing":{"from":"email@example.org","host":"smtp.example.org","password":"","port":"123","replyTo":"email@example.org","username":"smtp-user"}},"master":{"existingSecret":"","serviceAccounts":{"provisioning":{"clientSecret":""},"saCxOperator":{"clientSecret":""}}}},"resources":{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"600M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"600M"}},"tls":false}` | Seeding job to create and update the CX-Central realm: besides creating the CX-Central realm, the job can be used to update the configuration of the realm when upgrading to a new version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
+| realmSeeding.realms.cxOperator.centralidp | string | `"https://centralidp.example.org"` | Set centralidp address for the connection to the CX-Central realm |
+| realmSeeding.realms.cxOperator.initialUser | object | `{"eMail":"cx-operator@tx.org","firstName":"Operator","lastName":"CX Admin","password":"","username":"cx-operator@tx.org"}` | Configure initial user in CX-Operator realm |
+| realmSeeding.realms.cxOperator.initialUser.username | string | `"cx-operator@tx.org"` | SET username for all non-testing and non-local purposes |
+| realmSeeding.realms.cxOperator.initialUser.password | string | `""` | SET password for all non-testing and non-local purposes, default value is "!3changemeTractus-X" |
+| realmSeeding.realms.cxOperator.mailing | object | `{"from":"email@example.org","host":"smtp.example.org","password":"","port":"123","replyTo":"email@example.org","username":"smtp-user"}` | Set mailing configuration for CX-Operator realm |
+| realmSeeding.realms.cxOperator.existingSecret | string | `""` | Option to provide an existingSecret for mailing configuration |
+| realmSeeding.realms.master.serviceAccounts.provisioning | object | `{"clientSecret":""}` | Set clients secret for the service account which enables the portal to provision new realms |
+| realmSeeding.realms.master.serviceAccounts.provisioning.clientSecret | string | `""` | SET client secret for all non-testing and non-local purposes, default value is "changeme" |
+| realmSeeding.realms.master.serviceAccounts.saCxOperator | object | `{"clientSecret":""}` | Set clients secret for the service account which enables the portal to manage the CX-Operator realm |
+| realmSeeding.realms.master.serviceAccounts.saCxOperator.clientSecret | string | `""` | SET client secret for all non-testing and non-local purposes, default value is "changeme" |
+| realmSeeding.realms.master.existingSecret | string | `""` | Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value |
+| realmSeeding.resources | object | `{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"600M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"600M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
 
 Autogenerated with [helm docs](https://github.com/norwoodj/helm-docs)
-
-## Post-Install Configuration
-
-Once the installation is completed, the following steps need to be executed in the Keycloak admin console:
-
-### Within the master realm
-
-Generate client-secrets for the service account with access type 'confidential'.
-
-### Within the CX-Operator realm
-
-#### Establish connection to the centralidp instance
-
-1. Change the example.org placeholder in the central-idp client the to the address of the centralidp instance:
-
-* Settings --> Valid Redirect URI
-* Keys --> JWKS URL
-
-2. Set password and user details for the initial user.
-
-3. Setup SMTP configuration (Realm Settings --> Email)
 
 ## Upgrade
 
