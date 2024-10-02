@@ -230,8 +230,8 @@ realmSeeding:
       #   bpn: "TBD2"
     # -- Option to provide an existingSecret for additional service accounts with clientId as key and clientSecret as value
     existingSecret: ""
-  image: "192.168.49.2:5000/iam-seeding:latest"
-  imagePullPolicy: "Always"
+  image: "docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1"
+  imagePullPolicy: "IfNotPresent"
   portContainer: 8080
   authRealm: "master"
   useAuthTrail: "true"
@@ -254,8 +254,8 @@ realmSeeding:
       mountPath: "app/realms"
   initContainers:
     - name: init-cx-central
-      image: 192.168.49.2:5000/iam:test
-      imagePullPolicy: Always
+      image: docker.io/tractusx/portal-iam:v4.0.0-alpha.1
+      imagePullPolicy: IfNotPresent
       command:
         - sh
       args:
