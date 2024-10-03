@@ -189,8 +189,9 @@ realmSeeding:
     image:
       name: "docker.io/tractusx/portal-iam:v4.0.0-alpha.1"
       pullPolicy: "IfNotPresent"
-  tls: false
   portContainer: 8080
+  keycloakServicePort: 80
+  keycloakServiceTls: false
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:

@@ -43,11 +43,11 @@ spec:
         env:
           - name: "KEYCLOAK__SHARED__CONNECTIONSTRING"
             value: |
-              {{ if .Values.realmSeeding.tls }}
-              https://{{ template "sharedidp.fullname" . }}
-              {{ else }}
-              http://{{ template "sharedidp.fullname" . }}
-              {{ end }}
+              {{ if .Values.realmSeeding.keycloakServiceTls -}}
+              https://{{ template "sharedidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}
+              {{- else -}}
+              http://{{ template "sharedidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}
+              {{- end }}
           - name: "KEYCLOAK__SHARED__USER"
             value: "{{ .Values.keycloak.auth.adminUser }}"
           - name: "KEYCLOAK__SHARED__PASSWORD"
@@ -204,7 +204,11 @@ spec:
             mountPath: "app/realms"
         - name: wait-for-keycloak
           image: appropriate/curl:latest
-          command: [ 'sh', '-c', 'until curl -s http://{{ template "sharedidp.fullname" . }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
+          {{ if .Values.realmSeeding.keycloakServiceTls -}}
+          command: [ 'sh', '-c', 'until curl -s https://{{ template "sharedidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
+          {{- else -}}
+          command: [ 'sh', '-c', 'until curl -s http://{{ template "sharedidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
+          {{- end }}
           imagePullPolicy: IfNotPresent
       volumes:
         - name: realms
