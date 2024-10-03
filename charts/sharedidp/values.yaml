@@ -20,8 +20,9 @@
 keycloak:
   auth:
     adminUser: admin
+    # -- sharedidp Keycloak administrator password.
     adminPassword: ""
-    # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
+    # -- Secret containing the password for admin username 'admin'.
     existingSecret: ""
   # -- Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   production: false
@@ -72,7 +73,7 @@ keycloak:
     annotations:
       # -- Enable TLS configuration for the host defined at `ingress.hostname` parameter;
       # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
-      # Provide the name of ClusterIssuer to acquire the certificate required for this Ingress
+      # Provide the name of ClusterIssuer to acquire the certificate required for this Ingress.
       cert-manager.io/cluster-issuer: ""
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
@@ -131,7 +132,7 @@ keycloak:
     database: ""
     # -- Password for the non-root username.
     password: ""
-    # -- Secret containing the database credentials
+    # -- Secret containing the database credentials.
     existingSecret: ""
     existingSecretHostKey: ""
     existingSecretPortKey: ""
@@ -139,27 +140,27 @@ keycloak:
     existingSecretDatabaseKey: ""
     existingSecretPasswordKey: ""
 
-# -- Seeding job to create and update the CX-Central realm:
-# besides creating the CX-Central realm, the job can be used to update
-# the configuration of the realm when upgrading to a new version;
+# -- Seeding job to create and update the CX-Operator and master realms:
+# besides creating those realm, the job can be used to update
+# the configuration of the realms when upgrading to a new version;
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
-# for configuration possibly not covered by the seeding job
+# for configuration possibly not covered by the seeding job.
 realmSeeding:
   enabled: true
   realms:
     cxOperator:
-      # -- Set centralidp address for the connection to the CX-Central realm
+      # -- Set centralidp address for the connection to the CX-Central realm.
       centralidp: "https://centralidp.example.org"
-       # -- Configure initial user in CX-Operator realm
+       # -- Configure initial user in CX-Operator realm.
       initialUser:
-        # -- SET username for all non-testing and non-local purposes
+        # -- SET username for all non-testing and non-local purposes.
         username: "cx-operator@tx.org"
-        # -- SET password for all non-testing and non-local purposes, default value is "!3changemeTractus-X"
+        # -- SET password for all non-testing and non-local purposes, default value is "!3changemeTractus-X".
         password: ""
         firstName: "Operator"
         lastName: "CX Admin"
         eMail: "cx-operator@tx.org"
-      # -- Set mailing configuration for CX-Operator realm
+      # -- Set mailing configuration for CX-Operator realm.
       mailing:
         host: "smtp.example.org"
         port: "123"
@@ -167,19 +168,19 @@ realmSeeding:
         password: ""
         from: "email@example.org"
         replyTo: "email@example.org"
-      # -- Option to provide an existingSecret for mailing configuration
+      # -- Option to provide an existingSecret for initial user and mailing configuration.
       existingSecret: ""
     master:
       serviceAccounts:
-        # -- Set clients secret for the service account which enables the portal to provision new realms
+        # -- Set clients secret for the service account which enables the portal to provision new realms.
         provisioning:
-          # -- SET client secret for all non-testing and non-local purposes, default value is "changeme"
+          # -- SET client secret for all non-testing and non-local purposes, default value is "changeme".
           clientSecret: ""
-        # -- Set clients secret for the service account which enables the portal to manage the CX-Operator realm
+        # -- Set clients secret for the service account which enables the portal to manage the CX-Operator realm.
         saCxOperator:
-          # -- SET client secret for all non-testing and non-local purposes, default value is "changeme"
+          # -- SET client secret for all non-testing and non-local purposes, default value is "changeme".
           clientSecret: ""
-      # -- Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value
+      # -- Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value.
       existingSecret: ""
   image:
     name: "docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1"
