@@ -66,16 +66,16 @@ spec:
           - name: "KEYCLOAKSEEDING__REALMS__0__REALM"
             value: "CX-Central"
 
-          #################
+          #############################
           ## INITIAL USER
-          #################
+          #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__1"
             value: "realms/CX-Central-users-0.json"
 
-          ###########
+          #############################
           ## CLIENTS
-          ###########
+          #############################
 
           - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__CLIENTID"
             value: "Cl1-CX-Registration"
@@ -192,9 +192,9 @@ spec:
           - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__LOGOUTURL"
             value: "{{ .Values.realmSeeding.sharedidp }}/auth/realms/CX-Operator/protocol/openid-connect/logout"
 
-          ###############################
+          #############################
           ## EXTRA SERVICE ACCOUNTS
-          ###############################
+          #############################
 
           {{- $index := 100 }}
           {{- $secret := include "centralidp.secret.extraServiceAccounts" . -}}
