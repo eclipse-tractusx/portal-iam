@@ -43,36 +43,29 @@ dependencies:
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | keycloak.auth.adminUser | string | `"admin"` |  |
-| keycloak.auth.existingSecret | string | `"centralidp-keycloak"` | Secret containing the passwords for admin username 'admin' and management username 'manager'. |
+| keycloak.auth.adminPassword | string | `""` | centralidp Keycloak administrator password. |
+| keycloak.auth.existingSecret | string | `""` | Secret containing the password for admin username 'admin'. |
 | keycloak.production | bool | `false` | Run Keycloak in production mode. TLS configuration is required except when using proxy=edge. |
 | keycloak.proxy | string | `"passthrough"` | reverse Proxy mode edge, reencrypt, passthrough or none; ref: https://www.keycloak.org/server/reverseproxy; If your ingress controller has the SSL Termination, you should set proxy to edge. |
 | keycloak.httpRelativePath | string | `"/auth/"` | Setting the path relative to '/' for serving resources: as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'. ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed |
-| keycloak.extraEnvVars[0].name | string | `"KEYCLOAK_EXTRA_ARGS"` |  |
-| keycloak.extraEnvVars[0].value | string | `"-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"` |  |
-| keycloak.replicaCount | int | `3` |  |
+| keycloak.replicaCount | int | `1` |  |
 | keycloak.extraVolumes[0].name | string | `"themes"` |  |
 | keycloak.extraVolumes[0].emptyDir | object | `{}` |  |
-| keycloak.extraVolumes[1].name | string | `"realms"` |  |
-| keycloak.extraVolumes[1].emptyDir | object | `{}` |  |
 | keycloak.extraVolumeMounts[0].name | string | `"themes"` |  |
 | keycloak.extraVolumeMounts[0].mountPath | string | `"/opt/bitnami/keycloak/themes/catenax-central"` |  |
-| keycloak.extraVolumeMounts[1].name | string | `"realms"` |  |
-| keycloak.extraVolumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
 | keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.1"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
-| keycloak.initContainers[0].args[1] | string | `"echo \"Copying themes...\"\ncp -R /import/themes/catenax-central/* /themes\necho \"Copying realms...\"\ncp -R /import/catenax-central/realms/* /realms\n"` |  |
+| keycloak.initContainers[0].args[1] | string | `"echo \"Copying themes...\"\ncp -R /import/themes/catenax-central/* /themes\n"` |  |
 | keycloak.initContainers[0].volumeMounts[0].name | string | `"themes"` |  |
 | keycloak.initContainers[0].volumeMounts[0].mountPath | string | `"/themes"` |  |
-| keycloak.initContainers[0].volumeMounts[1].name | string | `"realms"` |  |
-| keycloak.initContainers[0].volumeMounts[1].mountPath | string | `"/realms"` |  |
 | keycloak.service.sessionAffinity | string | `"ClientIP"` |  |
 | keycloak.ingress.enabled | bool | `false` |  |
 | keycloak.ingress.ingressClassName | string | `"nginx"` |  |
 | keycloak.ingress.hostname | string | `"centralidp.example.org"` | Provide default path for the ingress record. |
-| keycloak.ingress.annotations."cert-manager.io/cluster-issuer" | string | `""` | Enable TLS configuration for the host defined at `ingress.hostname` parameter; TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`; Provide the name of ClusterIssuer to acquire the certificate required for this Ingress |
+| keycloak.ingress.annotations."cert-manager.io/cluster-issuer" | string | `""` | Enable TLS configuration for the host defined at `ingress.hostname` parameter; TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`; Provide the name of ClusterIssuer to acquire the certificate required for this Ingress. |
 | keycloak.ingress.annotations."nginx.ingress.kubernetes.io/cors-allow-credentials" | string | `"true"` |  |
 | keycloak.ingress.annotations."nginx.ingress.kubernetes.io/cors-allow-methods" | string | `"PUT, GET, POST, OPTIONS"` |  |
 | keycloak.ingress.annotations."nginx.ingress.kubernetes.io/cors-allow-origin" | string | `"https://centralidp.example.org"` |  |
@@ -87,62 +80,38 @@ dependencies:
 | keycloak.rbac.rules[0].resources[0] | string | `"pods"` |  |
 | keycloak.rbac.rules[0].verbs[0] | string | `"get"` |  |
 | keycloak.rbac.rules[0].verbs[1] | string | `"list"` |  |
-| keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration (recommended for demonstration purposes only); default configurations: host: "centralidp-postgresql-primary", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
+| keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration (recommended for demonstration purposes only); default configurations: host: "centralidp-postgresql", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
 | keycloak.postgresql.image | object | `{"tag":"15-debian-11"}` | Setting to Postgres version 15 as that is the aligned version, https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions). Keycloak helm-chart from Bitnami has moved on to version 16. |
 | keycloak.postgresql.commonLabels."app.kubernetes.io/version" | string | `"15"` |  |
 | keycloak.postgresql.auth.username | string | `"kccentral"` | Non-root username. |
+| keycloak.postgresql.auth.password | string | `""` | Non-root user password. |
+| keycloak.postgresql.auth.postgresPassword | string | `""` | Root user password. |
 | keycloak.postgresql.auth.database | string | `"iamcentralidp"` | Database name. |
-| keycloak.postgresql.auth.existingSecret | string | `"centralidp-postgres"` | Secret containing the passwords for root usernames postgres and non-root username kccentral. |
-| keycloak.postgresql.architecture | string | `"replication"` |  |
-| keycloak.externalDatabase.host | string | `"centralidp-postgresql-external-db"` | External PostgreSQL configuration IMPORTANT: non-root db user needs needs to be created beforehand on external database. Database host ('-primary' is added as postfix). |
+| keycloak.postgresql.auth.existingSecret | string | `""` | Secret containing the passwords for root usernames postgres and non-root username kccentral. |
+| keycloak.postgresql.architecture | string | `"standalone"` |  |
+| keycloak.externalDatabase.host | string | `""` | External PostgreSQL configuration IMPORTANT: non-root db user needs needs to be created beforehand on external database. |
 | keycloak.externalDatabase.port | int | `5432` | Database port number. |
-| keycloak.externalDatabase.user | string | `"kccentral"` | Non-root username for centralidp. |
-| keycloak.externalDatabase.database | string | `"iamcentralidp"` | Database name. |
-| keycloak.externalDatabase.password | string | `""` | Password for the non-root username (default 'kccentral'). Secret-key 'password'. |
-| keycloak.externalDatabase.existingSecret | string | `"centralidp-keycloak-external-db"` | Secret containing the password non-root username, (default 'kccentral'). |
-| keycloak.externalDatabase.existingSecretPasswordKey | string | `"password"` | Name of an existing secret key containing the database credentials. |
-| secrets.auth.existingSecret.adminpassword | string | `""` | Password for the admin username 'admin'. Secret-key 'admin-password'. |
-| secrets.postgresql.auth.existingSecret.postgrespassword | string | `""` | Password for the root username 'postgres'. Secret-key 'postgres-password'. |
-| secrets.postgresql.auth.existingSecret.password | string | `""` | Password for the non-root username 'kccentral'. Secret-key 'password'. |
-| secrets.postgresql.auth.existingSecret.replicationPassword | string | `""` | Password for the non-root username 'repl_user'. Secret-key 'replication-password'. |
-| seeding.enabled | bool | `false` | Seeding job to upgrade CX_Central realm: enable to upgrade the configuration of the CX-Central realm from previous version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
-| seeding.image | string | `"docker.io/tractusx/portal-iam-seeding:v3.0.1-iam"` |  |
-| seeding.imagePullPolicy | string | `"IfNotPresent"` |  |
-| seeding.portContainer | int | `8080` |  |
-| seeding.authRealm | string | `"master"` |  |
-| seeding.useAuthTrail | string | `"true"` |  |
-| seeding.dataPaths.dataPath0 | string | `"realms/CX-Central-realm.json"` |  |
-| seeding.instanceName | string | `"central"` |  |
-| seeding.excludedUserAttributes.attribute0 | string | `"bpn"` |  |
-| seeding.excludedUserAttributes.attribute1 | string | `"organisation"` |  |
-| seeding.resources | object | `{"limits":{"cpu":"225m","memory":"200M"},"requests":{"cpu":"75m","memory":"200M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
-| seeding.extraVolumes[0].name | string | `"realms"` |  |
-| seeding.extraVolumes[0].emptyDir | object | `{}` |  |
-| seeding.extraVolumeMounts[0].name | string | `"realms"` |  |
-| seeding.extraVolumeMounts[0].mountPath | string | `"app/realms"` |  |
-| seeding.initContainers[0].name | string | `"init-cx-central"` |  |
-| seeding.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v3.0.1"` |  |
-| seeding.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
-| seeding.initContainers[0].command[0] | string | `"sh"` |  |
-| seeding.initContainers[0].args[0] | string | `"-c"` |  |
-| seeding.initContainers[0].args[1] | string | `"echo \"Copying CX Central realm...\"\ncp -R /import/catenax-central/realms/* /app/realms\n"` |  |
-| seeding.initContainers[0].volumeMounts[0].name | string | `"realms"` |  |
-| seeding.initContainers[0].volumeMounts[0].mountPath | string | `"app/realms"` |  |
+| keycloak.externalDatabase.user | string | `""` | Non-root username. |
+| keycloak.externalDatabase.database | string | `""` | Database name. |
+| keycloak.externalDatabase.password | string | `""` | Password for the non-root username. |
+| keycloak.externalDatabase.existingSecret | string | `""` | Secret containing the database credentials. |
+| keycloak.externalDatabase.existingSecretHostKey | string | `""` |  |
+| keycloak.externalDatabase.existingSecretPortKey | string | `""` |  |
+| keycloak.externalDatabase.existingSecretUserKey | string | `""` |  |
+| keycloak.externalDatabase.existingSecretDatabaseKey | string | `""` |  |
+| keycloak.externalDatabase.existingSecretPasswordKey | string | `""` |  |
+| realmSeeding | object | `{"bpn":"BPNL00000003CRHK","clients":{"bpdm":{"clientSecret":"","redirects":["https://partners-pool.example.org/*"]},"bpdmGate":{"clientSecret":"","redirects":["https://partners-gate.example.org/*"]},"bpdmOrchestrator":{"clientSecret":""},"existingSecret":"","miw":{"clientSecret":"","redirects":["https://managed-identity-wallets.example.org/*"]},"portal":{"redirects":["https://portal.example.org"],"rootUrl":"https://portal.example.org/home"},"registration":{"redirects":["https://portal.example.org"]},"semantics":{"redirects":["https://portal.example.org/*"]}},"enabled":true,"extraServiceAccounts":{"clientSecretsAndBpn":[],"existingSecret":""},"image":{"name":"docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1","pullPolicy":"IfNotPresent"},"initContainer":{"image":{"name":"docker.io/tractusx/portal-iam:v4.0.0-alpha.1","pullPolicy":"IfNotPresent"}},"keycloakServicePort":80,"keycloakServiceTls":false,"portContainer":8080,"resources":{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"600M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"600M"}},"serviceAccounts":{"clientSecrets":[{"clientId":"sa-cl1-reg-2","clientSecret":""},{"clientId":"sa-cl2-01","clientSecret":""},{"clientId":"sa-cl2-02","clientSecret":""},{"clientId":"sa-cl2-03","clientSecret":""},{"clientId":"sa-cl2-04","clientSecret":""},{"clientId":"sa-cl2-05","clientSecret":""},{"clientId":"sa-cl3-cx-1","clientSecret":""},{"clientId":"sa-cl5-custodian-2","clientSecret":""},{"clientId":"sa-cl7-cx-1","clientSecret":""},{"clientId":"sa-cl7-cx-5","clientSecret":""},{"clientId":"sa-cl7-cx-7","clientSecret":""},{"clientId":"sa-cl8-cx-1","clientSecret":""},{"clientId":"sa-cl21-01","clientSecret":""},{"clientId":"sa-cl22-01","clientSecret":""},{"clientId":"sa-cl24-01","clientSecret":""},{"clientId":"sa-cl25-cx-1","clientSecret":""},{"clientId":"sa-cl25-cx-2","clientSecret":""},{"clientId":"sa-cl25-cx-3","clientSecret":""}],"existingSecret":""},"sharedidp":"https://sharedidp.example.org"}` | Seeding job to create and update the CX-Central realm: besides creating the CX-Central realm, the job can be used to update the configuration of the realm when upgrading to a new version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job. |
+| realmSeeding.clients | object | `{"bpdm":{"clientSecret":"","redirects":["https://partners-pool.example.org/*"]},"bpdmGate":{"clientSecret":"","redirects":["https://partners-gate.example.org/*"]},"bpdmOrchestrator":{"clientSecret":""},"existingSecret":"","miw":{"clientSecret":"","redirects":["https://managed-identity-wallets.example.org/*"]},"portal":{"redirects":["https://portal.example.org"],"rootUrl":"https://portal.example.org/home"},"registration":{"redirects":["https://portal.example.org"]},"semantics":{"redirects":["https://portal.example.org/*"]}}` | Set redirect addresses and - in the case of confidential clients - clients secrets for clients which are part of the basic CX-Central realm setup; SET client secrets for all non-testing and non-local purposes, default value is "changeme". |
+| realmSeeding.clients.existingSecret | string | `""` | Option to provide an existingSecret for the clients with clientId as key and clientSecret as value. |
+| realmSeeding.serviceAccounts | object | `{"clientSecrets":[{"clientId":"sa-cl1-reg-2","clientSecret":""},{"clientId":"sa-cl2-01","clientSecret":""},{"clientId":"sa-cl2-02","clientSecret":""},{"clientId":"sa-cl2-03","clientSecret":""},{"clientId":"sa-cl2-04","clientSecret":""},{"clientId":"sa-cl2-05","clientSecret":""},{"clientId":"sa-cl3-cx-1","clientSecret":""},{"clientId":"sa-cl5-custodian-2","clientSecret":""},{"clientId":"sa-cl7-cx-1","clientSecret":""},{"clientId":"sa-cl7-cx-5","clientSecret":""},{"clientId":"sa-cl7-cx-7","clientSecret":""},{"clientId":"sa-cl8-cx-1","clientSecret":""},{"clientId":"sa-cl21-01","clientSecret":""},{"clientId":"sa-cl22-01","clientSecret":""},{"clientId":"sa-cl24-01","clientSecret":""},{"clientId":"sa-cl25-cx-1","clientSecret":""},{"clientId":"sa-cl25-cx-2","clientSecret":""},{"clientId":"sa-cl25-cx-3","clientSecret":""}],"existingSecret":""}` | Client secrets for service accounts which are part of the basic CX-Central realm setup; SET client secrets for all non-testing and non-local purposes, default value is "changeme". |
+| realmSeeding.serviceAccounts.existingSecret | string | `""` | Option to provide an existingSecret for the base service accounts with clientId as key and clientSecret as value. |
+| realmSeeding.bpn | string | `"BPNL00000003CRHK"` | Set value for the 'bpn' user attribute for the initial user and the base service account users. |
+| realmSeeding.sharedidp | string | `"https://sharedidp.example.org"` | Set sharedidp address to enable the identity provider connection to CX-Operator realm. |
+| realmSeeding.extraServiceAccounts | object | `{"clientSecretsAndBpn":[],"existingSecret":""}` | Set client secrets and bpn user attribute for additional service accounts; meant to enable possible test data, default value for client secrets is "changeme". |
+| realmSeeding.extraServiceAccounts.existingSecret | string | `""` | Option to provide an existingSecret for additional service accounts with clientId as key and clientSecret as value. |
+| realmSeeding.resources | object | `{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"600M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"600M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
 
 Autogenerated with [helm docs](https://github.com/norwoodj/helm-docs)
-
-## Post-Install Configuration
-
-Once the installation is completed, the following steps need to be executed in the Keycloak admin console within the CX-Central realm:
-
-1. Generate client-secrets for confidential clients and service accounts with access type 'confidential'.
-
-2. Establish connection to the sharedidp instance
-
-In order to enable the login of the initial user (see CX-Operator realm in sharedidp instance for username), the connection between the 'CX-Operator' identity provider of the centralidp instance and the according realm in the sharedidp instance needs to be established.
-This is done by setting the 'example.org' placeholder in the CX-Operator' Identity Provider to the address of the sharedidp instance.
-
-3. Setup SMTP configuration (Realm Settings --> Email)
 
 ## Upgrade
 
