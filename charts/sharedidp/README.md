@@ -43,8 +43,8 @@ dependencies:
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | keycloak.auth.adminUser | string | `"admin"` |  |
-| keycloak.auth.adminPassword | string | `""` |  |
-| keycloak.auth.existingSecret | string | `""` | Secret containing the passwords for admin username 'admin' and management username 'manager'. |
+| keycloak.auth.adminPassword | string | `""` | sharedidp Keycloak administrator password. |
+| keycloak.auth.existingSecret | string | `""` | Secret containing the password for admin username 'admin'. |
 | keycloak.production | bool | `false` | Run Keycloak in production mode. TLS configuration is required except when using proxy=edge. |
 | keycloak.proxy | string | `"passthrough"` | reverse Proxy mode edge, reencrypt, passthrough or none; ref: https://www.keycloak.org/server/reverseproxy; If your ingress controller has the SSL Termination, you should set proxy to edge. |
 | keycloak.httpRelativePath | string | `"/auth/"` | Setting the path relative to '/' for serving resources: as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'. ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed |
@@ -71,7 +71,7 @@ dependencies:
 | keycloak.ingress.enabled | bool | `false` |  |
 | keycloak.ingress.ingressClassName | string | `"nginx"` |  |
 | keycloak.ingress.hostname | string | `"sharedidp.example.org"` | Provide default path for the ingress record. |
-| keycloak.ingress.annotations."cert-manager.io/cluster-issuer" | string | `""` | Enable TLS configuration for the host defined at `ingress.hostname` parameter; TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`; Provide the name of ClusterIssuer to acquire the certificate required for this Ingress |
+| keycloak.ingress.annotations."cert-manager.io/cluster-issuer" | string | `""` | Enable TLS configuration for the host defined at `ingress.hostname` parameter; TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`; Provide the name of ClusterIssuer to acquire the certificate required for this Ingress. |
 | keycloak.ingress.annotations."nginx.ingress.kubernetes.io/cors-allow-credentials" | string | `"true"` |  |
 | keycloak.ingress.annotations."nginx.ingress.kubernetes.io/cors-allow-methods" | string | `"PUT, GET, POST, OPTIONS"` |  |
 | keycloak.ingress.annotations."nginx.ingress.kubernetes.io/cors-allow-origin" | string | `"https://sharedidp.example.org"` |  |
@@ -100,24 +100,24 @@ dependencies:
 | keycloak.externalDatabase.user | string | `""` | Non-root username. |
 | keycloak.externalDatabase.database | string | `""` | Database name. |
 | keycloak.externalDatabase.password | string | `""` | Password for the non-root username. |
-| keycloak.externalDatabase.existingSecret | string | `""` | Secret containing the database credentials |
+| keycloak.externalDatabase.existingSecret | string | `""` | Secret containing the database credentials. |
 | keycloak.externalDatabase.existingSecretHostKey | string | `""` |  |
 | keycloak.externalDatabase.existingSecretPortKey | string | `""` |  |
 | keycloak.externalDatabase.existingSecretUserKey | string | `""` |  |
 | keycloak.externalDatabase.existingSecretDatabaseKey | string | `""` |  |
 | keycloak.externalDatabase.existingSecretPasswordKey | string | `""` |  |
-| realmSeeding | object | `{"enabled":true,"image":{"name":"docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1","pullPolicy":"IfNotPresent"},"initContainer":{"image":{"name":"docker.io/tractusx/portal-iam:v4.0.0-alpha.1","pullPolicy":"IfNotPresent"}},"portContainer":8080,"realms":{"cxOperator":{"centralidp":"https://centralidp.example.org","existingSecret":"","initialUser":{"eMail":"cx-operator@tx.org","firstName":"Operator","lastName":"CX Admin","password":"","username":"cx-operator@tx.org"},"mailing":{"from":"email@example.org","host":"smtp.example.org","password":"","port":"123","replyTo":"email@example.org","username":"smtp-user"}},"master":{"existingSecret":"","serviceAccounts":{"provisioning":{"clientSecret":""},"saCxOperator":{"clientSecret":""}}}},"resources":{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"600M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"600M"}},"tls":false}` | Seeding job to create and update the CX-Central realm: besides creating the CX-Central realm, the job can be used to update the configuration of the realm when upgrading to a new version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job |
-| realmSeeding.realms.cxOperator.centralidp | string | `"https://centralidp.example.org"` | Set centralidp address for the connection to the CX-Central realm |
-| realmSeeding.realms.cxOperator.initialUser | object | `{"eMail":"cx-operator@tx.org","firstName":"Operator","lastName":"CX Admin","password":"","username":"cx-operator@tx.org"}` | Configure initial user in CX-Operator realm |
-| realmSeeding.realms.cxOperator.initialUser.username | string | `"cx-operator@tx.org"` | SET username for all non-testing and non-local purposes |
-| realmSeeding.realms.cxOperator.initialUser.password | string | `""` | SET password for all non-testing and non-local purposes, default value is "!3changemeTractus-X" |
-| realmSeeding.realms.cxOperator.mailing | object | `{"from":"email@example.org","host":"smtp.example.org","password":"","port":"123","replyTo":"email@example.org","username":"smtp-user"}` | Set mailing configuration for CX-Operator realm |
-| realmSeeding.realms.cxOperator.existingSecret | string | `""` | Option to provide an existingSecret for mailing configuration |
-| realmSeeding.realms.master.serviceAccounts.provisioning | object | `{"clientSecret":""}` | Set clients secret for the service account which enables the portal to provision new realms |
-| realmSeeding.realms.master.serviceAccounts.provisioning.clientSecret | string | `""` | SET client secret for all non-testing and non-local purposes, default value is "changeme" |
-| realmSeeding.realms.master.serviceAccounts.saCxOperator | object | `{"clientSecret":""}` | Set clients secret for the service account which enables the portal to manage the CX-Operator realm |
-| realmSeeding.realms.master.serviceAccounts.saCxOperator.clientSecret | string | `""` | SET client secret for all non-testing and non-local purposes, default value is "changeme" |
-| realmSeeding.realms.master.existingSecret | string | `""` | Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value |
+| realmSeeding | object | `{"enabled":true,"image":{"name":"docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1","pullPolicy":"IfNotPresent"},"initContainer":{"image":{"name":"docker.io/tractusx/portal-iam:v4.0.0-alpha.1","pullPolicy":"IfNotPresent"}},"keycloakServicePort":80,"keycloakServiceTls":false,"portContainer":8080,"realms":{"cxOperator":{"centralidp":"https://centralidp.example.org","existingSecret":"","initialUser":{"eMail":"cx-operator@tx.org","firstName":"Operator","lastName":"CX Admin","password":"","username":"cx-operator@tx.org"},"mailing":{"from":"email@example.org","host":"smtp.example.org","password":"","port":"123","replyTo":"email@example.org","username":"smtp-user"}},"master":{"existingSecret":"","serviceAccounts":{"provisioning":{"clientSecret":""},"saCxOperator":{"clientSecret":""}}}},"resources":{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"600M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"600M"}}}` | Seeding job to create and update the CX-Operator and master realms: besides creating those realm, the job can be used to update the configuration of the realms when upgrading to a new version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job. |
+| realmSeeding.realms.cxOperator.centralidp | string | `"https://centralidp.example.org"` | Set centralidp address for the connection to the CX-Central realm. |
+| realmSeeding.realms.cxOperator.initialUser | object | `{"eMail":"cx-operator@tx.org","firstName":"Operator","lastName":"CX Admin","password":"","username":"cx-operator@tx.org"}` | Configure initial user in CX-Operator realm. |
+| realmSeeding.realms.cxOperator.initialUser.username | string | `"cx-operator@tx.org"` | SET username for all non-testing and non-local purposes. |
+| realmSeeding.realms.cxOperator.initialUser.password | string | `""` | SET password for all non-testing and non-local purposes, default value is "!3changemeTractus-X". |
+| realmSeeding.realms.cxOperator.mailing | object | `{"from":"email@example.org","host":"smtp.example.org","password":"","port":"123","replyTo":"email@example.org","username":"smtp-user"}` | Set mailing configuration for CX-Operator realm. |
+| realmSeeding.realms.cxOperator.existingSecret | string | `""` | Option to provide an existingSecret for initial user and mailing configuration. |
+| realmSeeding.realms.master.serviceAccounts.provisioning | object | `{"clientSecret":""}` | Set clients secret for the service account which enables the portal to provision new realms. |
+| realmSeeding.realms.master.serviceAccounts.provisioning.clientSecret | string | `""` | SET client secret for all non-testing and non-local purposes, default value is "changeme". |
+| realmSeeding.realms.master.serviceAccounts.saCxOperator | object | `{"clientSecret":""}` | Set clients secret for the service account which enables the portal to manage the CX-Operator realm. |
+| realmSeeding.realms.master.serviceAccounts.saCxOperator.clientSecret | string | `""` | SET client secret for all non-testing and non-local purposes, default value is "changeme". |
+| realmSeeding.realms.master.existingSecret | string | `""` | Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value. |
 | realmSeeding.resources | object | `{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"600M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"600M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
 
 Autogenerated with [helm docs](https://github.com/norwoodj/helm-docs)
