@@ -53,8 +53,8 @@ keycloak:
           echo "Copying themes..."
           cp -R /import/themes/catenax-central/* /themes
       volumeMounts:
-      - name: themes
-        mountPath: "/themes"
+        - name: themes
+          mountPath: "/themes"
   service:
     sessionAffinity: ClientIP
   ingress:
@@ -87,10 +87,10 @@ keycloak:
           - get
           - list
   postgresql:
-  # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
-  # default configurations:
-  # host: "centralidp-postgresql",
-  # port: 5432;
+    # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
+    # default configurations:
+    # host: "centralidp-postgresql",
+    # port: 5432;
     # Switch to enable or disable the PostgreSQL helm chart.
     enabled: true
     # -- Setting to Postgres version 15 as that is the aligned version,
@@ -113,8 +113,8 @@ keycloak:
       existingSecret: ""
     architecture: standalone
   externalDatabase:
-  # -- External PostgreSQL configuration
-  # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
+    # -- External PostgreSQL configuration
+    # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
     host: ""
     # -- Database port number.
     port: 5432

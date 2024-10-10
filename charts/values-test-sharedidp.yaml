@@ -32,10 +32,10 @@ keycloak:
           echo "Copying themes-catenax-shared-portal..."
           cp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal
       volumeMounts:
-      - name: themes-catenax-shared
-        mountPath: "/themes-catenax-shared"
-      - name: themes-catenax-shared-portal
-        mountPath: "/themes-catenax-shared-portal"
+        - name: themes-catenax-shared
+          mountPath: "/themes-catenax-shared"
+        - name: themes-catenax-shared-portal
+          mountPath: "/themes-catenax-shared-portal"
 realmSeeding:
   initContainer:
     image:

@@ -27,7 +27,7 @@ secrets:
       adminpassword: adminshared
       managementpassword: managershared
   externalDatabase:
-    password: password      
+    password: password
 
 # Variables to use by Bitname Keycloak Helm Chart
 keycloak:
