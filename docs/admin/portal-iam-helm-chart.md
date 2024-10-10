@@ -31,7 +31,7 @@ there is a [hook](./charts/portal-iam/templates/hooks/check-variable.yaml) creat
 
 The Helm Chart can be extended to add more detailed objects, but it was not part of this Proof of Concept.
 
-The chart is implemented [here](../consultation/charts/).
+The chart is implemented [here](../admin/charts/).
 
 ### How to use - Example of usage
 

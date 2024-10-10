@@ -4,7 +4,7 @@
 
 This helm chart installs the Helm chart for Shared Keycloak Instance.
 
-For further information please refer to the [technical documentation](../../docs/technical%20documentation).
+For further information please refer to the [technical documentation](../../docs/admin/technical-documentation/).
 
 The referenced container images are for demonstration purposes only.
 

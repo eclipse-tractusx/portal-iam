@@ -1,6 +1,6 @@
 # Known Issues and Limitations
 
-- Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](../consultation/workshop-20231005.md#user-token-lifespan)
+- Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](../workshops/workshop-20231005.md#user-token-lifespan)
 - Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
 
 ## NOTICE
