@@ -31,9 +31,9 @@ keycloak:
           cp -R /import/themes/catenax-central/* /themes
       volumeMounts:
         - name: themes
-          mountPath: "/themes"
+          mountPath: /themes
 realmSeeding:
   initContainer:
     image:
-      name: "kind-registry:5000/iam:testing"
-      pullPolicy: "Always"
+      name: kind-registry:5000/iam:testing
+      pullPolicy: Always

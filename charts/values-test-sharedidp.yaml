@@ -33,11 +33,11 @@ keycloak:
           cp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal
       volumeMounts:
         - name: themes-catenax-shared
-          mountPath: "/themes-catenax-shared"
+          mountPath: /themes-catenax-shared
         - name: themes-catenax-shared-portal
-          mountPath: "/themes-catenax-shared-portal"
+          mountPath: /themes-catenax-shared-portal
 realmSeeding:
   initContainer:
     image:
-      name: "kind-registry:5000/iam:testing"
-      pullPolicy: "Always"
+      name: kind-registry:5000/iam:testing
+      pullPolicy: Always

@@ -33,14 +33,14 @@ keycloak:
   # -- Setting the path relative to '/' for serving resources:
   # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
   # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
-  httpRelativePath: "/auth/"
+  httpRelativePath: /auth/
   replicaCount: 1
   extraVolumes:
     - name: themes
       emptyDir: {}
   extraVolumeMounts:
     - name: themes
-      mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
+      mountPath: /opt/bitnami/keycloak/themes/catenax-central
   initContainers:
     - name: import
       image: docker.io/tractusx/portal-iam:v3.0.1
@@ -54,14 +54,14 @@ keycloak:
           cp -R /import/themes/catenax-central/* /themes
       volumeMounts:
         - name: themes
-          mountPath: "/themes"
+          mountPath: /themes
   service:
     sessionAffinity: ClientIP
   ingress:
     enabled: false
-    ingressClassName: "nginx"
+    ingressClassName: nginx
     # -- Provide default path for the ingress record.
-    hostname: "centralidp.example.org"
+    hostname: centralidp.example.org
     annotations:
       # -- Enable TLS configuration for the host defined at `ingress.hostname` parameter;
       # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
@@ -97,7 +97,7 @@ keycloak:
     # https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions).
     # Keycloak helm-chart from Bitnami has moved on to version 16.
     image:
-      tag: "15-debian-11"
+      tag: 15-debian-11
     commonLabels:
       app.kubernetes.io/version: "15"
     auth:
@@ -131,7 +131,6 @@ keycloak:
     existingSecretUserKey: ""
     existingSecretDatabaseKey: ""
     existingSecretPasswordKey: ""
-
 # -- Seeding job to create and update the CX-Central realm:
 # besides creating the CX-Central realm, the job can be used to update
 # the configuration of the realm when upgrading to a new version;
@@ -139,7 +138,7 @@ keycloak:
 # for configuration possibly not covered by the seeding job.
 realmSeeding:
   enabled: true
-  sslRequired: "external"
+  sslRequired: external
   # -- Set redirect addresses and - in the case of confidential clients - clients secrets
   # for clients which are part of the basic CX-Central realm setup;
   # SET client secrets for all non-testing and non-local purposes, default value is "changeme".
@@ -174,48 +173,48 @@ realmSeeding:
   # SET client secrets for all non-testing and non-local purposes, default value is "changeme".
   serviceAccounts:
     clientSecrets:
-      - clientId: "sa-cl1-reg-2"
+      - clientId: sa-cl1-reg-2
         clientSecret: ""
-      - clientId: "sa-cl2-01"
+      - clientId: sa-cl2-01
         clientSecret: ""
-      - clientId: "sa-cl2-02"
+      - clientId: sa-cl2-02
         clientSecret: ""
-      - clientId: "sa-cl2-03"
+      - clientId: sa-cl2-03
         clientSecret: ""
-      - clientId: "sa-cl2-04"
+      - clientId: sa-cl2-04
         clientSecret: ""
-      - clientId: "sa-cl2-05"
+      - clientId: sa-cl2-05
         clientSecret: ""
-      - clientId: "sa-cl3-cx-1"
+      - clientId: sa-cl3-cx-1
         clientSecret: ""
-      - clientId: "sa-cl5-custodian-2"
+      - clientId: sa-cl5-custodian-2
         clientSecret: ""
-      - clientId: "sa-cl7-cx-1"
+      - clientId: sa-cl7-cx-1
         clientSecret: ""
-      - clientId: "sa-cl7-cx-5"
+      - clientId: sa-cl7-cx-5
         clientSecret: ""
-      - clientId: "sa-cl7-cx-7"
+      - clientId: sa-cl7-cx-7
         clientSecret: ""
-      - clientId: "sa-cl8-cx-1"
+      - clientId: sa-cl8-cx-1
         clientSecret: ""
-      - clientId: "sa-cl21-01"
+      - clientId: sa-cl21-01
         clientSecret: ""
-      - clientId: "sa-cl22-01"
+      - clientId: sa-cl22-01
         clientSecret: ""
-      - clientId: "sa-cl24-01"
+      - clientId: sa-cl24-01
         clientSecret: ""
-      - clientId: "sa-cl25-cx-1"
+      - clientId: sa-cl25-cx-1
         clientSecret: ""
-      - clientId: "sa-cl25-cx-2"
+      - clientId: sa-cl25-cx-2
         clientSecret: ""
-      - clientId: "sa-cl25-cx-3"
+      - clientId: sa-cl25-cx-3
         clientSecret: ""
     # -- Option to provide an existingSecret for the base service accounts with clientId as key and clientSecret as value.
     existingSecret: ""
   # -- Set value for the 'bpn' user attribute for the initial user and the base service account users.
-  bpn: "BPNL00000003CRHK"
+  bpn: BPNL00000003CRHK
   # -- Set sharedidp address to enable the identity provider connection to CX-Operator realm.
-  sharedidp: "https://sharedidp.example.org"
+  sharedidp: https://sharedidp.example.org
   # -- Set client secrets and bpn user attribute for additional service accounts;
   # meant to enable possible test data, default value for client secrets is "changeme".
   extraServiceAccounts:
@@ -229,12 +228,12 @@ realmSeeding:
     # -- Option to provide an existingSecret for additional service accounts with clientId as key and clientSecret as value.
     existingSecret: ""
   image:
-    name: "docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1"
-    pullPolicy: "IfNotPresent"
+    name: docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1
+    pullPolicy: IfNotPresent
   initContainer:
     image:
-      name: "docker.io/tractusx/portal-iam:v4.0.0-alpha.1"
-      pullPolicy: "IfNotPresent"
+      name: docker.io/tractusx/portal-iam:v4.0.0-alpha.1
+      pullPolicy: IfNotPresent
   portContainer: 8080
   keycloakServicePort: 80
   keycloakServiceTls: false
