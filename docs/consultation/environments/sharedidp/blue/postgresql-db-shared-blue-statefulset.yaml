@@ -73,5 +73,5 @@ spec:
   selector:
     app: postgresql-db-shared-blue
   ports:
-  - port: 5432
-    targetPort: 5432
+    - port: 5432
+      targetPort: 5432

@@ -33,7 +33,7 @@ keycloak:
   # -- Setting the path relative to '/' for serving resources:
   # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
   # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
-  httpRelativePath: "/auth/"
+  httpRelativePath: /auth/
   replicaCount: 1
   extraVolumes:
     - name: themes-catenax-shared
@@ -42,9 +42,9 @@ keycloak:
       emptyDir: {}
   extraVolumeMounts:
     - name: themes-catenax-shared
-      mountPath: "/opt/bitnami/keycloak/themes/catenax-shared"
+      mountPath: /opt/bitnami/keycloak/themes/catenax-shared
     - name: themes-catenax-shared-portal
-      mountPath: "/opt/bitnami/keycloak/themes/catenax-shared-portal"
+      mountPath: /opt/bitnami/keycloak/themes/catenax-shared-portal
   initContainers:
     - name: import
       image: docker.io/tractusx/portal-iam:v3.0.1
@@ -59,17 +59,17 @@ keycloak:
           echo "Copying themes-catenax-shared-portal..."
           cp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal
       volumeMounts:
-      - name: themes-catenax-shared
-        mountPath: "/themes-catenax-shared"
-      - name: themes-catenax-shared-portal
-        mountPath: "/themes-catenax-shared-portal"
+        - name: themes-catenax-shared
+          mountPath: /themes-catenax-shared
+        - name: themes-catenax-shared-portal
+          mountPath: /themes-catenax-shared-portal
   service:
     sessionAffinity: ClientIP
   ingress:
     enabled: false
-    ingressClassName: "nginx"
+    ingressClassName: nginx
     # -- Provide default path for the ingress record.
-    hostname: "sharedidp.example.org"
+    hostname: sharedidp.example.org
     annotations:
       # -- Enable TLS configuration for the host defined at `ingress.hostname` parameter;
       # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
@@ -95,17 +95,17 @@ keycloak:
           - get
           - list
   postgresql:
-  # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
-  # default configurations:
-  # host: "sharedidp-postgresql",
-  # port: 5432;
+    # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
+    # default configurations:
+    # host: "sharedidp-postgresql",
+    # port: 5432;
     # Switch to enable or disable the PostgreSQL helm chart.
     enabled: true
     # -- Setting to Postgres version 15 as that is the aligned version,
     # https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions).
     # Keycloak helm-chart from Bitnami has moved on to version 16.
     image:
-      tag: "15-debian-11"
+      tag: 15-debian-11
     commonLabels:
       app.kubernetes.io/version: "15"
     auth:
@@ -121,8 +121,8 @@ keycloak:
       existingSecret: ""
     architecture: standalone
   externalDatabase:
-  # -- External PostgreSQL configuration
-  # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
+    # -- External PostgreSQL configuration
+    # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
     host: ""
     # -- Database port number.
     port: 5432
@@ -139,7 +139,6 @@ keycloak:
     existingSecretUserKey: ""
     existingSecretDatabaseKey: ""
     existingSecretPasswordKey: ""
-
 # -- Seeding job to create and update the CX-Operator and master realms:
 # besides creating those realm, the job can be used to update
 # the configuration of the realms when upgrading to a new version;
@@ -149,46 +148,47 @@ realmSeeding:
   enabled: true
   realms:
     cxOperator:
+      sslRequired: external
       # -- Set centralidp address for the connection to the CX-Central realm.
-      centralidp: "https://centralidp.example.org"
-       # -- Configure initial user in CX-Operator realm.
+      centralidp: https://centralidp.example.org
+        # -- Configure initial user in CX-Operator realm.
       initialUser:
         # -- SET username for all non-testing and non-local purposes.
-        username: "cx-operator@tx.org"
+        username: cx-operator@tx.org
         # -- SET password for all non-testing and non-local purposes, default value is "!3changemeTractus-X".
         password: ""
-        firstName: "Operator"
-        lastName: "CX Admin"
-        eMail: "cx-operator@tx.org"
+        firstName: Operator
+        lastName: CX Admin
+        eMail: cx-operator@tx.org
       # -- Set mailing configuration for CX-Operator realm.
       mailing:
-        host: "smtp.example.org"
-        port: "123"
-        username: "smtp-user"
+        host: smtp.example.org
+        port: '123'
+        username: smtp-user
         password: ""
-        from: "email@example.org"
-        replyTo: "email@example.org"
+        from: email@example.org
+        replyTo: email@example.org
       # -- Option to provide an existingSecret for initial user and mailing configuration.
       existingSecret: ""
     master:
       serviceAccounts:
         # -- Set clients secret for the service account which enables the portal to provision new realms.
         provisioning:
-          # -- SET client secret for all non-testing and non-local purposes, default value is "changeme".
+          # -- SET client secret for all non-testing and non-local purposes, default value is autogenerated.
           clientSecret: ""
         # -- Set clients secret for the service account which enables the portal to manage the CX-Operator realm.
         saCxOperator:
-          # -- SET client secret for all non-testing and non-local purposes, default value is "changeme".
+          # -- SET client secret for all non-testing and non-local purposes, default value is autogenerated.
           clientSecret: ""
       # -- Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value.
       existingSecret: ""
   image:
-    name: "docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1"
-    pullPolicy: "IfNotPresent"
+    name: docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1
+    pullPolicy: IfNotPresent
   initContainer:
     image:
-      name: "docker.io/tractusx/portal-iam:v4.0.0-alpha.1"
-      pullPolicy: "IfNotPresent"
+      name: docker.io/tractusx/portal-iam:v4.0.0-alpha.1
+      pullPolicy: IfNotPresent
   portContainer: 8080
   keycloakServicePort: 80
   keycloakServiceTls: false
