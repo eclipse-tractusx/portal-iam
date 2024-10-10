@@ -149,6 +149,7 @@ realmSeeding:
   enabled: true
   realms:
     cxOperator:
+      sslRequired: "external"
       # -- Set centralidp address for the connection to the CX-Central realm.
       centralidp: "https://centralidp.example.org"
        # -- Configure initial user in CX-Operator realm.

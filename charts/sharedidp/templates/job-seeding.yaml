@@ -71,6 +71,8 @@ spec:
             value: "CX-Operator"
           - name: "KEYCLOAKSEEDING__REALMS__1__REALM"
             value: "master"
+          - name: "KEYCLOAKSEEDING__REALMS__0__SSLREQUIRED"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.sslRequired }}"
 
           #############################
           ## CX-OPERATOR CLIENT

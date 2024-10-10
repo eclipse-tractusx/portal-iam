@@ -139,6 +139,7 @@ keycloak:
 # for configuration possibly not covered by the seeding job.
 realmSeeding:
   enabled: true
+  sslRequired: "external"
   # -- Set redirect addresses and - in the case of confidential clients - clients secrets
   # for clients which are part of the basic CX-Central realm setup;
   # SET client secrets for all non-testing and non-local purposes, default value is "changeme".
