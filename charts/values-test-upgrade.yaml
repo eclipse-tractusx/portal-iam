@@ -23,15 +23,15 @@ keycloak:
   postgresql:
     auth:
       # -- Non-root user password.
-      password: "password"
+      password: password
       # -- Root user password.
-      postgresPassword: "password"
+      postgresPassword: password
     architecture: standalone
 secrets:
   postgresql:
     auth:
       existingSecret:
-        postgrespassword: "password"
-        password: "password"
+        postgrespassword: password
+        password: password
 realmSeeding:
   enabled: false

@@ -30,10 +30,10 @@ keycloak:
           echo "Copying themes..."
           cp -R /import/themes/catenax-central/* /themes
       volumeMounts:
-      - name: themes
-        mountPath: "/themes"
+        - name: themes
+          mountPath: /themes
 realmSeeding:
   initContainer:
     image:
-      name: "kind-registry:5000/iam:testing"
-      pullPolicy: "Always"
+      name: kind-registry:5000/iam:testing
+      pullPolicy: Always
