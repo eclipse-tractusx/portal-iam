@@ -544,15 +544,6 @@
           "attributes": {}
         },
         {
-          "id": "66f4b417-25d4-47d7-b3d2-e6eb80bcba5e",
-          "name": "create_partner_registration",
-          "description": "",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "e0806293-f9b3-44f1-a6d0-4e4406787f80",
-          "attributes": {}
-        },
-        {
           "id": "0d41349d-30a8-42c1-9e1c-2b67d69fba30",
           "name": "update_own_user_account",
           "composite": false,
@@ -1375,7 +1366,8 @@
                 "delete_own_user_account",
                 "edit_apps",
                 "view_apps",
-                "view_connectors"
+                "view_connectors",
+                "configure_partner_registration"
               ],
               "Cl3-CX-Semantic": [
                 "delete_semantic_model",
@@ -1737,7 +1729,6 @@
           "composites": {
             "client": {
               "Cl2-CX-Portal": [
-                "create_partner_registration",
                 "configure_partner_registration"
               ]
             }
