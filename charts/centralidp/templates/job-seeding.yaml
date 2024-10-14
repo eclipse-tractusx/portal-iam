@@ -226,6 +226,13 @@ spec:
             mountPath: "app/realms"
       initContainers:
         - name: init-cx-central
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
           image: {{ .Values.realmSeeding.initContainer.image.name }}
           imagePullPolicy: {{ .Values.realmSeeding.initContainer.image.pullPolicy }}
           command:
@@ -239,7 +246,15 @@ spec:
           - name: realms
             mountPath: "app/realms"
         - name: wait-for-keycloak
-          image: appropriate/curl:latest
+          image: alpine/curl:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
           {{ if .Values.realmSeeding.keycloakServiceTls -}}
           command: [ 'sh', '-c', 'until curl -s https://{{ template "centralidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
           {{- else -}}
