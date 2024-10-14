@@ -2,17 +2,7 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
-## Unreleased
-
-### Change
-
-* created the following composite roles inside the `technical_roles_management` client:
-  * `Registration Internal` [#189](https://github.com/eclipse-tractusx/portal-iam/pull/189)
-     * With `Cl2-CX-Portal` roles:
-       * invite_new_partner
-       * view_submitted_applications 
-
-## [4.0.0-alpha.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0...v4.0.0-alpha.1) (2024-10-11)
+## [4.0.0-alpha.1](https://github.com/eclipse-tractusx/portal-iam/compare/v3.0.1...v4.0.0-alpha.1) (2024-10-11)
 
 
 ### ⚠ BREAKING CHANGES
@@ -23,52 +13,17 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 
 * add BPDM authentication configuration for 24.08. release ([#155](https://github.com/eclipse-tractusx/portal-iam/issues/155)) ([5a73f46](https://github.com/eclipse-tractusx/portal-iam/commit/5a73f46868067d2518bc70e4086b6e40fd6db514))
 * improve realm seeding ([#198](https://github.com/eclipse-tractusx/portal-iam/issues/198)) ([c96973e](https://github.com/eclipse-tractusx/portal-iam/commit/c96973e2d32149ee1c9653f7fa04c27a2b97eed3))
-* **n2n:** add realm and user for onboarding provider ([#23](https://github.com/eclipse-tractusx/portal-iam/issues/23)) ([08b9256](https://github.com/eclipse-tractusx/portal-iam/commit/08b9256f3a0e41155e1eded2a47495745ef2cb8b))
 * **notification:** adjust create notification role ([#169](https://github.com/eclipse-tractusx/portal-iam/issues/169)) ([63dad28](https://github.com/eclipse-tractusx/portal-iam/commit/63dad288bbdb554ae6d5f35c93e37810da1bbba4)), closes [#812](https://github.com/eclipse-tractusx/portal-iam/issues/812)
 * **osp:** remove create role and assign configure role to cx admin ([#199](https://github.com/eclipse-tractusx/portal-iam/issues/199)) ([19eca8e](https://github.com/eclipse-tractusx/portal-iam/commit/19eca8e6adaf24b2ab93c9b0c0fc268e8bfefad7))
-* **password-update:** enable hints about password policy ([#9](https://github.com/eclipse-tractusx/portal-iam/issues/9)) ([76cc5e0](https://github.com/eclipse-tractusx/portal-iam/commit/76cc5e028c7786241f198f52bded743624c7f1c3))
 * **roles:** add subscribe_service permission to Business Admin ([#173](https://github.com/eclipse-tractusx/portal-iam/issues/173)) ([417cd94](https://github.com/eclipse-tractusx/portal-iam/commit/417cd946539b215a8c571d7de62825472ef9a501)), closes [#172](https://github.com/eclipse-tractusx/portal-iam/issues/172)
 * **seeding-job:** enable realm import with dynamic config ([#141](https://github.com/eclipse-tractusx/portal-iam/issues/141)) ([5ed14ce](https://github.com/eclipse-tractusx/portal-iam/commit/5ed14ce23fc2c7d19e97f301cb5bb4d5fcb7361d))
-* **seeding:** add configuration values ([#34](https://github.com/eclipse-tractusx/portal-iam/issues/34)) ([0a8c297](https://github.com/eclipse-tractusx/portal-iam/commit/0a8c297b21b7facbda9f5136730b1fafd8a2f7e7))
-* **seeding:** add job to upgrade cx-central realm ([#12](https://github.com/eclipse-tractusx/portal-iam/issues/12)) ([035c399](https://github.com/eclipse-tractusx/portal-iam/commit/035c399256f90447fca5f451a639cca6ee0478fd))
-* **tech user:** add new operator invite tech user ([87c8d22](https://github.com/eclipse-tractusx/portal-iam/commit/87c8d225956cd98cf7f47badae45984a6bd698b4))
 * **tech user:** add new operator invite tech user ([#189](https://github.com/eclipse-tractusx/portal-iam/issues/189)) ([3018805](https://github.com/eclipse-tractusx/portal-iam/commit/3018805f77913926061af13bb5b35cbb98835c6e))
-* upgrade to keycloak v23.0.7 ([#63](https://github.com/eclipse-tractusx/portal-iam/issues/63)) ([9c62c93](https://github.com/eclipse-tractusx/portal-iam/commit/9c62c93f631e42727f7e3f1bbc9a1749c73d4155))
-* **upgrade:** change to keycloak v22.0.3 ([#20](https://github.com/eclipse-tractusx/portal-iam/issues/20)) ([c216d98](https://github.com/eclipse-tractusx/portal-iam/commit/c216d98c4419cef7f00362b4ef455e5ebcdb9685))
-* **upgrade:** update init realms ([#29](https://github.com/eclipse-tractusx/portal-iam/issues/29)) ([826609d](https://github.com/eclipse-tractusx/portal-iam/commit/826609dedc8c0ecb1159b3b96c84c020cb211044))
-
 
 ### Bug Fixes
 
-* add temp fix for cve-2023-0286 ([17932af](https://github.com/eclipse-tractusx/portal-iam/commit/17932afd0eda820fa6d11765f537ec18bcf4d8f7))
 * **App Manager:** add tech_user_management roles ([#192](https://github.com/eclipse-tractusx/portal-iam/issues/192)) ([402ddb9](https://github.com/eclipse-tractusx/portal-iam/commit/402ddb9780cb534c495b191d84ff548c2bd6b93b))
-* **centralidp:** switch to singleFile import to work around error at helm upgrade ([#22](https://github.com/eclipse-tractusx/portal-iam/issues/22)) ([0a7c535](https://github.com/eclipse-tractusx/portal-iam/commit/0a7c535ee5165b79e485c29154749b22d7225680))
-* change file header ([17092f3](https://github.com/eclipse-tractusx/portal-iam/commit/17092f36fd0d381138c524a96aa64aad6431e27a))
-* **consortia:** change init setup for generic template ([#22](https://github.com/eclipse-tractusx/portal-iam/issues/22)) ([c220521](https://github.com/eclipse-tractusx/portal-iam/commit/c220521453358baf91fce50eeff8e468a8ad061b))
-* **consortia:** remove obsolete client from user role mappings ([#92](https://github.com/eclipse-tractusx/portal-iam/issues/92)) ([742919f](https://github.com/eclipse-tractusx/portal-iam/commit/742919fc18eb2d40ad8fefd639b897203a506e13))
-* cplp-2035 update permissions for test user ([eb863ac](https://github.com/eclipse-tractusx/portal-iam/commit/eb863acbdb764141164746442256ec7655e46c41))
-* cplp-2035 update permissions for test user ([a1ccbdd](https://github.com/eclipse-tractusx/portal-iam/commit/a1ccbdd1eb70c06c37a459884dd1c4c6fda4d907))
-* **cx-central realm:** correct name of default role ([e03dadd](https://github.com/eclipse-tractusx/portal-iam/commit/e03daddb7b3974ee2064c13779b2e4551b459ed1))
-* **db:** don't create secret if dependency is disabled ([d7dbcf9](https://github.com/eclipse-tractusx/portal-iam/commit/d7dbcf99f98d307fa9b60dfb0c3bbf4f6c6a972b))
-* **e2e-findings:** change cx-central realm config ([9e85c90](https://github.com/eclipse-tractusx/portal-iam/commit/9e85c902fbce8d8ebd637dbbd0adf049067b34da))
-* **gateway-check:** add home and sources to chart ([4dc163f](https://github.com/eclipse-tractusx/portal-iam/commit/4dc163ffbc2da61b75645f825b699559f2bd5c50))
-* **gateway-check:** add license file at chart level ([5c3c86a](https://github.com/eclipse-tractusx/portal-iam/commit/5c3c86a411e3b1caf298b4a07d97870f86994029))
-* **gateway-check:** update readme ([ca18629](https://github.com/eclipse-tractusx/portal-iam/commit/ca1862951f778bfb4302e843060c4786a5f4828b))
-* **init-realm:** change role assignment ([#38](https://github.com/eclipse-tractusx/portal-iam/issues/38)) ([a0ba275](https://github.com/eclipse-tractusx/portal-iam/commit/a0ba2753a6a925aa6b29f4744dec799dc8878d2d))
 * **login:** escape quotes in names ([#171](https://github.com/eclipse-tractusx/portal-iam/issues/171)) ([4952f97](https://github.com/eclipse-tractusx/portal-iam/commit/4952f972b40d09c65f7f51b4e9c6c9b9837b7298))
-* **secrets:** use existing secret values if secret exists ([c2f8fc3](https://github.com/eclipse-tractusx/portal-iam/commit/c2f8fc30a88a48213b58e6de6470861886bc0bee))
-* **seeding:** enable function tpl for nameOverride and fullnameOverride ([6464541](https://github.com/eclipse-tractusx/portal-iam/commit/64645417b4336a7662b4325a72aa77b4711cf15a))
-* set correct copyright header ([#16](https://github.com/eclipse-tractusx/portal-iam/issues/16)) ([f6a5422](https://github.com/eclipse-tractusx/portal-iam/commit/f6a5422dfce20e60d8fab8807e428743c3a1221a))
-* set correct copyright header ([#16](https://github.com/eclipse-tractusx/portal-iam/issues/16)) ([dda6f40](https://github.com/eclipse-tractusx/portal-iam/commit/dda6f40daab2f4d53b49488e4ea2c5cc260a16e2))
-* **theme:** fix password update for portal ([#109](https://github.com/eclipse-tractusx/portal-iam/issues/109)) ([c1939c3](https://github.com/eclipse-tractusx/portal-iam/commit/c1939c3312a01084eb1bb2867694161a985990dd))
-* **theme:** fix password update for portal ([#110](https://github.com/eclipse-tractusx/portal-iam/issues/110)) ([4422182](https://github.com/eclipse-tractusx/portal-iam/commit/44221824b3891717bf8b2fbbdf21d3fe018c6ba3))
-* **theme:** fix password update theme ([#101](https://github.com/eclipse-tractusx/portal-iam/issues/101)) ([ceb8d81](https://github.com/eclipse-tractusx/portal-iam/commit/ceb8d8106c10e2182466ca5816d022ef2a07878b))
-* **theme:** remove password username check ([#103](https://github.com/eclipse-tractusx/portal-iam/issues/103)) ([6f20ac3](https://github.com/eclipse-tractusx/portal-iam/commit/6f20ac3a519e0feaea96371b4bab448509f426cd))
-* **trivy:** don't fail on high findings ([#30](https://github.com/eclipse-tractusx/portal-iam/issues/30)) ([343cdb9](https://github.com/eclipse-tractusx/portal-iam/commit/343cdb90790e788b6238ad83835a4472310f12ff))
-* update cx-central configuration ([787e797](https://github.com/eclipse-tractusx/portal-iam/commit/787e797fef6f3918c75f63ea084c4ba6b2f9de50))
 * update regex to allow special and umlaut characters ([#167](https://github.com/eclipse-tractusx/portal-iam/issues/167)) ([bf706f3](https://github.com/eclipse-tractusx/portal-iam/commit/bf706f3a35d7647e7cbe0b0778ffcce1856d4fa8))
-* **v2.0.0:** adjust documentation for upgrade ([3f94107](https://github.com/eclipse-tractusx/portal-iam/commit/3f941071cb6f22a704322bbab23e5823f7739277))
-
 
 ### Miscellaneous Chores
 
