@@ -254,7 +254,7 @@ spec:
               - ALL
             readOnlyRootFilesystem: true
             runAsNonRoot: true
-            runAsUser: 1000
+            runAsUser: 3000
           {{ if .Values.realmSeeding.keycloakServiceTls -}}
           command: [ 'sh', '-c', 'until curl -s https://{{ template "centralidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
           {{- else -}}
