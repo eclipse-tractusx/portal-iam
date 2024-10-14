@@ -6,13 +6,13 @@ This repository contains resources and materials related to the workshops conduc
 
 This folder includes documentation and files for the following workshops:
 
-1. **Portal IAM Workshop**
-   - Date: October 5, 2023
-   - **Documentation Link**: [Portal IAM Workshop Documentation](workshop-20231005.md)
-
-2. **IAM Helm Chart Workshop**
+1. **IAM Helm Chart Workshop**
    - Date: September 27, 2023
    - **Documentation Link**: [IAM Helm Chart Workshop Documentation](workshop-20230927.md)
+
+2. **User Token Lifespan Workshop**
+   - Date: October 5, 2023
+   - **Documentation Link**: [User Token Lifespan Workshop Documentation](workshop-20231005.md)
 
 ## NOTICE
 
