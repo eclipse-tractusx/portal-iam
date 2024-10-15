@@ -58,24 +58,26 @@ keycloak:
   service:
     sessionAffinity: ClientIP
   ingress:
+    # -- Enable ingress record generation
     enabled: false
-    ingressClassName: nginx
+    ingressClassName: ""
     # -- Provide default path for the ingress record.
-    hostname: centralidp.example.org
-    annotations:
-      # -- Enable TLS configuration for the host defined at `ingress.hostname` parameter;
-      # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
-      # Provide the name of ClusterIssuer to acquire the certificate required for this Ingress.
-      cert-manager.io/cluster-issuer: ""
-      nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
-      nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
-      nginx.ingress.kubernetes.io/cors-allow-origin: "https://centralidp.example.org"
-      nginx.ingress.kubernetes.io/enable-cors: "true"
-      nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
-      nginx.ingress.kubernetes.io/proxy-buffering: "on"
-      nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
-      nginx.ingress.kubernetes.io/use-regex: "true"
-    tls: true
+    hostname: ""
+    # -- Optional annotations when using the nginx ingress class;
+    # Enable TLS configuration for the host defined at `ingress.hostname` parameter;
+    # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
+    # Provide the name of ClusterIssuer to acquire the certificate required for this Ingress.
+    annotations: {}
+      # cert-manager.io/cluster-issuer: ""
+      # nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+      # nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
+      # nginx.ingress.kubernetes.io/cors-allow-origin: "https://centralidp.example.org"
+      # nginx.ingress.kubernetes.io/enable-cors: "true"
+      # nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+      # nginx.ingress.kubernetes.io/proxy-buffering: "on"
+      # nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
+      # nginx.ingress.kubernetes.io/use-regex: "true"
+    tls: false
   rbac:
     create: true
     rules:

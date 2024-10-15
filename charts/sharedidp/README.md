@@ -68,19 +68,11 @@ dependencies:
 | keycloak.initContainers[0].volumeMounts[1].name | string | `"themes-catenax-shared-portal"` |  |
 | keycloak.initContainers[0].volumeMounts[1].mountPath | string | `"/themes-catenax-shared-portal"` |  |
 | keycloak.service.sessionAffinity | string | `"ClientIP"` |  |
-| keycloak.ingress.enabled | bool | `false` |  |
-| keycloak.ingress.ingressClassName | string | `"nginx"` |  |
-| keycloak.ingress.hostname | string | `"sharedidp.example.org"` | Provide default path for the ingress record. |
-| keycloak.ingress.annotations."cert-manager.io/cluster-issuer" | string | `""` | Enable TLS configuration for the host defined at `ingress.hostname` parameter; TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`; Provide the name of ClusterIssuer to acquire the certificate required for this Ingress. |
-| keycloak.ingress.annotations."nginx.ingress.kubernetes.io/cors-allow-credentials" | string | `"true"` |  |
-| keycloak.ingress.annotations."nginx.ingress.kubernetes.io/cors-allow-methods" | string | `"PUT, GET, POST, OPTIONS"` |  |
-| keycloak.ingress.annotations."nginx.ingress.kubernetes.io/cors-allow-origin" | string | `"https://sharedidp.example.org"` |  |
-| keycloak.ingress.annotations."nginx.ingress.kubernetes.io/enable-cors" | string | `"true"` |  |
-| keycloak.ingress.annotations."nginx.ingress.kubernetes.io/proxy-buffer-size" | string | `"128k"` |  |
-| keycloak.ingress.annotations."nginx.ingress.kubernetes.io/proxy-buffering" | string | `"on"` |  |
-| keycloak.ingress.annotations."nginx.ingress.kubernetes.io/proxy-buffers-number" | string | `"20"` |  |
-| keycloak.ingress.annotations."nginx.ingress.kubernetes.io/use-regex" | string | `"true"` |  |
-| keycloak.ingress.tls | bool | `true` |  |
+| keycloak.ingress.enabled | bool | `false` | Enable ingress record generation |
+| keycloak.ingress.ingressClassName | string | `""` |  |
+| keycloak.ingress.hostname | string | `""` | Provide default path for the ingress record. |
+| keycloak.ingress.annotations | object | `{}` | Optional annotations when using the nginx ingress class; Enable TLS configuration for the host defined at `ingress.hostname` parameter; TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`; Provide the name of ClusterIssuer to acquire the certificate required for this Ingress. |
+| keycloak.ingress.tls | bool | `false` |  |
 | keycloak.rbac.create | bool | `true` |  |
 | keycloak.rbac.rules[0].apiGroups[0] | string | `""` |  |
 | keycloak.rbac.rules[0].resources[0] | string | `"pods"` |  |
