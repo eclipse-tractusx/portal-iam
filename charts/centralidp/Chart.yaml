@@ -20,7 +20,7 @@
 apiVersion: v2
 name: centralidp
 type: application
-version: 3.0.1
+version: 4.0.0-alpha.1
 appVersion: 23.0.7
 description: Helm chart for Central Keycloak Instance
 home: https://github.com/eclipse-tractusx/portal-iam

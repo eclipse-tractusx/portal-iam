@@ -2,15 +2,32 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
-## Unreleased
+## [4.0.0-alpha.1](https://github.com/eclipse-tractusx/portal-iam/compare/v3.0.1...v4.0.0-alpha.1) (2024-10-11)
 
-### Change
 
-* created the following composite roles inside the `technical_roles_management` client:
-  * `Registration Internal` [#189](https://github.com/eclipse-tractusx/portal-iam/pull/189)
-     * With `Cl2-CX-Portal` roles:
-       * invite_new_partner
-       * view_submitted_applications 
+### ⚠ BREAKING CHANGES
+
+* **seeding-job:** enable realm import with dynamic config ([#141](https://github.com/eclipse-tractusx/portal-iam/issues/141))
+
+### Features
+
+* add BPDM authentication configuration for 24.08. release ([#155](https://github.com/eclipse-tractusx/portal-iam/issues/155)) ([5a73f46](https://github.com/eclipse-tractusx/portal-iam/commit/5a73f46868067d2518bc70e4086b6e40fd6db514))
+* improve realm seeding ([#198](https://github.com/eclipse-tractusx/portal-iam/issues/198)) ([c96973e](https://github.com/eclipse-tractusx/portal-iam/commit/c96973e2d32149ee1c9653f7fa04c27a2b97eed3))
+* **notification:** adjust create notification role ([#169](https://github.com/eclipse-tractusx/portal-iam/issues/169)) ([63dad28](https://github.com/eclipse-tractusx/portal-iam/commit/63dad288bbdb554ae6d5f35c93e37810da1bbba4)), closes [#812](https://github.com/eclipse-tractusx/portal-iam/issues/812)
+* **osp:** remove create role and assign configure role to cx admin ([#199](https://github.com/eclipse-tractusx/portal-iam/issues/199)) ([19eca8e](https://github.com/eclipse-tractusx/portal-iam/commit/19eca8e6adaf24b2ab93c9b0c0fc268e8bfefad7))
+* **roles:** add subscribe_service permission to Business Admin ([#173](https://github.com/eclipse-tractusx/portal-iam/issues/173)) ([417cd94](https://github.com/eclipse-tractusx/portal-iam/commit/417cd946539b215a8c571d7de62825472ef9a501)), closes [#172](https://github.com/eclipse-tractusx/portal-iam/issues/172)
+* **seeding-job:** enable realm import with dynamic config ([#141](https://github.com/eclipse-tractusx/portal-iam/issues/141)) ([5ed14ce](https://github.com/eclipse-tractusx/portal-iam/commit/5ed14ce23fc2c7d19e97f301cb5bb4d5fcb7361d))
+* **tech user:** add new operator invite tech user ([#189](https://github.com/eclipse-tractusx/portal-iam/issues/189)) ([3018805](https://github.com/eclipse-tractusx/portal-iam/commit/3018805f77913926061af13bb5b35cbb98835c6e))
+
+### Bug Fixes
+
+* **App Manager:** add tech_user_management roles ([#192](https://github.com/eclipse-tractusx/portal-iam/issues/192)) ([402ddb9](https://github.com/eclipse-tractusx/portal-iam/commit/402ddb9780cb534c495b191d84ff548c2bd6b93b))
+* **login:** escape quotes in names ([#171](https://github.com/eclipse-tractusx/portal-iam/issues/171)) ([4952f97](https://github.com/eclipse-tractusx/portal-iam/commit/4952f972b40d09c65f7f51b4e9c6c9b9837b7298))
+* update regex to allow special and umlaut characters ([#167](https://github.com/eclipse-tractusx/portal-iam/issues/167)) ([bf706f3](https://github.com/eclipse-tractusx/portal-iam/commit/bf706f3a35d7647e7cbe0b0778ffcce1856d4fa8))
+
+### Miscellaneous Chores
+
+* release 4.0.0-alpha.1 ([685d8a6](https://github.com/eclipse-tractusx/portal-iam/commit/685d8a65a495fe3fb565ad0903dbf3ec14077230))
 
 ## 3.0.1
 
