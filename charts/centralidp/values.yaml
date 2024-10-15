@@ -145,11 +145,11 @@ realmSeeding:
   clients:
     registration:
       redirects:
-        - https://portal.example.org
+        - https://portal.example.org/*
     portal:
       rootUrl: https://portal.example.org/home
       redirects:
-        - https://portal.example.org
+        - https://portal.example.org/*
     semantics:
       redirects:
         - https://portal.example.org/*

@@ -43,7 +43,6 @@ keycloak:
       postgresPassword: "<path:portal/data/int/iam/sharedidp-keycloak#postgres-admin-user>"
 
 realmSeeding:
-  enabled: true
   realms:
     cxOperator:
       centralidp: "https://centralidp.int.catena-x.net"
