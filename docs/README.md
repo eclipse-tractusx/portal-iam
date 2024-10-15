@@ -44,17 +44,26 @@ The `known-knowns` folder highlights known limitations, issues, or consideration
 
 - [Known-Knowns](./user/known-knowns/Known-Knowns.md): A list of known issues and solutions.
 
-### [Charts](./admin/charts/)
-
-The `charts` folder contains Helm charts for deploying the Portal IAM system. Refer to the following for detailed usage:
-
-- [Portal IAM Helm Chart](./admin/portal-iam-helm-chart.md): Instructions on using the Helm chart for deploying Portal IAM on Kubernetes.
 
 ### [Admin Documentation](./admin/)
 
 The `admin` folder includes documentation for system administrators:
 
+### 1. [Charts](./admin/charts/)
+
+The `charts` folder contains Helm charts for deploying the Portal IAM system. Refer to the following for detailed usage:
+
+- [Portal IAM Helm Chart](./admin/portal-iam-helm-chart.md): Instructions on using the Helm chart for deploying Portal IAM on Kubernetes.
+
+### 2. [Developer Process](./admin/dev-process/)
+
+- [Dev Flow](./dev-process/dev-flow.md): This document outlines the development flow, using a git-based diagram to show the process of feature development, bug fixes, and release candidates. 
 - [How to Contribute](./admin/dev-process/How%20to%20contribute.md): Steps for contributing to the project.
+
+
+### 3. [Release Process](./admin/release-process/)
+
+- [Release Process](./release-process/release-process.md) :  This document explains the release process, detailing steps from creating a release branch, updating versions, and generating changelogs to merging release candidates into the main branch. It follows semantic versioning practices and provides links to automated workflows used in the release cycle.
 
 ### [Assets](./static/)
 
