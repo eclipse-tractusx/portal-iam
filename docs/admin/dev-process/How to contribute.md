@@ -98,7 +98,7 @@ What was changed, why was it changed (e.g. which issue was fixed or which requir
 
 ### Additional information
 
-Please refer to the [Development Flow](./17.%20Dev%20Flow.md).
+Please refer to the [Development Flow](./Dev%20Flow.md).
 
 ## NOTICE
 

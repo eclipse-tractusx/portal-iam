@@ -74,7 +74,7 @@ _build(1.2.0): merge release into main_
 >
 > The workflow creates a 'centralidp-x.x.x' and 'sharedidp-x.x.x' tags and according releases. The release contains the new chart.
 >
-> This workflow also pushes the version tag that triggers the [release workflow](../../.github/workflows/release.yaml) which creates the versioned docker image/s.
+> This workflow also pushes the version tag that triggers the [release workflow](/.github/workflows/release.yaml) which creates the versioned docker image/s.
 
 _environment relevant: The 'vx.x.x' tag is used to install (with the convenience of the argocd-app-templates) or upgrade the version via AgroCD on the hosted K8s clusters._
 
