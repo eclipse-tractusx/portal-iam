@@ -11,7 +11,7 @@ The release process for a new version can roughly be divided into the following 
   - [RC: provide successive rc branch and change base of open PRs](#rc-provide-successive-rc-branch-and-change-base-of-open-prs)
   - [NOTICE](#notice)
 
-The process builds on the [Development Flow](./17.%20Dev%20Flow.md) which, usually, takes place within forks and leads to merged pull requests in the repositories of the eclipse-tractusx organization.
+The process builds on the [Development Flow](../dev-process/Dev%20Flow.md) which, usually, takes place within forks and leads to merged pull requests in the repositories of the eclipse-tractusx organization.
 
 For assigning and incrementing **version** numbers [Semantic Versioning](https://semver.org) is followed.
 
@@ -24,15 +24,15 @@ On the release branch the following steps are executed:
 
 Bump the chart and app version in the `Chart.yaml` files.
 
-- [centralidp/Chart.yaml](../../charts/centralidp/Chart.yaml)
-- [sharedidp/Chart.yaml](../../charts/sharedidp/Chart.yaml)
+- [centralidp/Chart.yaml](/charts/centralidp/Chart.yaml)
+- [sharedidp/Chart.yaml](/charts/sharedidp/Chart.yaml)
 
 And bump the version of the images for the init container and realm seeding job in the `values.yaml` files:
 
-- [centralidp/values.yaml](../../charts/centralidp/values.yaml)
-- [sharedidp/values.yaml](../../charts/sharedidp/values.yaml)
+- [centralidp/values.yaml](/charts/centralidp/values.yaml)
+- [sharedidp/values.yaml](/charts/sharedidp/values.yaml)
 
-_environment relevant: Update the version of the targetRevision tag in the [argocd-app-templates](../../environments/argocd-app-templates/), used for hosted environments._
+_environment relevant: Update the version of the targetRevision tag in the [argocd-app-templates](/environments/argocd-app-templates/), used for hosted environments._
 
 Example for commit message:
 
@@ -53,7 +53,7 @@ _build: update readme for vx.x.x_
 ## Update CHANGELOG.md
 
 The changelog file tracks all notable changes since the last released version.
-Once a new version is ready to be released, the changelog can get updated via an automatically created pull request using the [release-please workflow](../../.github/workflows/release-please.yml) which can be triggered manually or by pushing a _changelog/v*.*.*_ branch.
+Once a new version is ready to be released, the changelog can get updated via an automatically created pull request using the [release-please workflow](/.github/workflows/release-please.yml) which can be triggered manually or by pushing a _changelog/v*.*.*_ branch.
 
 Please see:
 
@@ -70,7 +70,7 @@ Example for PR titles:
 
 _build(1.2.0): merge release into main_
 
-> Be aware that the merge into main triggers the workflow with the [helm chart releaser action](../../.github/workflows/release.yaml).
+> Be aware that the merge into main triggers the workflow with the [helm chart releaser action](/.github/workflows/release.yaml).
 >
 > The workflow creates a 'centralidp-x.x.x' and 'sharedidp-x.x.x' tags and according releases. The release contains the new chart.
 >
