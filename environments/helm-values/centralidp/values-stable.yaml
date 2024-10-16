@@ -20,6 +20,8 @@
 keycloak:
   production: true
   proxy: edge
+  auth:
+    adminPassword: "<path:portal/data/stable/iam/centralidp-keycloak#admin-password>"
   ingress:
     enabled: true
     ingressClassName: nginx
@@ -35,14 +37,76 @@ keycloak:
       nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
       nginx.ingress.kubernetes.io/use-regex: "true"
     tls: true
-
-secrets:
-  auth:
-    existingSecret:
-      adminpassword: "<path:portal/data/stable/iam/centralidp-keycloak#admin-password>"
   postgresql:
     auth:
-      existingSecret:
-        postgrespassword: "<path:portal/data/stable/iam/centralidp-keycloak#postgres-admin-user>"
-        password: "<path:portal/data/stable/iam/centralidp-keycloak#postgres-custom-user>"
-        replicationPassword: "<path:portal/data/stable/iam/centralidp-keycloak#postgres-replication-user>"
+      password: "<path:portal/data/stable/iam/centralidp-keycloak#postgres-custom-user>"
+      postgresPassword: "<path:portal/data/stable/iam/centralidp-keycloak#postgres-admin-user>"
+
+realmSeeding:
+  clients:
+    registration:
+      redirects:
+        - https://portal.stable.catena-x.net/*
+        - http://localhost:3000/*
+    portal:
+      rootUrl: https://portal.stable.catena-x.net/home
+      redirects:
+        - https://portal.stable.catena-x.net/*
+        - http://localhost:3000/*
+    semantics:
+      redirects:
+        - https://portal.stable.catena-x.net/*
+    miw:
+      clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#custodian-client>"
+      redirects:
+        - https://managed-identity-wallets.stable.catena-x.net/*
+    bpdm:
+      clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpdm-client>"
+      redirects:
+        - https://partners-pool.stable.catena-x.net/*
+    bpdmGate:
+      clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpdmGate-client>"
+      redirects:
+        - https://partners-gate.stable.catena-x.net/*
+    bpdmOrchestrator:
+      clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpdmOrchestrator-client>"
+  serviceAccounts:
+    clientSecrets:
+      - clientId: "sa-cl1-reg-2"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#reg-central-sa>"
+      - clientId: "sa-cl2-01"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#portal-clearinghouse-1-sa>"
+      - clientId: "sa-cl2-02"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#portal-clearinghouse-2-sa>"
+      - clientId: "sa-cl2-03"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#offerprovider-sa>"
+      - clientId: "sa-cl2-04"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#portal-issuer-sa>"
+      - clientId: "sa-cl2-05"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#dim-portal-sa>"
+      - clientId: "sa-cl3-cx-1"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#semantic-hub>"
+      - clientId: "sa-cl5-custodian-2"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#custodian-sa>"
+      - clientId: "sa-cl7-cx-1"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpdm-sa-1>"
+      - clientId: "sa-cl7-cx-5"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpdm-sa-2>"
+      - clientId: "sa-cl7-cx-7"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpdm-sa-3>"
+      - clientId: "sa-cl8-cx-1"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#portal-sdfactory-sa>"
+      - clientId: "sa-cl21-01"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#edc-discovery-sa>"
+      - clientId: "sa-cl22-01"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpn-discovery-sa>"
+      - clientId: "sa-cl24-01"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#issuer-sa>"
+      - clientId: "sa-cl25-cx-1"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpdm-orchestrator-1>"
+      - clientId: "sa-cl25-cx-2"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpdm-orchestrator-1>"
+      - clientId: "sa-cl25-cx-3"
+        clientSecret: "<path:portal/data/stable/iam/centralidp-client-secrets#bpdm-orchestrator-1>"
+  bpn: "BPNL00000003CRHK"
+  sharedidp: "https://sharedidp.stable.catena-x.net"

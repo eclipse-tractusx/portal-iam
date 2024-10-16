@@ -20,6 +20,8 @@
 keycloak:
   production: true
   proxy: edge
+  auth:
+    adminPassword: "<path:portal/data/stable/iam/sharedidp-keycloak#admin-password>"
   ingress:
     enabled: true
     ingressClassName: nginx
@@ -35,14 +37,27 @@ keycloak:
       nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
       nginx.ingress.kubernetes.io/use-regex: "true"
     tls: true
-
-secrets:
-  auth:
-    existingSecret:
-      adminpassword: "<path:portal/data/stable/iam/sharedidp-keycloak#admin-password>"
   postgresql:
     auth:
-      existingSecret:
-        postgrespassword: "<path:portal/data/stable/iam/sharedidp-keycloak#postgres-admin-user>"
-        password: "<path:portal/data/stable/iam/sharedidp-keycloak#postgres-custom-user>"
-        replicationPassword: "<path:portal/data/stable/iam/sharedidp-keycloak#postgres-replication-user>"
+      password: "<path:portal/data/stable/iam/sharedidp-keycloak#postgres-custom-user>"
+      postgresPassword: "<path:portal/data/stable/iam/sharedidp-keycloak#postgres-admin-user>"
+
+realmSeeding:
+  realms:
+    cxOperator:
+      centralidp: "https://centralidp.stable.catena-x.net"
+      initialUser:
+        password: "<path:portal/data/stable/iam/sharedidp-keycloak#initial-operator-user>"
+      mailing:
+        host: "<path:portal/data/mailing#host>"
+        port: "<path:portal/data/mailing#port>"
+        username: "<path:portal/data/mailing#user>"
+        password: "<path:portal/data/mailing#password"
+        from: "<path:portal/data/mailing#senderMail>"
+        replyTo: "<path:portal/data/mailing#senderMail>"
+    master:
+      serviceAccounts:
+        provisioning:
+          clientSecret: "<path:portal/data/stable/iam/sharedidp-client-secrets#reg-shared-sa>"
+        saCxOperator:
+          clientSecret: "<path:portal/data/stable/iam/sharedidp-client-secrets#sa-operator>"
