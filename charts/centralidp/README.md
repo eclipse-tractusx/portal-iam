@@ -1,6 +1,6 @@
 # Helm chart for Central Keycloak Instance
 
-![Version: 4.0.0-alpha.2](https://img.shields.io/badge/Version-4.0.0--alpha.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 23.0.7](https://img.shields.io/badge/AppVersion-23.0.7-informational?style=flat-square)
+![Version: 4.0.0-alpha.2](https://img.shields.io/badge/Version-4.0.0--alpha.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Central Keycloak Instance.
 
@@ -36,7 +36,7 @@ dependencies:
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami | keycloak | 19.3.0 |
+| https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami | keycloak | 23.0.0 |
 
 ## Values
 
@@ -46,7 +46,6 @@ dependencies:
 | keycloak.auth.adminPassword | string | `""` | centralidp Keycloak administrator password. |
 | keycloak.auth.existingSecret | string | `""` | Secret containing the password for admin username 'admin'. |
 | keycloak.production | bool | `false` | Run Keycloak in production mode. TLS configuration is required except when using proxy=edge. |
-| keycloak.proxy | string | `"passthrough"` | reverse Proxy mode edge, reencrypt, passthrough or none; ref: https://www.keycloak.org/server/reverseproxy; If your ingress controller has the SSL Termination, you should set proxy to edge. |
 | keycloak.httpRelativePath | string | `"/auth/"` | Setting the path relative to '/' for serving resources: as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'. ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed |
 | keycloak.replicaCount | int | `1` |  |
 | keycloak.extraVolumes[0].name | string | `"themes"` |  |
