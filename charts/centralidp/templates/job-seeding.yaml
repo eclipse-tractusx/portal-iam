@@ -210,6 +210,8 @@ spec:
                 key: {{ .clientId }}
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__USERNAME"
             value: {{ printf "service-account-%s" .clientId | quote }}
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__ATTRIBUTES__0__NAME"
+            value: "bpn"
           - name: "KEYCLOAKSEEDING__REALMS__0__USERS__{{ $index }}__ATTRIBUTES__0__VALUES__0"
             value: {{ .bpn | quote }}
           {{- $index = add1 $index }}
