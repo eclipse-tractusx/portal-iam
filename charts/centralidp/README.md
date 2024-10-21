@@ -110,7 +110,8 @@ Please see notes at [Values.seeding](values.yaml#L153) for upgrading the configu
 
 ### To 4.0.0
 
-Documentation is WIP.
+This major changes from the Keycloak version from  23.0.7 to 25.0.6.
+No major issues are expected during the upgrade. Nonetheless, a blue-green deployment approach - [as outlined for previous major version upgrades](#upgrade-approach) -  is recommended.
 
 ### To 3.0.1
 
