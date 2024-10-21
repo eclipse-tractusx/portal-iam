@@ -126,6 +126,8 @@ spec:
               secretKeyRef:
                 name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
                 key: "initial-user-password"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__REALMROLES__0"
+            value: "default-roles-cx-operator"
 
           #############################
           ## CX-OPERATOR MAIL CONFIG
