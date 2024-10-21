@@ -19,7 +19,6 @@
 
 keycloak:
   production: true
-  proxy: edge
   auth:
     adminPassword: "<path:portal/data/stable/iam/centralidp-keycloak#admin-password>"
   ingress:
