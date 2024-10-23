@@ -1,0 +1,1154 @@
+---
+# Source: centralidp/charts/keycloak/charts/postgresql/templates/primary/networkpolicy.yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: cen-postgresql
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/version: "15"
+    helm.sh/chart: postgresql-14.2.4
+    app.kubernetes.io/component: primary
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: cen
+      app.kubernetes.io/name: postgresql
+      app.kubernetes.io/component: primary
+  policyTypes:
+    - Ingress
+    - Egress
+  egress:
+    - {}
+  ingress:
+    - ports:
+        - port: 5432
+---
+# Source: centralidp/charts/keycloak/templates/networkpolicy.yaml
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: cen-keycloak
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/version: 23.0.7
+    helm.sh/chart: keycloak-19.3.0
+    app.kubernetes.io/component: keycloak
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: cen
+      app.kubernetes.io/name: keycloak
+      app.kubernetes.io/component: keycloak
+  policyTypes:
+    - Ingress
+    - Egress
+  egress:
+    - {}
+  ingress:
+    - ports:
+        - port: 7800
+        - port: 8080
+---
+# Source: centralidp/charts/keycloak/charts/postgresql/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cen-postgresql
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/version: "15"
+    helm.sh/chart: postgresql-14.2.4
+automountServiceAccountToken: false
+---
+# Source: centralidp/charts/keycloak/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cen-keycloak
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/version: 23.0.7
+    helm.sh/chart: keycloak-19.3.0
+    app.kubernetes.io/component: keycloak
+automountServiceAccountToken: false
+---
+# Source: centralidp/charts/keycloak/charts/postgresql/templates/secrets.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cen-postgresql
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/version: "15"
+    helm.sh/chart: postgresql-14.2.4
+type: Opaque
+data:
+  postgres-password: "a0pRUkxVS0dENw=="
+  password: "RXY2UklEQUMxUA=="
+  # We don't auto-generate LDAP password when it's not provided as we do for other passwords
+---
+# Source: centralidp/charts/keycloak/templates/secrets.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cen-keycloak
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/version: 23.0.7
+    helm.sh/chart: keycloak-19.3.0
+    app.kubernetes.io/component: keycloak
+type: Opaque
+data:
+  admin-password: "UFJlMTZYU2FoeQ=="
+---
+# Source: centralidp/templates/secret-base-service-accounts.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cen-keycloak-base-service-accounts
+  namespace: default
+type: Opaque
+stringData:
+  sa-cl1-reg-2: "1J5qXt2nvqo4xflf497czfS8c9t6c4sA"
+  sa-cl2-01: "6KO1SbivU01ew5vRVjYsqDhkhJPk9BzM"
+  sa-cl2-02: "lpQ9E4WeohycvSvqANX9Sy5bq62woLHQ"
+  sa-cl2-03: "115MnBhHsjPrDmtpirIAsilzW3s3AbaR"
+  sa-cl2-04: "XZL3ankgviIkAEAx0X6nnCtTJZ3iEtTe"
+  sa-cl2-05: "XAoqzR5UUpdyXJgwS1d6s3vATi0YmZup"
+  sa-cl3-cx-1: "g2Ot8NfXEjHeMdUGMRHsoMKfOdy2rO1t"
+  sa-cl5-custodian-2: "J75dDyUtTMhGMDj90IaPWPKUjueCwPNo"
+  sa-cl7-cx-1: "wY4Glt5irnGlA6tolEa7GkbTbqEQJddh"
+  sa-cl7-cx-5: "qUT5VmYtw2UklfdzhGrFyb0HWlpJzIZe"
+  sa-cl7-cx-7: "pKn7qBvZrJyD3bhi1u9y84XH58cy6YOz"
+  sa-cl8-cx-1: "Kd6M6dp30kD2uT8nOH8glqooPxsi3XbY"
+  sa-cl21-01: "RjOa2BMtYTmkyuzfDN248QEHvcZ7T3IA"
+  sa-cl22-01: "DR7vKF5m51ZOqHlFTBSoRiHRtNvQjms5"
+  sa-cl24-01: "aspH6GEjubfiQr7H9yJ6D8PY7zDE8vaP"
+  sa-cl25-cx-1: "OAAhBp584GXRKjVpjWJgKXmHcA7sM640"
+  sa-cl25-cx-2: "Zrw6nQ9RhnRPSY5rl184V2to0TOiFhBC"
+  sa-cl25-cx-3: "TzuPsemupxAUnep80j5HY9yqpEZFkOy4"
+---
+# Source: centralidp/templates/secret-clients.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cen-keycloak-clients
+  namespace: default
+type: Opaque
+stringData:
+  # if secret doesn't exist, use provided value from values file or generate a random one
+  miw: "OQcMZ2izAwlGsI1LiMOekUBP1lZnmXZW"
+  bpdm: "gUuQs8D8twSgLjlVRALYsVvq6p8zxt24"
+  bpdm-gate: "2nAixVkv1Kdoovtgh5z1Y2Im6KM3jQAD"
+  bpdm-orchestrator: "0Q0g5rLwXt39V0D5TYzKpdhMw5H9ZakK"
+---
+# Source: centralidp/charts/keycloak/templates/configmap-env-vars.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cen-keycloak-env-vars
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/version: 23.0.7
+    helm.sh/chart: keycloak-19.3.0
+    app.kubernetes.io/component: keycloak
+data:
+  KEYCLOAK_ADMIN: "admin"
+  KEYCLOAK_HTTP_PORT: "8080"
+  KEYCLOAK_PROXY: "passthrough"
+  KEYCLOAK_ENABLE_STATISTICS: "false"
+  KEYCLOAK_DATABASE_HOST: "cen-postgresql"
+  KEYCLOAK_DATABASE_PORT: "5432"
+  KEYCLOAK_DATABASE_NAME: "iamcentralidp"
+  KEYCLOAK_DATABASE_USER: "kccentral"
+  KEYCLOAK_PRODUCTION:  "false"
+  KEYCLOAK_ENABLE_HTTPS: "false"
+  KEYCLOAK_CACHE_TYPE: "ispn"
+  KEYCLOAK_CACHE_STACK: "kubernetes"
+  JAVA_OPTS_APPEND: "-Djgroups.dns.query=cen-keycloak-headless.default.svc.cluster.local"
+  KEYCLOAK_LOG_OUTPUT: "default"
+  KEYCLOAK_LOG_LEVEL: "INFO"
+---
+# Source: centralidp/charts/keycloak/templates/role.yaml
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cen-keycloak
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/version: 23.0.7
+    helm.sh/chart: keycloak-19.3.0
+    app.kubernetes.io/component: keycloak
+rules:
+  - apiGroups:
+    - ""
+    resources:
+    - pods
+    verbs:
+    - get
+    - list
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+    verbs:
+      - get
+      - list
+---
+# Source: centralidp/charts/keycloak/templates/rolebinding.yaml
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cen-keycloak
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/version: 23.0.7
+    helm.sh/chart: keycloak-19.3.0
+    app.kubernetes.io/component: keycloak
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: cen-keycloak
+subjects:
+  - kind: ServiceAccount
+    name: cen-keycloak
+    namespace: "default"
+---
+# Source: centralidp/charts/keycloak/charts/postgresql/templates/primary/svc-headless.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: cen-postgresql-hl
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/version: "15"
+    helm.sh/chart: postgresql-14.2.4
+    app.kubernetes.io/component: primary
+  annotations:
+    # Use this annotation in addition to the actual publishNotReadyAddresses
+    # field below because the annotation will stop being respected soon but the
+    # field is broken in some versions of Kubernetes:
+    # https://github.com/kubernetes/kubernetes/issues/58662
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  # We want all pods in the StatefulSet to have their addresses published for
+  # the sake of the other Postgresql pods even before they're ready, since they
+  # have to be able to talk to each other in order to become ready.
+  publishNotReadyAddresses: true
+  ports:
+    - name: tcp-postgresql
+      port: 5432
+      targetPort: tcp-postgresql
+  selector:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/component: primary
+---
+# Source: centralidp/charts/keycloak/charts/postgresql/templates/primary/svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: cen-postgresql
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/version: "15"
+    helm.sh/chart: postgresql-14.2.4
+    app.kubernetes.io/component: primary
+spec:
+  type: ClusterIP
+  sessionAffinity: None
+  ports:
+    - name: tcp-postgresql
+      port: 5432
+      targetPort: tcp-postgresql
+      nodePort: null
+  selector:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/component: primary
+---
+# Source: centralidp/charts/keycloak/templates/headless-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: cen-keycloak-headless
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/version: 23.0.7
+    helm.sh/chart: keycloak-19.3.0
+    app.kubernetes.io/component: keycloak
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+  publishNotReadyAddresses: true
+  selector:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/component: keycloak
+---
+# Source: centralidp/charts/keycloak/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: cen-keycloak
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/version: 23.0.7
+    helm.sh/chart: keycloak-19.3.0
+    app.kubernetes.io/component: keycloak
+spec:
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+      nodePort: null
+  selector:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/component: keycloak
+---
+# Source: centralidp/charts/keycloak/charts/postgresql/templates/primary/statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cen-postgresql
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/version: "15"
+    helm.sh/chart: postgresql-14.2.4
+    app.kubernetes.io/component: primary
+spec:
+  replicas: 1
+  serviceName: cen-postgresql-hl
+  updateStrategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: cen
+      app.kubernetes.io/name: postgresql
+      app.kubernetes.io/component: primary
+  template:
+    metadata:
+      name: cen-postgresql
+      labels:
+        app.kubernetes.io/instance: cen
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: postgresql
+        app.kubernetes.io/version: "15"
+        helm.sh/chart: postgresql-14.2.4
+        app.kubernetes.io/component: primary
+    spec:
+      serviceAccountName: cen-postgresql
+      
+      automountServiceAccountToken: false
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: cen
+                    app.kubernetes.io/name: postgresql
+                    app.kubernetes.io/component: primary
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      securityContext:
+        fsGroup: 1001
+        fsGroupChangePolicy: Always
+        supplementalGroups: []
+        sysctls: []
+      hostNetwork: false
+      hostIPC: false
+      containers:
+        - name: postgresql
+          image: docker.io/bitnami/postgresql:15-debian-11
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsGroup: 0
+            runAsNonRoot: true
+            runAsUser: 1001
+            seLinuxOptions: null
+            seccompProfile:
+              type: RuntimeDefault
+          env:
+            - name: BITNAMI_DEBUG
+              value: "false"
+            - name: POSTGRESQL_PORT_NUMBER
+              value: "5432"
+            - name: POSTGRESQL_VOLUME_DIR
+              value: "/bitnami/postgresql"
+            - name: PGDATA
+              value: "/bitnami/postgresql/data"
+            # Authentication
+            - name: POSTGRES_USER
+              value: "kccentral"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cen-postgresql
+                  key: password
+            - name: POSTGRES_POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cen-postgresql
+                  key: postgres-password
+            - name: POSTGRES_DATABASE
+              value: "iamcentralidp"
+            # Replication
+            # Initdb
+            # Standby
+            # LDAP
+            - name: POSTGRESQL_ENABLE_LDAP
+              value: "no"
+            # TLS
+            - name: POSTGRESQL_ENABLE_TLS
+              value: "no"
+            # Audit
+            - name: POSTGRESQL_LOG_HOSTNAME
+              value: "false"
+            - name: POSTGRESQL_LOG_CONNECTIONS
+              value: "false"
+            - name: POSTGRESQL_LOG_DISCONNECTIONS
+              value: "false"
+            - name: POSTGRESQL_PGAUDIT_LOG_CATALOG
+              value: "off"
+            # Others
+            - name: POSTGRESQL_CLIENT_MIN_MESSAGES
+              value: "error"
+            - name: POSTGRESQL_SHARED_PRELOAD_LIBRARIES
+              value: "pgaudit"
+          ports:
+            - name: tcp-postgresql
+              containerPort: 5432
+          livenessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "kccentral" -d "dbname=iamcentralidp" -h 127.0.0.1 -p 5432
+          readinessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - -e
+                - |
+                  exec pg_isready -U "kccentral" -d "dbname=iamcentralidp" -h 127.0.0.1 -p 5432
+                  [ -f /opt/bitnami/postgresql/tmp/.initialized ] || [ -f /bitnami/postgresql/.initialized ]
+          volumeMounts:
+            - name: empty-dir
+              mountPath: /tmp
+              subPath: tmp-dir
+            - name: empty-dir
+              mountPath: /opt/bitnami/postgresql/conf
+              subPath: app-conf-dir
+            - name: empty-dir
+              mountPath: /opt/bitnami/postgresql/tmp
+              subPath: app-tmp-dir
+            - name: empty-dir
+              mountPath: /opt/bitnami/postgresql/logs
+              subPath: app-logs-dir
+            - name: dshm
+              mountPath: /dev/shm
+            - name: data
+              mountPath: /bitnami/postgresql
+      volumes:
+        - name: empty-dir
+          emptyDir: {}
+        - name: dshm
+          emptyDir:
+            medium: Memory
+  volumeClaimTemplates:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
+---
+# Source: centralidp/charts/keycloak/templates/statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cen-keycloak
+  namespace: "default"
+  labels:
+    app.kubernetes.io/instance: cen
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: keycloak
+    app.kubernetes.io/version: 23.0.7
+    helm.sh/chart: keycloak-19.3.0
+    app.kubernetes.io/component: keycloak
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  podManagementPolicy: Parallel
+  serviceName: cen-keycloak-headless
+  updateStrategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: cen
+      app.kubernetes.io/name: keycloak
+      app.kubernetes.io/component: keycloak
+  template:
+    metadata:
+      annotations:
+        checksum/configmap-env-vars: d6ccbf02b0c59e3823bb44ec5b15da9f55fbce0cad320845517102f4c944d32f
+        checksum/secrets: b96fd8c38cce66af8cd1d75489b181e71bba3778ae7dabbbec25841f564d8858
+      labels:
+        app.kubernetes.io/instance: cen
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: keycloak
+        app.kubernetes.io/version: 23.0.7
+        helm.sh/chart: keycloak-19.3.0
+        app.kubernetes.io/component: keycloak
+    spec:
+      serviceAccountName: cen-keycloak
+      
+      automountServiceAccountToken: true
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/instance: cen
+                    app.kubernetes.io/name: keycloak
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      securityContext:
+        fsGroup: 1001
+        fsGroupChangePolicy: Always
+        supplementalGroups: []
+        sysctls: []
+      enableServiceLinks: true
+      initContainers:
+        - name: init-quarkus-directory
+          image: docker.io/bitnami/keycloak:23.0.7-debian-12-r1
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/bash
+          args:
+            - -ec
+            - |
+              #!/bin/bash
+              cp -r /opt/bitnami/keycloak/lib/quarkus/* /quarkus
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsGroup: 0
+            runAsNonRoot: true
+            runAsUser: 1001
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: empty-dir
+              mountPath: /tmp
+              subPath: tmp-dir
+            - name: empty-dir
+              mountPath: /quarkus
+              subPath: app-quarkus-dir
+        - args:
+          - -c
+          - |
+            echo "Copying themes..."
+            cp -R /import/themes/catenax-central/* /themes
+          command:
+          - sh
+          image: docker.io/tractusx/portal-iam:v4.0.0-alpha.2
+          imagePullPolicy: IfNotPresent
+          name: import
+          volumeMounts:
+          - mountPath: /themes
+            name: themes
+      containers:
+        - name: keycloak
+          image: docker.io/bitnami/keycloak:23.0.7-debian-12-r1
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsGroup: 0
+            runAsNonRoot: true
+            runAsUser: 1001
+            seccompProfile:
+              type: RuntimeDefault
+          env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: BITNAMI_DEBUG
+              value: "false"
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cen-keycloak
+                  key: admin-password
+            - name: KEYCLOAK_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cen-postgresql
+                  key: password
+            - name: KEYCLOAK_HTTP_RELATIVE_PATH
+              value: "/auth/"
+          envFrom:
+            - configMapRef:
+                name: cen-keycloak-env-vars
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: infinispan
+              containerPort: 7800
+              protocol: TCP
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 300
+            periodSeconds: 1
+            successThreshold: 1
+            timeoutSeconds: 5
+            httpGet:
+              path: /auth/
+              port: http
+          readinessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+            httpGet:
+              path: /auth/realms/master
+              port: http
+          volumeMounts:
+            - name: empty-dir
+              mountPath: /tmp
+              subPath: tmp-dir
+            - name: empty-dir
+              mountPath: /opt/bitnami/keycloak/conf
+              subPath: app-conf-dir
+            - name: empty-dir
+              mountPath: /opt/bitnami/keycloak/lib/quarkus
+              subPath: app-quarkus-dir
+            - mountPath: /opt/bitnami/keycloak/themes/catenax-central
+              name: themes
+      volumes:
+        - name: empty-dir
+          emptyDir: {}
+        - emptyDir: {}
+          name: themes
+---
+# Source: centralidp/templates/job-seeding.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cen-keycloak-realm-seeding-1
+  namespace: default
+spec:
+  template:
+    metadata:
+      name: cen-keycloak-realm-seeding
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: cen-keycloak-realm-seeding
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        image: "docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-alpha.1"
+        imagePullPolicy: "IfNotPresent"
+        env:
+          - name: "KEYCLOAK__CENTRAL__CONNECTIONSTRING"
+            value: |
+              http://cen-keycloak:80
+          - name: "KEYCLOAK__CENTRAL__USER"
+            value: "admin"
+          - name: "KEYCLOAK__CENTRAL__PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak"
+                key: "admin-password"
+          - name: "KEYCLOAK__CENTRAL__AUTHREALM"
+            value: "master"
+          - name: "KEYCLOAK__CENTRAL__USEAUTHTRAIL"
+            value: "true"
+          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__0"
+            value: "realms/CX-Central-realm.json"
+          - name: "KEYCLOAKSEEDING__REALMS__0__INSTANCENAME"
+            value: "central"
+          - name: "KEYCLOAKSEEDING__REALMS__0__REALM"
+            value: "CX-Central"
+          - name: "KEYCLOAKSEEDING__REALMS__0__SSLREQUIRED"
+            value: "external"
+
+          #############################
+          ## INITIAL USER
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__1"
+            value: "realms/CX-Central-users-0.json"
+
+          #############################
+          ## CLIENTS
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__CLIENTID"
+            value: "Cl1-CX-Registration"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__REDIRECTURIS__0"
+            value: "https://portal.example.org/*"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__CLIENTID"
+            value: "Cl2-CX-Portal"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__ROOTURL"
+            value: "https://portal.example.org/home"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__1__REDIRECTURIS__0"
+            value: "https://portal.example.org/*"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__2__CLIENTID"
+            value: "Cl3-CX-Semantic"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__2__REDIRECTURIS__0"
+            value: "https://portal.example.org/*"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__CLIENTID"
+            value: "Cl5-CX-Custodian"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__REDIRECTURIS__0"
+            value: "https://managed-identity-wallets.example.org/*"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__3__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-clients"
+                key: "miw"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__CLIENTID"
+            value: "Cl7-CX-BPDM"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__REDIRECTURIS__0"
+            value: "https://partners-pool.example.org/*"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__4__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-clients"
+                key: "bpdm"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__CLIENTID"
+            value: "Cl16-CX-BPDMGate"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__REDIRECTURIS__0"
+            value: "https://partners-gate.example.org/*"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__5__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-clients"
+                key: "bpdm-gate"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__6__CLIENTID"
+            value: "Cl25-CX-BPDM-Orchestrator"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__6__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-clients"
+                key: "bpdm-orchestrator"
+
+          #############################
+          ## BASE SERVICE ACCOUNTS
+          #############################
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__20__CLIENTID"
+            value: "sa-cl1-reg-2"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__20__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl1-reg-2"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__21__CLIENTID"
+            value: "sa-cl2-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__21__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl2-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__22__CLIENTID"
+            value: "sa-cl2-02"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__22__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl2-02"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__23__CLIENTID"
+            value: "sa-cl2-03"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__23__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl2-03"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__24__CLIENTID"
+            value: "sa-cl2-04"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__24__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl2-04"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__25__CLIENTID"
+            value: "sa-cl2-05"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__25__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl2-05"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__26__CLIENTID"
+            value: "sa-cl3-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__26__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl3-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__27__CLIENTID"
+            value: "sa-cl5-custodian-2"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__27__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl5-custodian-2"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__28__CLIENTID"
+            value: "sa-cl7-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__28__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl7-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__29__CLIENTID"
+            value: "sa-cl7-cx-5"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__29__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl7-cx-5"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__30__CLIENTID"
+            value: "sa-cl7-cx-7"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__30__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl7-cx-7"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__31__CLIENTID"
+            value: "sa-cl8-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__31__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl8-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__32__CLIENTID"
+            value: "sa-cl21-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__32__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl21-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__33__CLIENTID"
+            value: "sa-cl22-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__33__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl22-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__34__CLIENTID"
+            value: "sa-cl24-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__34__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl24-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__35__CLIENTID"
+            value: "sa-cl25-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__35__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl25-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__36__CLIENTID"
+            value: "sa-cl25-cx-2"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__36__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl25-cx-2"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__37__CLIENTID"
+            value: "sa-cl25-cx-3"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__37__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "cen-keycloak-base-service-accounts"
+                key: "sa-cl25-cx-3"
+
+          #############################
+          ## BPN USER ATTRIBUTE
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__USERNAME"
+            value: "ac1cf001-7fbc-1f2f-817f-bce058020006"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__Attributes__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__Attributes__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__1__USERNAME"
+            value: "service-account-sa-cl1-reg-2"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__1__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__1__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__2__USERNAME"
+            value: "service-account-sa-cl2-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__2__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__2__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__3__USERNAME"
+            value: "service-account-sa-cl2-02"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__3__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__3__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__4__USERNAME"
+            value: "service-account-sa-cl2-03"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__4__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__4__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__5__USERNAME"
+            value: "service-account-sa-cl2-04"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__5__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__5__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__6__USERNAME"
+            value: "service-account-sa-cl2-05"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__6__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__6__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__7__USERNAME"
+            value: "service-account-sa-cl3-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__7__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__7__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__8__USERNAME"
+            value: "service-account-sa-cl5-custodian-2"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__8__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__8__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__9__USERNAME"
+            value: "service-account-sa-cl7-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__9__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__9__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__10__USERNAME"
+            value: "service-account-sa-cl7-cx-5"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__10__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__10__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__11__USERNAME"
+            value: "service-account-sa-cl7-cx-7"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__11__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__11__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__12__USERNAME"
+            value: "service-account-sa-cl8-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__12__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__12__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__13__USERNAME"
+            value: "service-account-sa-cl21-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__13__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__13__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__14__USERNAME"
+            value: "service-account-sa-cl22-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__14__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__14__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__15__USERNAME"
+            value: "service-account-sa-cl24-01"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__15__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__15__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__16__USERNAME"
+            value: "service-account-sa-cl25-cx-1"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__16__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__16__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__17__USERNAME"
+            value: "service-account-sa-cl25-cx-2"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__17__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__17__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__18__USERNAME"
+            value: "service-account-sa-cl25-cx-3"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__18__ATTRIBUTES__0__NAME"
+            value: "bpn"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__18__ATTRIBUTES__0__VALUES__0"
+            value: "BPNL00000003CRHK"
+
+          #############################
+          ## IDENTITY PROVIDER
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__ALIAS"
+            value: "CX-Operator"
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__TOKENURL"
+            value: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/token"
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__JWKSURL"
+            value: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/certs"
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__AUTHORIZATIONURL"
+            value: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/auth"
+          - name: "KEYCLOAKSEEDING__REALMS__0__IDENTITYPROVIDERS__0__CONFIG__LOGOUTURL"
+            value: "https://sharedidp.example.org/auth/realms/CX-Operator/protocol/openid-connect/logout"
+
+          #############################
+          ## EXTRA SERVICE ACCOUNTS
+          #############################
+
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        resources:
+          []
+        volumeMounts:
+          - name: realms
+            mountPath: "app/realms"
+      initContainers:
+        - name: init-cx-central
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+          image: docker.io/tractusx/portal-iam:v4.0.0-alpha.2
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+          args:
+            - -c
+            - |
+              echo "Copying CX Central realm..."
+              cp -R /import/catenax-central/realms/* /app/realms
+          volumeMounts:
+          - name: realms
+            mountPath: "app/realms"
+        - name: wait-for-keycloak
+          image: alpine/curl:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 3000
+          command: [ 'sh', '-c', 'until curl -s http://cen-keycloak:80/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
+          imagePullPolicy: IfNotPresent
+      volumes:
+        - name: realms
+          emptyDir: {}
+      automountServiceAccountToken: false
