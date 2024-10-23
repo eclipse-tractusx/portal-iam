@@ -240,7 +240,7 @@ realmSeeding:
   keycloakServicePort: 80
   keycloakServiceTls: false
   # -- We recommend to review the default resource limits as this should a conscious choice.
-  # resources:
+  resources: []
   #   requests:
   #     cpu: 250m
   #     memory: 700M
