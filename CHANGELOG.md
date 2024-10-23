@@ -2,6 +2,17 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## [5.0.0-alpha.2](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-alpha.2...v5.0.0-alpha.2) (2024-10-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Keycloak version 25: upgrade realm configuration and remove deprecated proxy parameter
+
+### Features
+
+* upgrade to Keycloak version 25: upgrade realm configuration and remove deprecated proxy parameter ([99503ab](https://github.com/eclipse-tractusx/portal-iam/commit/99503abb0c037bfc8c52c80de19d635b16e7096e))
+
 ## [4.0.0-alpha.2](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2024-10-21)
 
 ### Bug Fixes
