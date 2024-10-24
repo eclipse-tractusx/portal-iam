@@ -18,7 +18,6 @@
 ###############################################################
 
 keycloak:
-  production: true
   auth:
     adminPassword: "<path:portal/data/int/iam/sharedidp-keycloak#admin-password>"
   ingress:
