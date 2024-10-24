@@ -4,7 +4,7 @@
 
 This helm chart installs the Helm chart for Central Keycloak Instance.
 
-For further information please refer to the [technical documentation](../../docs/technical%20documentation).
+For further information please refer to the [technical documentation](/docs/admin/technical-documentation/).
 
 The referenced container images are for demonstration purposes only.
 
@@ -144,14 +144,14 @@ No specific upgrade notes.
 
 This major changes from the Keycloak version from 16.1.1 to version 22.0.3.
 
-Please have a look at the [CHANGELOG](../../CHANGELOG.md#200) for a more detailed description.
+Please have a look at the [CHANGELOG](/CHANGELOG.md#200) for a more detailed description.
 
 We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html).
 
 To be explicitly mentioned: this major adds the production mode with default value false and the reverse proxy mode with default value passthrough.
 Please check the description of those parameters and decide if they're suitable for you.
 
-Please also refer to [Upgrade Details](../../docs/technical%20documentation/12.%20Upgrade%20Details.md#v200).
+Please also refer to [Upgrade Details](/docs/admin/technical-documentation/12.%20Upgrade%20Details.md#v200).
 
 #### Upgrade approach
 
