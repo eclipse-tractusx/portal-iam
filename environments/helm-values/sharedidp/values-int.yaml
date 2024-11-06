@@ -18,8 +18,6 @@
 ###############################################################
 
 keycloak:
-  production: true
-  proxy: edge
   auth:
     adminPassword: "<path:portal/data/int/iam/sharedidp-keycloak#admin-password>"
   ingress:
