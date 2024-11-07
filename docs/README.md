@@ -54,10 +54,10 @@ The `charts` folder contains Helm charts for deploying the Portal IAM system. Re
 
 ### 2. [Workshops](./consultation/workshops/)
 
-The `workshops` folder includes practical resources for learning and deploying Portal IAM:
+The `workshops` folder includes minutes and topics for two workshops:
 
-- [Workshop 20230927](./consultation/workshops/workshop-20230927.md): Materials and steps covered during the September 27, 2023 workshop.
-- [Workshop 20231005](./consultation/workshops/workshop-20231005.md): Materials and steps from the October 5, 2023 workshop.
+- [Workshop 20230927](./consultation/workshops/workshop-20230927.md): topics covered during the session of September 27, 2023 workshop.
+- [Workshop 20231005](./consultation/workshops/workshop-20231005.md): topics covered during the session of October 5, 2023 workshop.
 
 
 ### 3. [Consultation Document](./consultation/consultation.md)
