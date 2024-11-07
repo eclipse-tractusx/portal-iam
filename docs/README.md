@@ -61,7 +61,8 @@ The `workshops` folder includes minutes and topics for two workshops:
 
 
 ### 3. [Consultation Document](./consultation/consultation.md)
-- Key architectural consultation notes and decisions.
+
+- Consultation notes and decisions.
   
 
 ### [Assets](./static/)
