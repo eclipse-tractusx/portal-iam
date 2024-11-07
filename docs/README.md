@@ -46,11 +46,11 @@ The `known-knowns` folder highlights known limitations, issues, or consideration
 
 ### [Consultation Documentation](./consultation/)
 
-### 1. [Charts](./consultation/charts/)
+### 1. [charts](./consultation/charts/) and [environments](./consultation/environments/)
 
-The `charts` folder contains Helm charts for deploying the Portal IAM system. Refer to the following for detailed usage:
+The `charts` and `environments` folder contain an **example** helm chart and configuration for a potential deployment improvement discussed during workshops.
 
-- [Portal IAM Helm Chart](./consultation/portal-iam-helm-chart.md): Instructions on using the Helm chart for deploying Portal IAM on Kubernetes.
+- [Portal IAM Helm Chart](./consultation/portal-iam-helm-chart.md): instructions on using this **example** helm chart.
 
 ### 2. [Workshops](./consultation/workshops/)
 
