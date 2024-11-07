@@ -31,12 +31,12 @@ The `technical-documentation` folder includes the following guides and manuals:
 
 ### 2. [Developer Process](./admin/dev-process/)
 
-- [Dev Flow](./dev-process/dev-flow.md): This document outlines the development flow, using a git-based diagram to show the process of feature development, bug fixes, and release candidates. 
+- [Dev Flow](./admin/dev-process/Dev%20Flow.md): This document outlines the development flow, using a git-based diagram to show the process of feature development, bug fixes, and release candidates. 
 - [How to Contribute](./admin/dev-process/How%20to%20contribute.md): Steps for contributing to the project.
 
 ### 3. [Release Process](./admin/release-process/)
 
-- [Release Process](./release-process/release-process.md) :  This document explains the release process, detailing steps from creating a release branch, updating versions, and generating changelogs to merging release candidates into the main branch. It follows semantic versioning practices and provides links to automated workflows used in the release cycle.
+- [Release Process](./admin/release-process/Release%20Process.md) :  This document explains the release process, detailing steps from creating a release branch, updating versions, and generating changelogs to merging release candidates into the main branch. It follows semantic versioning practices and provides links to automated workflows used in the release cycle.
 
 ### 4. [Known-Knowns](./admin/known-knowns/)
 
@@ -60,7 +60,8 @@ The `workshops` folder includes practical resources for learning and deploying P
 - [Workshop 20231005](./consultation/workshops/workshop-20231005.md): Materials and steps from the October 5, 2023 workshop.
 
 
-### 3. - [Consultation Document](./consultation/consultation.md): Key architectural consultation notes and decisions.
+### 3. [Consultation Document](./consultation/consultation.md)
+- Key architectural consultation notes and decisions.
   
 
 ### [Assets](./static/)
