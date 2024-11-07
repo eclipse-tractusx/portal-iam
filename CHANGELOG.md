@@ -57,7 +57,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 The following issues were discovered:
 
 * 403 error when accessing the Partner Network in the Portal Frontend [#132](https://github.com/eclipse-tractusx/portal-iam/pull/132)
-* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/user/workshops/workshop-20231005.md#user-token-lifespan)
+* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshops/workshop-20231005.md#user-token-lifespan)
 * Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
 
 ## 3.0.0
@@ -448,7 +448,7 @@ sharedidp:
 
 The following issues were recently discovered:
 
-* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/user/workshops/workshop-20231005.md#user-token-lifespan)
+* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshops/workshop-20231005.md#user-token-lifespan)
 * Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
 
 ## 1.2.0

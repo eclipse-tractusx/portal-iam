@@ -25,7 +25,7 @@ For further information please refer to the chart specific README files, availab
 
 ## Known Issues and Limitations
 
-See [Known Knowns](/docs/user/known-knowns/Known-Knowns.md).
+See [Known Knowns](/docs/admin/known-knowns/Known-Knowns.md).
 
 ## Notice for Docker images
 
