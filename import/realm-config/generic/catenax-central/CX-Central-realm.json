@@ -3427,6 +3427,7 @@
       {
         "client": "sa-cl2-05",
         "roles": [
+          "technical_roles_management",
           "store_didDocument"
         ]
       },
