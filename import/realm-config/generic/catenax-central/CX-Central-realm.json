@@ -3034,7 +3034,8 @@
         "Cl2-CX-Portal": [
           "update_application_bpn_credential",
           "update_application_membership_credential",
-          "send_mail"
+          "send_mail",
+          "create_ssi_notifications"
         ]
       },
       "notBefore": 0,
