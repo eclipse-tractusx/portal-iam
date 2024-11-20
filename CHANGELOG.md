@@ -2,6 +2,23 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## [4.0.0-rc.2](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-rc.1...v4.0.0-rc.2) (2024-11-20)
+
+
+### Bug Fixes
+
+* **cx-central centralidp:** add create_ssi_notifications role  from Cl2-CX-Portal client to sa-cl24-01 ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+* **cx-central centralidp:** add technical_roles_management role from Cl2-CX-Portal client to client scope of sa-cl2-05 ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+* **cx-central centralidp:** enable user profiles to address user attributes change coming from version upgrade ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+* **docs:** add store_didDocument role to technical user accounts ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+* increase memory for realm seeding job ([#219](https://github.com/eclipse-tractusx/portal-iam/issues/219)) ([60e1bcf](https://github.com/eclipse-tractusx/portal-iam/commit/60e1bcf5a6d1fd75dee716c361a67418bdbd4d1f))
+* **master sharedidp:** update realm to not require user profiles, discovered as part of https://github.com/eclipse-tractusx/portal-backend/pull/1154 ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+
+
+### Miscellaneous Chores
+
+* release 4.0.0-rc.2 ([0e47850](https://github.com/eclipse-tractusx/portal-iam/commit/0e47850cc6a019b6f48f640cfd6a67186cbfc16b))
+
 ## [4.0.0-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-alpha.2...v4.0.0-rc.1) (2024-10-23)
 
 
