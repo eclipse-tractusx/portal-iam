@@ -1,10 +1,10 @@
 # Helm chart for Central Keycloak Instance
 
-![Version: 4.0.0-rc.1](https://img.shields.io/badge/Version-4.0.0--rc.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
+![Version: 4.0.0-rc.2](https://img.shields.io/badge/Version-4.0.0--rc.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Central Keycloak Instance.
 
-For further information please refer to the [technical documentation](/docs/admin/technical-documentation/).
+For further information please refer to the [technical documentation](/docs/admin/technical-documentation).
 
 The referenced container images are for demonstration purposes only.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 4.0.0-rc.1
+    version: 4.0.0-rc.2
 ```
 
 ## Requirements
@@ -53,7 +53,7 @@ dependencies:
 | keycloak.extraVolumeMounts[0].name | string | `"themes"` |  |
 | keycloak.extraVolumeMounts[0].mountPath | string | `"/opt/bitnami/keycloak/themes/catenax-central"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v4.0.0-rc.1"` |  |
+| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v4.0.0-rc.2"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -91,7 +91,7 @@ dependencies:
 | keycloak.externalDatabase.existingSecretUserKey | string | `""` |  |
 | keycloak.externalDatabase.existingSecretDatabaseKey | string | `""` |  |
 | keycloak.externalDatabase.existingSecretPasswordKey | string | `""` |  |
-| realmSeeding | object | `{"bpn":"BPNL00000003CRHK","clients":{"bpdm":{"clientSecret":"","redirects":["https://partners-pool.example.org/*"]},"bpdmGate":{"clientSecret":"","redirects":["https://partners-gate.example.org/*"]},"bpdmOrchestrator":{"clientSecret":""},"existingSecret":"","miw":{"clientSecret":"","redirects":["https://managed-identity-wallets.example.org/*"]},"portal":{"redirects":["https://portal.example.org/*"],"rootUrl":"https://portal.example.org/home"},"registration":{"redirects":["https://portal.example.org/*"]},"semantics":{"redirects":["https://portal.example.org/*"]}},"enabled":true,"extraServiceAccounts":{"clientSecretsAndBpn":[],"existingSecret":""},"image":{"name":"docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-rc.1","pullPolicy":"IfNotPresent"},"initContainer":{"image":{"name":"docker.io/tractusx/portal-iam:v4.0.0-rc.1","pullPolicy":"IfNotPresent"}},"keycloakServicePort":80,"keycloakServiceTls":false,"portContainer":8080,"resources":{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"700M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"700M"}},"serviceAccounts":{"clientSecrets":[{"clientId":"sa-cl1-reg-2","clientSecret":""},{"clientId":"sa-cl2-01","clientSecret":""},{"clientId":"sa-cl2-02","clientSecret":""},{"clientId":"sa-cl2-03","clientSecret":""},{"clientId":"sa-cl2-04","clientSecret":""},{"clientId":"sa-cl2-05","clientSecret":""},{"clientId":"sa-cl3-cx-1","clientSecret":""},{"clientId":"sa-cl5-custodian-2","clientSecret":""},{"clientId":"sa-cl7-cx-1","clientSecret":""},{"clientId":"sa-cl7-cx-5","clientSecret":""},{"clientId":"sa-cl7-cx-7","clientSecret":""},{"clientId":"sa-cl8-cx-1","clientSecret":""},{"clientId":"sa-cl21-01","clientSecret":""},{"clientId":"sa-cl22-01","clientSecret":""},{"clientId":"sa-cl24-01","clientSecret":""},{"clientId":"sa-cl25-cx-1","clientSecret":""},{"clientId":"sa-cl25-cx-2","clientSecret":""},{"clientId":"sa-cl25-cx-3","clientSecret":""}],"existingSecret":""},"sharedidp":"https://sharedidp.example.org","sslRequired":"external"}` | Seeding job to create and update the CX-Central realm: besides creating the CX-Central realm, the job can be used to update the configuration of the realm when upgrading to a new version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job. |
+| realmSeeding | object | `{"bpn":"BPNL00000003CRHK","clients":{"bpdm":{"clientSecret":"","redirects":["https://partners-pool.example.org/*"]},"bpdmGate":{"clientSecret":"","redirects":["https://partners-gate.example.org/*"]},"bpdmOrchestrator":{"clientSecret":""},"existingSecret":"","miw":{"clientSecret":"","redirects":["https://managed-identity-wallets.example.org/*"]},"portal":{"redirects":["https://portal.example.org/*"],"rootUrl":"https://portal.example.org/home"},"registration":{"redirects":["https://portal.example.org/*"]},"semantics":{"redirects":["https://portal.example.org/*"]}},"enabled":true,"extraServiceAccounts":{"clientSecretsAndBpn":[],"existingSecret":""},"image":{"name":"docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-rc.2","pullPolicy":"IfNotPresent"},"initContainer":{"image":{"name":"docker.io/tractusx/portal-iam:v4.0.0-rc.2","pullPolicy":"IfNotPresent"}},"keycloakServicePort":80,"keycloakServiceTls":false,"portContainer":8080,"resources":{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"850M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"850M"}},"serviceAccounts":{"clientSecrets":[{"clientId":"sa-cl1-reg-2","clientSecret":""},{"clientId":"sa-cl2-01","clientSecret":""},{"clientId":"sa-cl2-02","clientSecret":""},{"clientId":"sa-cl2-03","clientSecret":""},{"clientId":"sa-cl2-04","clientSecret":""},{"clientId":"sa-cl2-05","clientSecret":""},{"clientId":"sa-cl3-cx-1","clientSecret":""},{"clientId":"sa-cl5-custodian-2","clientSecret":""},{"clientId":"sa-cl7-cx-1","clientSecret":""},{"clientId":"sa-cl7-cx-5","clientSecret":""},{"clientId":"sa-cl7-cx-7","clientSecret":""},{"clientId":"sa-cl8-cx-1","clientSecret":""},{"clientId":"sa-cl21-01","clientSecret":""},{"clientId":"sa-cl22-01","clientSecret":""},{"clientId":"sa-cl24-01","clientSecret":""},{"clientId":"sa-cl25-cx-1","clientSecret":""},{"clientId":"sa-cl25-cx-2","clientSecret":""},{"clientId":"sa-cl25-cx-3","clientSecret":""}],"existingSecret":""},"sharedidp":"https://sharedidp.example.org","sslRequired":"external"}` | Seeding job to create and update the CX-Central realm: besides creating the CX-Central realm, the job can be used to update the configuration of the realm when upgrading to a new version; Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job. |
 | realmSeeding.clients | object | `{"bpdm":{"clientSecret":"","redirects":["https://partners-pool.example.org/*"]},"bpdmGate":{"clientSecret":"","redirects":["https://partners-gate.example.org/*"]},"bpdmOrchestrator":{"clientSecret":""},"existingSecret":"","miw":{"clientSecret":"","redirects":["https://managed-identity-wallets.example.org/*"]},"portal":{"redirects":["https://portal.example.org/*"],"rootUrl":"https://portal.example.org/home"},"registration":{"redirects":["https://portal.example.org/*"]},"semantics":{"redirects":["https://portal.example.org/*"]}}` | Set redirect addresses and - in the case of confidential clients - clients secrets for clients which are part of the basic CX-Central realm setup; SET client secrets for all non-testing and non-local purposes, default value is autogenerated. |
 | realmSeeding.clients.existingSecret | string | `""` | Option to provide an existingSecret for the clients with clientId as key and clientSecret as value. |
 | realmSeeding.serviceAccounts | object | `{"clientSecrets":[{"clientId":"sa-cl1-reg-2","clientSecret":""},{"clientId":"sa-cl2-01","clientSecret":""},{"clientId":"sa-cl2-02","clientSecret":""},{"clientId":"sa-cl2-03","clientSecret":""},{"clientId":"sa-cl2-04","clientSecret":""},{"clientId":"sa-cl2-05","clientSecret":""},{"clientId":"sa-cl3-cx-1","clientSecret":""},{"clientId":"sa-cl5-custodian-2","clientSecret":""},{"clientId":"sa-cl7-cx-1","clientSecret":""},{"clientId":"sa-cl7-cx-5","clientSecret":""},{"clientId":"sa-cl7-cx-7","clientSecret":""},{"clientId":"sa-cl8-cx-1","clientSecret":""},{"clientId":"sa-cl21-01","clientSecret":""},{"clientId":"sa-cl22-01","clientSecret":""},{"clientId":"sa-cl24-01","clientSecret":""},{"clientId":"sa-cl25-cx-1","clientSecret":""},{"clientId":"sa-cl25-cx-2","clientSecret":""},{"clientId":"sa-cl25-cx-3","clientSecret":""}],"existingSecret":""}` | Client secrets for service accounts which are part of the basic CX-Central realm setup; SET client secrets for all non-testing and non-local purposes, default value is autogenerated. |
@@ -100,7 +100,7 @@ dependencies:
 | realmSeeding.sharedidp | string | `"https://sharedidp.example.org"` | Set sharedidp address to enable the identity provider connection to CX-Operator realm. |
 | realmSeeding.extraServiceAccounts | object | `{"clientSecretsAndBpn":[],"existingSecret":""}` | Set client secrets and bpn user attribute for additional service accounts; meant to enable possible test data, default value for client secrets is autogenerated. |
 | realmSeeding.extraServiceAccounts.existingSecret | string | `""` | Option to provide an existingSecret for additional service accounts with clientId as key and clientSecret as value. |
-| realmSeeding.resources | object | `{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"700M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"700M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
+| realmSeeding.resources | object | `{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"850M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"850M"}}` | We recommend to review the default resource limits as this should a conscious choice. |
 
 Autogenerated with [helm docs](https://github.com/norwoodj/helm-docs)
 
@@ -144,7 +144,7 @@ No specific upgrade notes.
 
 This major changes from the Keycloak version from 16.1.1 to version 22.0.3.
 
-Please have a look at the [CHANGELOG](/CHANGELOG.md#200) for a more detailed description.
+Please have a look at the [CHANGELOG](../../CHANGELOG.md#200) for a more detailed description.
 
 We also recommend checking out the [Keycloak Upgrading Guide](https://www.keycloak.org/docs/latest/upgrading/index.html).
 
