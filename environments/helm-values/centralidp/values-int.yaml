@@ -23,12 +23,12 @@ keycloak:
   ingress:
     enabled: true
     ingressClassName: nginx
-    hostname: centralidp.int.catena-x.net
+    hostname: centralidp-v4-rc2.int.catena-x.net
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-      nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp.int.catena-x.net
+      nginx.ingress.kubernetes.io/cors-allow-origin: https://centralidp-v4-rc2.int.catena-x.net
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
       nginx.ingress.kubernetes.io/proxy-buffering: "on"
