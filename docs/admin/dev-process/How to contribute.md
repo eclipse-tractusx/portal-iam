@@ -96,6 +96,10 @@ The suggested naming convention is '{type}{(function)}: {short summary}'
 Add details to the change, fix or feature in the PR description.
 What was changed, why was it changed (e.g. which issue was fixed or which requirement was implemented), and how was it changed.
 
+### Additional information
+
+Please refer to the [Development Flow](./Dev%20Flow.md).
+
 ## NOTICE
 
 This work is licensed under the [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).

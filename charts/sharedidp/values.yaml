@@ -20,39 +20,30 @@
 keycloak:
   auth:
     adminUser: admin
-    # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
-    existingSecret: "sharedidp-keycloak"
+    # -- sharedidp Keycloak administrator password.
+    adminPassword: ""
+    # -- Secret containing the password for admin username 'admin'.
+    existingSecret: ""
   # -- Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   production: false
-  # -- reverse Proxy mode edge, reencrypt, passthrough or none;
-  # ref: https://www.keycloak.org/server/reverseproxy;
-  # If your ingress controller has the SSL Termination, you should set proxy to edge.
-  proxy: passthrough
   # -- Setting the path relative to '/' for serving resources:
   # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
   # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
-  httpRelativePath: "/auth/"
-  extraEnvVars:
-    - name: KEYCLOAK_EXTRA_ARGS
-      value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=dir -Dkeycloak.migration.dir=/realms -Dkeycloak.migration.strategy=IGNORE_EXISTING"
-  replicaCount: 3
+  httpRelativePath: /auth/
+  replicaCount: 1
   extraVolumes:
     - name: themes-catenax-shared
       emptyDir: {}
     - name: themes-catenax-shared-portal
       emptyDir: {}
-    - name: realms
-      emptyDir: {}
   extraVolumeMounts:
     - name: themes-catenax-shared
-      mountPath: "/opt/bitnami/keycloak/themes/catenax-shared"
+      mountPath: /opt/bitnami/keycloak/themes/catenax-shared
     - name: themes-catenax-shared-portal
-      mountPath: "/opt/bitnami/keycloak/themes/catenax-shared-portal"
-    - name: realms
-      mountPath: "/realms"
+      mountPath: /opt/bitnami/keycloak/themes/catenax-shared-portal
   initContainers:
     - name: import
-      image: docker.io/tractusx/portal-iam:v3.0.1
+      image: docker.io/tractusx/portal-iam:v4.0.0-rc.2
       imagePullPolicy: IfNotPresent
       command:
         - sh
@@ -63,36 +54,34 @@ keycloak:
           cp -R /import/themes/catenax-shared/* /themes-catenax-shared
           echo "Copying themes-catenax-shared-portal..."
           cp -R /import/themes/catenax-shared-portal/* /themes-catenax-shared-portal
-          echo "Copying realms..."
-          cp -R /import/catenax-shared/realms/* /realms
       volumeMounts:
-      - name: themes-catenax-shared
-        mountPath: "/themes-catenax-shared"
-      - name: themes-catenax-shared-portal
-        mountPath: "/themes-catenax-shared-portal"
-      - name: realms
-        mountPath: "/realms"
+        - name: themes-catenax-shared
+          mountPath: /themes-catenax-shared
+        - name: themes-catenax-shared-portal
+          mountPath: /themes-catenax-shared-portal
   service:
     sessionAffinity: ClientIP
   ingress:
+    # -- Enable ingress record generation
     enabled: false
-    ingressClassName: "nginx"
+    ingressClassName: ""
     # -- Provide default path for the ingress record.
-    hostname: "sharedidp.example.org"
-    annotations:
-      # -- Enable TLS configuration for the host defined at `ingress.hostname` parameter;
-      # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
-      # Provide the name of ClusterIssuer to acquire the certificate required for this Ingress
-      cert-manager.io/cluster-issuer: ""
-      nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
-      nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
-      nginx.ingress.kubernetes.io/cors-allow-origin: "https://sharedidp.example.org"
-      nginx.ingress.kubernetes.io/enable-cors: "true"
-      nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
-      nginx.ingress.kubernetes.io/proxy-buffering: "on"
-      nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
-      nginx.ingress.kubernetes.io/use-regex: "true"
-    tls: true
+    hostname: ""
+    # -- Optional annotations when using the nginx ingress class;
+    # Enable TLS configuration for the host defined at `ingress.hostname` parameter;
+    # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
+    # Provide the name of ClusterIssuer to acquire the certificate required for this Ingress.
+    annotations: {}
+      # cert-manager.io/cluster-issuer: ""
+      # nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+      # nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
+      # nginx.ingress.kubernetes.io/cors-allow-origin: "https://sharedidp.example.org"
+      # nginx.ingress.kubernetes.io/enable-cors: "true"
+      # nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+      # nginx.ingress.kubernetes.io/proxy-buffering: "on"
+      # nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
+      # nginx.ingress.kubernetes.io/use-regex: "true"
+    tls: false
   rbac:
     create: true
     rules:
@@ -104,59 +93,110 @@ keycloak:
           - get
           - list
   postgresql:
-  # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
-  # default configurations:
-  # host: "sharedidp-postgresql-primary",
-  # port: 5432;
+    # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
+    # default configurations:
+    # host: "sharedidp-postgresql",
+    # port: 5432;
     # Switch to enable or disable the PostgreSQL helm chart.
     enabled: true
     # -- Setting to Postgres version 15 as that is the aligned version,
     # https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions).
     # Keycloak helm-chart from Bitnami has moved on to version 16.
     image:
-      tag: "15-debian-11"
+      tag: 15-debian-11
     commonLabels:
       app.kubernetes.io/version: "15"
     auth:
       # -- Non-root username.
       username: kcshared
+      # -- Non-root user password.
+      password: ""
+      # -- Root user password.
+      postgresPassword: ""
       # -- Database name.
       database: iamsharedidp
       # -- Secret containing the passwords for root usernames postgres and non-root username kcshared.
-      existingSecret: "sharedidp-postgres"
-    architecture: replication
+      existingSecret: ""
+    architecture: standalone
   externalDatabase:
-  # -- External PostgreSQL configuration
-  # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
-    # Database host ('-primary' is added as postfix).
-    host: "sharedidp-postgresql-external-db"
+    # -- External PostgreSQL configuration
+    # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
+    host: ""
     # -- Database port number.
     port: 5432
-    # -- Non-root username for sharedidp.
-    user: "kcshared"
+    # -- Non-root username.
+    user: ""
     # -- Database name.
-    database: "iamsharedidp"
-    # -- Password for the non-root username (default 'kcshared'). Secret-key 'password'.
+    database: ""
+    # -- Password for the non-root username.
     password: ""
-    # -- Secret containing the password non-root username, (default 'kcshared').
-    existingSecret: "sharedidp-keycloak-external-db"
-    # -- Name of an existing secret key containing the database credentials.
-    existingSecretPasswordKey: "password"
-
-secrets:
-  auth:
-    existingSecret:
-      # -- Password for the admin username 'admin'. Secret-key 'admin-password'.
-      adminpassword: ""
-  postgresql:
-    auth:
-      existingSecret:
-        # -- Password for the root username 'postgres'. Secret-key 'postgres-password'.
-        postgrespassword: ""
-        # -- Password for the non-root username 'kcshared'. Secret-key 'password'.
+    # -- Secret containing the database credentials.
+    existingSecret: ""
+    existingSecretHostKey: ""
+    existingSecretPortKey: ""
+    existingSecretUserKey: ""
+    existingSecretDatabaseKey: ""
+    existingSecretPasswordKey: ""
+# -- Seeding job to create and update the CX-Operator and master realms:
+# besides creating those realm, the job can be used to update
+# the configuration of the realms when upgrading to a new version;
+# Please also refer to the 'Post-Upgrade Configuration' section in the README.md
+# for configuration possibly not covered by the seeding job.
+realmSeeding:
+  enabled: true
+  realms:
+    cxOperator:
+      sslRequired: external
+      # -- Set centralidp address for the connection to the CX-Central realm.
+      centralidp: https://centralidp.example.org
+        # -- Configure initial user in CX-Operator realm.
+      initialUser:
+        # -- SET username for all non-testing and non-local purposes.
+        username: cx-operator@tx.org
+        # -- SET password for all non-testing and non-local purposes, default value is "!3changemeTractus-X".
         password: ""
-        # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
-        replicationPassword: ""
-  realmuser:
-    # Enables the import of test users via secret.
-    enabled: false
+        firstName: Operator
+        lastName: CX Admin
+        eMail: cx-operator@tx.org
+      # -- Set mailing configuration for CX-Operator realm.
+      mailing:
+        host: smtp.example.org
+        port: '123'
+        username: smtp-user
+        password: ""
+        from: email@example.org
+        replyTo: email@example.org
+      # -- Option to provide an existingSecret for initial user and mailing configuration.
+      existingSecret: ""
+    master:
+      serviceAccounts:
+        # -- Set clients secret for the service account which enables the portal to provision new realms.
+        provisioning:
+          # -- SET client secret for all non-testing and non-local purposes, default value is autogenerated.
+          clientSecret: ""
+        # -- Set clients secret for the service account which enables the portal to manage the CX-Operator realm.
+        saCxOperator:
+          # -- SET client secret for all non-testing and non-local purposes, default value is autogenerated.
+          clientSecret: ""
+      # -- Option to provide an existingSecret for clients secrets with clientId as key and clientSecret as value.
+      existingSecret: ""
+  image:
+    name: docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-rc.2
+    pullPolicy: IfNotPresent
+  initContainer:
+    image:
+      name: docker.io/tractusx/portal-iam:v4.0.0-rc.2
+      pullPolicy: IfNotPresent
+  portContainer: 8080
+  keycloakServicePort: 80
+  keycloakServiceTls: false
+  # -- We recommend to review the default resource limits as this should a conscious choice.
+  resources:
+    requests:
+      cpu: 250m
+      memory: 700M
+      ephemeral-storage: 50Mi
+    limits:
+      cpu: 750m
+      memory: 700M
+      ephemeral-storage: 1024Mi

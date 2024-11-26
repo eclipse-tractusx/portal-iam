@@ -47,7 +47,9 @@ The seeding job needs to be enhanced for the management of config within the hel
 
 ### Provide solution for issue related to User Token Lifespan setting
 
-Set revokeRefreshToken to false to prevent page reload on token refresh: <https://github.com/catenax-ng/product-portal-iam/pull/25>
+Set revokeRefreshToken to false to prevent page reload on token refresh:
+
+> With `revokeRefreshToken: true` frontend apps are unable to run in different browser tabs or windows sharing the same user access token. On the portal frontend this will trigger a page reload on token refresh.
 
 ### Sustainable sharedidp setup
 

@@ -2,6 +2,80 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## [4.0.0-rc.2](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-rc.1...v4.0.0-rc.2) (2024-11-20)
+
+
+### Bug Fixes
+
+* **cx-central centralidp:** add create_ssi_notifications role  from Cl2-CX-Portal client to sa-cl24-01 ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+* **cx-central centralidp:** add technical_roles_management role from Cl2-CX-Portal client to client scope of sa-cl2-05 ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+* **cx-central centralidp:** enable user profiles to address user attributes change coming from version upgrade ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+* **docs:** add store_didDocument role to technical user accounts ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+* increase memory for realm seeding job ([#219](https://github.com/eclipse-tractusx/portal-iam/issues/219)) ([60e1bcf](https://github.com/eclipse-tractusx/portal-iam/commit/60e1bcf5a6d1fd75dee716c361a67418bdbd4d1f))
+* **master sharedidp:** update realm to not require user profiles, discovered as part of https://github.com/eclipse-tractusx/portal-backend/pull/1154 ([54f93d7](https://github.com/eclipse-tractusx/portal-iam/commit/54f93d74eeebb59eb29fca9aa45583f9e7cb3587))
+
+
+### Miscellaneous Chores
+
+* release 4.0.0-rc.2 ([0e47850](https://github.com/eclipse-tractusx/portal-iam/commit/0e47850cc6a019b6f48f640cfd6a67186cbfc16b))
+
+## [4.0.0-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-alpha.2...v4.0.0-rc.1) (2024-10-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to Keycloak version 25: upgrade realm configuration and remove deprecated proxy parameter
+
+### Features
+
+* upgrade to Keycloak version 25: upgrade realm configuration and remove deprecated proxy parameter ([99503ab](https://github.com/eclipse-tractusx/portal-iam/commit/99503abb0c037bfc8c52c80de19d635b16e7096e))
+
+
+### Miscellaneous Chores
+
+* release 4.0.0-rc.1 ([a498b4e](https://github.com/eclipse-tractusx/portal-iam/commit/a498b4ef0995db17baa76c462200a6cd0ffbc6ab))
+
+## [4.0.0-alpha.2](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2024-10-21)
+
+### Bug Fixes
+
+* **centralidp:** fix seeding of extra service accounts ([#209](https://github.com/eclipse-tractusx/portal-iam/issues/209)) ([225a37f](https://github.com/eclipse-tractusx/portal-iam/commit/225a37f190841222148f7a167ed5ab9faab72444))
+
+### Miscellaneous Chores
+
+* release 4.0.0-alpha.2 ([1fa8496](https://github.com/eclipse-tractusx/portal-iam/commit/1fa849663ea4bd054cf0fa5bd3c26296c3d8fc8b))
+
+## [4.0.0-alpha.1](https://github.com/eclipse-tractusx/portal-iam/compare/v3.0.1...v4.0.0-alpha.1) (2024-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **seeding-job:** enable seeding job for realm import and upgrade with dynamic configuration of redirect urls, client secrets, etc. for centralidp and sharedidp - previously only used for upgrading the CX-Central realm configuration for centralidp
+
+### Features
+
+* add BPDM authentication configuration for 24.08. release ([#155](https://github.com/eclipse-tractusx/portal-iam/issues/155)) ([5a73f46](https://github.com/eclipse-tractusx/portal-iam/commit/5a73f46868067d2518bc70e4086b6e40fd6db514))
+* improve realm seeding ([#198](https://github.com/eclipse-tractusx/portal-iam/issues/198)) ([c96973e](https://github.com/eclipse-tractusx/portal-iam/commit/c96973e2d32149ee1c9653f7fa04c27a2b97eed3))
+* **notification:** adjust create notification role ([#169](https://github.com/eclipse-tractusx/portal-iam/issues/169)) ([63dad28](https://github.com/eclipse-tractusx/portal-iam/commit/63dad288bbdb554ae6d5f35c93e37810da1bbba4)), closes [#812](https://github.com/eclipse-tractusx/portal-iam/issues/812)
+* **osp:** remove create role and assign configure role to cx admin ([#199](https://github.com/eclipse-tractusx/portal-iam/issues/199)) ([19eca8e](https://github.com/eclipse-tractusx/portal-iam/commit/19eca8e6adaf24b2ab93c9b0c0fc268e8bfefad7))
+* **roles:** add subscribe_service permission to Business Admin ([#173](https://github.com/eclipse-tractusx/portal-iam/issues/173)) ([417cd94](https://github.com/eclipse-tractusx/portal-iam/commit/417cd946539b215a8c571d7de62825472ef9a501)), closes [#172](https://github.com/eclipse-tractusx/portal-iam/issues/172)
+* **seeding-job:** enable realm import with dynamic config ([#141](https://github.com/eclipse-tractusx/portal-iam/issues/141)) ([5ed14ce](https://github.com/eclipse-tractusx/portal-iam/commit/5ed14ce23fc2c7d19e97f301cb5bb4d5fcb7361d))
+* **bpdm:** consolidate description of [new service accounts](https://github.com/eclipse-tractusx/portal-iam/pull/155) in centralidp ([5ed14ce](https://github.com/eclipse-tractusx/portal-iam/commit/5ed14ce23fc2c7d19e97f301cb5bb4d5fcb7361d))
+* improve secret handling and remove obsolete secrets ([5ed14ce](https://github.com/eclipse-tractusx/portal-iam/commit/5ed14ce23fc2c7d19e97f301cb5bb4d5fcb7361d))
+* move to standalone architecture for database dependency ([5ed14ce](https://github.com/eclipse-tractusx/portal-iam/commit/5ed14ce23fc2c7d19e97f301cb5bb4d5fcb7361d))
+* set default replica count to 1 ([5ed14ce](https://github.com/eclipse-tractusx/portal-iam/commit/5ed14ce23fc2c7d19e97f301cb5bb4d5fcb7361d))
+* **tech user:** add new operator invite tech user ([#189](https://github.com/eclipse-tractusx/portal-iam/issues/189)) ([3018805](https://github.com/eclipse-tractusx/portal-iam/commit/3018805f77913926061af13bb5b35cbb98835c6e))
+
+### Bug Fixes
+
+* **App Manager:** add tech_user_management roles ([#192](https://github.com/eclipse-tractusx/portal-iam/issues/192)) ([402ddb9](https://github.com/eclipse-tractusx/portal-iam/commit/402ddb9780cb534c495b191d84ff548c2bd6b93b))
+* **login:** escape quotes in names ([#171](https://github.com/eclipse-tractusx/portal-iam/issues/171)) ([4952f97](https://github.com/eclipse-tractusx/portal-iam/commit/4952f972b40d09c65f7f51b4e9c6c9b9837b7298))
+* update regex to allow special and umlaut characters ([#167](https://github.com/eclipse-tractusx/portal-iam/issues/167)) ([bf706f3](https://github.com/eclipse-tractusx/portal-iam/commit/bf706f3a35d7647e7cbe0b0778ffcce1856d4fa8))
+
+### Miscellaneous Chores
+
+* release 4.0.0-alpha.1 ([685d8a6](https://github.com/eclipse-tractusx/portal-iam/commit/685d8a65a495fe3fb565ad0903dbf3ec14077230))
+
 ## 3.0.1
 
 ### Change
@@ -30,7 +104,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 The following issues were discovered:
 
 * 403 error when accessing the Partner Network in the Portal Frontend [#132](https://github.com/eclipse-tractusx/portal-iam/pull/132)
-* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshop-20231005.md#user-token-lifespan)
+* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshops/workshop-20231005.md#user-token-lifespan)
 * Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
 
 ## 3.0.0
@@ -421,7 +495,7 @@ sharedidp:
 
 The following issues were recently discovered:
 
-* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshop-20231005.md#user-token-lifespan)
+* Refresh token rotation causes page reload in frontend apps when using multiple tabs, see [User Token Lifespan](docs/consultation/workshops/workshop-20231005.md#user-token-lifespan)
 * Custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
 
 ## 1.2.0

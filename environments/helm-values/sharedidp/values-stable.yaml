@@ -19,16 +19,16 @@
 
 keycloak:
   auth:
-    adminPassword: "<path:portal/data/int/iam/sharedidp-keycloak#admin-password>"
+    adminPassword: "<path:portal/data/stable/iam/sharedidp-keycloak#admin-password>"
   ingress:
     enabled: true
     ingressClassName: nginx
-    hostname: sharedidp.int.catena-x.net
+    hostname: sharedidp.stable.catena-x.net
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
       nginx.ingress.kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
-      nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.int.catena-x.net
+      nginx.ingress.kubernetes.io/cors-allow-origin: https://sharedidp.stable.catena-x.net
       nginx.ingress.kubernetes.io/enable-cors: "true"
       nginx.ingress.kubernetes.io/proxy-buffer-size: 128k
       nginx.ingress.kubernetes.io/proxy-buffering: "on"
@@ -37,15 +37,15 @@ keycloak:
     tls: true
   postgresql:
     auth:
-      password: "<path:portal/data/int/iam/sharedidp-keycloak#postgres-custom-user>"
-      postgresPassword: "<path:portal/data/int/iam/sharedidp-keycloak#postgres-admin-user>"
+      password: "<path:portal/data/stable/iam/sharedidp-keycloak#postgres-custom-user>"
+      postgresPassword: "<path:portal/data/stable/iam/sharedidp-keycloak#postgres-admin-user>"
 
 realmSeeding:
   realms:
     cxOperator:
-      centralidp: "https://centralidp.int.catena-x.net"
+      centralidp: "https://centralidp.stable.catena-x.net"
       initialUser:
-        password: "<path:portal/data/int/iam/sharedidp-keycloak#initial-operator-user>"
+        password: "<path:portal/data/stable/iam/sharedidp-keycloak#initial-operator-user>"
       mailing:
         host: "<path:portal/data/mailing#host>"
         port: "<path:portal/data/mailing#port>"
@@ -56,6 +56,6 @@ realmSeeding:
     master:
       serviceAccounts:
         provisioning:
-          clientSecret: "<path:portal/data/int/iam/sharedidp-client-secrets#reg-shared-sa>"
+          clientSecret: "<path:portal/data/stable/iam/sharedidp-client-secrets#reg-shared-sa>"
         saCxOperator:
-          clientSecret: "<path:portal/data/int/iam/sharedidp-client-secrets#sa-operator>"
+          clientSecret: "<path:portal/data/stable/iam/sharedidp-client-secrets#sa-operator>"

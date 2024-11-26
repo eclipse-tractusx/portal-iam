@@ -17,23 +17,21 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
+# set credentials and architecture to test upgrade from chart version 3.0.0 to 4.0.0
 keycloak:
-  initContainers:
-    - name: import
-      image: kind-registry:5000/iam:testing
-      imagePullPolicy: Always
-      command:
-        - sh
-      args:
-        - -c
-        - |
-          echo "Copying themes..."
-          cp -R /import/themes/catenax-central/* /themes
-      volumeMounts:
-        - name: themes
-          mountPath: /themes
+  replicaCount: 1
+  postgresql:
+    auth:
+      # -- Non-root user password.
+      password: password
+      # -- Root user password.
+      postgresPassword: password
+    architecture: standalone
+secrets:
+  postgresql:
+    auth:
+      existingSecret:
+        postgrespassword: password
+        password: password
 realmSeeding:
-  initContainer:
-    image:
-      name: kind-registry:5000/iam:testing
-      pullPolicy: Always
+  enabled: false

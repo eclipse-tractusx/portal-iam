@@ -1,5 +1,5 @@
 {{/*
-* Copyright (c) 2023 Contributors to the Eclipse Foundation
+* Copyright (c) 2024 Contributors to the Eclipse Foundation
 *
 * See the NOTICE file(s) distributed with this work for additional
 * information regarding copyright ownership.
@@ -18,10 +18,10 @@
 */}}
 
 {{/*
-Define "centralidp.fullname" like ""common.names.fullname" in the bitnami common chart but setting ".Chart.Name" to "keycloak".
+Define "sharedidp.fullname" like ""common.names.fullname" in the bitnami common chart but setting ".Chart.Name" to "keycloak".
 This is necessary to retrieve the keycloak service name for the execution of the seeding job.
 */}}
-{{- define "centralidp.fullname" -}}
+{{- define "sharedidp.fullname" -}}
 {{- if .Values.keycloak.fullnameOverride -}}
 {{- .Values.keycloak.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -37,32 +37,21 @@ This is necessary to retrieve the keycloak service name for the execution of the
 {{/*
 Define secret name for clients secrets of clients (realm seeding).
 */}}
-{{- define "centralidp.secret.clients" -}}
-{{- if .Values.realmSeeding.clients.existingSecret -}}
-{{- .Values.realmSeeding.clients.existingSecret }}
+{{- define "sharedidp.secret.realmSeeding.cxOperator" -}}
+{{- if .Values.realmSeeding.realms.cxOperator.existingSecret -}}
+{{- .Values.realmSeeding.realms.cxOperator.existingSecret }}
 {{- else -}}
-{{- include "centralidp.fullname" . -}}-clients
+{{- include "sharedidp.fullname" . -}}-cx-operator-realm-seeding
 {{- end -}}
 {{- end -}}
 
 {{/*
-Define secret name for clients secrets of base service accounts (realm seeding).
+Define secret name for clients secrets of clients (realm seeding).
 */}}
-{{- define "centralidp.secret.serviceAccounts" -}}
-{{- if .Values.realmSeeding.serviceAccounts.existingSecret -}}
-{{- .Values.realmSeeding.serviceAccounts.existingSecret }}
+{{- define "sharedidp.secret.realmSeeding.master" -}}
+{{- if .Values.realmSeeding.realms.master.existingSecret -}}
+{{- .Values.realmSeeding.realms.master.existingSecret }}
 {{- else -}}
-{{- include "centralidp.fullname" . -}}-base-service-accounts
-{{- end -}}
-{{- end -}}
-
-{{/*
-Define secret name for clients secrets of additional service accounts (realm seeding).
-*/}}
-{{- define "centralidp.secret.extraServiceAccounts" -}}
-{{- if .Values.realmSeeding.extraServiceAccounts.existingSecret -}}
-{{- .Values.realmSeeding.extraServiceAccounts.existingSecret }}
-{{- else -}}
-{{- include "centralidp.fullname" . -}}-extra-service-accounts
+{{- include "sharedidp.fullname" . -}}-master-realm-seeding
 {{- end -}}
 {{- end -}}

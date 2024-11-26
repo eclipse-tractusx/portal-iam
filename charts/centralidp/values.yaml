@@ -20,35 +20,26 @@
 keycloak:
   auth:
     adminUser: admin
-    # -- Secret containing the passwords for admin username 'admin' and management username 'manager'.
-    existingSecret: "centralidp-keycloak"
+    # -- centralidp Keycloak administrator password.
+    adminPassword: ""
+    # -- Secret containing the password for admin username 'admin'.
+    existingSecret: ""
   # -- Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   production: false
-  # -- reverse Proxy mode edge, reencrypt, passthrough or none;
-  # ref: https://www.keycloak.org/server/reverseproxy;
-  # If your ingress controller has the SSL Termination, you should set proxy to edge.
-  proxy: passthrough
   # -- Setting the path relative to '/' for serving resources:
   # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
   # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
-  httpRelativePath: "/auth/"
-  extraEnvVars:
-    - name: KEYCLOAK_EXTRA_ARGS
-      value: "-Dkeycloak.migration.action=import -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/realms/CX-Central-realm.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"
-  replicaCount: 3
+  httpRelativePath: /auth/
+  replicaCount: 1
   extraVolumes:
     - name: themes
       emptyDir: {}
-    - name: realms
-      emptyDir: {}
   extraVolumeMounts:
     - name: themes
-      mountPath: "/opt/bitnami/keycloak/themes/catenax-central"
-    - name: realms
-      mountPath: "/realms"
+      mountPath: /opt/bitnami/keycloak/themes/catenax-central
   initContainers:
     - name: import
-      image: docker.io/tractusx/portal-iam:v3.0.1
+      image: docker.io/tractusx/portal-iam:v4.0.0-rc.2
       imagePullPolicy: IfNotPresent
       command:
         - sh
@@ -57,34 +48,32 @@ keycloak:
         - |
           echo "Copying themes..."
           cp -R /import/themes/catenax-central/* /themes
-          echo "Copying realms..."
-          cp -R /import/catenax-central/realms/* /realms
       volumeMounts:
-      - name: themes
-        mountPath: "/themes"
-      - name: realms
-        mountPath: "/realms"
+        - name: themes
+          mountPath: /themes
   service:
     sessionAffinity: ClientIP
   ingress:
+    # -- Enable ingress record generation
     enabled: false
-    ingressClassName: "nginx"
+    ingressClassName: ""
     # -- Provide default path for the ingress record.
-    hostname: "centralidp.example.org"
-    annotations:
-      # -- Enable TLS configuration for the host defined at `ingress.hostname` parameter;
-      # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
-      # Provide the name of ClusterIssuer to acquire the certificate required for this Ingress
-      cert-manager.io/cluster-issuer: ""
-      nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
-      nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
-      nginx.ingress.kubernetes.io/cors-allow-origin: "https://centralidp.example.org"
-      nginx.ingress.kubernetes.io/enable-cors: "true"
-      nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
-      nginx.ingress.kubernetes.io/proxy-buffering: "on"
-      nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
-      nginx.ingress.kubernetes.io/use-regex: "true"
-    tls: true
+    hostname: ""
+    # -- Optional annotations when using the nginx ingress class;
+    # Enable TLS configuration for the host defined at `ingress.hostname` parameter;
+    # TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`;
+    # Provide the name of ClusterIssuer to acquire the certificate required for this Ingress.
+    annotations: {}
+      # cert-manager.io/cluster-issuer: ""
+      # nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+      # nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
+      # nginx.ingress.kubernetes.io/cors-allow-origin: "https://centralidp.example.org"
+      # nginx.ingress.kubernetes.io/enable-cors: "true"
+      # nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+      # nginx.ingress.kubernetes.io/proxy-buffering: "on"
+      # nginx.ingress.kubernetes.io/proxy-buffers-number: "20"
+      # nginx.ingress.kubernetes.io/use-regex: "true"
+    tls: false
   rbac:
     create: true
     rules:
@@ -96,102 +85,163 @@ keycloak:
           - get
           - list
   postgresql:
-  # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
-  # default configurations:
-  # host: "centralidp-postgresql-primary",
-  # port: 5432;
+    # -- PostgreSQL chart configuration (recommended for demonstration purposes only);
+    # default configurations:
+    # host: "centralidp-postgresql",
+    # port: 5432;
     # Switch to enable or disable the PostgreSQL helm chart.
     enabled: true
     # -- Setting to Postgres version 15 as that is the aligned version,
     # https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions).
     # Keycloak helm-chart from Bitnami has moved on to version 16.
     image:
-      tag: "15-debian-11"
+      tag: 15-debian-11
     commonLabels:
       app.kubernetes.io/version: "15"
     auth:
       # -- Non-root username.
       username: kccentral
+      # -- Non-root user password.
+      password: ""
+      # -- Root user password.
+      postgresPassword: ""
       # -- Database name.
       database: iamcentralidp
       # -- Secret containing the passwords for root usernames postgres and non-root username kccentral.
-      existingSecret: "centralidp-postgres"
-    architecture: replication
+      existingSecret: ""
+    architecture: standalone
   externalDatabase:
-  # -- External PostgreSQL configuration
-  # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
-    # Database host ('-primary' is added as postfix).
-    host: "centralidp-postgresql-external-db"
+    # -- External PostgreSQL configuration
+    # IMPORTANT: non-root db user needs needs to be created beforehand on external database.
+    host: ""
     # -- Database port number.
     port: 5432
-    # -- Non-root username for centralidp.
-    user: "kccentral"
+    # -- Non-root username.
+    user: ""
     # -- Database name.
-    database: "iamcentralidp"
-    # -- Password for the non-root username (default 'kccentral'). Secret-key 'password'.
+    database: ""
+    # -- Password for the non-root username.
     password: ""
-    # -- Secret containing the password non-root username, (default 'kccentral').
-    existingSecret: "centralidp-keycloak-external-db"
-    # -- Name of an existing secret key containing the database credentials.
-    existingSecretPasswordKey: "password"
-
-secrets:
-  auth:
-    existingSecret:
-      # -- Password for the admin username 'admin'. Secret-key 'admin-password'.
-      adminpassword: ""
-  postgresql:
-    auth:
-      existingSecret:
-        # -- Password for the root username 'postgres'. Secret-key 'postgres-password'.
-        postgrespassword: ""
-        # -- Password for the non-root username 'kccentral'. Secret-key 'password'.
-        password: ""
-        # -- Password for the non-root username 'repl_user'. Secret-key 'replication-password'.
-        replicationPassword: ""
-
-seeding:
-# -- Seeding job to upgrade CX_Central realm:
-# enable to upgrade the configuration of the CX-Central realm from previous version;
+    # -- Secret containing the database credentials.
+    existingSecret: ""
+    existingSecretHostKey: ""
+    existingSecretPortKey: ""
+    existingSecretUserKey: ""
+    existingSecretDatabaseKey: ""
+    existingSecretPasswordKey: ""
+# -- Seeding job to create and update the CX-Central realm:
+# besides creating the CX-Central realm, the job can be used to update
+# the configuration of the realm when upgrading to a new version;
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
-# for configuration possibly not covered by the seeding job
-  enabled: false
-  image: "docker.io/tractusx/portal-iam-seeding:v3.0.1-iam"
-  imagePullPolicy: "IfNotPresent"
+# for configuration possibly not covered by the seeding job.
+realmSeeding:
+  enabled: true
+  sslRequired: external
+  # -- Set redirect addresses and - in the case of confidential clients - clients secrets
+  # for clients which are part of the basic CX-Central realm setup;
+  # SET client secrets for all non-testing and non-local purposes, default value is autogenerated.
+  clients:
+    registration:
+      redirects:
+        - https://portal.example.org/*
+    portal:
+      rootUrl: https://portal.example.org/home
+      redirects:
+        - https://portal.example.org/*
+    semantics:
+      redirects:
+        - https://portal.example.org/*
+    miw:
+      clientSecret: ""
+      redirects:
+        - https://managed-identity-wallets.example.org/*
+    bpdm:
+      clientSecret: ""
+      redirects:
+        - https://partners-pool.example.org/*
+    bpdmGate:
+      clientSecret: ""
+      redirects:
+        - https://partners-gate.example.org/*
+    bpdmOrchestrator:
+      clientSecret: ""
+    # -- Option to provide an existingSecret for the clients with clientId as key and clientSecret as value.
+    existingSecret: ""
+  # -- Client secrets for service accounts which are part of the basic CX-Central realm setup;
+  # SET client secrets for all non-testing and non-local purposes, default value is autogenerated.
+  serviceAccounts:
+    clientSecrets:
+      - clientId: sa-cl1-reg-2
+        clientSecret: ""
+      - clientId: sa-cl2-01
+        clientSecret: ""
+      - clientId: sa-cl2-02
+        clientSecret: ""
+      - clientId: sa-cl2-03
+        clientSecret: ""
+      - clientId: sa-cl2-04
+        clientSecret: ""
+      - clientId: sa-cl2-05
+        clientSecret: ""
+      - clientId: sa-cl3-cx-1
+        clientSecret: ""
+      - clientId: sa-cl5-custodian-2
+        clientSecret: ""
+      - clientId: sa-cl7-cx-1
+        clientSecret: ""
+      - clientId: sa-cl7-cx-5
+        clientSecret: ""
+      - clientId: sa-cl7-cx-7
+        clientSecret: ""
+      - clientId: sa-cl8-cx-1
+        clientSecret: ""
+      - clientId: sa-cl21-01
+        clientSecret: ""
+      - clientId: sa-cl22-01
+        clientSecret: ""
+      - clientId: sa-cl24-01
+        clientSecret: ""
+      - clientId: sa-cl25-cx-1
+        clientSecret: ""
+      - clientId: sa-cl25-cx-2
+        clientSecret: ""
+      - clientId: sa-cl25-cx-3
+        clientSecret: ""
+    # -- Option to provide an existingSecret for the base service accounts with clientId as key and clientSecret as value.
+    existingSecret: ""
+  # -- Set value for the 'bpn' user attribute for the initial user and the base service account users.
+  bpn: BPNL00000003CRHK
+  # -- Set sharedidp address to enable the identity provider connection to CX-Operator realm.
+  sharedidp: https://sharedidp.example.org
+  # -- Set client secrets and bpn user attribute for additional service accounts;
+  # meant to enable possible test data, default value for client secrets is autogenerated.
+  extraServiceAccounts:
+    clientSecretsAndBpn: []
+      # - clientId: sa-test-01
+      #   clientSecret: ""
+      #   bpn: TBD1
+      # - clientId: sa-test-02
+      #   clientSecret: ""
+      #   bpn: TBD2
+    # -- Option to provide an existingSecret for additional service accounts with clientId as key and clientSecret as value.
+    existingSecret: ""
+  image:
+    name: docker.io/tractusx/portal-iam-seeding:v4.0.0-iam-rc.2
+    pullPolicy: IfNotPresent
+  initContainer:
+    image:
+      name: docker.io/tractusx/portal-iam:v4.0.0-rc.2
+      pullPolicy: IfNotPresent
   portContainer: 8080
-  authRealm: "master"
-  useAuthTrail: "true"
-  dataPaths:
-    dataPath0: "realms/CX-Central-realm.json"
-  instanceName: "central"
-  excludedUserAttributes:
-    attribute0: "bpn"
-    attribute1: "organisation"
+  keycloakServicePort: 80
+  keycloakServiceTls: false
   # -- We recommend to review the default resource limits as this should a conscious choice.
   resources:
     requests:
-      cpu: 75m
-      memory: 200M
+      cpu: 250m
+      memory: 850M
+      ephemeral-storage: 50Mi
     limits:
-      cpu: 225m
-      memory: 200M
-  extraVolumes:
-    - name: realms
-      emptyDir: {}
-  extraVolumeMounts:
-    - name: realms
-      mountPath: "app/realms"
-  initContainers:
-    - name: init-cx-central
-      image: docker.io/tractusx/portal-iam:v3.0.1
-      imagePullPolicy: IfNotPresent
-      command:
-        - sh
-      args:
-        - -c
-        - |
-          echo "Copying CX Central realm..."
-          cp -R /import/catenax-central/realms/* /app/realms
-      volumeMounts:
-      - name: realms
-        mountPath: "app/realms"
+      cpu: 750m
+      memory: 850M
+      ephemeral-storage: 1024Mi

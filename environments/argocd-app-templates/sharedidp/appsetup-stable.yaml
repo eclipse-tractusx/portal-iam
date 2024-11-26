@@ -17,23 +17,22 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################
 
-keycloak:
-  initContainers:
-    - name: import
-      image: kind-registry:5000/iam:testing
-      imagePullPolicy: Always
-      command:
-        - sh
-      args:
-        - -c
-        - |
-          echo "Copying themes..."
-          cp -R /import/themes/catenax-central/* /themes
-      volumeMounts:
-        - name: themes
-          mountPath: /themes
-realmSeeding:
-  initContainer:
-    image:
-      name: kind-registry:5000/iam:testing
-      pullPolicy: Always
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sharedidp
+spec:
+  destination:
+    namespace: product-portal
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: charts/sharedidp
+    repoURL: 'https://github.com/eclipse-tractusx/portal-iam.git'
+    targetRevision: v4.0.0-rc.2
+    plugin:
+      env:
+        - name: AVP_SECRET
+          value: vault-secret
+        - name: helm_args
+          value: '-f values.yaml -f ../../environments/helm-values/sharedidp/values-stable.yaml'
+  project: project-portal

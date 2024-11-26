@@ -1,0 +1,236 @@
+{{- /*
+* Copyright (c) 2024 Contributors to the Eclipse Foundation
+*
+* See the NOTICE file(s) distributed with this work for additional
+* information regarding copyright ownership.
+*
+* This program and the accompanying materials are made available under the
+* terms of the Apache License, Version 2.0 which is available at
+* https://www.apache.org/licenses/LICENSE-2.0.
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+* License for the specific language governing permissions and limitations
+* under the License.
+*
+* SPDX-License-Identifier: Apache-2.0
+*/}}
+
+{{- if .Values.realmSeeding.enabled -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "sharedidp.fullname" . }}-realm-seeding-{{ .Release.Revision }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  template:
+    metadata:
+      name: {{ include "sharedidp.fullname" . }}-realm-seeding
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: {{ include "sharedidp.fullname" . }}-realm-seeding
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+        image: "{{ .Values.realmSeeding.image.name }}"
+        imagePullPolicy: "{{ .Values.realmSeeding.image.pullPolicy }}"
+        env:
+          - name: "KEYCLOAK__SHARED__CONNECTIONSTRING"
+            value: |
+              {{ if .Values.realmSeeding.keycloakServiceTls -}}
+              https://{{ template "sharedidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}
+              {{- else -}}
+              http://{{ template "sharedidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}
+              {{- end }}
+          - name: "KEYCLOAK__SHARED__USER"
+            value: "{{ .Values.keycloak.auth.adminUser }}"
+          - name: "KEYCLOAK__SHARED__PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.fullname" . }}"
+                key: "admin-password"
+          - name: "KEYCLOAK__SHARED__AUTHREALM"
+            value: "master"
+          - name: "KEYCLOAK__SHARED__USEAUTHTRAIL"
+            value: "true"
+          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__0"
+            value: "realms/CX-Operator-realm.json"
+          - name: "KEYCLOAKSEEDING__REALMS__1__DATAPATHS__0"
+            value: "realms/master-realm.json"
+          - name: "KEYCLOAKSEEDING__REALMS__0__INSTANCENAME"
+            value: "shared"
+          - name: "KEYCLOAKSEEDING__REALMS__1__INSTANCENAME"
+            value: "shared"
+          - name: "KEYCLOAKSEEDING__REALMS__0__REALM"
+            value: "CX-Operator"
+          - name: "KEYCLOAKSEEDING__REALMS__1__REALM"
+            value: "master"
+          - name: "KEYCLOAKSEEDING__REALMS__0__SSLREQUIRED"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.sslRequired }}"
+
+          #############################
+          ## CX-OPERATOR CLIENT
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__CLIENTID"
+            value: "central-idp"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__REDIRECTURIS__0"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp }}/auth/realms/CX-Central/broker/CX-Operator/endpoint/*"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__ATTRIBUTES__0__NAME"
+            value: "jwks.url"
+          - name: "KEYCLOAKSEEDING__REALMS__0__CLIENTS__0__ATTRIBUTES__0__VALUE"
+            value: "{{ .Values.realmSeeding.realms.cxOperator.centralidp }}/auth/realms/CX-Central/protocol/openid-connect/certs"
+
+          #############################
+          ## CX-OPERATOR INITIAL USER
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__DATAPATHS__1"
+            value: "realms/CX-Operator-users-0.json"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__ID"
+            value: "656e8a94-188b-4a3e-9eec-b45d8efd8347"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__USERNAME"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initial-user-username"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__ENABLED"
+            value: "true"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__FIRSTNAME"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initial-user-first-name"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__LASTNAME"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initial-user-last-name"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__EMAIL"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initial-user-email"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__CREDENTIALS__0__TEMPORARY"
+            value: "false"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__CREDENTIALS__0__TYPE"
+            value: "password"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__CREDENTIALS__0__VALUE"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "initial-user-password"
+          - name: "KEYCLOAKSEEDING__REALMS__0__USERS__0__REALMROLES__0"
+            value: "default-roles-cx-operator"
+
+          #############################
+          ## CX-OPERATOR MAIL CONFIG
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__HOST"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-host"
+          - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__PORT"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-port"
+          - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__USER"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-username"
+          - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__FROM"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-from"
+          - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__REPLYTO"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-reply-to"
+          - name: "KEYCLOAKSEEDING__REALMS__0__SMTPSERVER__PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.cxOperator" . }}"
+                key: "mailing-password"
+
+          #############################
+          ## MASTER SERVICE ACCOUNTS
+          #############################
+
+          - name: "KEYCLOAKSEEDING__REALMS__1__CLIENTS__0__CLIENTID"
+            value: "sa-cl1-reg-1"
+          - name: "KEYCLOAKSEEDING__REALMS__1__CLIENTS__0__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.master" . }}"
+                key: "sa-provisioning"
+          - name: "KEYCLOAKSEEDING__REALMS__1__CLIENTS__1__CLIENTID"
+            value: "saCX-Operator"
+          - name: "KEYCLOAKSEEDING__REALMS__1__CLIENTS__1__SECRET"
+            valueFrom:
+              secretKeyRef:
+                name: "{{ template "sharedidp.secret.realmSeeding.master" . }}"
+                key: "sa-cx-operator"
+
+        ports:
+        - name: http
+          containerPort: {{ .Values.realmSeeding.portContainer }}
+          protocol: TCP
+        resources:
+          {{- toYaml .Values.realmSeeding.resources | nindent 10 }}
+        volumeMounts:
+          - name: realms
+            mountPath: "app/realms"
+      initContainers:
+        - name: init-cx-central
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+          image: {{ .Values.realmSeeding.initContainer.image.name }}
+          imagePullPolicy: {{ .Values.realmSeeding.initContainer.image.pullPolicy }}
+          command:
+            - sh
+          args:
+            - -c
+            - |
+              echo "Copying realms..."
+              cp -R /import/catenax-shared/realms/* /app/realms
+          volumeMounts:
+          - name: realms
+            mountPath: "app/realms"
+        - name: wait-for-keycloak
+          image: alpine/curl:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 3000
+          {{ if .Values.realmSeeding.keycloakServiceTls -}}
+          command: [ 'sh', '-c', 'until curl -s https://{{ template "sharedidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
+          {{- else -}}
+          command: [ 'sh', '-c', 'until curl -s http://{{ template "sharedidp.fullname" . }}:{{ .Values.realmSeeding.keycloakServicePort }}/auth/realms/master/.well-known/openid-configuration; do echo waiting for other pod; sleep 2; done;' ]
+          {{- end }}
+          imagePullPolicy: IfNotPresent
+      volumes:
+        - name: realms
+          emptyDir: {}
+      automountServiceAccountToken: false
+{{- end -}}
