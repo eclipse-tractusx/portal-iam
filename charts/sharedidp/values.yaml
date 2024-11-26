@@ -140,6 +140,7 @@ keycloak:
 # -- Seeding job to create and update the CX-Operator and master realms:
 # besides creating those realm, the job can be used to update
 # the configuration of the realms when upgrading to a new version;
+# Please refer to /docs/admin/technical-documentation/14. Realm Seeding.md for more details.
 # Please also refer to the 'Post-Upgrade Configuration' section in the README.md
 # for configuration possibly not covered by the seeding job.
 realmSeeding:
