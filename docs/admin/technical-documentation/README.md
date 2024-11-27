@@ -6,8 +6,8 @@ Authentication Flow - User login to Catena-X
 
 ![AuthenticationFlow](/docs/static/authentication-flow.png)
 
-\*(Schatten-) User: The „Schatten-User“ (shadow user) is defined as an empty User frame holding limited information. The actual user is managed in the respective Identity Provider.  
-The Schatten-User are always federated identities
+\*(Schatten-) User: The „Schatten-User“ (shadow user) is defined as an empty User frame holding limited information. The actual user is managed in the respective Identity Provider.
+The shadow users are always federated identities.
 
 ## Authentication Protocol - OpenID Connect (OIDC)
 
