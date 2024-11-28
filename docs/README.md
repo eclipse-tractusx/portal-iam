@@ -46,13 +46,7 @@ The `known-knowns` folder highlights known limitations, issues, or consideration
 
 ### [Consultation Documentation](./consultation/)
 
-### 1. [charts](./consultation/charts/) and [environments](./consultation/environments/)
-
-The `charts` and `environments` folder contain an **example** helm chart and configuration for a potential deployment improvement discussed during workshops.
-
-- [Portal IAM Helm Chart](./consultation/portal-iam-helm-chart.md): instructions on using this **example** helm chart.
-
-### 2. [Workshops](./consultation/workshops/)
+### 1. [Workshops](./consultation/workshops/)
 
 The `workshops` folder includes minutes and topics for two workshops:
 
@@ -60,7 +54,7 @@ The `workshops` folder includes minutes and topics for two workshops:
 - [Workshop 20231005](./consultation/workshops/workshop-20231005.md): topics covered during the session of October 5, 2023 workshop.
 
 
-### 3. [Consultation Document](./consultation/consultation.md)
+### 2. [Consultation Document](./consultation/consultation.md)
 
 - Consultation notes and decisions.
   
