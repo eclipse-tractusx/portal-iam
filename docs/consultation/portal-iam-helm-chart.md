@@ -27,13 +27,19 @@ the specific objects for each type of instance, such as:
 
 The Helm Chart requires to have declared the `instanceType` property with the right value (`central`, `shared`) to
 create the right objects on the Kubernetes. It this property is not declared, the Helm Chart will not be executed, as
-there is a [hook](./charts/portal-iam/templates/hooks/check-variable.yaml) created for that purpose.
+there is a [hook](https://github.com/eclipse-tractusx/portal-iam/tree/v4.0.0-rc.2/docs/consultation/charts/portal-iam/templates/hooks/check-variable.yaml) created for that purpose.
 
 The Helm Chart can be extended to add more detailed objects, but it was not part of this Proof of Concept.
 
-The chart is implemented [here](./charts/).
+The chart is implemented [here](https://github.com/eclipse-tractusx/portal-iam/tree/v4.0.0-rc.2/docs/consultation/charts/).
 
 ### How to use - Example of usage
+
+Checkout the tag where the example helm chart is still available:
+
+```
+git checkout tags/v4.0.0-rc.2 -b test/example-chart
+```
 
 This example will deploy the following instances:
 
@@ -55,7 +61,7 @@ To visualize the dashboard of the Kubernetes, execute `minikube dashboard` comma
 2. Update the `portal-iam` helm chart with the latest status of the dependencies
 
 ```shell
-helm dependency update ./charts/portal-iam
+helm dependency update ./docs/consultation/charts/portal-iam
 ```
 
 3. Deploy the Database for the Central Blue instance
