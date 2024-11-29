@@ -2,7 +2,7 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
-## [4.1.0-rc.2](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-rc.2...v4.1.0-rc.2) (2024-11-29)
+## [4.0.0-rc.3](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-rc.2...v4.0.0-rc.3) (2024-11-29)
 
 
 ### Features
