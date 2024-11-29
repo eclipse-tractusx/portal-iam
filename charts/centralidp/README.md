@@ -1,6 +1,6 @@
 # Helm chart for Central Keycloak Instance
 
-![Version: 4.0.0-rc.2](https://img.shields.io/badge/Version-4.0.0--rc.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
+![Version: 4.0.0-rc.3](https://img.shields.io/badge/Version-4.0.0--rc.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Central Keycloak Instance.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 4.0.0-rc.2
+    version: 4.0.0-rc.3
 ```
 
 ## Requirements
