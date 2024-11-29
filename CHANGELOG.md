@@ -2,6 +2,13 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## [4.0.0-rc.3](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-rc.2...v4.0.0-rc.3) (2024-11-29)
+
+
+### Features
+
+* **realm-seeding-job:** configure selective seeding ([#234](https://github.com/eclipse-tractusx/portal-iam/issues/234)) ([9326090](https://github.com/eclipse-tractusx/portal-iam/commit/93260903db31f5faee0fe63eb035111ba607bdb1))
+
 ## [4.0.0-rc.2](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-rc.1...v4.0.0-rc.2) (2024-11-20)
 
 
