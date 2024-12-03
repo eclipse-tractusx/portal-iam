@@ -227,7 +227,7 @@ realmSeeding:
     # -- Option to provide an existingSecret for additional service accounts with clientId as key and clientSecret as value.
     existingSecret: ""
   image:
-    name: docker.io/tractusx/portal-iam-seeding:v4.0.0
+    name: docker.io/tractusx/portal-iam-seeding:v4.0.0-iam
     pullPolicy: IfNotPresent
   initContainer:
     image:
