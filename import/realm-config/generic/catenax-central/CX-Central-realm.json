@@ -278,8 +278,7 @@
                 "view_wallet"
               ],
               "Cl1-CX-Registration": [
-                "view_registration",
-                "delete_documents"
+                "view_registration"
               ],
               "Cl24-CX-SSI-CredentialIssuer": [
                 "view_credential_requests"
@@ -314,7 +313,8 @@
                 "update_own_user_account",
                 "view_service_offering",
                 "update_service_offering",
-                "view_notifications"
+                "view_notifications",
+                "view_managed_idp"
               ],
               "Cl3-CX-Semantic": [
                 "add_semantic_model",
@@ -654,8 +654,6 @@
               "Cl2-CX-Portal": [
                 "CX User",
                 "unsubscribe_apps",
-                "delete_certificates",
-                "upload_certificates",
                 "unsubscribe_services",
                 "view_service_subscriptions",
                 "view_certificates",
@@ -769,7 +767,10 @@
                 "subscribe_apps",
                 "view_app_language",
                 "delete_idp",
-                "view_notifications"
+                "view_notifications",
+                "view_service_subscriptions",
+                "app_management",
+                "activate_subscription"
               ],
               "Cl3-CX-Semantic": [
                 "add_semantic_model",
@@ -1381,7 +1382,6 @@
                 "view_own_user_account",
                 "add_self_descriptions",
                 "view_certificates",
-                "subscribe_service",
                 "view_membership",
                 "view_company_data",
                 "view_technical_setup",
@@ -1455,11 +1455,9 @@
                 "unsubscribe_services",
                 "view_service_subscriptions",
                 "view_certificates",
-                "activate_subscription",
                 "subscribe_service",
                 "view_service_offering",
                 "view_app_subscription",
-                "app_management",
                 "subscribe_apps",
                 "service_management"
               ]
