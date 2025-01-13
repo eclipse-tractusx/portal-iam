@@ -43,7 +43,7 @@ keycloak:
       mountPath: /opt/bitnami/keycloak/themes/catenax-shared-portal
   initContainers:
     - name: import
-      image: docker.io/tractusx/portal-iam:v4.0.0
+      image: docker.io/tractusx/portal-iam:v4.0.1
       imagePullPolicy: IfNotPresent
       command:
         - sh
@@ -186,7 +186,7 @@ realmSeeding:
     pullPolicy: IfNotPresent
   initContainer:
     image:
-      name: docker.io/tractusx/portal-iam:v4.0.0
+      name: docker.io/tractusx/portal-iam:v4.0.1
       pullPolicy: IfNotPresent
   portContainer: 8080
   keycloakServicePort: 80
