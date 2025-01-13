@@ -2,6 +2,14 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## [4.0.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0...v4.0.1) (2025-01-13)
+
+
+### Bug Fixes
+
+* **cx-central realm:** change role assignments and update r&r concept ([#252](https://github.com/eclipse-tractusx/portal-iam/issues/252)) ([799b36d](https://github.com/eclipse-tractusx/portal-iam/commit/799b36dcf24c1ef24cf763bd414e85e9b9d088bb))
+* **realm-seeding:** add faster version of job ([#253](https://github.com/eclipse-tractusx/portal-iam/issues/253)) ([2c18353](https://github.com/eclipse-tractusx/portal-iam/commit/2c18353b8e49bedc62b7a4b7912d581aadd7751a))
+
 ## [4.0.0-rc.3](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-rc.2...v4.0.0-rc.3) (2024-11-29)
 
 
