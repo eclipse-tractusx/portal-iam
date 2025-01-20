@@ -309,6 +309,7 @@
                 "delete_connectors",
                 "add_connectors",
                 "activate_subscription",
+                "decline_subscription",
                 "view_service_marketplace",
                 "update_own_user_account",
                 "view_service_offering",
@@ -695,6 +696,15 @@
           "attributes": {}
         },
         {
+          "id": "f8d81c07-fa16-4e84-9ad9-29f8d9dedbc3",
+          "name": "decline_subscription",
+          "description": "Declination of subscriptions",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "5d09a280-1a45-4519-a086-c0f5d49e4ed8",
+          "attributes": {}
+        },
+        {
           "id": "3cc2dbf1-3072-470b-92b1-49ef33ac0dd7",
           "name": "Company Admin",
           "composite": true,
@@ -770,7 +780,8 @@
                 "view_notifications",
                 "view_service_subscriptions",
                 "app_management",
-                "activate_subscription"
+                "activate_subscription",
+                "decline_subscription"
               ],
               "Cl3-CX-Semantic": [
                 "add_semantic_model",
@@ -913,6 +924,7 @@
                 "edit_apps",
                 "view_certificates",
                 "activate_subscription",
+                "decline_subscription",
                 "view_app_subscription",
                 "App Developer",
                 "view_autosetup_status"
@@ -1209,6 +1221,7 @@
                 "add_connectors",
                 "modify_user_account",
                 "activate_subscription",
+                "decline_subscription",
                 "update_own_user_account",
                 "update_service_offering",
                 "delete_notifications",
@@ -1657,6 +1670,7 @@
               "Cl2-CX-Portal": [
                 "view_tech_user_management",
                 "activate_subscription",
+                "decline_subscription",
                 "app_management",
                 "add_service_offering",
                 "add_connectors"
