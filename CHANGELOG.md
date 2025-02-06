@@ -2,6 +2,13 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## [4.1.0-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.1...v4.1.0-rc.1) (2025-02-06)
+
+
+### Features
+
+* **centralidp:** create decline_subscription permission ([#233](https://github.com/eclipse-tractusx/portal-iam/issues/233)) ([2fa79ee](https://github.com/eclipse-tractusx/portal-iam/commit/2fa79ee3859738d9f461535ce51bd23b7ea1cff8))
+
 ## [4.0.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0...v4.0.1) (2025-01-13)
 
 
