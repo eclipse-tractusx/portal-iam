@@ -53,7 +53,7 @@ dependencies:
 | keycloak.extraVolumeMounts[0].name | string | `"themes"` |  |
 | keycloak.extraVolumeMounts[0].mountPath | string | `"/opt/bitnami/keycloak/themes/catenax-central"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v4.0.1"` |  |
+| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v4.1.0-rc.1"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
