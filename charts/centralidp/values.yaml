@@ -39,7 +39,7 @@ keycloak:
       mountPath: /opt/bitnami/keycloak/themes/catenax-central
   initContainers:
     - name: import
-      image: docker.io/tractusx/portal-iam:v4.1.0-rc.1
+      image: docker.io/tractusx/portal-iam:v4.1.0
       imagePullPolicy: IfNotPresent
       command:
         - sh
@@ -227,11 +227,11 @@ realmSeeding:
     # -- Option to provide an existingSecret for additional service accounts with clientId as key and clientSecret as value.
     existingSecret: ""
   image:
-    name: docker.io/tractusx/portal-iam-seeding:v4.1.0-iam-rc.1
+    name: docker.io/tractusx/portal-iam-seeding:v4.1.0-iam
     pullPolicy: IfNotPresent
   initContainer:
     image:
-      name: docker.io/tractusx/portal-iam:v4.1.0-rc.1
+      name: docker.io/tractusx/portal-iam:v4.1.0
       pullPolicy: IfNotPresent
   portContainer: 8080
   keycloakServicePort: 80

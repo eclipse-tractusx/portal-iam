@@ -2,7 +2,7 @@
 
 Open issues:
 
-- realm seeding takes quite long to complete depending on the size of the realm [#238](https://github.com/eclipse-tractusx/portal-iam/issues/238)
+- Please refer to the **[list of open bugs](https://github.com/eclipse-tractusx/portal-iam/issues?q=is%3Aopen+is%3Aissue+label%3Abug)**.
 - custom login themes break when inserting HTML/CSS/JavaScript code in the IdP display name
 
 The following issue was resolved with the upgrade to version 25:
