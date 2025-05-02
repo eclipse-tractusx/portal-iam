@@ -1673,7 +1673,8 @@
                 "decline_subscription",
                 "app_management",
                 "add_service_offering",
-                "add_connectors"
+                "add_connectors",
+                "view_subscription"
               ]
             }
           },
