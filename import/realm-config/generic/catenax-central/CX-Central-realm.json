@@ -1975,6 +1975,28 @@
           "clientRole": true,
           "containerId": "114605ea-9c64-4dff-9bc7-90fe02a004c3",
           "attributes": {}
+        },
+        {
+          "id": "9f8c4c27-2a5e-4d5c-9a6b-8e7d4c0e7b3a",
+          "name": "Connector Management",
+          "description": "Allowed to access connector registration features without using UI",
+          "composite": true,
+          "composites": {
+            "client": {
+              "Cl2-CX-Portal": [
+                  "view_tech_user_management",
+                  "add_tech_user_management",
+                  "technical_roles_management",
+                  "view_connectors",
+                  "add_connectors",
+                  "modify_connectors",
+                  "delete_connectors"
+              ]
+            }
+          },
+          "clientRole": true,
+          "containerId": "114605ea-9c64-4dff-9bc7-90fe02a004c3",
+          "attributes": {}
         }
       ],
       "admin-cli": [],
