@@ -1675,7 +1675,8 @@
                 "app_management",
                 "add_service_offering",
                 "add_connectors",
-                "view_subscription"
+                "view_subscription",
+                "view_app_subscription"
               ]
             }
           },
