@@ -2,6 +2,25 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## [4.2.0-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.1.0-rc.1...v4.2.0-rc.1) (2025-05-09)
+
+
+### Features
+
+* **centralidp:** add service account for regional clearing house ([#281](https://github.com/eclipse-tractusx/portal-iam/issues/281)) ([6ffd318](https://github.com/eclipse-tractusx/portal-iam/commit/6ffd3187a5cd31539e6f02892b20e8a7fccbc2ae))
+* **centralidp:** Added Connector Management composite role in the central idp and updated documentation ([#271](https://github.com/eclipse-tractusx/portal-iam/issues/271)) ([b8cac45](https://github.com/eclipse-tractusx/portal-iam/commit/b8cac4579d315e487f973633d36f41307e3583d1))
+
+
+### Bug Fixes
+
+* add missing view_app_subscripton role to offer management role composite ([#284](https://github.com/eclipse-tractusx/portal-iam/issues/284)) ([1860521](https://github.com/eclipse-tractusx/portal-iam/commit/1860521b20ab379f2c2e827bb0c4654771171bdc))
+* assign view_subscription role to Offer Management ([#277](https://github.com/eclipse-tractusx/portal-iam/issues/277)) ([ae674a2](https://github.com/eclipse-tractusx/portal-iam/commit/ae674a24e60dc851a276be2e739a4f405c1034bf))
+
+
+### Miscellaneous Chores
+
+* release v4.2.0-rc.1 ([f0efe8a](https://github.com/eclipse-tractusx/portal-iam/commit/f0efe8a9eaed4111737d38bd682d087c5eec4837))
+
 ## [4.1.0-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.1...v4.1.0-rc.1) (2025-02-06)
 
 
