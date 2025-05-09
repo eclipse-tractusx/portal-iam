@@ -1,6 +1,6 @@
 # Helm chart for Shared Keycloak Instance
 
-![Version: 4.1.0](https://img.shields.io/badge/Version-4.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
+![Version: 4.2.0-rc.1](https://img.shields.io/badge/Version-4.2.0--rc.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Shared Keycloak Instance.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: sharedidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 4.1.0
+    version: 4.2.0-rc.1
 ```
 
 ## Requirements
@@ -57,7 +57,7 @@ dependencies:
 | keycloak.extraVolumeMounts[1].name | string | `"themes-catenax-shared-portal"` |  |
 | keycloak.extraVolumeMounts[1].mountPath | string | `"/opt/bitnami/keycloak/themes/catenax-shared-portal"` |  |
 | keycloak.initContainers[0].name | string | `"import"` |  |
-| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v4.1.0"` |  |
+| keycloak.initContainers[0].image | string | `"docker.io/tractusx/portal-iam:v4.2.0-rc.1"` |  |
 | keycloak.initContainers[0].imagePullPolicy | string | `"IfNotPresent"` |  |
 | keycloak.initContainers[0].command[0] | string | `"sh"` |  |
 | keycloak.initContainers[0].args[0] | string | `"-c"` |  |
@@ -97,7 +97,7 @@ dependencies:
 | keycloak.externalDatabase.existingSecretUserKey | string | `""` |  |
 | keycloak.externalDatabase.existingSecretDatabaseKey | string | `""` |  |
 | keycloak.externalDatabase.existingSecretPasswordKey | string | `""` |  |
-| realmSeeding | object | `{"enabled":true,"image":{"name":"docker.io/tractusx/portal-iam-seeding:v4.1.0-iam","pullPolicy":"IfNotPresent"},"initContainer":{"image":{"name":"docker.io/tractusx/portal-iam:v4.1.0","pullPolicy":"IfNotPresent"}},"keycloakServicePort":80,"keycloakServiceTls":false,"portContainer":8080,"realms":{"cxOperator":{"centralidp":"https://centralidp.example.org","existingSecret":"","initialUser":{"eMail":"cx-operator@tx.org","firstName":"Operator","lastName":"CX Admin","password":"","username":"cx-operator@tx.org"},"mailing":{"from":"email@example.org","host":"smtp.example.org","password":"","port":"123","replyTo":"email@example.org","username":"smtp-user"},"sslRequired":"external"},"master":{"existingSecret":"","serviceAccounts":{"provisioning":{"clientSecret":""},"saCxOperator":{"clientSecret":""}}}},"resources":{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"700M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"700M"}}}` | Seeding job to create and update the CX-Operator and master realms: besides creating those realm, the job can be used to update the configuration of the realms when upgrading to a new version; Please refer to /docs/admin/technical-documentation/14. Realm Seeding.md for more details. Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job. |
+| realmSeeding | object | `{"enabled":true,"image":{"name":"docker.io/tractusx/portal-iam-seeding:v4.2.0-iam-rc.1","pullPolicy":"IfNotPresent"},"initContainer":{"image":{"name":"docker.io/tractusx/portal-iam:v4.2.0-rc.1","pullPolicy":"IfNotPresent"}},"keycloakServicePort":80,"keycloakServiceTls":false,"portContainer":8080,"realms":{"cxOperator":{"centralidp":"https://centralidp.example.org","existingSecret":"","initialUser":{"eMail":"cx-operator@tx.org","firstName":"Operator","lastName":"CX Admin","password":"","username":"cx-operator@tx.org"},"mailing":{"from":"email@example.org","host":"smtp.example.org","password":"","port":"123","replyTo":"email@example.org","username":"smtp-user"},"sslRequired":"external"},"master":{"existingSecret":"","serviceAccounts":{"provisioning":{"clientSecret":""},"saCxOperator":{"clientSecret":""}}}},"resources":{"limits":{"cpu":"750m","ephemeral-storage":"1024Mi","memory":"700M"},"requests":{"cpu":"250m","ephemeral-storage":"50Mi","memory":"700M"}}}` | Seeding job to create and update the CX-Operator and master realms: besides creating those realm, the job can be used to update the configuration of the realms when upgrading to a new version; Please refer to /docs/admin/technical-documentation/14. Realm Seeding.md for more details. Please also refer to the 'Post-Upgrade Configuration' section in the README.md for configuration possibly not covered by the seeding job. |
 | realmSeeding.realms.cxOperator.centralidp | string | `"https://centralidp.example.org"` | Set centralidp address for the connection to the CX-Central realm. |
 | realmSeeding.realms.cxOperator.initialUser | object | `{"eMail":"cx-operator@tx.org","firstName":"Operator","lastName":"CX Admin","password":"","username":"cx-operator@tx.org"}` | Configure initial user in CX-Operator realm. |
 | realmSeeding.realms.cxOperator.initialUser.username | string | `"cx-operator@tx.org"` | SET username for all non-testing and non-local purposes. |
