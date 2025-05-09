@@ -2,6 +2,21 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## [4.1.0-rc.3](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-rc.3...v4.1.0-rc.3) (2025-05-09)
+
+
+### Features
+
+* **centralidp:** add service account for regional clearing house ([#281](https://github.com/eclipse-tractusx/portal-iam/issues/281)) ([6ffd318](https://github.com/eclipse-tractusx/portal-iam/commit/6ffd3187a5cd31539e6f02892b20e8a7fccbc2ae))
+* **centralidp:** create decline_subscription permission ([#233](https://github.com/eclipse-tractusx/portal-iam/issues/233)) ([2fa79ee](https://github.com/eclipse-tractusx/portal-iam/commit/2fa79ee3859738d9f461535ce51bd23b7ea1cff8))
+
+
+### Bug Fixes
+
+* assign view_subscription role to Offer Management ([#277](https://github.com/eclipse-tractusx/portal-iam/issues/277)) ([ae674a2](https://github.com/eclipse-tractusx/portal-iam/commit/ae674a24e60dc851a276be2e739a4f405c1034bf))
+* **cx-central realm:** change role assignments and update r&r concept ([#252](https://github.com/eclipse-tractusx/portal-iam/issues/252)) ([799b36d](https://github.com/eclipse-tractusx/portal-iam/commit/799b36dcf24c1ef24cf763bd414e85e9b9d088bb))
+* **realm-seeding:** add faster version of job ([#253](https://github.com/eclipse-tractusx/portal-iam/issues/253)) ([2c18353](https://github.com/eclipse-tractusx/portal-iam/commit/2c18353b8e49bedc62b7a4b7912d581aadd7751a))
+
 ## [4.1.0-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.1...v4.1.0-rc.1) (2025-02-06)
 
 
