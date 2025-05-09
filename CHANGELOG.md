@@ -8,6 +8,7 @@ New features, fixed bugs, known defects and other noteworthy changes to each rel
 ### Features
 
 * **centralidp:** add service account for regional clearing house ([#281](https://github.com/eclipse-tractusx/portal-iam/issues/281)) ([6ffd318](https://github.com/eclipse-tractusx/portal-iam/commit/6ffd3187a5cd31539e6f02892b20e8a7fccbc2ae))
+* **centralidp:** Added Connector Management composite role in the central idp and updated documentation ([#271](https://github.com/eclipse-tractusx/portal-iam/issues/271)) ([b8cac45](https://github.com/eclipse-tractusx/portal-iam/commit/b8cac4579d315e487f973633d36f41307e3583d1))
 
 
 ### Bug Fixes
