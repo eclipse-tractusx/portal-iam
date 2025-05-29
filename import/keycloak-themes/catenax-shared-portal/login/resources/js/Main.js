@@ -441,13 +441,18 @@ class App extends Viewable {
 
 }
 
+
 class Header extends Viewable {
 
     constructor(title) {
-        super(
-            N('header', [
-                N('h3', title)
-            ])
+        super()
+        this.view = N(
+            'header',
+            [
+                N('div', null, { class: 'logo' }),
+                N('div', '', { class: 'title' }),
+                N('div', 'Register', { class: 'subtitle' }),
+            ]
         )
     }
 
@@ -467,7 +472,7 @@ class Footer extends Viewable {
         super(
             N('footer', [
                 N('div', '', { class: 'links' }),
-                N('div', 'Copyright © Catena-X Automotive Network.', { class: 'copy' })
+                N('div', 'Copyright © Segittur', { class: 'copy' })
             ])
         )
     }
