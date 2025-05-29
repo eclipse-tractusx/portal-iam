@@ -243,7 +243,7 @@ class Header extends Viewable {
           [
               N('div', null, { class: 'logo' }),
               N('div', 'Search and select', { class: 'title' }),
-              N('div', 'your company name to login', { class: 'subtitle' }),
+              N('div', 'Search and select your company name to login', { class: 'subtitle' }),
               Search.getView()
           ]
       )
@@ -255,7 +255,7 @@ class Footer extends Viewable {
       super()
       this.view = N('footer', [
           N('div', '', { class: 'links' }),
-          N('div', 'Copyright © Catena-X Automotive Network.', { class: 'copy' })
+          N('div', 'Copyright © Segittur', { class: 'copy' })
       ])
   }
 }
