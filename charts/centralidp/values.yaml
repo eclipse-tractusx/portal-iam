@@ -137,6 +137,8 @@ keycloak:
 # for configuration possibly not covered by the seeding job.
 realmSeeding:
   enabled: true
+  # -- Possible ssl required options defined by Keycloak: all, external and none;
+  # 'none' should only be set in non-productive scenarios.
   sslRequired: external
   # -- Set redirect addresses and - in the case of confidential clients - clients secrets
   # for clients which are part of the basic CX-Central realm setup;
