@@ -147,6 +147,8 @@ realmSeeding:
   enabled: true
   realms:
     cxOperator:
+      # -- Possible ssl required options defined by Keycloak: all, external and none;
+      # 'none' should only be set in non-productive scenarios.
       sslRequired: external
       # -- Set centralidp address for the connection to the CX-Central realm.
       centralidp: https://centralidp.example.org
