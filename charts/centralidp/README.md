@@ -1,6 +1,6 @@
 # Helm chart for Central Keycloak Instance
 
-![Version: 4.2.0](https://img.shields.io/badge/Version-4.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
+![Version: 4.2.1-rc.1](https://img.shields.io/badge/Version-4.2.1--rc.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Central Keycloak Instance.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: centralidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 4.2.0
+    version: 4.2.1-rc.1
 ```
 
 ## Requirements
@@ -42,6 +42,9 @@ dependencies:
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| keycloak.image.registry | string | `"docker.io"` |  |
+| keycloak.image.repository | string | `"bitnamilegacy/keycloak"` |  |
+| keycloak.image.tag | string | `"25.0.6-debian-12-r0"` |  |
 | keycloak.auth.adminUser | string | `"admin"` |  |
 | keycloak.auth.adminPassword | string | `""` | centralidp Keycloak administrator password. |
 | keycloak.auth.existingSecret | string | `""` | Secret containing the password for admin username 'admin'. |
@@ -72,7 +75,7 @@ dependencies:
 | keycloak.rbac.rules[0].verbs[0] | string | `"get"` |  |
 | keycloak.rbac.rules[0].verbs[1] | string | `"list"` |  |
 | keycloak.postgresql.enabled | bool | `true` | PostgreSQL chart configuration (recommended for demonstration purposes only); default configurations: host: "centralidp-postgresql", port: 5432; Switch to enable or disable the PostgreSQL helm chart. |
-| keycloak.postgresql.image | object | `{"tag":"15-debian-11"}` | Setting to Postgres version 15 as that is the aligned version, https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions). Keycloak helm-chart from Bitnami has moved on to version 16. |
+| keycloak.postgresql.image | object | `{"registry":"docker.io","repository":"bitnamilegacy/postgresql","tag":"15-debian-11"}` | Setting to Postgres version 15 as that is the aligned version, https://eclipse-tractusx.github.io/docs/release/trg-5/trg-5-07/#aligning-dependency-versions). Keycloak helm-chart from Bitnami has moved on to version 16. |
 | keycloak.postgresql.commonLabels."app.kubernetes.io/version" | string | `"15"` |  |
 | keycloak.postgresql.auth.username | string | `"kccentral"` | Non-root username. |
 | keycloak.postgresql.auth.password | string | `""` | Non-root user password. |
