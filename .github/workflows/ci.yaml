@@ -1,0 +1,101 @@
+name: DEV Continuous Integration Pipeline for Portal IAM
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'charts/**'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - 'charts/**'
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  dockerBuildAndPush-dev:
+    environment: ${{ github.event.inputs.environment || github.ref_name  }}
+    if: github.repository_owner == 'pia-des-org'
+    runs-on:
+      group: 'PIA-Runners-AzureVNet'
+    needs: build-dev
+    steps:
+      - uses: actions/checkout@v4
+      - name: Obtain repository name
+        run: |
+          echo "REPO_NAME=$(basename '${{ github.repository }}')" >> $GITHUB_ENV
+      - name: Get commit id
+        run: |
+          COMMIT_ID="${GITHUB_SHA}"
+          echo "COMMIT_ID=${COMMIT_ID}" >> $GITHUB_ENV
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: ACR Login
+        uses: azure/cli@v2
+        with:
+          azcliversion: latest
+          inlineScript: |
+            token=$(az acr login --name ${{ vars.ACR_SERVER }} --expose-token --output tsv --query accessToken)
+            echo "ACR_TOKEN=$token" >> $GITHUB_ENV
+      - name: Docker login
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ vars.ACR_SERVER }}
+          username: 00000000-0000-0000-0000-000000000000
+          password: ${{ env.ACR_TOKEN }}
+      - name: Docker build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/Dockerfile.import
+          push: true
+          tags: ${{ vars.ACR_SERVER }}/${{ env.REPO_NAME }}:${{ env.COMMIT_ID }}
+          no-cache: true
+  # Since there is no GitOps approach for TractusX services, the deploy job is disabled.
+  # deploy-dev:
+  #   needs: dockerBuildAndPush-dev
+  #   if: github.repository_owner == 'pia-des-org'
+  #   runs-on:
+  #     group: PIA-Runners-AzureVNet
+  #   environment: ${{ github.ref_name }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: actions/create-github-app-token@v1
+  #       id: app-token
+  #       with:
+  #         app-id: ${{ vars.APP_ID }}
+  #         private-key: ${{ secrets.PRIVATE_KEY }}
+  #         owner: ${{ vars.GITOPS_OWNER }}
+  #         repositories: |
+  #           ${{ vars.GITOPS_REPO }}
+  #     - name: Obtain repository name
+  #       run: |
+  #         echo "REPO_NAME=$(basename '${{ github.repository }}')" >> $GITHUB_ENV
+  #     - name: Sed the version
+  #       run: |
+  #         COMMIT_ID="${GITHUB_SHA}"
+  #         echo "COMMIT_ID=$COMMIT_ID" >> $GITHUB_ENV
+  #         #sed -i "s|^\([[:space:]]*tag:\).*|\1 \"${COMMIT_ID}\"|" charts/${{ env.REPO_NAME }}/environments/dev/values.yaml
+  #         #sed -i "s|^appVersion:.*|appVersion: \"${COMMIT_ID}\"|" charts/${{ env.REPO_NAME }}/Chart.yaml
+  #         sed -i '/^image:/,/^[^[:space:]]/ s|^\([[:space:]]*tag:\).*|\1 "'"${COMMIT_ID}"'"|' charts/${{ env.REPO_NAME }}/environments/dev/values.yaml
+  #         echo "Updated image.tag in values.yaml:"
+  #         grep "tag:" charts/${{ env.REPO_NAME }}/environments/dev/values.yaml
+  #         echo "Updated appVersion in Chart.yaml:"
+  #         grep "appVersion:" charts/${{ env.REPO_NAME }}/Chart.yaml
+
+  #     - name: Commit the changes
+  #       run: |
+  #         git config user.name "${{ github.actor }}"
+  #         git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+  #         git checkout -B main
+  #         git add .
+  #         git commit -m "Update the image tag to ${{ env.COMMIT_ID }}" || echo "No changes to commit"
+  #         git push origin main

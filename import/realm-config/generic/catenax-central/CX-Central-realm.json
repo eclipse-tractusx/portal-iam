@@ -1,7 +1,7 @@
 {
   "id": "CX-Central",
   "realm": "CX-Central",
-  "displayName": "Catena-X Central",
+  "displayName": "Dataspace",
   "notBefore": 1660280763,
   "defaultSignatureAlgorithm": "RS256",
   "revokeRefreshToken": true,
