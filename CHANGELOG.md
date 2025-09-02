@@ -2,21 +2,13 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
-## [4.1.0-rc.3](https://github.com/eclipse-tractusx/portal-iam/compare/v4.0.0-rc.3...v4.1.0-rc.3) (2025-09-02)
+## [4.2.1-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.2.0...v4.2.1-rc.1) (2025-09-02)
 
 
-### Features
+### Miscellaneous Chores
 
-* **centralidp:** add service account for regional clearing house ([#281](https://github.com/eclipse-tractusx/portal-iam/issues/281)) ([6ffd318](https://github.com/eclipse-tractusx/portal-iam/commit/6ffd3187a5cd31539e6f02892b20e8a7fccbc2ae))
-* **centralidp:** create decline_subscription permission ([#233](https://github.com/eclipse-tractusx/portal-iam/issues/233)) ([2fa79ee](https://github.com/eclipse-tractusx/portal-iam/commit/2fa79ee3859738d9f461535ce51bd23b7ea1cff8))
-
-
-### Bug Fixes
-
-* add missing view_app_subscripton role to offer management role composite ([#284](https://github.com/eclipse-tractusx/portal-iam/issues/284)) ([1860521](https://github.com/eclipse-tractusx/portal-iam/commit/1860521b20ab379f2c2e827bb0c4654771171bdc))
-* assign view_subscription role to Offer Management ([#277](https://github.com/eclipse-tractusx/portal-iam/issues/277)) ([ae674a2](https://github.com/eclipse-tractusx/portal-iam/commit/ae674a24e60dc851a276be2e739a4f405c1034bf))
-* **cx-central realm:** change role assignments and update r&r concept ([#252](https://github.com/eclipse-tractusx/portal-iam/issues/252)) ([799b36d](https://github.com/eclipse-tractusx/portal-iam/commit/799b36dcf24c1ef24cf763bd414e85e9b9d088bb))
-* **realm-seeding:** add faster version of job ([#253](https://github.com/eclipse-tractusx/portal-iam/issues/253)) ([2c18353](https://github.com/eclipse-tractusx/portal-iam/commit/2c18353b8e49bedc62b7a4b7912d581aadd7751a))
+* release v4.2.1-rc.1 ([4709954](https://github.com/eclipse-tractusx/portal-iam/commit/4709954bb440d3d575e277274eb93d8ff99d527a))
+* change postgresql and keycloak image source ([#301](https://github.com/eclipse-tractusx/portal-iam/issues/301)) ([4709954](https://github.com/eclipse-tractusx/portal-iam/commit/4709954bb440d3d575e277274eb93d8ff99d527a))
 
 ## [4.2.0-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.1.0-rc.1...v4.2.0-rc.1) (2025-05-09)
 
