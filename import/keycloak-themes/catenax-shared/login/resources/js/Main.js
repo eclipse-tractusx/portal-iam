@@ -293,8 +293,7 @@ class FormLogin extends Form {
     constructor(form) {
         super(
             N('div', [
-                N('h3', 'Register to Segittur'),
-                N('p', 'Finish the company registration form to join Segittur automotive network. Please use your email address as username and enter your password.'),
+                N('h3', 'Login to Segittur'),
                 form
             ])
         )
@@ -450,7 +449,7 @@ class Header extends Viewable {
             [
                 N('div', null, { class: 'logo' }),
                 N('div', '', { class: 'title' }),
-                N('div', 'Register', { class: 'subtitle' }),
+                N('div', 'Login', { class: 'subtitle' }),
             ]
         )
     }
