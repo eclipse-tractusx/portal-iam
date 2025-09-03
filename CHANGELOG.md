@@ -2,6 +2,14 @@
 
 New features, fixed bugs, known defects and other noteworthy changes to each release of the Catena-X IAM * Keycloak instances.
 
+## [4.2.1-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.2.0...v4.2.1-rc.1) (2025-09-02)
+
+
+### Miscellaneous Chores
+
+* release v4.2.1-rc.1 ([4709954](https://github.com/eclipse-tractusx/portal-iam/commit/4709954bb440d3d575e277274eb93d8ff99d527a))
+* change postgresql and keycloak image source ([#301](https://github.com/eclipse-tractusx/portal-iam/issues/301)) ([4709954](https://github.com/eclipse-tractusx/portal-iam/commit/4709954bb440d3d575e277274eb93d8ff99d527a))
+
 ## [4.2.0-rc.1](https://github.com/eclipse-tractusx/portal-iam/compare/v4.1.0-rc.1...v4.2.0-rc.1) (2025-05-09)
 
 
