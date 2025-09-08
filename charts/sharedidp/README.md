@@ -1,6 +1,6 @@
 # Helm chart for Shared Keycloak Instance
 
-![Version: 4.2.1-rc.1](https://img.shields.io/badge/Version-4.2.1--rc.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
+![Version: 4.2.1-rc.2](https://img.shields.io/badge/Version-4.2.1--rc.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 25.0.6](https://img.shields.io/badge/AppVersion-25.0.6-informational?style=flat-square)
 
 This helm chart installs the Helm chart for Shared Keycloak Instance.
 
@@ -29,7 +29,7 @@ To use the helm chart as a dependency:
 dependencies:
   - name: sharedidp
     repository: https://eclipse-tractusx.github.io/charts/dev
-    version: 4.2.1-rc.1
+    version: 4.2.1-rc.2
 ```
 
 ## Requirements
