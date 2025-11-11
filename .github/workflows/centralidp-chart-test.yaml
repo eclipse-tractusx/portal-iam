@@ -89,21 +89,21 @@ jobs:
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      # run chart linting 
+      # run chart linting
       - name: Run chart-testing (lint)
         run: ct lint --charts charts/centralidp --config charts/chart-testing-config.yaml
 
       # define charts to test with the --charts parameter
       - name: Run chart-testing (install)
-        run: helm install centralidp charts/centralidp -f charts/values-test-centralidp.yaml --namespace install --create-namespace --debug
+        run: ./.github/ci_scripts/helm-install-with-diagnostics.sh centralidp charts/centralidp charts/values-test-centralidp.yaml install
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
 
         # Upgrade the released centralidp chart version with the locally available chart
       - name: Run helm upgrade
-        run: |
-          helm repo add bitnami-full-index https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
-          helm repo add tractusx-dev https://eclipse-tractusx.github.io/charts/dev
-          helm install centralidp tractusx-dev/centralidp -f charts/values-test-upgrade.yaml --version ${{ github.event.inputs.upgrade_from || '2.1.0' }} --namespace upgrade --create-namespace --debug
-          helm dependency update charts/centralidp
-          helm upgrade centralidp charts/centralidp -f charts/values-test-upgrade.yaml --namespace upgrade --debug
+        run: ./.github/ci_scripts/helm-upgrade-with-diagnostics.sh centralidp charts/centralidp charts/values-test-upgrade.yaml upgrade ${{ github.event.inputs.upgrade_from || '2.1.0' }}
+        if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'
+
+      # Post-upgrade verification
+      - name: Verify upgrade success
+        run: ./.github/ci_scripts/verify-upgrade-success.sh centralidp upgrade
         if: github.event_name != 'pull_request' || steps.list-changed.outputs.changed == 'true'

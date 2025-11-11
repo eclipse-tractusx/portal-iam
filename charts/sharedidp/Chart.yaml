@@ -21,7 +21,7 @@ apiVersion: v2
 name: sharedidp
 type: application
 version: 4.2.1
-appVersion: 25.0.6
+appVersion: 26.3.3
 description: Helm chart for Shared Keycloak Instance
 home: https://github.com/eclipse-tractusx/portal-iam
 sources:
@@ -29,4 +29,4 @@ sources:
 dependencies:
   - name: keycloak
     repository: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
-    version: 23.0.0
+    version: 25.2.0

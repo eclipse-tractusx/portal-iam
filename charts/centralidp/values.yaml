@@ -21,7 +21,7 @@ keycloak:
   image:
     registry: docker.io
     repository: bitnamilegacy/keycloak
-    tag: 25.0.6-debian-12-r0
+    tag: 26.3.3-debian-12-r0
   auth:
     adminUser: admin
     # -- centralidp Keycloak administrator password.
@@ -30,9 +30,7 @@ keycloak:
     existingSecret: ""
   # -- Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   production: false
-  # -- Setting the path relative to '/' for serving resources:
-  # as we're migrating from 16.1.1 version which was using the trailing 'auth', we're setting it to '/auth/'.
-  # ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
+  # -- Set the path relative to '/' for serving resources (maintaining /auth for backward compatibility)
   httpRelativePath: /auth/
   replicaCount: 1
   extraVolumes:
@@ -101,7 +99,7 @@ keycloak:
     image:
       registry: docker.io
       repository: bitnamilegacy/postgresql
-      tag: 15-debian-11
+      tag: 17.6.0-debian-12-r4
     commonLabels:
       app.kubernetes.io/version: "15"
     auth:
