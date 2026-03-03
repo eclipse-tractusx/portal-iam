@@ -135,7 +135,7 @@ keycloak:
     # -- Database name.
     database: ""
     # -- Password for the non-root username.
-    password: ""
+    password: "tractusx-umbr3lla!"
     # -- Secret containing the database credentials.
     existingSecret: ""
     existingSecretHostKey: ""
@@ -163,7 +163,7 @@ realmSeeding:
         # -- SET username for all non-testing and non-local purposes.
         username: cx-operator@tx.org
         # -- SET password for all non-testing and non-local purposes, default value is "!3changemeTractus-X".
-        password: ""
+        password: "tractusx-umbr3lla!"
         firstName: Operator
         lastName: CX Admin
         eMail: cx-operator@tx.org
@@ -172,7 +172,7 @@ realmSeeding:
         host: smtp.example.org
         port: '123'
         username: smtp-user
-        password: ""
+        password: "tractusx-umbr3lla!"
         from: email@example.org
         replyTo: email@example.org
       # -- Option to provide an existingSecret for initial user and mailing configuration.
